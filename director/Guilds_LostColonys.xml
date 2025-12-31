@@ -80,6 +80,7 @@
 										<sector sector="{object.sector@Lost_Colonies.TerraStation}"/>
 										<equipment loadout="maximum"/>
 									</create_ship>
+									<create_actor name="Lost_Colonies.Envoy" race="terran" voice="129" face="1139" invincible="1" character="{9620,1100055}" gender="male" object="Lost_Colonies.OutpostStation" location="passenger" />
 									<create_actor name="Lost_Colonies.Leader" race="terran" voice="125" face="1133" invincible="1" character="{9620,1100003}" gender="male" object="Lost_Colonies.OutpostStation" location="crew" />
 									<create_actor name="Lost_Colonies.TerraEnvoy" face="1137" voice="128" gender="female" race="corporation1" invincible="1" character="{9620,1100056}" object="Lost_Colonies.TerraEnvoyShip" location="pilot"/>
 									<create_gate typename="SS_WG_EAST" gate="east" name="Lost_Colonies.ConnectedGate">
@@ -109,7 +110,9 @@
 									<do_choose>
 										<do_when value="{object.exists@Lost_Colonies.OutpostStation}" exact="1">
 											<set_invincible object="Lost_Colonies.OutpostStation" invincible="1"/>
-											<set_value name="Lost_Colonies.Status" exact="1"/>
+											<do_if value="{value@Lost_Colonies.Status}" max="1">
+												<set_value name="Lost_Colonies.Status" exact="1"/>
+											</do_if>
 										</do_when>
 										<do_otherwise>
 											<reset_cue cue="Lost_Colonies_GetOutpost"/>
@@ -788,7 +791,7 @@
 																							<set_command object="Lost_Colonies.LeaderShip" command="moveposition">
 																								<position x="-25km" y="-2km" z="-12km"/>
 																							</set_command>
-																							<play_text priority="90">
+																							<play_text actor="Lost_Colonies.Leader" priority="90">
 																								<line actor="Lost_Colonies.Leader" textid="110023"/>
 																							</play_text>
 																						</do_all>
@@ -4728,7 +4731,7 @@
 												<sector sector="{sector@Lost_Colonies.Moon}"/>
 												<jumps exact="0"/>
 											</find_station>
-											<create_actor name="Lost_Colonies.TerranRepresentative" race="terran" voice="131" face="1132" invincible="1" character="{9620,1100059}" gender="male" object="Lost_Colonies.MoonStation" location="crew" />
+											<create_actor name="Lost_Colonies.TerranRepresentative" race="terran" voice="131" face="1132" invincible="1" character="{9620,1100059}" gender="female" object="Lost_Colonies.MoonStation" location="crew" />
 											<create_offer actor="Lost_Colonies.TerranRepresentative" cue="Lost_Colonies" discipline="XXXXP" conversation="L3GPL_03_07_01"/>
 											<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100044}" text="{9620,1100045}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
 												<mission discipline="XXXXP" level="average"/>
@@ -5018,7 +5021,6 @@
 																																	</timing>
 																																	<action>
 																																		<do_all>
-																																			<show_effect object="Lost_Colonies.NewTerraGate" effect="37"/>
 																																			<find_gate name="Lost_Colonies.TerraBrokenGate" typename="SS_WG_XENON">
 																																				<sector sector="Lost_Colonies.MorningStar"/>
 																																				<jumps exact="0"/>
@@ -5046,6 +5048,7 @@
 																																				<sector sector="{object.sector@Lost_Colonies.NewTerraGate}"/>
 																																				<destination sector="Lost_Colonies.MorningStar" gate="north"/>
 																																			</create_gate>
+																																			<show_effect object="Lost_Colonies.ConnectedTerraGate" effect="46"/>
 																																			<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100044}" text="{9620,1100045}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
 																																				<mission discipline="XXXXP" level="average"/>
 																																				<reward money="4500000"/>
@@ -5097,14 +5100,1285 @@
 
 				<cue name="Lost_Colonies_Act7_4" delay="2s">
 					<condition>
-						<check_value value="{value@Lost_Colonies.Status}" exact="71"/>
+						<check_all>
+							<check_value value="{value@Lost_Colonies.Status}" exact="71"/>
+							<check_value value="{player.sector}" exact="{sector@Lost_Colonies.TerraNova}"/>
+						</check_all>
 					</condition>
 					<timing>
-						<time min="4s" max="7s"/>
+						<time min="2s" max="3s"/>
 					</timing>
 					<action>
-						
+						<do_all>
+							<do_all exact="3">
+								<create_ship group="Lost_Colonies.TerraDefenders" typename="SS_SH_TR_LOST_M3" textid="90029">
+									<position object="Lost_Colonies.TerraEnvoyShip" min="500m" max="1km"/>
+									<sector sector="Lost_Colonies.TerraNova"/>
+									<equipment loadout="maximum"/>
+									<command command="follow" commandobject="{object@Lost_Colonies.TerraEnvoyShip}" />
+								</create_ship>
+							</do_all>
+							<do_all exact="4">
+								<create_ship group="Lost_Colonies.TerraDefenders" typename="SS_SH_TR_LOST_M4" textid="90031">
+									<position object="Lost_Colonies.TerraEnvoyShip" min="500m" max="1km"/>
+									<sector sector="Lost_Colonies.TerraNova"/>
+									<equipment loadout="maximum"/>
+									<command command="follow" commandobject="{object@Lost_Colonies.TerraEnvoyShip}" />
+								</create_ship>		
+							</do_all>
+							<create_actor name="Lost_Colonies.AlphaPatrolLeader" race="terran" voice="124" face="1131" invincible="1" gender="male" object="Lost_Colonies.TerraStation" location="crew" />
+							<create_actor name="Lost_Colonies.OutpostActor" race="terran" voice="126" face="1134" invincible="1" gender="female" object="Lost_Colonies.TerraStation" location="crew" />
+							<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+								<line actor="Lost_Colonies.TerraEnvoy" textid="110025"/>
+							</play_text>
+						</do_all>
 					</action>
+					<cues>
+						<cue name="Lost_Colonies_Act7_4_Warning" delay="1s">
+							<condition>
+								<check_all>
+									<cue_is_complete cue="Lost_Colonies_Act7_4"/>
+									<check_value value="{player.sector}" exact="{sector@Lost_Colonies.TerraNova}"/>
+								</check_all>
+							</condition>
+							<timing>
+								<time exact="20s"/>
+							</timing>
+							<action>
+								<play_text actor="Lost_Colonies.OutpostActor" priority="99">
+									<line actor="Lost_Colonies.OutpostActor" textid="121000"/>
+								</play_text>
+							</action>
+							<cues>
+								<cue name="Lost_Colonies_Act7_4_Response" delay="1s">
+									<condition>
+										<cue_is_complete cue="Lost_Colonies_Act7_4_Warning"/>
+									</condition>
+									<timing>
+										<time exact="20s"/>
+									</timing>
+									<action>
+										<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+											<line actor="Lost_Colonies.TerraEnvoy" textid="110026"/>
+										</play_text>
+									</action>
+									<cues>
+										<cue name="Lost_Colonies_Act7_4_Attack" delay="1s">
+											<condition>
+												<cue_is_complete cue="Lost_Colonies_Act7_4_Response"/>
+											</condition>
+											<timing>
+												<time exact="15s"/>
+											</timing>
+											<action>
+												<do_all>
+													<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+														<line actor="Lost_Colonies.TerraEnvoy" textid="110027"/>
+														<line textid="4003" pageid="13"/>
+														<line actor="Lost_Colonies.AlphaPatrolLeader" textid="100100"/>
+													</play_text>
+												</do_all>
+											</action>
+											<cues>
+												<cue name="Lost_Colonies_Act7_4_StartAttack" delay="1s">
+													<condition>
+														<cue_is_complete cue="Lost_Colonies_Act7_4_Attack"/>
+													</condition>
+													<action>
+														<set_value name="Lost_Colonies.1 L0GI09_Progress" exact="1"/>
+													</action>
+													<cues>
+														<cue ref="L0GI09">
+															<params>
+																<param name="Cue" value="Lost_Colonies"/>
+																<param name="ID" value="1"/>
+																<param name="Step" value="7"/>
+																<param name="EnemyRace" value="{lookup.race@xenon}"/>
+																<param name="OfferRace" value="{lookup.race@corporation1}"/>
+																<param name="Sector" value="{sector@Lost_Colonies.TerraNova}"/>
+																<param name="LeaderActor" value="Lost_Colonies.TerraEnvoy"/>
+																<param name="Difficulty" value="{lookup.level@average}"/>
+																<param name="RewardCr" value="Lost_Colonies.RewardCr"/>
+																<param name="Bonus" value="Lost_Colonies.RewardBonus"/>
+																<param name="SpawnCount" value="2"/>
+																<param name="SpawnX" value="0"/>
+																<param name="SpawnY" value="0"/>
+																<param name="SpawnZ" value="-50"/>
+																<param name="Level" value="16"/>
+																<param name="Followers" value="Lost_Colonies.TerraDefenders"/>
+															</params>
+														</cue>
+														<cue name="Lost_Colonies_Act7_4_EndAttack">
+															<condition>
+																<check_all>
+																	<cue_is_complete cue="L0GI09"/>
+																	<check_value value="{value@Lost_Colonies.1 L0GI09_Progress}" exact="1"/>
+																</check_all>
+															</condition>
+															<cues>
+																<cue name="Lost_Colonies_Act7_4_SecondWave" delay="1s">
+																	<condition>
+																		<cue_is_complete cue="Lost_Colonies_Act7_4_EndAttack"/>
+																	</condition>
+																	<timing>
+																		<time exact="10s"/>
+																	</timing>
+																	<action>
+																		<do_all>
+																			<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100044}" text="{9620,1100045}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
+																				<mission discipline="XXXXP" level="average"/>
+																				<reward money="4500000"/>
+																				<objectives>
+																					<objective step="7">
+																						<custom action="{35,2036}" text="{sector.name@Lost_Colonies.TerraNova}">
+																							<sector sector="Lost_Colonies.TerraNova"/>
+																						</custom>
+																					</objective>
+																				</objectives>
+																			</create_briefing>
+																			<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100044}" text="{9620,1100045}" race="{9620,1100001}" targetrace="xenon" noabort="1" silent="1">
+																				<briefing cue="Lost_Colonies" step="7"/>
+																				<mission discipline="XXXXP" level="average"/>
+																				<reward money="4500000"/>
+																				<custom action="{35,2036}" text="{sector.name@Lost_Colonies.TerraNova}">
+																					<sector sector="Lost_Colonies.TerraNova"/>
+																				</custom>
+																			</set_objective>
+																			<create_ship name="Lost_Colonies.XenonCapital" group="Lost_Colonies.XenonCapitals" typename="SS_SH_X_M2_IX" race="xenon" invincible="1">
+																				<position x="-10km" y="0" z="-60km" min="1km" max="3km"/>
+																				<sector sector="Lost_Colonies.TerraNova"/>
+																				<equipment loadout="maximum"/>
+																			</create_ship>
+																			<create_ship name="Lost_Colonies.XenonCapitalQ" group="Lost_Colonies.XenonCapitals" typename="SS_SH_X_M7" race="xenon">
+																				<position x="-10km" y="0" z="-60km" min="1km" max="3km"/>
+																				<sector sector="Lost_Colonies.TerraNova"/>
+																				<equipment loadout="maximum"/>
+																			</create_ship>
+																			<create_ship name="Lost_Colonies.XenonCapitalQX" group="Lost_Colonies.XenonCapitals" typename="SS_SH_X_M7P" race="xenon">
+																				<position x="-10km" y="0" z="-60km" min="1km" max="3km"/>
+																				<sector sector="Lost_Colonies.TerraNova"/>
+																				<equipment loadout="maximum"/>
+																			</create_ship>
+																			<play_text actor="Lost_Colonies.OutpostActor" priority="99">
+																				<line actor="Lost_Colonies.OutpostActor" textid="121001"/>
+																				<line actor="Lost_Colonies.TerraEnvoy" textid="110028"/>
+																				<line actor="Lost_Colonies.AlphaPatrolLeader" textid="100101"/>
+																				<line actor="Lost_Colonies.TerraEnvoy" textid="110029"/>
+																			</play_text>
+																		</do_all>
+																	</action>
+																	<cues>
+																		<cue name="Lost_Colonies_Act7_4_SpawnCarrier" delay="1s">
+																			<condition>
+																				<cue_is_complete cue="Lost_Colonies_Act7_4_SecondWave"/>
+																			</condition>
+																			<timing>
+																				<time exact="8s"/>
+																			</timing>
+																			<action>
+																				<do_all>
+																					<play_cutscene file="LC_S7_4_1"/>
+																					<create_ship group="Lost_Colonies.XenonCapitals" name="Lost_Colonies.XenonCarrier" typename="SS_SH_X_M1" race="xenon" capturable="1" >
+																						<position x="-10km" y="0" z="-60km" min="1km" max="3km"/>
+																						<sector sector="Lost_Colonies.TerraNova"/>
+																						<equipment loadout="maximum"/>
+																					</create_ship>
+																					<create_ship name="Lost_Colonies.FirstXenon" group="Lost_Colonies.XenonAttackers" typename="SS_SH_X_M3" dockobject="Lost_Colonies.XenonCarrier" race="xenon">
+																						<position x="-20km" y="0" z="-90km" min="1km" max="3km"/>
+																						<sector sector="Lost_Colonies.TerraNova"/>
+																						<equipment loadout="maximum"/>
+																					</create_ship>
+																					<do_all exact="4">
+																						<create_ship group="Lost_Colonies.XenonAttackers" typename="SS_SH_X_M3" dockobject="Lost_Colonies.XenonCarrier" race="xenon">
+																							<position x="-20km" y="0" z="-90km" min="1km" max="3km"/>
+																							<sector sector="Lost_Colonies.TerraNova"/>
+																							<equipment loadout="maximum"/>
+																						</create_ship>
+																					</do_all>
+																					<do_all exact="5">
+																						<create_ship group="Lost_Colonies.XenonAttackers" typename="SS_SH_X_M4" dockobject="Lost_Colonies.XenonCarrier" race="xenon">
+																							<position x="-20km" y="0" z="-90km" min="1km" max="3km"/>
+																							<sector sector="Lost_Colonies.TerraNova"/>
+																							<equipment loadout="maximum"/>
+																						</create_ship>
+																					</do_all>
+																					<do_all exact="2">
+																						<create_ship group="Lost_Colonies.XenonAttackers" typename="SS_SH_X_M3P" dockobject="Lost_Colonies.XenonCarrier" race="xenon">
+																							<position x="-20km" y="0" z="-90km" min="1km" max="3km"/>
+																							<sector sector="Lost_Colonies.TerraNova"/>
+																							<equipment loadout="maximum"/>
+																						</create_ship>
+																					</do_all>
+																					<do_all exact="2">
+																						<create_ship group="Lost_Colonies.XenonAttackers" typename="SS_SH_X_M6" race="xenon">
+																							<position x="-20km" y="0" z="-90km" min="1km" max="3km"/>
+																							<sector sector="Lost_Colonies.TerraNova"/>
+																							<equipment loadout="maximum"/>
+																						</create_ship>
+																					</do_all>
+																					<create_ship group="Lost_Colonies.TerraNovaCapitals" typename="SS_SH_TR_LOST_M2" race="corporation1">
+																						<position x="-10km" y="0" z="-40km" min="1km" max="3km"/>
+																						<sector sector="Lost_Colonies.TerraNova"/>
+																						<equipment loadout="maximum"/>
+																						<command command="killenemies"/>
+																					</create_ship>
+																					<create_ship group="Lost_Colonies.TerraNovaCapitals" typename="SS_SH_TR_LOST_M7" race="corporation1">
+																						<position x="-10km" y="0" z="-40km" min="1km" max="3km"/>
+																						<sector sector="Lost_Colonies.TerraNova"/>
+																						<equipment loadout="maximum"/>
+																						<command command="killenemies"/>
+																					</create_ship>
+																					<do_all exact="2">
+																						<create_ship group="Lost_Colonies.TerraNovaCapitals" typename="SS_SH_TR_LOST_M6" race="corporation1">
+																							<position x="-10km" y="0" z="-40km" min="1km" max="3km"/>
+																							<sector sector="Lost_Colonies.TerraNova"/>
+																							<equipment loadout="maximum"/>
+																							<command command="killenemies"/>
+																						</create_ship>
+																					</do_all>
+																				</do_all>
+																			</action>
+																			<cues>
+																				<cue name="Lost_Colonies_Act7_4_LaunchFighters" delay="1s">
+																					<condition>
+																						<cue_is_complete cue="Lost_Colonies_Act7_4_SpawnCarrier"/>
+																					</condition>
+																					<timing>
+																						<time exact="1s"/>
+																					</timing>
+																					<action>
+																						<set_group_command group="Lost_Colonies.XenonAttackers" command="attack" commandobject="{object@Lost_Colonies.OutpostStation}"/>
+																					</action>
+																					<cues>
+																						<cue name="Lost_Colonies_Act7_4_StartAttack2" delay="1s">
+																							<condition>
+																								<cue_is_complete cue="Lost_Colonies_Act7_4_LaunchFighters"/>
+																							</condition>
+																							<timing>
+																								<time exact="15s"/>
+																							</timing>
+																							<action>
+																								<do_all>
+																									<set_group_command group="Lost_Colonies.XenonAttackers" command="killenemies"/>
+																									<set_command object="Lost_Colonies.XenonCarrier" command="killenemies"/>
+																									<set_command object="Lost_Colonies.XenonCapital" command="killenemies"/>
+																									<set_command object="Lost_Colonies.XenonCapitalQ" command="killenemies"/>
+																									<set_command object="Lost_Colonies.XenonCapitalQX" command="killenemies"/>
+																								</do_all>
+																							</action>
+																							<cues>
+																								<cue name="Lost_Colonies_Act7_4_StartAttackMission">
+																									<condition>
+																										<cue_is_complete cue="Lost_Colonies_Act7_4_StartAttack2"/>		
+																									</condition>
+																									<cues>
+																										<cue ref="L0GI09">
+																											<params>
+																												<param name="Cue" value="Lost_Colonies"/>
+																												<param name="ID" value="2"/>
+																												<param name="Step" value="7"/>
+																												<param name="EnemyRace" value="{lookup.race@xenon}"/>
+																												<param name="OfferRace" value="{lookup.race@corporation1}"/>
+																												<param name="Sector" value="{sector@Lost_Colonies.TerraNova}"/>
+																												<param name="LeaderActor" value="Lost_Colonies.TerraEnvoy"/>
+																												<param name="Difficulty" value="{lookup.level@average}"/>
+																												<param name="RewardCr" value="Lost_Colonies.RewardCr"/>
+																												<param name="Bonus" value="Lost_Colonies.RewardBonus"/>
+																												<param name="Level" value="16"/>
+																												<param name="Followers" value="Lost_Colonies.TerraDefenders"/>
+																												<param name="EnemyShips" value="Lost_Colonies.XenonAttackers"/>
+																											</params>
+																										</cue>
+																										<cue name="Lost_Colonies_Act7_4_TerranDefenders">
+																											<timing>
+																												<time min="20s" max="30s"/>
+																											</timing>
+																											<action>
+																												<do_all>
+																													<play_text actor="Lost_Colonies.Envoy" priority="99">
+																														<line actor="Lost_Colonies.Envoy" textid="110013"/>
+																														<line textid="4003" pageid="13"/>
+																														<line actor="Lost_Colonies.TerraEnvoy" textid="110030"/>
+																													</play_text>
+																												</do_all>
+																											</action>
+																											<cues>
+																												<cue name="Lost_Colonies_Act7_4_StartCutsceneTerranFleet">
+																													<condition>
+																														<cue_is_complete cue="Lost_Colonies_Act7_4_TerranDefenders"/>
+																													</condition>
+																													<timing>
+																														<time exact="15s"/>
+																													</timing>
+																													<action>
+																														<do_all>
+																															<play_cutscene file="LC_S7_4_2"/>
+																															<play_text actor="Lost_Colonies.Envoy" priority="99">
+																																<line actor="Lost_Colonies.Envoy" textid="110014"/>
+																																<line textid="4003" pageid="13"/>
+																																<line actor="Lost_Colonies.AlphaPatrolLeader" textid="100102"/>
+																																<line textid="4003" pageid="13"/>
+																																<line actor="Lost_Colonies.TerraEnvoy" textid="110031"/>
+																															</play_text>
+																															<create_ship name="Lost_Colonies.TerranCapital" group="Lost_Colonies.TerranShips" typename="SS_SH_USC_M2P" race="terran" warp="1" invincible="1">
+																																<position object="Lost_Colonies.XenonCapitalQ" min="3km" max="5km"/>
+																																<sector sector="Lost_Colonies.TerraNova"/>
+																																<equipment loadout="maximum"/>
+																																<command command="killenemies"/>
+																															</create_ship>
+																														</do_all>																														
+																													</action>
+																													<cues>
+																														<cue name="Lost_Colonies_Act7_4_JumpTerranFleet">
+																															<condition>
+																																<cue_is_complete cue="Lost_Colonies_Act7_4_StartCutsceneTerranFleet"/>
+																															</condition>
+																															<timing>
+																																<time exact="1s"/>
+																															</timing>
+																															<action>
+																																<do_all>
+																																	<create_ship group="Lost_Colonies.TerranShips" name="Lost_Colonies.TerranCarrier" typename="SS_SH_TR_M1" race="terran" warp="1">
+																																		<position object="Lost_Colonies.TerranCapital" min="100m" max="1km"/>
+																																		<sector sector="Lost_Colonies.TerraNova"/>
+																																		<equipment loadout="maximum"/>
+																																		<command command="killenemies"/>
+																																	</create_ship>
+																																	<create_ship group="Lost_Colonies.TerranShips" typename="SS_SH_TR_M7P" race="terran" warp="1">
+																																		<position object="Lost_Colonies.TerranCapital" min="100m" max="1km"/>
+																																		<sector sector="Lost_Colonies.TerraNova"/>
+																																		<equipment loadout="maximum"/>
+																																		<command command="killenemies"/>
+																																	</create_ship>
+																																	<create_ship group="Lost_Colonies.TerranShips" typename="SS_SH_TR_M6" race="terran" warp="1">
+																																		<position object="Lost_Colonies.TerranCapital" min="100m" max="1km"/>
+																																		<sector sector="Lost_Colonies.TerraNova"/>
+																																		<equipment loadout="maximum"/>
+																																		<command command="killenemies"/>
+																																	</create_ship>
+																																	<create_ship name="Lost_Colonies.TerranBomber" group="Lost_Colonies.TerranShips" typename="SS_SH_TR_M7M" race="terran" warp="1" invincible="1">
+																																		<position object="Lost_Colonies.TerranCapital" min="100m" max="1km"/>
+																																		<sector sector="Lost_Colonies.TerraNova"/>
+																																		<equipment loadout="maximum"/>
+																																		<command command="killenemies"/>
+																																	</create_ship>
+																																	<do_all exact="2">
+																																		<create_ship group="Lost_Colonies.TerranShips" typename="SS_SH_TR_M3H" dockobject="Lost_Colonies.TerranCarrier" race="terran">
+																																			<position object="Lost_Colonies.TerranCapital" min="100m" max="1km"/>
+																																			<sector sector="Lost_Colonies.TerraNova"/>
+																																			<equipment loadout="maximum"/>
+																																			<command command="killenemies"/>
+																																		</create_ship>
+																																	</do_all>
+																																	<do_all exact="6">
+																																		<create_ship group="Lost_Colonies.TerranShips" typename="SS_SH_TR_M3" dockobject="Lost_Colonies.TerranCarrier" race="terran">
+																																			<position object="Lost_Colonies.TerranCapital" min="100m" max="1km"/>
+																																			<sector sector="Lost_Colonies.TerraNova"/>
+																																			<equipment loadout="maximum"/>
+																																			<command command="killenemies"/>
+																																		</create_ship>
+																																	</do_all>
+																																	<do_all exact="10">
+																																		<create_ship group="Lost_Colonies.TerranShips" typename="SS_SH_TR_M4" dockobject="Lost_Colonies.TerranCarrier" race="terran">
+																																			<position object="Lost_Colonies.TerranCapital" min="100m" max="1km"/>
+																																			<sector sector="Lost_Colonies.TerraNova"/>
+																																			<equipment loadout="maximum"/>
+																																			<command command="killenemies"/>
+																																		</create_ship>
+																																	</do_all>
+																																	<set_object name="Lost_Colonies.TerranTarget" value="{object@Lost_Colonies.XenonCapital}"/>
+																																	<start_script script="plugin.guilds.cutscene">
+																																		<scriptargs>
+																																			<scriptvalue datatype="string" datavalue="lc.7.4.2"/>
+																																			<scriptvalue datatype="ship" datavalue="{object@Lost_Colonies.TerranBomber}"/>
+																																			<scriptvalue datatype="ship" datavalue="{object@Lost_Colonies.XenonCapital}"/>
+																																		</scriptargs>
+																																	</start_script>
+																																</do_all>
+																															</action>
+																															<cues>
+																																<cue name="Lost_Colonies_Act7_4_LeaveBattle">
+																																	<condition>
+																																		<cue_is_complete cue="Lost_Colonies_Act7_4_JumpTerranFleet"/>
+																																	</condition>
+																																	<timing>
+																																		<time exact="55s"/>
+																																	</timing>
+																																	<action>
+																																		<do_all>
+																																			<set_invincible object="Lost_Colonies.XenonCapital" invincible="0"/>
+																																			<set_invincible object="Lost_Colonies.XenonCapitalQ" invincible="0"/>
+																																			<remove_briefing cue="Lost_Colonies"/>
+																																			<remove_objective cue="Lost_Colonies" status="aborted"/>
+																																			<play_text actor="Lost_Colonies.Envoy" priority="99">
+																																				<line actor="Lost_Colonies.Envoy" textid="110015"/>
+																																			</play_text>
+																																			<cancel_cue cue="L0GI09"/>
+																																			<cancel_cue cue="Lost_Colonies_Act7_4_EndAttack2"/>
+																																			<set_value name="Lost_Colonies.Status" exact="72"/>
+																																			<complete_cue cue="Lost_Colonies_Act7_4"/>
+																																		</do_all>
+																																	</action>
+																																</cue>
+																															</cues>
+																														</cue>
+																													</cues>
+																												</cue>
+																											</cues>
+																										</cue>
+
+																										<cue name="Lost_Colonies_Act7_4_EndAttack2">
+																											<condition>
+																												<check_all>
+																													<cue_is_complete cue="L0GI09"/>
+																													<check_value value="{value@Lost_Colonies.2 L0GI09_Progress}" exact="1"/>
+																												</check_all>
+																											</condition>
+																											<action>
+																												<do_all>
+																													<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100044}" text="{9620,1100045}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
+																														<mission discipline="XXXXP" level="average"/>
+																														<reward money="4500000"/>
+																														<objectives>
+																															<objective step="7">
+																																<custom action="{35,2036}" text="{sector.name@Lost_Colonies.TerraNova}">
+																																	<sector sector="Lost_Colonies.TerraNova"/>
+																																</custom>
+																															</objective>
+																														</objectives>
+																													</create_briefing>
+																													<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100044}" text="{9620,1100045}" race="{9620,1100001}" targetrace="xenon" noabort="1">
+																														<briefing cue="Lost_Colonies" step="7"/>
+																														<mission discipline="XXXXP" level="average"/>
+																														<reward money="4500000"/>
+																														<custom action="{35,2036}" text="{sector.name@Lost_Colonies.TerraNova}">
+																															<sector sector="Lost_Colonies.TerraNova"/>
+																														</custom>
+																													</set_objective>
+																												</do_all>
+																											</action>
+																										</cue>
+																									</cues>
+																								</cue>
+																							</cues>
+																						</cue>
+																					</cues>
+																				</cue>
+																			</cues>
+																		</cue>
+																	</cues>
+																</cue>
+															</cues>
+														</cue>
+													</cues>
+												</cue>												
+											</cues>
+										</cue>
+									</cues>
+								</cue>
+							</cues>
+						</cue>
+					</cues>
+				</cue>
+			
+				<cue name="Lost_Colonies_Act7_5" delay="2s">
+					<condition>
+						<check_all>
+							<check_value value="{value@Lost_Colonies.Status}" exact="72"/>
+							<check_value value="{player.sector}" exact="{sector@Lost_Colonies.TerraNova}"/>
+						</check_all>
+					</condition>
+					<timing>
+						<time min="10s" max="15s"/>
+					</timing>
+					<action>
+						<do_all>
+							<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+								<line actor="Lost_Colonies.TerraEnvoy" textid="110032"/>
+							</play_text>
+							<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
+								<mission discipline="XXXXP" level="average"/>
+								<reward money="4500000"/>
+								<objectives>
+									<objective step="1">
+										<flyto>
+											<sector sector="Lost_Colonies.MorningStar"/>
+										</flyto>
+									</objective>
+								</objectives>
+							</create_briefing>
+							<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" race="{9620,1100001}" targetrace="xenon" noabort="1">
+								<briefing cue="Lost_Colonies" step="1"/>
+								<mission discipline="XXXXP" level="average"/>
+								<reward money="4500000"/>
+								<flyto>
+									<sector sector="Lost_Colonies.MorningStar"/>
+								</flyto>
+							</set_objective>
+						</do_all>
+					</action>
+					<cues>
+						<cue name="Lost_Colonies_Act_7_5_FlySector" delay="2s">
+							<condition>
+								<check_value value="{player.sector}" exact="{sector@Lost_Colonies.MorningStar}"/>
+							</condition>
+							<timing>
+								<time exact="2s"/>
+							</timing>
+							<action>
+								<do_all>
+									<do_if value="{object.exists@Lost_Colonies.LeaderShip}" exact="0">
+										<destroy_actor actor="Lost_Colonies.AlphaPatrolLeader"/>
+										<destroy_actor actor="Lost_Colonies.OutpostActor"/>
+										<destroy_group group="Lost_Colonies.XenonCapitals"/>
+										<destroy_group group="Lost_Colonies.XenonAttackers"/>
+										<destroy_group group="Lost_Colonies.TerraDefenders"/>
+										<destroy_group group="Lost_Colonies.TerraNovaCapitals"/>
+										<destroy_group group="Lost_Colonies.TerraNovaCapitals"/>
+										<destroy_group group="Lost_Colonies.TerranShips"/>
+										<warp_object object="Lost_Colonies.TerraEnvoyShip" warp="1">
+											<position object="{player.ship}"/>
+											<sector sector="{player.sector}"/>																			
+										</warp_object>	
+										<create_ship name="Lost_Colonies.LeaderShip" capturable="0" invincible="1" typename="SS_SH_USC_M3P" race="terran" textid="90015" warp="1">
+											<position object="{player.ship}"/>
+											<sector sector="{player.sector}"/>
+											<equipment loadout="maximum"/>
+											<command command="follow" commandobject="{player.ship}"/>
+										</create_ship>
+										<add_equipment object="Lost_Colonies.LeaderShip">
+											<ware typename="SS_WARE_LIFESUPPORT" exact="1"/>
+										</add_equipment>									
+										<set_actor_location actor="Lost_Colonies.Envoy" object="Lost_Colonies.LeaderShip" location="passenger"/>
+										<set_actor_location actor="Lost_Colonies.Leader" object="Lost_Colonies.LeaderShip" location="pilot"/>
+									</do_if>
+									<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
+										<mission discipline="XXXXP" level="average"/>
+										<reward money="4500000"/>
+										<objectives>
+											<objective step="1">
+												<custom action="{9620,1100063}" text="{sector.name@Lost_Colonies.MorningStar}">
+													<sector sector="Lost_Colonies.MorningStar"/>
+												</custom>
+											</objective>
+										</objectives>
+									</create_briefing>
+									<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" race="{9620,1100001}" targetrace="xenon" noabort="1" >
+										<briefing cue="Lost_Colonies" step="1"/>
+										<mission discipline="XXXXP" level="average"/>
+										<reward money="4500000"/>
+										<custom action="{9620,1100063}" text="{sector.name@Lost_Colonies.MorningStar}">
+											<sector sector="Lost_Colonies.MorningStar"/>
+										</custom>
+									</set_objective>
+								</do_all>
+							</action>
+							<cues>
+								<cue name="Lost_Colonies_Act_7_5_Speech1_1" delay="2s">
+									<condition>
+										<check_all>
+											<cue_is_complete cue="Lost_Colonies_Act_7_5_FlySector"/>
+											<check_value value="{value@Lost_Colonies.Status}" exact="72"/>
+										</check_all>
+									</condition>
+									<timing>
+										<time exact="1s"/>
+									</timing>
+									<cues>
+										<cue name="Lost_Colonies_Act_7_5_Speech1_1_Do" delay="1s">
+											<condition>
+												<check_all>
+													<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech1_1"/>
+													<check_value value="{player.sector}" exact="{sector@Lost_Colonies.MorningStar}"/>
+												</check_all>											
+											</condition>
+											<timing>
+												<time exact="1s"/>
+											</timing>
+											<action>
+												<do_all>
+													<play_text actor="Lost_Colonies.Leader" priority="99">
+														<line actor="Lost_Colonies.Leader" textid="110084"/>
+														<line actor="Lost_Colonies.TerraEnvoy" textid="110033"/>
+													</play_text>
+													<set_value name="Lost_Colonies.Status" exact="73"/>
+												</do_all>
+											</action>
+										</cue>										
+									</cues>
+								</cue>
+								<cue name="Lost_Colonies_Act_7_5_Speech1_2" delay="2s">
+									<condition>
+										<check_all>
+											<cue_is_complete cue="Lost_Colonies_Act_7_5_FlySector"/>
+											<check_value value="{value@Lost_Colonies.Status}" exact="73"/>
+										</check_all>
+									</condition>
+									<timing>
+										<time exact="20s"/>
+									</timing>
+									<cues>
+										<cue name="Lost_Colonies_Act_7_5_Speech1_2_Do" delay="1s">
+											<condition>
+												<check_all>
+													<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech1_2"/>
+													<check_value value="{player.sector}" exact="{sector@Lost_Colonies.MorningStar}"/>
+												</check_all>											
+											</condition>
+											<timing>
+												<time exact="1s"/>
+											</timing>
+											<action>
+												<do_all>
+													<set_value name="Lost_Colonies.Status" exact="74"/>
+													<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+														<line actor="Lost_Colonies.TerraEnvoy" textid="110034"/>
+														<line actor="Lost_Colonies.Envoy" textid="110016"/>
+														<line actor="Lost_Colonies.TerraEnvoy" textid="110035"/>
+													</play_text>
+												</do_all>
+											</action>
+										</cue>										
+									</cues>
+								</cue>
+								
+								<cue name="Lost_Colonies_Act_7_5_Speech1_3" delay="2s">
+									<condition>
+										<check_all>
+											<check_value value="{value@Lost_Colonies.Status}" exact="74"/>
+											<cue_is_complete cue="Lost_Colonies_Act_7_5_FlySector"/>
+										</check_all>
+									</condition>
+									<timing>
+										<time exact="35s"/>
+									</timing>
+									<cues>
+										<cue name="Lost_Colonies_Act_7_5_Speech1_3_Do" delay="1s">
+											<condition>
+												<check_all>
+													<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech1_3"/>
+													<check_value value="{player.sector}" exact="{sector@Lost_Colonies.MorningStar}"/>
+												</check_all>											
+											</condition>
+											<timing>
+												<time exact="1s"/>
+											</timing>
+											<action>
+												<do_all>
+													<set_value name="Lost_Colonies.Status" exact="75"/>
+													<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+														<line actor="Lost_Colonies.TerraEnvoy" textid="110036"/>
+														<line actor="Lost_Colonies.Leader" textid="110085"/>
+														<line actor="Lost_Colonies.TerraEnvoy" textid="110037"/>
+													</play_text>
+												</do_all>
+											</action>
+										</cue>										
+									</cues>
+								</cue>
+								
+								<cue name="Lost_Colonies_Act_7_5_Speech1_4" delay="2s">
+									<condition>
+										<check_all>
+											<check_value value="{value@Lost_Colonies.Status}" exact="75"/>
+											<cue_is_complete cue="Lost_Colonies_Act_7_5_FlySector"/>
+										</check_all>
+									</condition>
+									<timing>
+										<time exact="35s"/>
+									</timing>
+									<cues>
+										<cue name="Lost_Colonies_Act_7_5_Speech1_4_Do" delay="1s">
+											<condition>
+												<check_all>
+													<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech1_4"/>
+													<check_value value="{player.sector}" exact="{sector@Lost_Colonies.MorningStar}"/>
+												</check_all>											
+											</condition>
+											<timing>
+												<time exact="1s"/>
+											</timing>
+											<action>
+												<do_all>
+													<set_value name="Lost_Colonies.Status" exact="76"/>
+													<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+														<line actor="Lost_Colonies.TerraEnvoy" textid="110038"/>
+														<line actor="Lost_Colonies.Envoy" textid="110017"/>
+														<line actor="Lost_Colonies.TerraEnvoy" textid="110039"/>
+													</play_text>
+												</do_all>
+											</action>
+											<cues>
+												<cue name="Lost_Colonies_Act_7_5_ParadiseLost" delay="1s">
+													<condition>
+														<check_all>
+															<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech1_4_Do"/>
+															<check_value value="{player.sector}" exact="{sector@Lost_Colonies.MorningStar}"/>
+															<check_value value="{value@Lost_Colonies.Status}" exact="76"/>
+														</check_all>
+													</condition>
+													<timing>
+														<time exact="18s"/>
+													</timing>
+													<action>
+														<do_all>
+															<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
+																<mission discipline="XXXXP" level="average"/>
+																<reward money="4500000"/>
+																<objectives>
+																	<objective step="2">
+																		<flyto>
+																			<sector sector="Lost_Colonies.ParadiseLost"/>
+																		</flyto>
+																	</objective>
+																</objectives>
+															</create_briefing>
+															<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" race="{9620,1100001}" targetrace="xenon" noabort="1">
+																<briefing cue="Lost_Colonies" step="2"/>
+																<mission discipline="XXXXP" level="average"/>
+																<reward money="4500000"/>
+																<flyto>
+																	<sector sector="Lost_Colonies.ParadiseLost"/>
+																</flyto>
+															</set_objective>
+															<cancel_cue cue="Lost_Colonies_Act_7_5_LeaveSector_1"/>
+														</do_all>
+													</action>
+													<cues>														
+														<cue name="Lost_Colonies_Act_7_5_FlySector_2" delay="2s">
+															<condition>
+																<check_value value="{player.sector}" exact="{sector@Lost_Colonies.ParadiseLost}"/>
+															</condition>
+															<timing>
+																<time exact="2s"/>
+															</timing>
+															<action>
+																<do_all>
+																	<set_command object="Lost_Colonies.TerraEnvoyShip" command="none" />
+																	<set_command object="Lost_Colonies.LeaderShip" command="none" />
+																	<warp_object object="Lost_Colonies.TerraEnvoyShip" warp="1">
+																		<position object="{player.ship}"/>
+																		<sector sector="Lost_Colonies.ParadiseLost"/>																			
+																	</warp_object>	
+																	<warp_object object="Lost_Colonies.LeaderShip" warp="1">
+																		<position object="{player.ship}"/>
+																		<sector sector="Lost_Colonies.ParadiseLost"/>																			
+																	</warp_object>	
+																	<set_value name="Lost_Colonies.Status" exact="77"/>
+																	<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
+																		<mission discipline="XXXXP" level="average"/>
+																		<reward money="4500000"/>
+																		<objectives>
+																			<objective step="2">
+																				<custom action="{9620,1100063}" text="{sector.name@Lost_Colonies.ParadiseLost}">
+																					<sector sector="Lost_Colonies.ParadiseLost"/>
+																				</custom>
+																			</objective>
+																		</objectives>
+																	</create_briefing>
+																	<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" race="{9620,1100001}" targetrace="xenon" noabort="1" >
+																		<briefing cue="Lost_Colonies" step="2"/>
+																		<mission discipline="XXXXP" level="average"/>
+																		<reward money="4500000"/>
+																		<custom action="{9620,1100063}" text="{sector.name@Lost_Colonies.ParadiseLost}">
+																			<sector sector="Lost_Colonies.ParadiseLost"/>
+																		</custom>
+																	</set_objective>
+																</do_all>														
+															</action>
+															<cues>
+																<cue name="Lost_Colonies_Act_7_5_LeaveSector_2" delay="2s">
+																	<condition>
+																		<check_value value="{player.sector}" exact="{sector@Lost_Colonies.ParadiseLost}" negate="1"/>
+																	</condition>
+																	<action>
+																		<do_all>
+																			<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
+																				<mission discipline="XXXXP" level="average"/>
+																				<reward money="4500000"/>
+																				<objectives>
+																					<objective step="2">
+																						<flyto>
+																							<sector sector="Lost_Colonies.ParadiseLost"/>
+																						</flyto>
+																					</objective>
+																				</objectives>
+																			</create_briefing>
+																			<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" race="{9620,1100001}" targetrace="xenon" noabort="1">
+																				<briefing cue="Lost_Colonies" step="2"/>
+																				<mission discipline="XXXXP" level="average"/>
+																				<reward money="4500000"/>
+																				<flyto>
+																					<sector sector="Lost_Colonies.ParadiseLost"/>
+																				</flyto>
+																			</set_objective>
+																			<reset_cue cue="Lost_Colonies_Act_7_5_FlySector_2"/>
+																		</do_all>
+																	</action>
+																</cue>
+															
+																<cue name="Lost_Colonies_Act_7_5_Speech2_1" delay="2s">
+																	<condition>
+																		<check_all>
+																			<cue_is_complete cue="Lost_Colonies_Act_7_5_FlySector_2"/>
+																			<check_value value="{value@Lost_Colonies.Status}" exact="77"/>
+																		</check_all>
+																	</condition>
+																	<timing>
+																		<time exact="1s"/>
+																	</timing>
+																	<cues>
+																		<cue name="Lost_Colonies_Act_7_5_Speech2_1_Do" delay="1s">
+																			<condition>
+																				<check_all>
+																					<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech2_1"/>
+																					<check_value value="{player.sector}" exact="{sector@Lost_Colonies.ParadiseLost}"/>
+																				</check_all>											
+																			</condition>
+																			<timing>
+																				<time exact="1s"/>
+																			</timing>
+																			<action>
+																				<do_all>
+																					<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+																						<line actor="Lost_Colonies.TerraEnvoy" textid="110040"/>
+																						<line actor="Lost_Colonies.Leader" textid="110086"/>
+																					</play_text>
+																					<set_value name="Lost_Colonies.Status" exact="78"/>
+																				</do_all>
+																			</action>
+																		</cue>										
+																	</cues>
+																</cue>														
+																<cue name="Lost_Colonies_Act_7_5_Speech2_2" delay="2s">
+																	<condition>
+																		<check_all>
+																			<cue_is_complete cue="Lost_Colonies_Act_7_5_FlySector_2"/>
+																			<check_value value="{value@Lost_Colonies.Status}" exact="78"/>
+																		</check_all>
+																	</condition>
+																	<timing>
+																		<time exact="23s"/>
+																	</timing>
+																	<cues>
+																		<cue name="Lost_Colonies_Act_7_5_Speech2_2_Do" delay="1s">
+																			<condition>
+																				<check_all>
+																					<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech2_2"/>
+																					<check_value value="{player.sector}" exact="{sector@Lost_Colonies.ParadiseLost}"/>
+																				</check_all>											
+																			</condition>
+																			<timing>
+																				<time exact="1s"/>
+																			</timing>
+																			<action>
+																				<do_all>
+																					<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+																						<line actor="Lost_Colonies.TerraEnvoy" textid="110041"/>
+																						<line actor="Lost_Colonies.Envoy" textid="110018"/>
+																						<line actor="Lost_Colonies.TerraEnvoy" textid="110042"/>
+																					</play_text>
+																					<set_value name="Lost_Colonies.Status" exact="79"/>
+																				</do_all>
+																			</action>
+																		</cue>										
+																	</cues>
+																</cue>														
+																<cue name="Lost_Colonies_Act_7_5_Speech2_3" delay="2s">
+																	<condition>
+																		<check_all>
+																			<cue_is_complete cue="Lost_Colonies_Act_7_5_FlySector_2"/>
+																			<check_value value="{value@Lost_Colonies.Status}" exact="79"/>
+																		</check_all>
+																	</condition>
+																	<timing>
+																		<time exact="30s"/>
+																	</timing>
+																	<cues>
+																		<cue name="Lost_Colonies_Act_7_5_Speech2_3_Do" delay="1s">
+																			<condition>
+																				<check_all>
+																					<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech2_3"/>
+																					<check_value value="{player.sector}" exact="{sector@Lost_Colonies.ParadiseLost}"/>
+																				</check_all>											
+																			</condition>
+																			<timing>
+																				<time exact="1s"/>
+																			</timing>
+																			<action>
+																				<do_all>
+																					<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+																						<line actor="Lost_Colonies.TerraEnvoy" textid="110043"/>
+																						<line actor="Lost_Colonies.Leader" textid="110087"/>
+																						<line actor="Lost_Colonies.TerraEnvoy" textid="110044"/>
+																						<line actor="Lost_Colonies.Envoy" textid="110019"/>
+																					</play_text>
+																					<set_value name="Lost_Colonies.Status" exact="80"/>
+																				</do_all>
+																			</action>
+																		</cue>										
+																	</cues>
+																</cue>														
+																<cue name="Lost_Colonies_Act_7_5_Speech2_4" delay="2s">
+																	<condition>
+																		<check_all>
+																			<cue_is_complete cue="Lost_Colonies_Act_7_5_FlySector_2"/>
+																			<check_value value="{value@Lost_Colonies.Status}" exact="80"/>
+																		</check_all>
+																	</condition>
+																	<timing>
+																		<time exact="34s"/>
+																	</timing>
+																	<cues>
+																		<cue name="Lost_Colonies_Act_7_5_Speech2_4_Do" delay="1s">
+																			<condition>
+																				<check_all>
+																					<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech2_4"/>
+																					<check_value value="{player.sector}" exact="{sector@Lost_Colonies.ParadiseLost}"/>
+																				</check_all>											
+																			</condition>
+																			<timing>
+																				<time exact="1s"/>
+																			</timing>
+																			<action>
+																				<do_all>
+																					<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+																						<line actor="Lost_Colonies.TerraEnvoy" textid="110045"/>
+																						<line actor="Lost_Colonies.Leader" textid="110088"/>
+																						<line actor="Lost_Colonies.TerraEnvoy" textid="110046"/>
+																					</play_text>
+																					<set_value name="Lost_Colonies.Status" exact="81"/>
+																				</do_all>
+																			</action>
+																		</cue>										
+																	</cues>
+																</cue>														
+																<cue name="Lost_Colonies_Act_7_5_Speech2_5" delay="2s">
+																	<condition>
+																		<check_all>
+																			<cue_is_complete cue="Lost_Colonies_Act_7_5_FlySector_2"/>
+																			<check_value value="{value@Lost_Colonies.Status}" exact="81"/>
+																		</check_all>
+																	</condition>
+																	<timing>
+																		<time exact="32s"/>
+																	</timing>
+																	<cues>
+																		<cue name="Lost_Colonies_Act_7_5_Speech2_5_Do" delay="1s">
+																			<condition>
+																				<check_all>
+																					<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech2_5"/>
+																					<check_value value="{player.sector}" exact="{sector@Lost_Colonies.ParadiseLost}"/>
+																				</check_all>											
+																			</condition>
+																			<timing>
+																				<time exact="1s"/>
+																			</timing>
+																			<action>
+																				<do_all>
+																					<play_text actor="Lost_Colonies.Envoy" priority="99">
+																						<line actor="Lost_Colonies.Envoy" textid="110020"/>
+																						<line actor="Lost_Colonies.TerraEnvoy" textid="110047"/>
+																					</play_text>
+																					<set_value name="Lost_Colonies.Status" exact="82"/>
+																				</do_all>
+																			</action>
+																			<cues>
+																				<cue name="Lost_Colonies_Act_7_5_AuroraPrime" delay="1s">
+																					<condition>
+																						<check_all>
+																							<cue_is_complete cue="Lost_Colonies_Act_7_5_Speech2_5_Do"/>
+																							<check_value value="{player.sector}" exact="{sector@Lost_Colonies.ParadiseLost}"/>
+																							<check_value value="{value@Lost_Colonies.Status}" exact="82"/>
+																						</check_all>
+																					</condition>
+																					<timing>
+																						<time exact="10s"/>
+																					</timing>
+																					<action>
+																						<do_all>
+																							<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
+																								<mission discipline="XXXXP" level="average"/>
+																								<reward money="4500000"/>
+																								<objectives>
+																									<objective step="3">
+																										<flyto>
+																											<sector sector="Lost_Colonies.AuroraPrime"/>
+																										</flyto>
+																									</objective>
+																								</objectives>
+																							</create_briefing>
+																							<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" race="{9620,1100001}" targetrace="xenon" noabort="1">
+																								<briefing cue="Lost_Colonies" step="3"/>
+																								<mission discipline="XXXXP" level="average"/>
+																								<reward money="4500000"/>
+																								<flyto>
+																									<sector sector="Lost_Colonies.AuroraPrime"/>
+																								</flyto>
+																							</set_objective>
+																							<cancel_cue cue="Lost_Colonies_Act_7_5_LeaveSector_2"/>
+																						</do_all>
+																					</action>
+																					<cues>
+																						<cue name="Lost_Colonies_Act_7_5_FlySector_3" delay="2s">
+																							<condition>
+																								<check_value value="{player.sector}" exact="{sector@Lost_Colonies.AuroraPrime}"/>
+																							</condition>
+																							<timing>
+																								<time exact="2s"/>
+																							</timing>
+																							<action>
+																								<do_all>
+																									<set_command object="Lost_Colonies.TerraEnvoyShip" command="none" />
+																									<set_command object="Lost_Colonies.LeaderShip" command="none" />
+																									<warp_object object="Lost_Colonies.TerraEnvoyShip" warp="1">
+																										<position object="{player.ship}"/>
+																										<sector sector="Lost_Colonies.AuroraPrime"/>																			
+																									</warp_object>	
+																									<warp_object object="Lost_Colonies.LeaderShip" warp="1">
+																										<position object="{player.ship}"/>
+																										<sector sector="Lost_Colonies.AuroraPrime"/>																			
+																									</warp_object>	
+																									<set_value name="Lost_Colonies.Status" exact="83"/>
+																									<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
+																										<mission discipline="XXXXP" level="average"/>
+																										<reward money="4500000"/>
+																										<objectives>
+																											<objective step="3">
+																												<custom action="{9620,1100063}" text="{sector.name@Lost_Colonies.AuroraPrime}">
+																													<sector sector="Lost_Colonies.AuroraPrime"/>
+																												</custom>
+																											</objective>
+																										</objectives>
+																									</create_briefing>
+																									<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" race="{9620,1100001}" targetrace="xenon" noabort="1" >
+																										<briefing cue="Lost_Colonies" step="3"/>
+																										<mission discipline="XXXXP" level="average"/>
+																										<reward money="4500000"/>
+																										<custom action="{9620,1100063}" text="{sector.name@Lost_Colonies.AuroraPrime}">
+																											<sector sector="Lost_Colonies.AuroraPrime"/>
+																										</custom>
+																									</set_objective>
+																								</do_all>														
+																							</action>
+																							<cues>
+																								<cue name="Lost_Colonies_Act_7_5_ArriveAurora" delay="1s">
+																									<condition>
+																										<cue_is_complete cue="Lost_Colonies_Act_7_5_FlySector_3"/>
+																									</condition>
+																									<timing>
+																										<time exact="1s"/>
+																									</timing>
+																									<action>
+																										<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+																											<line actor="Lost_Colonies.TerraEnvoy" textid="110048"/>
+																										</play_text>
+																									</action>
+																									<cues>
+																										<cue name="Lost_Colonies_Act_7_5_AuroraCutscene" delay="1s">
+																											<condition>
+																												<cue_is_complete cue="Lost_Colonies_Act_7_5_ArriveAurora"/>
+																											</condition>
+																											<timing>
+																												<time exact="8s"/>
+																											</timing>
+																											<action>
+																												<do_all>
+																													<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+																														<line actor="Lost_Colonies.TerraEnvoy" textid="110049"/>
+																													</play_text>
+																													<play_cutscene file="LC_S7_5_1"/>
+																													<find_ship name="Lost_Colonies.CutsceneCarrier" typename="SS_SH_TR_LOST_M1" race="corporation1">
+																														<sector sector="Lost_Colonies.AuroraPrime"/>
+																														<jumps exact="0"/>
+																													</find_ship>
+																													<find_station race="corporation1" name="Lost_Colonies.CutsceneStation" silent="1" typename="SS_FAC_TR_SHIP_LOST">
+																														<sector sector="{sector@Lost_Colonies.AuroraPrime}"/>
+																														<jumps min="0" max="0"/>
+																													</find_station>
+																													<do_if value="{object.exists@Lost_Colonies.CutsceneStation}" exact="0">
+																														<find_station class="dock" race="corporation1" name="Lost_Colonies.CutsceneStation" silent="1" >
+																															<sector sector="{sector@Lost_Colonies.AuroraPrime}"/>
+																															<jumps min="0" max="0"/>
+																														</find_station>
+																													</do_if>
+																													<do_choose>
+																														<do_when value="{object.exists@Lost_Colonies.CutsceneCarrier}" exact="1">
+																															<set_invincible object="Lost_Colonies.CutsceneCarrier" invincible="1"/>
+																															<set_value name="Lost_Colonies.EarthCarrierFound" exact="1"/>
+																														</do_when>
+																														<do_otherwise>
+																															<set_value name="Lost_Colonies.EarthCarrierFound" exact="0"/>
+																															<create_ship name="Lost_Colonies.CutsceneCarrier" capturable="0" invincible="1" typename="SS_SH_TR_LOST_M1" race="corporation1" warp="0">
+																																<sector sector="Lost_Colonies.AuroraPrime"/>
+																																<equipment loadout="maximum"/>
+																																<command command="idle"/>
+																															</create_ship>
+																														</do_otherwise>
+																													</do_choose>
+											
+																												</do_all>
+																											</action>
+																											<cues>
+																												<cue name="Lost_Colonies_Act_7_5_CaptainWelcome" delay="1s">
+																													<condition>
+																														<cue_is_complete cue="Lost_Colonies_Act_7_5_AuroraCutscene"/>
+																													</condition>
+																													<timing>
+																														<time exact="12s"/>
+																													</timing>
+																													<action>
+																														<do_all>
+																															<create_actor name="Lost_Colonies.AuroraCaptain" race="terran" voice="126" face="1132" invincible="1" character="{9620,1100064}" gender="female" object="Lost_Colonies.CutsceneCarrier" location="crew" />
+																															<play_text actor="Lost_Colonies.AuroraCaptain" priority="99">
+																																<line actor="Lost_Colonies.AuroraCaptain" textid="122000"/>
+																																<line actor="Lost_Colonies.TerraEnvoy" textid="110050"/>
+																																<line actor="Lost_Colonies.AuroraCaptain" textid="122001"/>
+																																<line actor="Lost_Colonies.TerraEnvoy" textid="110051"/>
+																																<line actor="Lost_Colonies.AuroraCaptain" textid="122002"/>
+																																<line textid="4003" pageid="13"/>
+																																<line textid="4003" pageid="13"/>
+																																<line actor="Lost_Colonies.AuroraCaptain" textid="122003"/>
+																																<line actor="Lost_Colonies.TerraEnvoy" textid="110052"/>
+																																<line actor="Lost_Colonies.AuroraCaptain" textid="122004"/>
+																																<line textid="4003" pageid="13"/>
+																																<line actor="Lost_Colonies.AuroraCaptain" textid="122005"/>
+																															</play_text>
+																														</do_all>
+																													</action>
+																													<cues>
+																														<cue name="Lost_Colonies_Act_7_5_EndCutscene" delay="1s">
+																															<condition>
+																																<cue_is_complete cue="Lost_Colonies_Act_7_5_CaptainWelcome"/>
+																															</condition>
+																															<timing>
+																																<time exact="85s"/>
+																															</timing>
+																															<action>
+																																<do_all>
+																																	<set_command object="Lost_Colonies.TerraEnvoyShip" command="dock" commandobject="{object@Lost_Colonies.CutsceneStation}" />
+																																	<set_command object="Lost_Colonies.LeaderShip" command="dock" commandobject="{object@Lost_Colonies.CutsceneStation}" />
+																																	<play_text actor="Lost_Colonies.TerraEnvoy" priority="99">
+																																		<line actor="Lost_Colonies.TerraEnvoy" textid="110053"/>
+																																	</play_text>
+																																	<remove_briefing cue="Lost_Colonies"/>
+																																	<remove_objective cue="Lost_Colonies" status="complete"/>
+																																	<start_script script="plugin.guilds.doexp">
+																																		<scriptargs>
+																																			<scriptvalue datatype="integer" datavalue="10000"/>
+																																			<scriptvalue datatype="string" datavalue="military.terran"/>
+																																			<scriptvalue datatype="integer" datavalue="2000"/>
+																																		</scriptargs>
+																																	</start_script>
+																																	<reward_player>
+																																		<money exact="4500000" transactionpage="9620" transactionid="1100002"/>
+																																		<notoriety>
+																																			<relation race="corporation1" exact="10000"/>
+																																		</notoriety>
+																																	</reward_player>
+																																</do_all>
+																															</action>
+																															<cues>
+																																<cue name="Lost_Colonies_Act_7_5_Finished" delay="1s">
+																																	<condition>
+																																		<cue_is_complete cue="Lost_Colonies_Act_7_5_EndCutscene"/>
+																																	</condition>
+																																	<timing>
+																																		<time exact="10s"/>
+																																	</timing>
+																																	<action>
+																																		<do_all>
+																																			<set_value name="Lost_Colonies.Status" exact="90"/>															
+																																			<start_script script="plugin.guilds.mission">
+																																				<scriptargs>
+																																					<scriptvalue datatype="string" datavalue="lostcolony"/>
+																																					<scriptvalue datatype="integer" datavalue="1"/>
+																																					<scriptvalue datatype="string" datavalue="lost.colony"/>
+																																					<scriptvalue datatype="integer" datavalue="0"/>
+																																				</scriptargs>
+																																			</start_script>
+																																			<play_movie movieid="8120"/>
+																																		</do_all>
+																																	</action>
+																																	<cues>
+																																		<cue name="Lost_Colonies_Act_7_5_CleanUp" delay="1s">
+																																			<condition>
+																																				<check_value value="{player.sector}" exact="{sector@Lost_Colonies.AuroraPrime}" negate="1"/>
+																																			</condition>
+																																			<action>
+																																				<do_all>
+																																					<destroy_actor actor="Lost_Colonies.AuroraCaptain"/>
+																																					<destroy_actor actor="Lost_Colonies.Leader"/>
+																																					<destroy_actor actor="Lost_Colonies.Envoy"/>
+																																					<destroy_actor actor="Lost_Colonies.TerraEnvoy"/>
+																																					<set_invincible object="Lost_Colonies.CutsceneCarrier" invincible="0"/>
+																																					<do_if value="{value@Lost_Colonies.Lost_Colonies.EarthCarrierFound}" exact="0">
+																																						<destroy_object object="Lost_Colonies.CutsceneCarrier"/>
+																																					</do_if>
+																																					<destroy_object object="Lost_Colonies.LeaderShip" warp="1"/>
+																																					<destroy_object object="Lost_Colonies.TerraEnvoyShip" warp="1"/>
+																																				</do_all>
+																																			</action>
+																																		</cue>
+																																	</cues>
+																																</cue>
+																															</cues>
+																														</cue>
+																													</cues>
+																												</cue>
+																											</cues>
+																										</cue>																								
+																									</cues>
+																								</cue>																								
+																							</cues>
+																						</cue>																						
+																					</cues>
+																				</cue>
+																			</cues>																																						
+																		</cue>										
+																	</cues>
+																</cue>														
+															</cues>
+														</cue>												
+													</cues>
+												</cue>													
+											</cues>
+										</cue>										
+									</cues>
+								</cue>
+								
+								<cue name="Lost_Colonies_Act_7_5_LeaveSector_1" delay="2s">
+									<condition>
+										<check_value value="{player.sector}" exact="{sector@Lost_Colonies.MorningStar}" negate="1"/>
+									</condition>
+									<action>
+										<do_all>
+											<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" background="terragate.tga" race="{9620,1100001}" targetrace="xenon">
+												<mission discipline="XXXXP" level="average"/>
+												<reward money="4500000"/>
+												<objectives>
+													<objective step="1">
+														<flyto>
+															<sector sector="Lost_Colonies.MorningStar"/>
+														</flyto>
+													</objective>
+												</objectives>
+											</create_briefing>
+											<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100061}" text="{9620,1100062}" race="{9620,1100001}" targetrace="xenon" noabort="1">
+												<briefing cue="Lost_Colonies" step="1"/>
+												<mission discipline="XXXXP" level="average"/>
+												<reward money="4500000"/>
+												<flyto>
+													<sector sector="Lost_Colonies.MorningStar"/>
+												</flyto>
+											</set_objective>
+											<reset_cue cue="Lost_Colonies_Act_7_5_FlySector"/>
+										</do_all>
+									</action>
+								</cue>
+							</cues>
+						</cue>
+					</cues>
 				</cue>
 			</cues>
 		</cue>

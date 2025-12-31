@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<cutscene xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cutscene.xsd">
+
+  <director key="Lost_Colonies_Ch7_5_1"/>
+  <environments>
+    <environment_implicit name="mainsector" sector="@playersector"/>
+  </environments>
+  <client menus="close">
+    <input lock="all"/>
+  </client>
+  <presentation>
+    <actions>
+      <sequence name="MissionIntroCD" start="10">
+        <shot name="shot1" environment="mainsector" duration="9000">
+          <camera_flyfromto reference="@playership" flyto_reference="CutsceneCarrier" distance="200" flyto_distance="600" time_firstobject="1000" time_fly="6000" interpolation="smooth" orient_to="object" overlay_tile="1" overlay_texture="interlace"/>
+        </shot>	
+        <shot name="shot2" environment="mainsector" duration="28000">
+          <camera_orbit reference="CutsceneCarrier" distance="300" elevation="55" interpolation="smooth" orient_to="object" startangle="180" stopangle="0" overlay_tile="1" overlay_texture="interlace"/>
+        </shot>	
+        <shot name="shot3" environment="mainsector" duration="15000">
+          <camera_follow reference="CutsceneCarrier" distance="100" elevation="75" interpolation="smooth" orient_to="object" yaw="35" overlay_texture="interlace" overlay_tile="1"/>
+        </shot>	
+        <shot name="shot4" environment="mainsector" duration="12000">
+          <camera_flyfromto reference="CutsceneCarrier" flyto_reference="CutsceneStation" distance="200" flyto_distance="600" time_firstobject="200" time_fly="10000" interpolation="smooth" orient_to="object" overlay_tile="1" overlay_texture="interlace"/>
+        </shot>	
+        <shot name="shot5" environment="mainsector" duration="14000">
+          <camera_orbit reference="CutsceneStation" distance="300" elevation="35" interpolation="smooth" orient_to="object" startangle="0" stopangle="270" overlay_tile="1" overlay_texture="interlace"/>
+        </shot>	
+        <shot name="shot6" environment="mainsector" duration="12000">
+          <camera_follow reference="CutsceneStation" distance="100" elevation="-15" interpolation="smooth" orient_to="object" yaw="185" overlay_texture="interlace" overlay_tile="1"/>
+        </shot>	
+        <shot name="shot7" environment="mainsector" duration="5000">
+          <camera_flyfromto reference="CutsceneStation" flyto_reference="@playership" distance="600" flyto_distance="50" time_firstobject="200" time_fly="4000" interpolation="smooth" orient_to="object" overlay_tile="1" overlay_texture="interlace"/>
+        </shot>	
+      </sequence>
+    </actions>
+  </presentation>
+</cutscene>
