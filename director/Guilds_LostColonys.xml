@@ -5438,6 +5438,10 @@
 																															</timing>
 																															<action>
 																																<do_all>
+																																	<warp_player>
+																																		<position x="-2km" y="5km" z="-25km"/>
+																																		<sector sector="Lost_Colonies.TerraNova"/>																																	
+																																	</warp_player>
 																																	<create_ship group="Lost_Colonies.TerranShips" name="Lost_Colonies.TerranCarrier" typename="SS_SH_TR_M1" race="terran" warp="1">
 																																		<position object="Lost_Colonies.TerranCapital" min="100m" max="1km"/>
 																																		<sector sector="Lost_Colonies.TerraNova"/>
@@ -5992,7 +5996,7 @@
 																		</check_all>
 																	</condition>
 																	<timing>
-																		<time exact="30s"/>
+																		<time exact="35s"/>
 																	</timing>
 																	<cues>
 																		<cue name="Lost_Colonies_Act_7_5_Speech2_3_Do" delay="1s">
