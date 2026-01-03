@@ -39,7 +39,6 @@
 			</action>
 			<cues>
 				<cue name="Lost_Colonies_Start">
-					<!--
 					<condition>
 						<check_all>							
 							<check_any>
@@ -57,46 +56,7 @@
 							</check_any>
 						</check_all>
 					</condition>
-					-->
 					<cues>
-						<cue name="Lost_Colonies_TEST">
-							<condition>
-								<cue_is_complete cue="Lost_Colonies"/>
-							</condition>
-							<timing>
-								<time exact="5s"/>
-							</timing>
-							<action>
-								<do_all>
-									<find_station class="dock" race="terran" name="Lost_Colonies.OutpostStation" silent="1" typename="SS_DOCK_ATF_MILITARY_1">
-										<sector sector="{sector@Lost_Colonies.OutpostSector}"/>
-										<jumps min="0" max="0"/>
-									</find_station>
-									<find_station name="Lost_Colonies.TerraStation" category="dock" race="corporation1">
-										<sector sector="Lost_Colonies.TerraNova"/>
-										<jumps exact="0"/>
-									</find_station>
-									<create_ship name="Lost_Colonies.TerraEnvoyShip" boardable="0" capturable="0" invincible="1" typename="SS_SH_TR_LOST_M4" race="corporation1" dockobject="Lost_Colonies.TerraStation" textid="90027">
-										<sector sector="{object.sector@Lost_Colonies.TerraStation}"/>
-										<equipment loadout="maximum"/>
-									</create_ship>
-									<create_actor name="Lost_Colonies.Envoy" race="terran" voice="129" face="1139" invincible="1" character="{9620,1100055}" gender="male" object="Lost_Colonies.OutpostStation" location="passenger" />
-									<create_actor name="Lost_Colonies.Leader" race="terran" voice="125" face="1133" invincible="1" character="{9620,1100003}" gender="male" object="Lost_Colonies.OutpostStation" location="crew" />
-									<create_actor name="Lost_Colonies.TerraEnvoy" face="1137" voice="128" gender="female" race="corporation1" invincible="1" character="{9620,1100056}" object="Lost_Colonies.TerraEnvoyShip" location="pilot"/>
-									<create_gate typename="SS_WG_EAST" gate="east" name="Lost_Colonies.ConnectedGate">
-										<position x="43km" y="21km" z="-9km"/>
-										<sector sector="Lost_Colonies.Althes"/>
-										<destination sector="Lost_Colonies.UnknownTerra" gate="west"/>
-									</create_gate>
-									<create_gate typename="SS_WG_TJ_WEST" gate="west" name="Lost_Colonies.DestGate">
-										<position x="-45km" y="1km" z="9km"/>
-										<sector sector="Lost_Colonies.UnknownTerra"/>
-										<destination sector="Lost_Colonies.Althes" gate="east"/>
-									</create_gate>
-									<set_value name="Lost_Colonies.Status" exact="70"/>
-								</do_all>
-							</action>
-						</cue>
 						<cue name="Lost_Colonies_GetOutpost" delay="1s">
 							<timing>
 								<time min="60s" max="90s"/>
