@@ -70,9 +70,7 @@
 									<do_choose>
 										<do_when value="{object.exists@Lost_Colonies.OutpostStation}" exact="1">
 											<set_invincible object="Lost_Colonies.OutpostStation" invincible="1"/>
-											<do_if value="{value@Lost_Colonies.Status}" max="1">
-												<set_value name="Lost_Colonies.Status" exact="1"/>
-											</do_if>
+											<set_value name="Lost_Colonies.Status" exact="1"/>
 										</do_when>
 										<do_otherwise>
 											<reset_cue cue="Lost_Colonies_GetOutpost"/>
@@ -4622,7 +4620,7 @@
 						<check_value value="{value@Lost_Colonies.Status}" exact="70"/>
 					</condition>
 					<timing>
-						<time min="45s" max="70s"/>
+						<time min="45m" max="70m"/>
 					</timing>
 					<cues>
 						<cue name="Lost_Colonies_Act7_1_Start" delay="1s">
