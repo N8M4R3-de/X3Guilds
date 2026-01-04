@@ -4625,7 +4625,11 @@
 					<cues>
 						<cue name="Lost_Colonies_Act7_1_Start" delay="1s">
 							<condition>
-								<cue_is_complete cue="Lost_Colonies_Act7_1"/>
+								<check_all>
+									<cue_is_complete cue="Lost_Colonies_Act7_1"/>
+									<check_value value="{value@Race Military Terran Joined}" min="1"/>
+									<check_value value="{value@Terran Military.Level}" min="7"/>
+								</check_all>
 							</condition>
 							<action>
 								<do_all>
@@ -5061,6 +5065,8 @@
 						<check_all>
 							<check_value value="{value@Lost_Colonies.Status}" exact="71"/>
 							<check_value value="{player.sector}" exact="{sector@Lost_Colonies.TerraNova}"/>
+							<check_value value="{value@Race Military Terran Joined}" min="1"/>
+							<check_value value="{value@Terran Military.Level}" min="7"/>
 						</check_all>
 					</condition>
 					<timing>
@@ -5548,6 +5554,8 @@
 						<check_all>
 							<check_value value="{value@Lost_Colonies.Status}" exact="72"/>
 							<check_value value="{player.sector}" exact="{sector@Lost_Colonies.TerraNova}"/>
+							<check_value value="{value@Race Military Terran Joined}" min="1"/>
+							<check_value value="{value@Terran Military.Level}" min="7"/>
 						</check_all>
 					</condition>
 					<timing>
