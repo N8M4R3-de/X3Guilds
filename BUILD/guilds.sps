@@ -66,6 +66,7 @@ Script: GAME X3FL $GAMEDIR/addon2/Scripts/setup.cycrow.guilds.xml
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.planets.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.bbs.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.guilds.*
+Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.logistics.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.guilds.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.tradesys.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/!config.faction.guilds.xml
@@ -212,6 +213,7 @@ Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.advjump.*
 #Library Files
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.sortmarines.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.getraces.*
+Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.tables.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.getloadoutsetting.xml
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.getupgrademax.xml
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.sortloadouts.xml
