@@ -5150,6 +5150,29 @@
  <t id="4219">Are you sure you want to remove this ship?</t>
  <t id="4220">Options</t>
  <t id="4221">Add Station...</t>
+ <t id="4222">Add Import...</t>
+ <t id="4223">Add Export...</t>
+ <t id="4224">Select ware to import</t>
+ <t id="4225">Select ware to export</t>
+ <t id="4226">No available stations...</t>
+ <t id="4227">Add Ship...</t>
+ <t id="4228">Job</t>
+ <t id="4229">Status</t>
+ <t id="4230">Collecting</t>
+ <t id="4231">Loading</t>
+ <t id="4232">Delivering</t>
+ <t id="4233">{9620,4232}</t>
+ <t id="4234">Unloading</t>
+ <t id="4235">Finalising...</t>
+ <t id="4240">No available ships...</t>
+ <t id="4241">Picking Up: %s</t>
+ <t id="4242">Loading: %s</t>
+ <t id="4243">Delivering: %s</t>
+ <t id="4244">Unloading: %s</t>
+ <t id="4245">Source</t>
+ <t id="4246">Destination</t>
+ <t id="4247">Clear All</t>
+ <t id="4248">Reset to Default</t>
  <t id="10001">Cadet Pursuer</t>
  <t id="10002">Bounty Tracker</t>
  <t id="10003">Rogue Hunter</t>
@@ -5747,6 +5770,7 @@
  <t id="1236">Advanced Jumpdrive: Auto Jump</t>
  <t id="9618">Dock Tender</t>
  <t id="9619">Search Trade Routes</t>
+ <t id="9620">Logistics Network</t>
 </page>
 
 <page id="392011">
@@ -5756,6 +5780,7 @@
  <t id="1236">AdvJ.Auto</t>
  <t id="9618">Dock.Tend</t>
  <t id="9619">Trade.Route</t>
+ <t id="9620">Logistics</t>
 </page>
 
 <page id="392008">
@@ -5765,6 +5790,7 @@
  <t id="1236">COMMAND_ADVJUMP_AUTO</t>
  <t id="9618">COMMAND_SHIP_DOCKTENDER</t>
  <t id="9619">COMMAND_SHIP_TRADEROUTE</t>
+ <t id="9620">COMMAND_LOGISTICS_NETWORK</t>
 </page>
 
 <page id="392022" title="Command Info" descr="0" voice="no">
