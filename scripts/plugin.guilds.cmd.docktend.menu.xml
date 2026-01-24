@@ -2,8 +2,8 @@
 <?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
 <script>
 <name>plugin.guilds.cmd.docktend.menu</name>
-<version>2</version>
-<engineversion>71</engineversion>
+<version>3</version>
+<engineversion>73</engineversion>
 <description>Guilds: Command script, Dock Tender - Menu</description>
 <arguments>
 <argument index="1" name="a.obj" type="Var/Ship" desc="Ship" />
@@ -15,8 +15,6 @@
   $page.id = get global variable: name='pageid.guilds'
   $homebase = $a.obj -> get homebase
   $data = $a.obj -> get local variable: name='dock.trader'
-  
-  *write to player logbook: printf: type=[Log.Debug], fmt='Obj=%s, Event=%s, Data=%s', $a.obj, $a.event, $a.data, null, null
   
   if $a.event == [MEvent.CmdCheck]
     if $homebase -> exists
@@ -315,11 +313,11 @@
         if not $sell.wares[$ware]
           gosub sub.AddSellWare
         end
-      else if $homebase ->is ware a product: ware=$ware
+      else if $homebase ->is ware a resource: ware=$ware
         if not $buy.wares[$ware]
           gosub sub.AddBuyWare
         end
-      else if $homebase ->is ware a resource: ware=$ware
+      else if $homebase ->is ware a product: ware=$ware
         if not $sell.wares[$ware]
           gosub sub.AddSellWare
         end
@@ -387,7 +385,7 @@
   $v = $homebase -> get price of ware $ware
   $array[3] = $v
   $array[4] = 0
-  $array[5] = 9
+  $array[5] = 10
   endsub
   
   sub.BuildMenu:
@@ -528,7 +526,7 @@
       $text = create custom menu column string, position=-180 length=120 right=[TRUE] colour=null text=$text
       $text.cols[3] = $text
       $value = $aWare[5]
-      $value = ( $value + 1 ) * 5
+      $value = $value * 5
       $text = sprintf: fmt='%s%%', $value, null, null, null, null
       $text = create custom menu column string, position=-80 length=100 right=[TRUE] colour=null text=$text
       $text.cols[4] = $text
@@ -751,10 +749,10 @@
   $text = create text for custom menu, left=$read.text, right=$text
   add trade bar to menu: $menu, text=$text, min=1, max=$ware.max, current=$default, return value=$ret, left text=' ', right text='%CURRENT%'
   
-  $aValues = array alloc: size=21
+  $aValues = array alloc: size=20
   $i = 0
-  while $i < 21
-    $value = ( $i + 1 ) * 5
+  while $i < 20
+    $value = $i * 5
     $value = sprintf: fmt='%s%%', $value, null, null, null, null
     $aValues[$i] = $value
     inc $i = 
@@ -811,8 +809,6 @@
 <line indent=""><var>$page.id&#160;=&#160;</var><text>get&#160;global&#160;variable:&#160;name=</text><var>'pageid.guilds'</var></line>
 <line indent=""><var>$homebase&#160;=&#160;</var><var>$a.obj&#160;-&gt;</var><text>&#160;get&#160;homebase</text></line>
 <line indent=""><var>$data&#160;=&#160;</var><var>$a.obj&#160;-&gt;</var><text>&#160;get&#160;local&#160;variable:&#160;name=</text><var>'dock.trader'</var></line>
-<line indent=""></line>
-<line indent=""><comment>*<text>write&#160;to&#160;player&#160;logbook:&#160;printf:&#160;type=</text>[Log.Debug]<text>,&#160;fmt=</text>'Obj=%s,&#160;Event=%s,&#160;Data=%s'<text>,&#160;</text>$a.obj<text>,&#160;</text>$a.event<text>,&#160;</text>$a.data<text>,&#160;</text>null<text>,&#160;</text>null</comment></line>
 <line indent=""></line>
 <line indent=""><var>if&#160;</var><var>$a.event</var><text>&#160;</text><var>==</var><text>&#160;</text><var>[MEvent.CmdCheck]</var></line>
 <line indent="&#160;"><var>if&#160;</var><var>$homebase&#160;-&gt;</var><text>&#160;exists</text></line>
@@ -1111,11 +1107,11 @@
 <line indent="&#160;&#160;&#160;"><var>if&#160;not&#160;</var><var>$sell.wares</var><text>[</text><var>$ware</var><text>]</text></line>
 <line indent="&#160;&#160;&#160;&#160;"><text>gosub&#160;</text><var>sub.AddSellWare</var></line>
 <line indent="&#160;&#160;&#160;"><text>end</text></line>
-<line indent="&#160;&#160;"><var>else&#160;if&#160;</var><var>$homebase&#160;-&gt;</var><text>is&#160;ware&#160;a&#160;product:&#160;ware=</text><var>$ware</var></line>
+<line indent="&#160;&#160;"><var>else&#160;if&#160;</var><var>$homebase&#160;-&gt;</var><text>is&#160;ware&#160;a&#160;resource:&#160;ware=</text><var>$ware</var></line>
 <line indent="&#160;&#160;&#160;"><var>if&#160;not&#160;</var><var>$buy.wares</var><text>[</text><var>$ware</var><text>]</text></line>
 <line indent="&#160;&#160;&#160;&#160;"><text>gosub&#160;</text><var>sub.AddBuyWare</var></line>
 <line indent="&#160;&#160;&#160;"><text>end</text></line>
-<line indent="&#160;&#160;"><var>else&#160;if&#160;</var><var>$homebase&#160;-&gt;</var><text>is&#160;ware&#160;a&#160;resource:&#160;ware=</text><var>$ware</var></line>
+<line indent="&#160;&#160;"><var>else&#160;if&#160;</var><var>$homebase&#160;-&gt;</var><text>is&#160;ware&#160;a&#160;product:&#160;ware=</text><var>$ware</var></line>
 <line indent="&#160;&#160;&#160;"><var>if&#160;not&#160;</var><var>$sell.wares</var><text>[</text><var>$ware</var><text>]</text></line>
 <line indent="&#160;&#160;&#160;&#160;"><text>gosub&#160;</text><var>sub.AddSellWare</var></line>
 <line indent="&#160;&#160;&#160;"><text>end</text></line>
@@ -1183,7 +1179,7 @@
 <line indent=""><var>$v&#160;=&#160;</var><var>$homebase&#160;-&gt;</var><text>&#160;get&#160;price&#160;of&#160;ware&#160;</text><var>$ware</var></line>
 <line indent=""><var>$array</var><text>[</text><var>3</var><text>]&#160;=&#160;</text><var>$v</var></line>
 <line indent=""><var>$array</var><text>[</text><var>4</var><text>]&#160;=&#160;</text><var>0</var></line>
-<line indent=""><var>$array</var><text>[</text><var>5</var><text>]&#160;=&#160;</text><var>9</var></line>
+<line indent=""><var>$array</var><text>[</text><var>5</var><text>]&#160;=&#160;</text><var>10</var></line>
 <line indent=""><text>endsub</text></line>
 <line indent=""></line>
 <line indent=""><var>sub.BuildMenu</var><text>:</text></line>
@@ -1324,7 +1320,7 @@
 <line indent="&#160;&#160;"><var>$text&#160;=&#160;</var><text>create&#160;custom&#160;menu&#160;column&#160;string,&#160;position=</text><var>-180</var><text>&#160;length=</text><var>120</var><text>&#160;right=</text><var>[TRUE]</var><text>&#160;colour=</text><var>null</var><text>&#160;text=</text><var>$text</var></line>
 <line indent="&#160;&#160;"><var>$text.cols</var><text>[</text><var>3</var><text>]&#160;=&#160;</text><var>$text</var></line>
 <line indent="&#160;&#160;"><var>$value&#160;=&#160;</var><var>$aWare</var><text>[</text><var>5</var><text>]</text></line>
-<line indent="&#160;&#160;"><var>$value&#160;=&#160;</var><var>(</var><text>&#160;</text><var>$value</var><text>&#160;</text><var>+</var><text>&#160;</text><var>1</var><text>&#160;</text><var>)</var><text>&#160;</text><var>*</var><text>&#160;</text><var>5</var></line>
+<line indent="&#160;&#160;"><var>$value&#160;=&#160;</var><var>$value</var><text>&#160;</text><var>*</var><text>&#160;</text><var>5</var></line>
 <line indent="&#160;&#160;"><var>$text&#160;=&#160;</var><text>sprintf:&#160;fmt=</text><var>'%s%%'</var><text>,&#160;</text><var>$value</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var></line>
 <line indent="&#160;&#160;"><var>$text&#160;=&#160;</var><text>create&#160;custom&#160;menu&#160;column&#160;string,&#160;position=</text><var>-80</var><text>&#160;length=</text><var>100</var><text>&#160;right=</text><var>[TRUE]</var><text>&#160;colour=</text><var>null</var><text>&#160;text=</text><var>$text</var></line>
 <line indent="&#160;&#160;"><var>$text.cols</var><text>[</text><var>4</var><text>]&#160;=&#160;</text><var>$text</var></line>
@@ -1547,10 +1543,10 @@
 <line indent=""><var>$text&#160;=&#160;</var><text>create&#160;text&#160;for&#160;custom&#160;menu,&#160;left=</text><var>$read.text</var><text>,&#160;right=</text><var>$text</var></line>
 <line indent=""><text>add&#160;trade&#160;bar&#160;to&#160;menu:&#160;</text><var>$menu</var><text>,&#160;text=</text><var>$text</var><text>,&#160;min=</text><var>1</var><text>,&#160;max=</text><var>$ware.max</var><text>,&#160;current=</text><var>$default</var><text>,&#160;return&#160;value=</text><var>$ret</var><text>,&#160;left&#160;text=</text><var>'&#160;'</var><text>,&#160;right&#160;text=</text><var>'%CURRENT%'</var></line>
 <line indent=""></line>
-<line indent=""><var>$aValues&#160;=&#160;</var><text>array&#160;alloc:&#160;size=</text><var>21</var></line>
+<line indent=""><var>$aValues&#160;=&#160;</var><text>array&#160;alloc:&#160;size=</text><var>20</var></line>
 <line indent=""><var>$i&#160;=&#160;</var><var>0</var></line>
-<line indent=""><var>while&#160;</var><var>$i</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>21</var></line>
-<line indent="&#160;"><var>$value&#160;=&#160;</var><var>(</var><text>&#160;</text><var>$i</var><text>&#160;</text><var>+</var><text>&#160;</text><var>1</var><text>&#160;</text><var>)</var><text>&#160;</text><var>*</var><text>&#160;</text><var>5</var></line>
+<line indent=""><var>while&#160;</var><var>$i</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>20</var></line>
+<line indent="&#160;"><var>$value&#160;=&#160;</var><var>$i</var><text>&#160;</text><var>*</var><text>&#160;</text><var>5</var></line>
 <line indent="&#160;"><var>$value&#160;=&#160;</var><text>sprintf:&#160;fmt=</text><var>'%s%%'</var><text>,&#160;</text><var>$value</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var></line>
 <line indent="&#160;"><var>$aValues</var><text>[</text><var>$i</var><text>]&#160;=&#160;</text><var>$value</var></line>
 <line indent="&#160;"><text>inc&#160;</text><var>$i&#160;=&#160;</var></line>
@@ -1606,9 +1602,9 @@
 
 <sval type="array" size="10">
   <sval type="string" val="plugin.guilds.cmd.docktend.menu"/>
-  <sval type="int" val="71"/>
+  <sval type="int" val="73"/>
   <sval type="string" val="Guilds: Command script, Dock Tender - Menu"/>
-  <sval type="int" val="2"/>
+  <sval type="int" val="3"/>
   <sval type="int" val="0"/>
   <sval type="array" size="46">
     <sval type="string" val="a.obj"/>
@@ -3875,7 +3871,7 @@
       <sval type="int" val="283"/>
     </sval>
     <sval type="array" size="6">
-      <sval type="int" val="2303"/>
+      <sval type="int" val="2304"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="4"/>
       <sval type="int" val="-1610541051"/>
@@ -3899,7 +3895,7 @@
       <sval type="int" val="283"/>
     </sval>
     <sval type="array" size="6">
-      <sval type="int" val="2304"/>
+      <sval type="int" val="2303"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="4"/>
       <sval type="int" val="-1610540283"/>
@@ -4315,7 +4311,7 @@
       <sval type="int" val="4"/>
       <sval type="int" val="5"/>
       <sval type="int" val="4"/>
-      <sval type="int" val="9"/>
+      <sval type="int" val="10"/>
     </sval>
     <sval type="array" size="1">
       <sval type="int" val="1168"/>
@@ -5429,28 +5425,20 @@
       <sval type="int" val="4"/>
       <sval type="int" val="5"/>
     </sval>
-    <sval type="array" size="21">
+    <sval type="array" size="13">
       <sval type="int" val="104"/>
       <sval type="int" val="10"/>
-      <sval type="int" val="5"/>
+      <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="10"/>
       <sval type="int" val="4"/>
-      <sval type="int" val="1"/>
-      <sval type="int" val="15"/>
-      <sval type="int" val="11"/>
-      <sval type="int" val="4"/>
       <sval type="int" val="5"/>
       <sval type="int" val="15"/>
       <sval type="int" val="13"/>
-      <sval type="int" val="7"/>
-      <sval type="int" val="16"/>
+      <sval type="int" val="3"/>
       <sval type="int" val="-1"/>
-      <sval type="int" val="11"/>
-      <sval type="int" val="-2"/>
-      <sval type="int" val="17"/>
       <sval type="int" val="13"/>
-      <sval type="int" val="-4"/>
+      <sval type="int" val="-2"/>
     </sval>
     <sval type="array" size="14">
       <sval type="int" val="149"/>
@@ -6871,7 +6859,7 @@
       <sval type="int" val="128"/>
       <sval type="int" val="41"/>
       <sval type="int" val="4"/>
-      <sval type="int" val="21"/>
+      <sval type="int" val="20"/>
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
@@ -6889,7 +6877,7 @@
       <sval type="int" val="131074"/>
       <sval type="int" val="27"/>
       <sval type="int" val="4"/>
-      <sval type="int" val="21"/>
+      <sval type="int" val="20"/>
       <sval type="int" val="15"/>
       <sval type="int" val="3"/>
       <sval type="int" val="3"/>
@@ -6897,28 +6885,20 @@
       <sval type="int" val="3"/>
       <sval type="int" val="-2"/>
     </sval>
-    <sval type="array" size="21">
+    <sval type="array" size="13">
       <sval type="int" val="104"/>
       <sval type="int" val="10"/>
-      <sval type="int" val="5"/>
+      <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="27"/>
       <sval type="int" val="4"/>
-      <sval type="int" val="1"/>
-      <sval type="int" val="15"/>
-      <sval type="int" val="11"/>
-      <sval type="int" val="4"/>
       <sval type="int" val="5"/>
       <sval type="int" val="15"/>
       <sval type="int" val="13"/>
-      <sval type="int" val="7"/>
-      <sval type="int" val="16"/>
+      <sval type="int" val="3"/>
       <sval type="int" val="-1"/>
-      <sval type="int" val="11"/>
-      <sval type="int" val="-2"/>
-      <sval type="int" val="17"/>
       <sval type="int" val="13"/>
-      <sval type="int" val="-4"/>
+      <sval type="int" val="-2"/>
     </sval>
     <sval type="array" size="14">
       <sval type="int" val="149"/>
@@ -7305,30 +7285,7 @@
       <sval type="string" val="Data"/>
     </sval>
   </sval>
-  <sval type="array" size="170">
-    <sval type="array" size="2">
-      <sval type="int" val="3"/>
-      <sval type="int" val="2"/>
-    </sval>
-    <sval type="array" size="17">
-      <sval type="int" val="3"/>
-      <sval type="int" val="3"/>
-      <sval type="int" val="402"/>
-      <sval type="int" val="131075"/>
-      <sval type="int" val="365"/>
-      <sval type="int" val="5"/>
-      <sval type="string" val="Obj=%s, Event=%s, Data=%s"/>
-      <sval type="int" val="131074"/>
-      <sval type="string" val="a.obj"/>
-      <sval type="int" val="131074"/>
-      <sval type="string" val="a.event"/>
-      <sval type="int" val="131074"/>
-      <sval type="string" val="a.data"/>
-      <sval type="int" val="0"/>
-      <sval type="int" val="0"/>
-      <sval type="int" val="0"/>
-      <sval type="int" val="0"/>
-    </sval>
+  <sval type="array" size="168">
     <sval type="array" size="2">
       <sval type="int" val="3"/>
       <sval type="int" val="2"/>
@@ -8006,5 +7963,5 @@
 </sval>
 
 </codearray>
-<nosignature>3011</nosignature>
+<nosignature>6380</nosignature>
 </script>

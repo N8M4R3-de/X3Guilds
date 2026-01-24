@@ -529,7 +529,7 @@
 															<condition>
 																<check_all>
 																	<check_value value="{value@L3GA01.Completed}" exact="1"/>
-																	<object_docked param="Assassins Guild.GuildHQ"/>
+																	<object_docked param="{object@Assassins Guild.GuildHQ}"/>
 																</check_all>
 															</condition>
 															<action>

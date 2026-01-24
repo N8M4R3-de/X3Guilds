@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<cutscene xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cutscene.xsd">
+
+  <director key="Lost_Colonies_Ch7_4_2"/>
+  <environments>
+    <environment_implicit name="mainsector" sector="@playersector"/>
+  </environments>
+  <client menus="close">
+    <input lock="all"/>
+  </client>
+  <presentation>
+    <actions>
+      <sequence name="MissionIntroCD" start="10">
+        <shot name="shot1" environment="mainsector" duration="7000">
+          <camera_follow reference="TerranCapital" distance="300" elevation="75" interpolation="smooth" orient_to="object" yaw="90" overlay_texture="interlace" overlay_tile="1"/>
+        </shot>		
+        <shot name="shot2" environment="mainsector" duration="9000">
+          <camera_follow reference="TerranBomber" distance="200" elevation="15" interpolation="smooth" orient_to="object" yaw="30" overlay_texture="interlace" overlay_tile="1"/>
+        </shot>		
+        <shot name="shot3" environment="mainsector" duration="9000">
+          <camera_flyfromto reference="TerranBomber" flyto_reference="TerranTarget" distance="200" flyto_distance="600" time_firstobject="10" time_fly="9000" interpolation="smooth" orient_to="object" overlay_tile="1" overlay_texture="interlace"/>
+        </shot>		
+        <shot name="shot4" environment="mainsector" duration="20000">
+          <camera_follow reference="TerranTarget" distance="200" elevation="35" interpolation="smooth" orient_to="object" yaw="45" overlay_texture="interlace" overlay_tile="1"/>
+        </shot>		
+      </sequence>
+    </actions>
+  </presentation>
+</cutscene>

@@ -552,7 +552,11 @@
  <t id="90025">{1000,118} {1000,30012} {1000,40001}</t>
  <t id="90026">{17,20092}</t>
  <t id="90027">{1000,129} {1000,30005}</t>
- <t id="90028">{17,92014}</t>
+ <t id="90028">{17,91963}</t>
+ <t id="90029">Pioneer Broadsword Patrol Mars</t>
+ <t id="90030">{17,91993}</t>
+ <t id="90031">Pioneer Broadsword Patrol Venus</t>
+ <t id="90032">{17,91963}</t>
  <t id="91003">{17,40003}</t>
  <t id="91004">Embark on an unparalleled journey with The Dream Voyager, the epitome of passenger transportation meticulously designed by the Celestial Navigators guild. Revel in the opulence and comfort that redefine the travel experience, ensuring every moment is an extraordinary adventure</t>
  <t id="91013">{17,3831}</t>
@@ -1830,6 +1834,9 @@
  <t id="98">(Goner surrenders)Ok. I give in.</t>
  <t id="100000">Certainly assassin. We request an administration fee of 20,000 credits.</t>
  <t id="100001">Excellent, before we accept your membership, we have an assignment for you.</t>
+ <t id="100100">Copy that, Lieutenant. Broadsword Wing moving to intercept!</t>
+ <t id="100101">More Xenon? There’s too many of them! We can’t hold this line much longer!</t>
+ <t id="100102">By the stars… Terran warships.</t>
 </page>
 
 <page id="390125" title="Polly: US, Matthew" descr="0" voice="yes">
@@ -2144,6 +2151,11 @@
  <t id="110081">We’ve got a lock on the signal - it's a gate, east of this sector. No need to return. Proceed through when you’re ready. We’ll follow your lead.</t>
  <t id="110082">My god... it’s real. A whole world, alive and thriving. After all this time...</t>
  <t id="110083">Commander, we've received word from Lt. Maera on Terra Nova. She has your next assignment ready. Proceed to Terra Nova and report to her at the Orbital Defence Station.</t>
+ <t id="110084">Commander, good to see you again. I won’t lie, after Terra Nova, I wasn’t sure any of us would get this far.</t>
+ <t id="110085">So this place kept them alive, while the rest of the universe forgot they existed.</t>
+ <t id="110086">I’ve never seen a world like that… It’s enormous, and completely dead.</t>
+ <t id="110087">A weapon?</t>
+ <t id="110088">Hard to believe people once lived there… laughed, hoped… planned futures.</t>
 </page>
 
 <page id="390126" title="Argon/Terran Female Variation - Polly: US - Danielle" descr="0" voice="yes">
@@ -2364,6 +2376,14 @@
  <t id="120002">I'm not picking up any signals here, sir.</t>
  <t id="120003">Still no readings on my scanners, sir.</t>
  <t id="120004">Hold on, I’m picking up something to the North East.</t>
+ <t id="121000">Lt. Maera, this is Defence Station Control.  We’re detecting multiple energy signatures on long-range sensors. Vector-outer perimeter.  They don’t match Pioneer or Terran transponder codes.</t>
+ <t id="121001">Lieutenant! New contacts! Multiple jump signatures forming beyond the outer perimeter!  This is a much larger force!</t>
+ <t id="122000">Unidentified vessels, you are entering secured Pioneer space.  This is Aurora Prime Fleet Command. State your origin and intent.</t>
+ <t id="122001">Terra Nova…  That name hasn’t been spoken in official channels for centuries.</t>
+ <t id="122002">Then the impossible has finally happened.  I am Captain Kael Voren, commanding officer of the Aurora Prime flagship.</t>
+ <t id="122003">This world became our last stand when the gates went dark.  We rebuilt not because we expected rescue, but because extinction was not an option.</t>
+ <t id="122004">Hope kept us alive as well.  Over time, the reason we sealed the gates faded into legend, only the isolation remained.</t>
+ <t id="122005">If Terra Nova still stands, then the Pioneers were never truly broken.  Docking clearance granted. We should speak in person, the future of our people depends on what comes next.</t>
 </page>
 
 <page id="390127" title="Argon/Terran female Variation: Polly: US - Joanna" descr="0" voice="yes">
@@ -2840,8 +2860,36 @@
  <t id="110022">All preparations are complete. It’s your moment, Commander — EVA and bring our gate back to life.</t>
  <t id="110023">Energy levels are spiking, the gate is coming online! Commander, pull back to a safe distance.</t>
  <t id="110024">It’s happening, Commander, energy readings are off the scale!</t>
+ <t id="110025">That was... incredible, Commander. The gate’s stabilising, energy readings are holding steady.  Still... that kind of power spike, it could have lit up half the sector grid. Let’s hope we didn’t draw any unwanted attention.</t>
+ <t id="110026">Confirmed. I’ve got them on my scope too...  Wait, those are Xenon signatures! Damn it, they must have tracked the activation burst!</t>
+ <t id="110027">All units, this is Lt. Maera. Hostile contacts inbound! Commander, form up and engage, we can’t let them near the gate!</t>
+ <t id="110028">I see them…  Commander, these aren’t scouts — this is a full Xenon response group. We’re outmatched here.</t>
+ <t id="110029">This is Lieutenant Maera to Terran High Command — priority channel!  Terra Nova is under heavy Xenon attack following gate activation.  We need immediate military assistance!</t>
+ <t id="110030">You heard that, Commander — hold on just a little longer!</t>
+ <t id="110031">Reinforcements have arrived! Commander, pull back and let the fleet handle the heavy targets!</t>
+ <t id="110032">Commander, our job here is done. The Terrans will deal with the Xenon, take us through the gate and let’s see what’s waiting on the other side.</t>
+ <t id="110033">This sector… Morning Star.  Even the name feels deliberate. The Pioneers always believed the first light mattered, a symbol of beginnings.</t>
+ <t id="110034">The star ahead of us was the heart of the Pioneer energy network. They didn’t just orbit it, they tapped it, channeling stellar output into subspace converters to power entire colony clusters.</t>
+ <t id="110035">The Pioneers didn’t have the luxury of abandoning anything. Once they were cut off, this system became their lifeline, energy, industry, survival.</t>
+ <t id="110036">Records recovered from Terra Nova suggest this system supplied power not just locally, but to multiple sectors through relay gates. Without Morning Star… the colonies would have gone dark.</t>
+ <t id="110037">Forgot… or never knew.  The Pioneers sealed themselves away during the Xenon onslaught. The decision saved them, but over generations, the reason became legend… then myth.</t>
+ <t id="110038">Standing here now… it’s hard not to feel the weight of it.  This star burned so that humanity could endure, unseen, unheard.</t>
+ <t id="110039">And they will.  But first… let’s move onto the next sector, we have more to explore.</t>
+ <t id="110040">This sector… Paradise Lost.  Even before the scans finish, you can feel it. Something here went terribly wrong.</t>
+ <t id="110041">Long-range readings confirm it. That planet once supported life, oceans, atmosphere, even tectonic activity consistent with habitation.  Whatever happened here didn’t just kill the surface… it ended everything.</t>
+ <t id="110042">The Pioneers rarely spoke of failure.  When something couldn’t be saved… they moved on. And sometimes, they erased it from memory.</t>
+ <t id="110043">Sensor echoes suggest a massive energy discharge, not a natural event. Too focused. Too sudden.</t>
+ <t id="110044">Possibly.  Or an experiment that spiraled out of control. The Pioneers pushed boundaries Earth wouldn’t dare touch, because they had no choice.</t>
+ <t id="110045">Paradise Lost stands as a warning, even ingenuity has limits.  Survival came at a cost, and this world paid it in full.</t>
+ <t id="110046">And yet, despite this… the Pioneers endured.  They learned. They adapted. They chose life — even after seeing what failure looked like.</t>
+ <t id="110047">Agreed.  We don’t just reconnect with the Pioneers by opening gates, we reconnect by acknowledging what they lost.  Lets move on.</t>
+ <t id="110048">By the stars…  Aurora Prime… it’s real. We’re not just survivors anymore.</t>
+ <t id="110049">That vessel ahead, readings match a Pioneer capital signature.  A carrier… and it’s fully operational.</t>
+ <t id="110050">Aurora Prime Fleet Command, this is Lieutenant Maera of Terra Nova.  We come in peace, from a world long thought lost.</t>
+ <t id="110051">We are descendants of the original Pioneers.  We survived in isolation, and we’ve restored the gate.</t>
+ <t id="110052">Terra Nova endured the same fate.  We believed Aurora Prime was lost… but we never stopped hoping.</t>
+ <t id="110053">Thank you, Commander… you gave us our future back.</t>
 </page>
-
 
 <page id="390129" title="Argon/Terran Male - Polly - US - Patrick" descr="0" voice="yes">
  <t id="1">What the hell do you think you are doing?</t>
@@ -3077,6 +3125,14 @@
  <t id="110010">Our commanders have authorised an aid initiative. Humanitarian shipments are already being organised.</t>
  <t id="110011">Commander, the Pioneer colony is in dire need. We've authorised immediate humanitarian support. Assist Lt. Maera in coordinating the first supply drops. Earth is counting on you to make this right.</t>
  <t id="110012">Commander, you've done more here than we could have asked for. The people of Terra Nova are no longer starving, they're planning for the future. For now, stand down. We'll remain on station to continue our work. We'll call when the next step is ready.</t>
+ <t id="110013">Lieutenant Maera, this is Terran High Command.  Your signal is received. Hold your position.</t>
+ <t id="110014">Xenon vessels detected.  All Terran units, engage and eliminate hostile targets.</t>
+ <t id="110015">Commander, you’ve done your duty.  Stand down and clear the battlespace.</t>
+ <t id="110016">Harnessing a star at that scale… Earth attempted similar projects centuries later. Most were abandoned as too unstable.</t>
+ <t id="110017">Earth will want to know this. Not just the technology, the story.</t>
+ <t id="110018">There are no records of this in Terran archives. No evacuation logs, no distress signals.</t>
+ <t id="110019">If this happened while they were cut off… they would have had no outside help. No reinforcements. No second chances.</t>
+ <t id="110020">Earth needs to understand this place. Not to exploit it… but to remember.</t>
 </page>
 
 <page id="390130" title="Argon/Terran Female - Polly - Aus - Olivia" descr="0" voice="yes">
@@ -4664,7 +4720,7 @@
  <t id="16">Luxuries Consumed</t>
  <t id="17">Raw Materials</t>
  <t id="18">Resources Required</t>
- <t id="99">Guilds Mod V0.82</t>
+ <t id="99">Guilds Mod V0.84</t>
  <t id="100">Guild Board</t>
  <t id="101">Bounties</t>
  <t id="102">Passengers</t>
@@ -5094,6 +5150,29 @@
  <t id="4219">Are you sure you want to remove this ship?</t>
  <t id="4220">Options</t>
  <t id="4221">Add Station...</t>
+ <t id="4222">Add Import...</t>
+ <t id="4223">Add Export...</t>
+ <t id="4224">Select ware to import</t>
+ <t id="4225">Select ware to export</t>
+ <t id="4226">No available stations...</t>
+ <t id="4227">Add Ship...</t>
+ <t id="4228">Job</t>
+ <t id="4229">Status</t>
+ <t id="4230">Collecting</t>
+ <t id="4231">Loading</t>
+ <t id="4232">Delivering</t>
+ <t id="4233">{9620,4232}</t>
+ <t id="4234">Unloading</t>
+ <t id="4235">Finalising...</t>
+ <t id="4240">No available ships...</t>
+ <t id="4241">Picking Up: %s</t>
+ <t id="4242">Loading: %s</t>
+ <t id="4243">Delivering: %s</t>
+ <t id="4244">Unloading: %s</t>
+ <t id="4245">Source</t>
+ <t id="4246">Destination</t>
+ <t id="4247">Clear All</t>
+ <t id="4248">Reset to Default</t>
  <t id="10001">Cadet Pursuer</t>
  <t id="10002">Bounty Tracker</t>
  <t id="10003">Rogue Hunter</t>
@@ -5658,6 +5737,10 @@
  <t id="1100058">With first contact established and diplomatic relations cautiously opened, the Pioneers have revealed a dire truth, their colony is on the brink of crisis. Centuries of isolation have left their infrastructure crumbling, and their food and medical supplies dwindling.  You have been tasked with delivering critical supplies to the Orbital Defence Station in Terra Nova to help stabilise the colony and build trust between our peoples.</t>
  <t id="1100059">Hana Rui \(Terran Director\)</t>
  <t id="1100060">Activating</t>
+ <t id="1100061">What lays Beyond</t>
+ <t id="1100062">With the Xenon threat contained by Terran forces, the newly restored gate is finally operational.\nWhat lies beyond has been sealed off for centuries, its systems, its history, and its people remain unknown.\nCross the threshold and scout the sector on the other side. Your findings may change humanity’s place among the stars forever.</t> 
+ <t id="1100063">Explore</t>
+ <t id="1100064">Captain Kael Voren \(Envoy\)</t>
  <t id="2000000">Industritech Expansion</t>
  <t id="2000001">Hatibmanckuttall \(Industritech Agent\)</t>
  <t id="2000002">Prove yourself to the Industritech Agent</t>
@@ -5687,6 +5770,7 @@
  <t id="1236">Advanced Jumpdrive: Auto Jump</t>
  <t id="9618">Dock Tender</t>
  <t id="9619">Search Trade Routes</t>
+ <t id="9620">Logistics Network</t>
 </page>
 
 <page id="392011">
@@ -5696,6 +5780,7 @@
  <t id="1236">AdvJ.Auto</t>
  <t id="9618">Dock.Tend</t>
  <t id="9619">Trade.Route</t>
+ <t id="9620">Logistics</t>
 </page>
 
 <page id="392008">
@@ -5705,6 +5790,7 @@
  <t id="1236">COMMAND_ADVJUMP_AUTO</t>
  <t id="9618">COMMAND_SHIP_DOCKTENDER</t>
  <t id="9619">COMMAND_SHIP_TRADEROUTE</t>
+ <t id="9620">COMMAND_LOGISTICS_NETWORK</t>
 </page>
 
 <page id="392022" title="Command Info" descr="0" voice="no">

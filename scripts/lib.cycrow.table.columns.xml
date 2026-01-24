@@ -1,0 +1,1244 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>lib.cycrow.table.columns</name>
+<version>1</version>
+<engineversion>73</engineversion>
+<description>Table Libraries: Get Column Data</description>
+<arguments>
+</arguments>
+<sourceplaintext>
+<![CDATA[
+  $length.table = table alloc
+  $right.table = table alloc
+  $name.table = table alloc
+  $sort.table = table alloc
+  
+  $length.table['obj.name'] = 240
+  $length.table['obj.sector'] = 150
+  $length.table['obj.idcode'] = 60
+  $length.table['obj.shield'] = 50
+  $length.table['obj.class'] = 60
+  $length.table['obj.cargo'] = 60
+  $length.table['ship.command'] = 150
+  $length.table['ship.logisitics.job'] = 150
+  $length.table['ship.logisitics.status'] = 100
+  $length.table['station.logistics.import'] = 190
+  $length.table['station.logistics.export'] = 190
+  $length.table['station.logistics.prio'] = 60
+  $length.table['ware.name'] = 200
+  $length.table['station.warebar'] = 110
+  $length.table['ware.vol'] = 30
+  $length.table['ware.tc'] = 30
+  $length.table['ware.avgprice'] = 60
+  $length.table['station.logistics.minstorage'] = 100
+  $length.table['station.logistics.maxstorage'] = 100
+  
+  $right.table['obj.name'] = [FALSE]
+  $right.table['obj.sector'] = [FALSE]
+  $right.table['obj.idcode'] = [TRUE]
+  $right.table['obj.shield'] = [TRUE]
+  $right.table['obj.class'] = [TRUE]
+  $right.table['obj.cargo'] = [TRUE]
+  $right.table['ship.command'] = [FALSE]
+  $right.table['ship.logisitics.job'] = [FALSE]
+  $right.table['ship.logisitics.status'] = [FALSE]
+  $right.table['station.logistics.import'] = [FALSE]
+  $right.table['station.logistics.export'] = [FALSE]
+  $right.table['station.logistics.prio'] = [FALSE]
+  $right.table['ware.name'] = [FALSE]
+  $right.table['station.warebar'] = [FALSE]
+  $right.table['ware.tc'] = [TRUE]
+  $right.table['ware.vol'] = [TRUE]
+  $right.table['ware.avgprice'] = [TRUE]
+  $right.table['station.logistics.minstorage'] = [TRUE]
+  $right.table['station.logistics.maxstorage'] = [TRUE]
+  
+  $sort.table['obj.name'] = [TRUE]
+  $sort.table['obj.sector'] = [TRUE]
+  $sort.table['obj.idcode'] = [FALSE]
+  $sort.table['obj.shield'] = [FALSE]
+  $sort.table['obj.class'] = [TRUE]
+  $sort.table['obj.cargo'] = [TRUE]
+  $sort.table['ship.command'] = [TRUE]
+  $sort.table['ship.logisitics.job'] = [TRUE]
+  $sort.table['ship.logisitics.status'] = [TRUE]
+  $sort.table['station.logistics.import'] = [TRUE]
+  $sort.table['station.logistics.export'] = [TRUE]
+  $sort.table['station.logistics.prio'] = [TRUE]
+  $sort.table['ware.name'] = [TRUE]
+  $sort.table['station.warebar'] = [TRUE]
+  $sort.table['ware.tc'] = [TRUE]
+  $sort.table['ware.vol'] = [TRUE]
+  $sort.table['ware.avgprice'] = [TRUE]
+  $sort.table['station.logistics.minstorage'] = [TRUE]
+  $sort.table['station.logistics.maxstorage'] = [TRUE]
+  
+  $text = read text: page=[Page.Menus] id=4017
+  $name.table['obj.name'] = $text
+  $text = read text: page=[Page.Menus] id=9301
+  $name.table['obj.sector'] = $text
+  $name.table['obj.idcode'] = ' '
+  $name.table['obj.shield'] = ' '
+  $text = read text: page=[Page.Menus] id=9303
+  $name.table['obj.class'] = $text
+  $text = read text: page=[Page.Menus] id=9212
+  $name.table['obj.cargo'] = $text
+  $text = read text: page=[Page.Menus] id=1104500
+  $name.table['ship.command'] = $text
+  $text = read text: page=[Page.Encyclopedia] id=4
+  $name.table['ware.name'] = $text
+  $text = read text: page=[Page.Menus] id=1104523
+  $name.table['station.warebar'] = $text
+  $text = read text: page=[Page.Menus] id=1102519
+  $name.table['ware.tc'] = $text
+  $text = read text: page=[Page.Menus] id=1102518
+  $name.table['ware.vol'] = $text
+  $text = read text: page=[Page.Menus] id=9510
+  $name.table['ware.avgprice'] = $text
+  
+  $guilds.page = get global variable: name='pageid.guilds'
+  if $guilds.page
+    $text = read text: page=$guilds.page id=4228
+    $name.table['ship.logisitics.job'] = $text
+    $text = read text: page=$guilds.page id=4229
+    $name.table['ship.logisitics.status'] = $text
+    $text = read text: page=$guilds.page id=4209
+    $name.table['station.logistics.import'] = $text
+    $text = read text: page=$guilds.page id=4210
+    $name.table['station.logistics.export'] = $text
+    $text = read text: page=$guilds.page id=4203
+    $name.table['station.logistics.prio'] = $text
+    $text = read text: page=[Page.Menus] id=1104462
+    $name.table['station.logistics.minstorage'] = $text
+    $text = read text: page=[Page.Menus] id=1104524
+    $name.table['station.logistics.maxstorage'] = $text
+  else
+    $name.table['ship.logisitics.job'] = ' '
+    $name.table['ship.logisitics.status'] = ' '
+    $name.table['station.logistics.import'] = ' '
+    $name.table['station.logistics.export'] = ' '
+    $name.table['station.logistics.prio'] = ' '
+    $name.table['station.logistics.minstorage'] = ' '
+    $name.table['station.logistics.maxstorage'] = ' '
+  end
+  
+  $ret = create new array, arguments=$name.table, $length.table, $right.table, $sort.table, null
+  return $ret
+]]>
+</sourceplaintext>
+<sourcetext>
+<line indent=""><var>$length.table&#160;=&#160;</var><text>table&#160;alloc</text></line>
+<line indent=""><var>$right.table&#160;=&#160;</var><text>table&#160;alloc</text></line>
+<line indent=""><var>$name.table&#160;=&#160;</var><text>table&#160;alloc</text></line>
+<line indent=""><var>$sort.table&#160;=&#160;</var><text>table&#160;alloc</text></line>
+<line indent=""></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'obj.name'</var><text>]&#160;=&#160;</text><var>240</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'obj.sector'</var><text>]&#160;=&#160;</text><var>150</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'obj.idcode'</var><text>]&#160;=&#160;</text><var>60</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'obj.shield'</var><text>]&#160;=&#160;</text><var>50</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'obj.class'</var><text>]&#160;=&#160;</text><var>60</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'obj.cargo'</var><text>]&#160;=&#160;</text><var>60</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'ship.command'</var><text>]&#160;=&#160;</text><var>150</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'ship.logisitics.job'</var><text>]&#160;=&#160;</text><var>150</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'ship.logisitics.status'</var><text>]&#160;=&#160;</text><var>100</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'station.logistics.import'</var><text>]&#160;=&#160;</text><var>190</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'station.logistics.export'</var><text>]&#160;=&#160;</text><var>190</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'station.logistics.prio'</var><text>]&#160;=&#160;</text><var>60</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'ware.name'</var><text>]&#160;=&#160;</text><var>200</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'station.warebar'</var><text>]&#160;=&#160;</text><var>110</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'ware.vol'</var><text>]&#160;=&#160;</text><var>30</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'ware.tc'</var><text>]&#160;=&#160;</text><var>30</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'ware.avgprice'</var><text>]&#160;=&#160;</text><var>60</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'station.logistics.minstorage'</var><text>]&#160;=&#160;</text><var>100</var></line>
+<line indent=""><var>$length.table</var><text>[</text><var>'station.logistics.maxstorage'</var><text>]&#160;=&#160;</text><var>100</var></line>
+<line indent=""></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'obj.name'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'obj.sector'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'obj.idcode'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'obj.shield'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'obj.class'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'obj.cargo'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'ship.command'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'ship.logisitics.job'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'ship.logisitics.status'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'station.logistics.import'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'station.logistics.export'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'station.logistics.prio'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'ware.name'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'station.warebar'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'ware.tc'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'ware.vol'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'ware.avgprice'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'station.logistics.minstorage'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$right.table</var><text>[</text><var>'station.logistics.maxstorage'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'obj.name'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'obj.sector'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'obj.idcode'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'obj.shield'</var><text>]&#160;=&#160;</text><var>[FALSE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'obj.class'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'obj.cargo'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'ship.command'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'ship.logisitics.job'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'ship.logisitics.status'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'station.logistics.import'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'station.logistics.export'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'station.logistics.prio'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'ware.name'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'station.warebar'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'ware.tc'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'ware.vol'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'ware.avgprice'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'station.logistics.minstorage'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""><var>$sort.table</var><text>[</text><var>'station.logistics.maxstorage'</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
+<line indent=""></line>
+<line indent=""><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>4017</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'obj.name'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>9301</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'obj.sector'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'obj.idcode'</var><text>]&#160;=&#160;</text><var>'&#160;'</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'obj.shield'</var><text>]&#160;=&#160;</text><var>'&#160;'</var></line>
+<line indent=""><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>9303</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'obj.class'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>9212</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'obj.cargo'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>1104500</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'ship.command'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Encyclopedia]</var><text>&#160;id=</text><var>4</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'ware.name'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>1104523</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'station.warebar'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>1102519</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'ware.tc'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>1102518</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'ware.vol'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>9510</var></line>
+<line indent=""><var>$name.table</var><text>[</text><var>'ware.avgprice'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""></line>
+<line indent=""><var>$guilds.page&#160;=&#160;</var><text>get&#160;global&#160;variable:&#160;name=</text><var>'pageid.guilds'</var></line>
+<line indent=""><var>if&#160;</var><var>$guilds.page</var></line>
+<line indent="&#160;"><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>$guilds.page</var><text>&#160;id=</text><var>4228</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'ship.logisitics.job'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent="&#160;"><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>$guilds.page</var><text>&#160;id=</text><var>4229</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'ship.logisitics.status'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent="&#160;"><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>$guilds.page</var><text>&#160;id=</text><var>4209</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'station.logistics.import'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent="&#160;"><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>$guilds.page</var><text>&#160;id=</text><var>4210</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'station.logistics.export'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent="&#160;"><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>$guilds.page</var><text>&#160;id=</text><var>4203</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'station.logistics.prio'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent="&#160;"><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>1104462</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'station.logistics.minstorage'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent="&#160;"><var>$text&#160;=&#160;</var><text>read&#160;text:&#160;page=</text><var>[Page.Menus]</var><text>&#160;id=</text><var>1104524</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'station.logistics.maxstorage'</var><text>]&#160;=&#160;</text><var>$text</var></line>
+<line indent=""><text>else</text></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'ship.logisitics.job'</var><text>]&#160;=&#160;</text><var>'&#160;'</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'ship.logisitics.status'</var><text>]&#160;=&#160;</text><var>'&#160;'</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'station.logistics.import'</var><text>]&#160;=&#160;</text><var>'&#160;'</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'station.logistics.export'</var><text>]&#160;=&#160;</text><var>'&#160;'</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'station.logistics.prio'</var><text>]&#160;=&#160;</text><var>'&#160;'</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'station.logistics.minstorage'</var><text>]&#160;=&#160;</text><var>'&#160;'</var></line>
+<line indent="&#160;"><var>$name.table</var><text>[</text><var>'station.logistics.maxstorage'</var><text>]&#160;=&#160;</text><var>'&#160;'</var></line>
+<line indent=""><text>end</text></line>
+<line indent=""></line>
+<line indent=""><var>$ret&#160;=&#160;</var><text>create&#160;new&#160;array,&#160;arguments=</text><var>$name.table</var><text>,&#160;</text><var>$length.table</var><text>,&#160;</text><var>$right.table</var><text>,&#160;</text><var>$sort.table</var><text>,&#160;</text><var>null</var></line>
+<line indent=""><text>return&#160;</text><var>$ret</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="lib.cycrow.table.columns"/>
+  <sval type="int" val="73"/>
+  <sval type="string" val="Table Libraries: Get Column Data"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="7">
+    <sval type="string" val="length.table"/>
+    <sval type="string" val="right.table"/>
+    <sval type="string" val="name.table"/>
+    <sval type="string" val="sort.table"/>
+    <sval type="string" val="text"/>
+    <sval type="string" val="guilds.page"/>
+    <sval type="string" val="ret"/>
+  </sval>
+  <sval type="array" size="109">
+    <sval type="array" size="2">
+      <sval type="int" val="1733"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="1733"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="1733"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="1733"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.name"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="240"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.sector"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="150"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.idcode"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="60"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.shield"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="50"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.class"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="60"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.cargo"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="60"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.command"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="150"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.logisitics.job"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="150"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.logisitics.status"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="100"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.import"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="190"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.export"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="190"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.prio"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="60"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.name"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="200"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.warebar"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="110"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.vol"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="30"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.tc"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="30"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.avgprice"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="60"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.minstorage"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="100"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.maxstorage"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="100"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.name"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.sector"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.idcode"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.shield"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.class"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.cargo"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.command"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.logisitics.job"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.logisitics.status"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.import"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.export"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.prio"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.name"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.warebar"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.tc"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.vol"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.avgprice"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.minstorage"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.maxstorage"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.name"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.sector"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.idcode"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.shield"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.class"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.cargo"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.command"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.logisitics.job"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.logisitics.status"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.import"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.export"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.prio"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.name"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.warebar"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.tc"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.vol"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.avgprice"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.minstorage"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.maxstorage"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="4017"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.name"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="9301"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.sector"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.idcode"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" "/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.shield"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" "/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="9303"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.class"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="9212"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="obj.cargo"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1104500"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.command"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1107"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.name"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1104523"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.warebar"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1102519"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.tc"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1102518"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.vol"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="9510"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ware.avgprice"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="158"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="pageid.guilds"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610587133"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="4228"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.logisitics.job"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="4229"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.logisitics.status"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="4209"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.import"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="4210"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.export"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="4203"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.prio"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1104462"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.minstorage"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1100"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1104524"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.maxstorage"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="107"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.logisitics.job"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" "/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ship.logisitics.status"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" "/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.import"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" "/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.export"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" "/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.prio"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" "/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.minstorage"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" "/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="station.logistics.maxstorage"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" "/>
+    </sval>
+    <sval type="array" size="12">
+      <sval type="int" val="1415"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+  <sval type="array" size="8">
+    <sval type="array" size="2">
+      <sval type="int" val="4"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="23"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="42"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="61"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="83"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="100"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="107"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="107"/>
+      <sval type="int" val="2"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+<nosignature>2858</nosignature>
+</script>

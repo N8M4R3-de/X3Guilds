@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href="director.xsl" type="text/xsl" ?>
+<director name="Guilds, Level 0, Attack Ships" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="director.xsd">
+    <documentation>
+        <author alias="Cycrow"/>
+        <content reference="Guild Mission, Level 0, Attack Ships" name="Attack Ships" description="Mission to kill a list of ships" />
+        <version number="1.0" date="26/10/2025" status="development"/>
+    </documentation>
+    <cues>
+        <cue name="L0GI09 B" library="1">
+            <documentation>
+                <content name="L0GI09 Attack" reference="XXXT" type="briefing"/>
+                <version number="1.0" date="26/10/2025" status="development"/>
+                <params>
+                    <param name="Cue" type="cuename" compulsory="1" description="The cue where the briefing and objectives are stored"/>
+                    <param name="ID" type="number" compulsory="1" description="The mission Id for dealing with mission chains"/>
+                    <param name="OfferRace" type="number" compulsory="1" description="Race offering the mission"/>
+                    <param name="EnemyRace" type="number" compulsory="1" description="Race of the enemy"/>
+                    <param name="Lv1Guide" type="actorname" compulsory="1" description="The person offering the mission"/>
+                    <param name="PageID" type="number" description="Page ID of mission description"/>
+                    <param name="TextID" type="number" description="Text ID of mission description"/>
+					<param name="Sector" type="sectorname" description="Sector"/>
+					<param name="Reward" description="Reward type"/>
+					<param name="StoryID" type="number" compulsory="0" description="Text ID of the Story title" default="No title"/>
+                    <param name="Difficulty" type="number" compulsory="1" description="Difficulty level of mission"/>
+                    <param name="Step" type="number" compulsory="0" description="The step to use if additional objectives are involved"/>
+                    <param name="Summary" type="boolean" compulsory="0" description="Used to specify summary objectives in a chain of missions"/>
+					<param name="EnemyShips" type="groupname" compulsory="0" description="The list of ships to be destroyed"/>
+					<param name="Level" type="number" compulsory="0" description="The level of enemies to face (will use fight level otherwise)"/>
+					<param name="SpawnPoint" type="objectname" compulsory="0" description="The spawn point for the ships"/>
+					<param name="SpawnCount" type="number" compulsory="0" description="Number of times to spawn new ships"/>
+					<param name="SpawnX" type="number" compulsory="0" description="X Coordinate to spawn from"/>
+					<param name="SpawnY" type="number" compulsory="0" description="Y Coordinate to spawn from"/>
+					<param name="SpawnZ" type="number" compulsory="0" description="Z Coordinate to spawn from"/>
+				</params>
+            <returns>
+                <return name="{param@Cue}.{param@ID} L0GI09_Progress" type="number" description="1 - Mission Completed"/>
+                <return name="{param@Cue}.{param@ID} L0GI09_Progress" type="number" description="2 - Out of time"/>
+                <return name="{param@Cue}.{param@ID} L0GI09_Progress" type="number" description="92 - Out of time, not started mission"/>
+                <return name="{param@Cue}.{param@ID} L0GI09_Progress" type="number" description="99 - Aborted"/>
+            </returns>
+        </documentation>
+        <action>
+            <do_all>
+				<set_sector name="{param@Cue}.{param@ID} L0GI09_Sector" value="{param@Sector}"/>
+				<set_value name="{param@Cue}.{param@ID} L0GI09_Spawn" exact="0"/>
+				<do_if value="{param.exists@SpawnCount}" exact="1">
+					<set_value name="{param@Cue}.{param@ID} L0GI09_Spawn" exact="{param@SpawnCount}"/>
+				</do_if>
+				<do_choose>
+					<do_when value="{param.exists@SpawnPoint}" exact="1">
+						<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnXkm" exact="{object.position.x.km@{param@SpawnPoint}}"/>
+						<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnYkm" exact="{object.position.y.km@{param@SpawnPoint}}"/>
+						<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnZkm" exact="{object.position.z.km@{param@SpawnPoint}}"/>
+					</do_when>
+					<do_when value="{param.exists@SpawnX}*{param.exists@SpawnY}*{param.exists@SpawnZ}" min="1">
+						<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnXkm" exact="{param@SpawnX}"/>
+						<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnYkm" exact="{param@SpawnY}"/>
+						<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnZkm" exact="{param@SpawnZ}"/>
+					</do_when>
+					<do_otherwise>
+						<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnXkm" exact="0"/>
+						<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnYkm" exact="0"/>
+						<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnZkm" exact="0"/>
+					</do_otherwise>
+				</do_choose>
+				<do_if value="{param.exists@EnemyShips}" exact="1">
+					<do_all counter="ship" exact="{group.object.count@{param@EnemyShips}}">
+						<set_object name="{param@Cue}.{param@ID} L0GI09_Ship_{group.object.{counter@ship}@{param@EnemyShips}}" value="{group.object.{counter@ship}@{param@EnemyShips}}"/>
+						<add_object_to_group group="{param@Cue}.{param@ID} L0GI09_EnemyShips" object="{param@Cue}.{param@ID} L0GI09_Ship_{group.object.{counter@ship}@{param@EnemyShips}}" />
+					</do_all>
+				</do_if>
+				<do_choose>
+					<do_when value="{param.exists@Level}" exact="1">
+						<set_value name="{param@Cue}.{param@ID} L0GI09_Level" exact="{param@Level}"/>
+					</do_when>
+					<do_otherwise>
+						<set_value name="{param@Cue}.{param@ID} L0GI09_Level" exact="{player.fightrank.rank}"/>
+					</do_otherwise>
+				</do_choose>
+				<do_choose>
+					<do_when value="{param@Summary}" exact="1">
+						<create_briefing cue="{param@Cue}">
+				            <objectives>
+                                <objective step="{param@Step}">
+									<custom action="{35,2039}" text="{35,2112}">
+										<sector sector="{param@Cue}.{param@ID} L0GI09_Sector"/>
+									</custom>
+                                </objective>
+                            </objectives>
+                        </create_briefing>
+                        <cancel_cue cue="L0GI09 B"/>
+                    </do_when>
+                    <do_otherwise>
+                        <do_if value="{param.exists@Step}" exact="1">
+                            <set_value name="{param@Cue}.{param@ID} L0GI09_Step" exact="{param@Step}"/>
+                        </do_if>
+                        <do_if value="{value@{param@Cue}.{param@ID} L0GI09_Step}" min="1" negate="1">
+                            <set_value name="{param@Cue}.{param@ID} L0GI09_Step" exact="1"/>
+                        </do_if>
+                    </do_otherwise>
+                </do_choose>
+            </do_all>
+        </action>
+        <cues>
+			<cue name="L0GI09 B_CreateBriefing">
+				<condition>
+					<cue_is_complete cue="L0GI09 B"/>
+				</condition>
+				<action>
+					<do_all>
+						<do_choose>
+							<do_when value="{param.exists@PageID}*{param.exists@TextID}" exact="0">
+								<create_briefing cue="{param@Cue}"/>
+							</do_when>
+							<do_otherwise>
+								<create_briefing cue="{param@Cue}" text="{{param@PageID},{param@TextID}}" title="{9620,{value@{param@Cue}.{param@ID} L0Title}}"/>
+							</do_otherwise>
+						</do_choose>
+						<do_if value="{param.exists@Difficulty}" exact="1">
+							<create_briefing cue="{param@Cue}">
+								<mission level="{param@Difficulty}"/>
+							</create_briefing>
+						</do_if>
+					</do_all>
+				</action>
+				<cues>
+					<cue ref="L0GI09_UpdateObjective"/>
+				</cues>
+			</cue>
+        </cues>
+    </cue>
+
+	<cue name="L0GI09_UpdateObjective" library="1">
+		<action>
+			<do_all>
+				<do_choose>
+					<do_when value="{player.sector}" exact="{sector@{param@Cue}.{param@ID} L0GI09_Sector}">
+						<do_choose>
+							<do_when value="{group.object.count@{param@Cue}.{param@ID} L0GI09_EnemyShips}" min="1">
+								<do_if value="{object.exists@{param@Cue}.{param@ID} L0GI09_Enemy}" exact="0">
+									<set_object name="{param@Cue}.{param@ID} L0GI09_Enemy" value="{group.nearest@{param@Cue}.{param@ID} L0GI09_EnemyShips}"/>
+								</do_if>
+								<create_briefing cue="{param@Cue}">
+									<objectives>
+										<objective step="{value@{param@Cue}.{param@ID} L0GI09_Step}">
+											<destroy object="{param@Cue}.{param@ID} L0GI09_Enemy"/>
+										</objective>
+									</objectives>
+								</create_briefing>
+								<set_objective cue="{param@Cue}">
+									<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
+									<destroy object="{param@Cue}.{param@ID} L0GI09_Enemy"/>
+								</set_objective>
+							</do_when>
+							<do_otherwise>
+								<create_briefing cue="{param@Cue}">
+									<objectives>
+										<objective step="{value@{param@Cue}.{param@ID} L0GI09_Step}">
+											<custom action="{35,2039}" text="{35,2112}">
+												<sector sector="{param@Cue}.{param@ID} L0GI09_Sector"/>
+											</custom>
+										</objective>
+									</objectives>
+								</create_briefing>
+								<set_objective cue="{param@Cue}">
+									<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
+									<custom action="{35,2039}" text="{35,2112}">
+										<sector sector="{param@Cue}.{param@ID} L0GI09_Sector"/>
+									</custom>
+								</set_objective>
+							</do_otherwise>
+						</do_choose>
+					</do_when>
+					<do_otherwise>
+						<create_briefing cue="{param@Cue}">
+							<objectives>
+								<objective step="{value@{param@Cue}.{param@ID} L0GI09_Step}">
+									<flyto>
+										<sector sector="{sector@{param@Cue}.{param@ID} L0GI09_Sector}"/>
+									</flyto>
+								</objective>
+							</objectives>
+						</create_briefing>
+						<set_objective cue="{param@Cue}">
+							<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
+							<flyto>
+								<sector sector="{sector@{param@Cue}.{param@ID} L0GI09_Sector}"/>
+							</flyto>
+						</set_objective>
+					</do_otherwise>
+				</do_choose>				
+			</do_all>
+		</action>
+		<cues>
+			<cue name="L0GI09_CompleteObjective">
+				<condition>
+					<check_all>
+						<cue_is_complete cue="L0GI09_UpdateObjective"/>
+						<check_value value="{param.exists@Complete Briefing}" exact="1"/>
+						<check_value value="{param@CompleteBriefing}" exact="1"/>
+					</check_all>
+				</condition>
+                <cues>
+                    <cue ref="LUM04">
+                        <params>
+                            <param name="Discipline" value="XXXT"/>
+                            <param name="RewardMult" value="2"/>
+						</params>
+					</cue>
+				</cues>
+			</cue>
+		</cues>
+	</cue>
+
+    <cue name="L0GI09" library="1">
+        <documentation>
+            <content name="L0GI09 Attack Ships" reference="XXXT" type="L0"/>
+            <version date="26/10/2025" number="1.0" status="development"/>
+            <params>
+                <param name="Cue" compulsory="1" description="The cue where the briefing and objectives are stored"/>
+                <param name="ID" type="number" compulsory="1" description="The mission Id for dealing with mission chains"/>
+                <param name="OfferRace" compulsory="1" description="Race offering the mission"/>
+                <param name="EnemyRace" compulsory="1" description="Race of the enemy"/>
+                <param name="PageID" description="Page ID of mission description"/>
+                <param name="TextID" description="Text ID of mission description"/>
+                <param name="Reward" description="Reward type"/>
+                <param name="StoryID" compulsory="0" description="Text ID of the Story title" default="No title"/>
+                <param name="Difficulty" compulsory="1" description="Difficulty level of mission"/>
+                <param name="Step" compulsory="1" description="The starting Step of the mission"/>
+				<param name="EnemyShips" type="groupname" compulsory="0" description="The list of ships to be destroyed"/>
+				<param name="Level" type="number" compulsory="0" description="The level of enemies to face (will use fight level otherwise)"/>
+				<param name="SpawnPoint" type="objectname" compulsory="0" description="The spawn point for the ships"/>
+				<param name="SpawnCount" type="number" compulsory="0" description="Number of times to spawn new ships"/>
+				<param name="LeaderActor" type="actorname" compulsory="0" description="The actor of the leader ship, to give feedback"/>
+			</params>
+        </documentation>
+        <action>
+			<set_value name="{param@Cue}.{param@ID} L0GI09_Progress" exact="0"/>
+        </action>
+		<cues>
+			<cue name="L0GI09_CreateBriefing">
+				<cues>
+					<cue ref="L0GI09 B"/>
+				</cues>
+			</cue>
+			
+			<cue name="L0GI09_SetObjective">
+				<condition>
+					<cue_is_complete cue="L0GI09_CreateBriefing"/>
+				</condition>
+				<cues>
+					<cue ref="L0GI09_UpdateObjective"/>
+				</cues>
+			</cue>
+
+			<cue name="L0GI09_FollowerTarget" instantiate="static">
+				<condition>
+					<check_all>
+						<object_exists object="{param@Cue}.{param@ID} L0GI09_Target" negate="1"/>
+						<check_value value="{group.object.count@{param@Cue}.{param@ID} L0GI09_EnemyShips}" min="1"/>
+					</check_all>
+				</condition>
+				<action>
+					<do_all>
+						<set_object name="{param@Cue}.{param@ID} L0GI09_Target" value="{group.object.random@{param@Cue}.{param@ID} L0GI09_EnemyShips}"/>
+						<do_if value="{param.exists@Followers}" exact="1">
+							<set_group_relation group="{param@Followers}">
+								<relation object="{param@Cue}.{param@ID} L0GI09_Target" relation="enemy" mutual="1"/>
+							</set_group_relation>
+							<!--<set_group_command group="{param@Followers}" command="attack" commandobject="{object@{param@Cue}.{param@ID} L0GI09_Target}"/>-->
+						</do_if>
+					</do_all>
+				</action>
+			</cue>
+
+			<cue name="L0GI09_PlayerKills" instantiate="static">
+				<condition>
+					<check_any>
+						<any_object_destroyed_by_player group="{param@Cue}.{param@ID} L0GI09_EnemyShips"/>
+						<any_object_captured group="{param@Cue}.{param@ID} L0GI09_EnemyShips"/>
+					</check_any>
+				</condition>
+				<action>
+					<do_all>
+						<remove_object_from_group object="{event.object}" group="{param@Cue}.{param@ID} L0GI09_EnemyShips"/>
+						<do_if value="{object@{param@Cue}.{param@ID} L0GI09_Enemy}" exact="{event.object}">
+							<do_if value="{group.object.count@{param@Cue}.{param@ID} L0GI09_EnemyShips}" min="1">
+								<reset_cue cue="L0GI09_SetObjective"/>
+							</do_if>
+						</do_if>
+					</do_all>
+				</action>
+			</cue>
+			
+			<cue name="L0GI09_Kills" instantiate="static">
+				<condition>
+					<any_object_destroyed group="{param@Cue}.{param@ID} L0GI09_EnemyShips"/>
+				</condition>
+				<action>
+					<do_all>
+						<do_if value="{param.exists@LeaderActor}" exact="1">
+							<set_value name="{param@Cue}.{param@ID} L0GI09_DoSpeech" min="535" max="538"/>
+						</do_if>
+						<remove_object_from_group object="{event.object}" group="{param@Cue}.{param@ID} L0GI09_EnemyShips"/>
+						<do_if value="{object@{param@Cue}.{param@ID} L0GI09_Enemy}" exact="{event.object}">
+							<do_if value="{group.object.count@{param@Cue}.{param@ID} L0GI09_EnemyShips}" min="1">
+								<reset_cue cue="L0GI09_SetObjective"/>
+							</do_if>
+						</do_if>
+					</do_all>
+				</action>
+			</cue>
+
+			<cue name="L0GI09_LeaderSpeach" delay="1s" instantiate="static">
+				<condition>
+					<check_value value="{value@{param@Cue}.{param@ID} L0GI09_DoSpeech}" min="1"/>
+				</condition>
+				<action>
+					<do_all>
+						<do_if value="{value@{param@Cue}.{param@ID} L0GI09_DoingSpeech}" exact="0">
+							<play_text actor="{param@LeaderActor}">
+								<line actor="{param@LeaderActor}" textid="{value@{param@Cue}.{param@ID} L0GI09_DoSpeech}"/>
+							</play_text>
+						</do_if>
+						<set_value name="{param@Cue}.{param@ID} L0GI09_DoSpeech" exact="0"/>
+					</do_all>
+				</action>
+				<cues>
+					<cue name="L0GI09_LeaderSpeach_Reset" delay="1s">
+						<condition>
+							<cue_is_complete cue="L0GI09_LeaderSpeach"/>
+						</condition>
+						<timing>
+							<time min="20s" max="30s"/>
+						</timing>
+						<action>
+							<set_value name="{param@Cue}.{param@ID} L0GI09_DoingSpeech" exact="0"/>
+						</action>
+					</cue>
+				</cues>
+			</cue>
+
+			<cue name="L0GI09_StartMission" delay="1s">
+				<condition>
+					<check_all>
+						<cue_is_complete cue="L0GI09_CreateBriefing"/>
+						<check_value value="{value@{param@Cue}.{param@ID} L0GI09_Progress}" exact="0"/>
+					</check_all>
+				</condition>
+				<cues>
+					<cue name="L0GI09_EnterSector" delay="1s">
+						<condition>
+							<check_all>
+								<check_value value="{player.sector}" exact="{sector@{param@Cue}.{param@ID} L0GI09_Sector}"/>
+							</check_all>
+						</condition>
+						<action>
+							<reset_cue cue="L0GI09_SetObjective"/>
+						</action>
+						<cues>
+							<cue name="L0GI09_LeaveSector" delay="1s">
+								<condition>
+									<check_value value="{player.sector}" exact="{sector@{param@Cue}.{param@ID} L0GI09_Sector}" negate="1"/>
+								</condition>
+								<action>
+									<do_all>
+										<reset_cue cue="L0GI09_SetObjective"/>
+										<reset_cue cue="L0GI09_EnterSector"/>
+									</do_all>
+								</action>
+							</cue>
+
+							<cue name="L0GI09_CheckSpawn" delay="2s">
+								<condition>
+									<check_all>
+										<check_value value="{player.sector}" exact="{sector@{param@Cue}.{param@ID} L0GI09_Sector}"/>
+										<object_exists object="{param@Cue}.{param@ID} L0GI09_Enemy" negate="1"/>
+										<check_value value="{group.object.count@{param@Cue}.{param@ID} L0GI09_EnemyShips}" max="0"/>
+										<check_value value="{value@{param@Cue}.{param@ID} L0GI09_SpawnTime}" max="0"/>
+										<check_value value="{value@{param@Cue}.{param@ID} L0GI09_Spawn}" min="1"/>
+									</check_all>
+								</condition>
+								<action>
+									<do_all>
+										<do_choose>
+											<do_when value="{param.exists@SpawmTimeMin}*{param.exists@SpawnTimeMax}" min="1">
+												<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnTime" min="{param@SpawnTimeMin}" max="{param@SpawnTimeMax}"/>
+											</do_when>
+											<do_when value="{param.exists@SpawmTime}" exact="1">
+												<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnTime" exact="{param@SpawnTime}"/>
+											</do_when>
+											<do_otherwise>
+												<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnTime" min="30" max="60"/>
+											</do_otherwise>																							
+										</do_choose>
+										<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnTime" operation="add" exact="{player.age}"/>
+										<set_value name="{param@Cue}.{param@ID} L0GI09_Spawn" operation="subtract" exact="1"/>
+									</do_all>
+								</action>
+								<cues>
+									<cue name="L0GI09_StartSpawn" delay="1s">
+										<condition>
+											<check_age min="{value@{param@Cue}.{param@ID} L0GI09_SpawnTime}"/>
+										</condition>
+										<cues>
+											<cue name="L0GI09_OBS Finished"/>
+											<cue ref="OBS" version="2">
+												<params>
+													<param name="OBS Cue" value="{param@Cue}"/>
+													<param name="OBS Cancel Cue" value="L0GI09_OBS Finished"/>
+													<param name="OBS Fleet Group Name" value="{param@ID} L0GI09_EnemyShips"/>
+													<param name="OBSFleetRace" value="{param@EnemyRace}"/>
+													<param name="OBSFleetPilotsRace" value="{param@EnemyRace}"/>
+													<param name="OBSMissionRank" value="{value@{param@Cue}.{param@ID} L0GI09_Level}"/>
+													<param name="OBSDifficultyRank" value="{param@Difficulty}"/>
+													<param name="OBSSector" value="{sector@{param@Cue}.{param@ID} L0GI09_Sector}"/>
+													<param name="OBS X" value="{value@{param@Cue}.{param@ID} L0GI09_SpawnXkm}"/>
+													<param name="OBS Y" value="{value@{param@Cue}.{param@ID} L0GI09_SpawnYkm}"/>
+													<param name="OBS Z" value="{value@{param@Cue}.{param@ID} L0GI09_SpawnZkm}"/>
+													<param name="OBSPosition" value="200"/>
+													<param name="OBSFleetCommunicates" value="1"/>
+													<param name="OBSFleetCovered" value="0"/>
+													<param name="OBSFleetRelation" value="-1"/>
+													<param name="OBS Dock Support" value="1"/>
+													<param name="OBS Support Overflow" value="1"/>
+												</params>
+											</cue>
+											<cue name="L0GI09_Enemies Created">
+												<condition>
+													<cue_cancelled cue="L0GI09_OBS Finished"/>
+												</condition>
+												<action>
+													<do_all>
+														<do_if value="{param.exists@Followers}" exact="1">
+															<set_group_relation group="{param@Followers}">
+																<relation group="{param@Cue}.{param@ID} L0GI09_EnemyShips" relation="enemy" mutual="1"/>
+															</set_group_relation>
+															<set_group_command group="{param@Followers}" command="killenemiesrange" distance="40km">
+																<position x="{value@{param@Cue}.{param@ID} L0GI09_SpawnXkm}km" y="{value@{param@Cue}.{param@ID} L0GI09_SpawnYkm}km" z="{value@{param@Cue}.{param@ID} L0GI09_SpawnZkm}km"/>
+																<sector sector="{param@Cue}.{param@ID} L0GI09_Sector"/>
+															</set_group_command>
+														</do_if>
+														<set_group_command group="{param@Cue}.{param@ID} L0GI09_EnemyShips" command="killenemiesrange" distance="20km">
+															<position x="{value@{param@Cue}.{param@ID} L0GI09_SpawnXkm}km" y="{value@{param@Cue}.{param@ID} L0GI09_SpawnYkm}km" z="{value@{param@Cue}.{param@ID} L0GI09_SpawnZkm}km"/>
+															<sector sector="{param@Cue}.{param@ID} L0GI09_Sector"/>
+														</set_group_command>
+														<do_if value="{param.exists@LeaderActor}" exact="1">
+															<set_value name="{param@Cue}.{param@ID} L0GI09_DoingSpeech" exact="1"/>
+															<play_text actor="{param@LeaderActor}">
+																<line actor="{param@LeaderActor}" textid="932"/>
+																<line actor="{param@LeaderActor}" textid="936"/>
+															</play_text>
+														</do_if>
+														<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnTime" exact="0"/>
+														<reset_cue cue="L0GI09_SetObjective"/>
+													</do_all>
+												</action>
+												<cues>
+													<cue name="L0GI09_EnemiesReset" delay="1s">
+														<condition>
+															<cue_is_complete cue="L0GI09_Enemies Created"/>
+														</condition>
+														<timing>
+															<time exact="20s"/>
+														</timing>
+														<action>
+															<do_all>
+																<set_value name="{param@Cue}.{param@ID} L0GI09_DoingSpeech" exact="0"/>
+																<reset_cue cue="L0GI09_CheckSpawn"/>
+															</do_all>
+														</action>
+													</cue>
+												</cues>
+											</cue>
+										</cues>
+									</cue>
+								</cues>
+							</cue>
+							<cue name="L0GI09_CheckFinished" delay="2s">
+								<condition>
+									<check_all>
+										<object_exists object="{param@Cue}.{param@ID} L0GI09_Enemy" negate="1"/>
+										<check_value value="{group.object.count@{param@Cue}.{param@ID} L0GI09_EnemyShips}" max="0"/>
+										<check_value value="{value@{param@Cue}.{param@ID} L0GI09_SpawnTime}" max="0"/>
+										<check_value value="{value@{param@Cue}.{param@ID} L0GI09_Spawn}" max="0"/>
+									</check_all>
+								</condition>
+								<action>
+									<do_all>
+										<create_briefing cue="{param@Cue}">
+											<objectives>
+												<objective step="{value@{param@Cue}.{param@ID} L0GI09_Step}">
+													<custom action="{35,2039}" text="{35,2112}">
+														<sector sector="{param@Cue}.{param@ID} L0GI09_Sector"/>
+													</custom>
+												</objective>
+											</objectives>
+										</create_briefing>
+										<set_objective cue="{param@Cue}" silent="1">
+											<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
+											<custom action="{35,2039}" text="{35,2112}">
+												<sector sector="{param@Cue}.{param@ID} L0GI09_Sector"/>
+											</custom>
+										</set_objective>
+										<set_value name="{param@Cue}.{param@ID} L0GI09_Progress" exact="1"/>
+										<cancel_cue cue="L0GI09_LeaveSector"/>
+										<complete_cue cue="L0GI09"/>
+									</do_all>
+								</action>
+							</cue>
+						</cues>
+					</cue>
+				</cues>
+			</cue>
+		</cues>
+    </cue>
+  </cues>
+</director>

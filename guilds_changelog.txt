@@ -1,0 +1,557 @@
+v0.84
+Fixed Assassin Guild recruitment, docking at Phantom Shadowblade
+Fixed Lance Prototype rear turret
+Fixed Dock Tender add all wares
+Fixed Dock Tender ship minimum percentage
+Improved random music generate for sector
+Moved Hammerhead to Heavy Terran
+Added Fenrir to ATF jobs list
+Added Metal Alloys to HQ during FL void plot
+Added Xenon/Kha'ak weapons to Black Market (Requires 1.3.20)
+Added additional equipment to Black Market (Requires 1.3.20)
+Added Logistics Network
+
+v0.83
+Fixed text for Industritech Expansion Story
+Fixed return wares mission (including FL Story Plot)
+Fixed Headquarters Plot starting for TC starts
+Fixed Torus relations at end of Terran Conflict plot
+Fixed Albion Prelude plot sectors
+Fixed missing Terra Nova gate in some saves
+Fixed ships undocking from PHQ (ie Sagittarius)
+Fixed weapon compatibility on Pioneer ships
+Improved mission ships docking at player carrier
+Added Act 7 of Lost Colonies - Bridging the Divide/What lays beyond
+
+* The fix for Return Wares will eventually be moved to the unofficial patch
+** The Main Lost Colonies plot is now complete, a final bonus mission (Act 8) will follow
+
+v0.82
+Fixed comm Phantom Shadowblade in existing save games
+Fixed Beryll Incursion Spy Satellites Mission
+Fixed position of Unfocussed sector on galaxy map
+Adjusted Lost Colonies, Act2 (Shadows of the Past) and Act3 (Signs of Life), to include additional dialog explaining the Lost Colonies
+Adjusted Lost Colonies to not start until after Aldrin missions have been completed
+Added Act 4 of Lost Colonies - Echoes of Isolation
+Added Act 5 of Lost Colonies - Through the Broken Sky
+Added Act 6 of Lost Colonies - Beyond the Silence/Seeds of Trust
+Added Guild Sandbox Starts (includes only the new Guilds Plots)
+
+2 More acts of Lost Colonies remain
+	Act7 (Bridging the Divide) will unlock the remaining sectors including Aurora Prime
+	Act8 (New Dawn Alliance) will help the Pioneers intergrate into the rest of the universe
+
+v0.81
+Fixed Planetary Economy for The Moon (using correct dock)
+Fixed Beryll Incursion Parley Mission Briefing
+Added Salvage Claim Software to Teladi docks
+Added hotkey for Ware Search
+Added Ware Search to sidebar (Navigation)
+Added hotkeys while I Ware Search Menu
+Added "Dock At" option to context menu in ware search
+Added Beryll Incursion Achievements
+Added Lost Colonies Stage 3: Scientific Expertise
+
+v0.80
+Fixed auto jump with Jumpdrive energy generator.
+Fixed Assassination missions for Goner
+Fixed Passenger transport without destinations
+Fixed Passenger transport selecting Xenon sectors/stations
+Fixed adding wares to guild HQ when being recruited
+Improved passenger transport payments
+Added Sector Claiming
+Adjusted distance for Boarding Teleport (to use the ships size)
+Added Beryll Incursion Plot - Phase 3 (Splinter Cell)
+Added Industritech Plot - Phase 1 (The Gate Crystal)
+Added Reunion Plot (Goner Patrol)
+
+v0.74
+Fixed readtext error in New Home Plot.
+Fixed double stations when transitioning to AP
+Fixed weapons for gifted Rapiers (Terran Conflict Plot)
+Fixed Jumpdrive Energy Generator
+Fixed Solar Energy Generator
+Fixed Assassins Guild mission complete popup
+Fixed Station defence missions (spawning race ships)
+Fixed communicating with Phantom Shadowblade after moving to Shadows End
+Fixed Stranded Pilot mission
+Removed Selling/Reverse Engineering of Deployed Orbital Platforms
+Added Orbital Weapon Platforms blueprints to Headquarters (Obtained via Diplomacy)
+
+v0.73
+Added Overtuned Drive Core
+Added Pioneer Race (Lost Colonies)
+Added Mass Command Console
+Added Dodgy Mechanic
+
+v0.72
+Added Double Agent plots  - https://guilds.xpluginmanager.co.uk/index.php/features/story-plots/#doubleagent
+Added Resupply settings to Loadout Manager
+Fixed Bounty Hunters start, starting Beryll Incursion Plot incorrectly
+Fixed objective name for Assassins Guild split mission
+Fixed Asteroids in Aldrin plot
+
+v0.71
+Fixed A New Home sector
+Fixed Asteroids in New Home sector
+Changed name of sectors for New Home
+Adjusted Sector layouts for New Home sector
+Added Unique combat music to New Home sector
+Fixed reseting Military Radiant missions
+
+v0.70
+Fixed creation of new passengers (Navigators Guild)
+Fixed Broken Military radiant mission
+Fixed Assassins Guild Shadowblade, using external docks
+Fixed Bounty Hunters Capture mission invalid briefing
+Fixed A New Home sector (moved next to Twisted Skies)
+Remove Mammoth from some Teladi shipyards
+Added Beryll Incursion Chapter 2
+Added Reunion Gamestarts
+Added First part of Reunion Plot missions (Gamma Patrol)
+Added Reunion Cutscenes
+Added Planetary Economy to Ashely's Paradise
+Added Lost Colonies Plot - Chapter 1
+
+v0.65
+Fixed Automatic Renaming [type] variable
+Fixed Trade Route search, cancelling buy.
+Fixed Advanced Jump Menu
+Improved Dock Tend command, resupply when selling
+Added Automatic Renaming [fulltype] variable
+Added Privateer, Industritech and Beryll to Diplomacy
+Added diplomacy options for claiming sectors
+Added Assassins Guild progression plot
+Added jobs for Assassins Guild
+Added sector Shadows End (Assassins Guild) to pure sandbox start
+Added Deep scan results to Resource Overview: Asteroids
+
+v0.64
+Fixed Asteroids in HSAP sectors
+Fixed Capture pilot, ejecting/collecting target
+Fixed jumping to TOA (Jump to Sector command)
+Fixed HSAP orientation in Lost Order
+Added additional mineral transporters (Jobs)
+Adjusted Speed/Steering of Kha'ak M7
+
+v0.63
+Fixed incorrect voices
+Fixed Trade search manual buy command
+Fixed Goner temple in game starts
+
+v0.62
+Fixed Escorts in Escort mission to attack targets
+Fixed Paranid voice variation (incoming forces)
+Fixed FL Terran Plot activation (Special Discovery)
+Fixed Trade route search
+Fixed Advanced Jumpdrive working with standard auto jump feature
+Fixed Jumpdrive Energy Generator working with standard jump commands
+Fixed MK3 Trading using Energy Generator/Advanced Jumpdrive
+Fixed invalid mission briefing in some missions
+Added Planetary Economy to Family Pride
+Added Planetary Economy to The Moon
+Added Escort tab to guilds board (Mercenaries Guild)
+Added Sector Overview (Production/Consumption)
+Added types/TGuilds (external settings file)
+Added Merchant Guild satellites to Manual Trade Commands
+
+v0.60
+Fixed Solar Energy Generator showing as Equipment
+Fixed Argon Shipyard in Prophecy Fulfilled
+Fixed Argon Shipyard in Farnham's Legend
+Fixed some asteroids having Metal Alloys/Silicon Wafers
+Fixed Gawain stats
+Fixed Guild representatives for Assassins and Navigators
+Fixed some spelling errors
+Fixed notoriety for Advanced Jumpdrive Kit
+Fixed Advanced Jumpdrive: Auto Jump
+Fixed some pirate ships showing as enemy from game starts
+Improved ship type selection for missions
+Improved jump target selection with Advanced Jumpdrive (to sectors without gates)
+Changed starting ship for Assassins Guild start to Nightshade (M3)
+Set HQ in Bounty Hunters Start to invincible until moved
+Adjusted Terran rep for Argon Cadet start
+Adjusted TC HQ plot to start after 1st Hub gates
+Added search bar to Dock Tend ware menus
+Added extra docking slots of player headquarters (15 external slots)
+Added Terran Military missions
+Added voice to Guild backstory (Guild Status menu)
+Added Mercenaries Guild
+Added New Escort Missions (Mercenaries Guild)
+Added buyable weapons/shields on Guilds Board (Mercenaries Guild)
+Added Headquarters plot mission, for Argon Cadet Start (Part of Beryll Incursion)
+Added Unscrupulous Pirate pure sandbox start
+Added Mercenaries Guild game start
+Added Weapons Browser
+Save game compatible form 0.50
+
+v0.50
+Fixed guild shipyard unlocks
+Fixed guild station respawns
+Fixed Venus turrets/cockpit
+Fixed DisplayRace in Patrol/Military missions
+Fixed Patrol Missions
+Fixed Beryll Incursion patrol cutscenes
+Fixed Beryll Incursion plot starting from other game starts
+Improved Beryll Incursion Plot Missions
+Added Boarding Pod Forges
+Added 2nd part of Bounty Hunters plot (Building a shipyard)
+Added Bounty Hunters guild shipyard to pure sandbox starts
+Added additional Quantum Processers and Focus Crystals inside asteroids
+Added ATF Shipyard
+Added diplomacy special ships for ATF
+Added Merchants Guild
+Added Multiple Ware Delivery Mission
+Added Trades to Guild Board
+Added Equipment: Merchant Network Uplink
+Added New Gamestart: Merchant Guild
+Added New Gamestart: Pure Sandbox => Industrialist
+Added additional Beryll Incursion plot missions
+Added Cargo Bay Hacker to ship context menu
+Added Industritech Expandion prelude plot
+Added Repair Drone
+Added Repair Drone Factory (Terran Lost Colonies)
+Added Dock Tender ship command
+Added Search Trade Route ship command
+Added Planetary Economy: Seizewell
+Added Pirate Military Outpost ships
+Changed sector colour for Xenon sectors
+Changed Xenon Shipyard to new Model
+
+v0.40
+Fixed Mercenary Alpha docking ports
+Fixed Industritech Nomad weapon assignments
+Fixed Kha'ak Destroyer/Carrier models
+Fixed mines in Treasure Chest
+Fixed RRF ships creating too many pirate ships
+Fixed Advanced jumpdrive using energy
+Fixed M6 laser recharge for new ships
+Fixed Terran plot in custom start
+Rebalanced Industritech ships
+Renamed Industritech Bragi => Poseidon
+Renamed Industritech Scionfire => Prometheus
+Renamed Navigators Saiien II => Scionfire
+Added Pure Sandbox - Teladi Profiteer
+Added voice for guild recruitment missions
+Added voice for Bounty Hunters plot
+
+v0.30
+Fixed Icon for Pirate TS-AT
+Fixed weapon spawns for various ships
+Fixed rear turret on Mandalay
+Fixed Shipyard in Overmaster Talon
+Fixed mining commands to use the correct raw minerals
+Fixed Nividium being added to complex hubs
+Added new model for Bounty Hunters Dry-Dock
+Added new model for Darkspace Installation
+Added new model for Privateer Supply Station
+Added new model for Pirvateer Support Station
+Added Pure sandbox start: Lost Colony Pioneer
+Added Industritech shipyard and docks (Pure Sandbox Starts)
+Added Advanced Jumpdrive
+Replaced ATF Valhalla Model
+
+New Ships:
+Terran - TS - Baldric Superfreighter XL
+Terran - M7M - Gladius
+Lost Colonies - TL - Jupiter
+Lost Colonies - M1 - Earth
+Lost Colonies - M2 - Saturn
+Lost Colonies - M7 - Uranus
+Lost Colonies - M7+ - Heavy Uranus
+Lost Colonies - M7D - Oort
+Lost Colonies - TP - Kuiper
+Lost Colonies - TM - Moon
+Lost Colonies - M6 - Pluto
+Lost Colonies - M8 - Neptune
+Lost Colonies - M3 - Mars
+Lost Colonies - M4 - Venus
+ATF - M5+ - Morrigu
+ATF - M7+ - Verdandi
+ATF - TM - Norns
+Industritech - M6 - Artemis
+
+Adjusted Privateer Ships
+M1 - Pendragon
+M2 - Arthur
+M2+ - Uther
+M7 - Merlin
+M6 - Nimue
+M8 - Mordred
+M3+ - LeFay
+M3 - Morgana Vanguard
+M3 - Morgana Raider
+M4+ - Gawain
+M4 - Galahad
+M5+ -Lancelot
+
+Renamed Assassins Ships
+M1 - Shadowblade
+M6 - Darkstar
+M3 - Nightshade
+M4 - Reaper
+
+
+
+v0.20
+Fixed Asteroids containing raw minerals
+Fixed HQ resources using raw minerals
+Fixed Asteroids from Explorers Guild rewards
+Fixed Complex Planner working with Ore Production/Silicon Refinary
+Fixed Docking extension when changing sectors
+Changed names of Guild Headquarters/Shipyards
+Added additional Silicon Refineries
+Added Priveteer Indepenace Alliance
+Added Additonal Sectors
+Added Privateer game starts
+Added some XRM sectors
+Added XRM weapons
+Added additional Terran weapons and production
+Added FLXRM Ships
+Added Pure Sandbox game starts
+Added Xenon Migration
+Added Kha'ak Incusrions
+Improved Terran Economy
+Limited some weapons to specific races
+
+Ship Rename/Changes:
+Teladi M2+: Caracara -> Replaced: Indepenent Heavy Destroyer (Privateer)
+Industritech: Cyclops => Renamed: Nomad
+Industritech: Proteus => Renamed: Scionfire
+Argon M2+: Sagittarius => Replaced: Indepenent Destroyer (Privateer)
+Assassin M1: Heimdall => Renamed: Waverider
+Smugglers Guild M1: Kazuko => Renamed: Venturer
+Atreus M7: Aquata => Renamed: Cuttlefish
+Strong Arms: Taipan => Renamed: Lance
+Strong Arms: Taipan Prototype => Renamed: Lance Prototype
+
+New Ships:
+Privateer M4: Independent Interceptor
+Privateer M3: Independent Fighter
+Xenon M1+: IX
+Xenon M7+: QX
+Xenon M8: S
+Xenon M7M: H
+Argon M1+: Singularity
+Argon M2+: Sagittarius
+Aronn M7+: Cyclops
+Boron M7+: Aquata
+Strong Arms M2+: Taipan
+Strong Arms M7: Tiger Raider
+Strong Arms M2: Python Raider
+Split M7+: Wolf
+Paranid M1+: Aphrodite
+Teladi M2+: Hawk
+Teladi M1+: Caracara
+Teladi M7+: Heavy Shrike
+Teladi M7+: Heavy Tern
+ATF M2+: Heimdall
+Yaki M8: Kazuko
+OTAS M2+: Proteus
+
+New Weapons:
+Terran: Photonic Cannon
+Terran: Electro-Magnetic Emitter
+Terran: Electro-Magnetic Repeater
+Xenon: Gamma Pulse Emitter
+Xenon: High Energy Particle Railgun
+Xenon: Quantum Shockwave Cannon
+Xenon: Dark Matter Beam Cannon
+Teladi: Fusion Bomb Launcher
+Paranid: Phased Plasma Generator
+Paranid: Electro-Magnetic Disruptor Array
+Split: Plasma Burst Projector
+Lasertower Beam Cannon (All laser towers)
+
+
+Future Plans
+0.30:
+Add additional ships/stations from Cadius Xtra mod
+Test and Adjust overall economy
+Check availability of equipment/weapons/ships
+
+0.40:
+Fix any issue found with previous content/map
+Balance ships
+
+0.50:
+Start save game compatibility
+Add Merchants Guild
+Add Stage 2 Beryll Incursion Plot
+
+
+v0.11
+Fixed Mission Conversations
+Fixed Courier Mission (infinate loop spam)
+Fixed SETA resuming
+Fixed Bounty Comms (have you seen this bounty?)
+
+
+Info:
+
+Weapons: 
+	Argon Beam - Light (Fighter)
+	Split Beam - Medium (Corvette)
+	Paranid Beam - AF
+	Terran Beam - Beam Weapons
+	Heavy Fighter?
+	Large (Captial - M7+) Ion Cannon
+	Unknown - 
+	Unknown2 - Built in lasers (Repair/Lasertower)
+
+Basic
+	Impulse Ray Emitter				-		140 - 1.4k
+	Electro-Magnetic Emitter			Terran		315 - 1.3k
+
+Light Figher
+	Default - SG_LASER_PAC
+		Partical Accelerator Cannon		-		748 - 6.0k
+
+	Argon Beam - SG_LASER_ARGON_BEAM
+		Electro-Magnetic Repeater		Terran		400 - 2.6k
+
+	
+Heavy Fighter
+	Default - SG_LASER_HEPT
+		High Energy Plasma Thrower		-		1.5k - 9.4k
+
+	SG_LASER_ARGON_LIGHT (Phased Repeater Gun)
+		Phased Repeater Gun			Argon		765 - 7.2k
+		Energy Bolt Chainbun			Teladi		1.4k - 8.9k
+		Electro-Magnetic Plasma Cannon		Terran		2.0k - 7.2k
+		Fragmentation Bomb Launcher		Paranid		1.4k - 8.8k
+		Plasma Burst Generator			Pirates		? (Damage over time)
+		Pulsed Beam Emitter			Split		673 - 18.1k
+		Gammer Pulse Emitter			Xenon		612 - 10.2k
+
+		Boron - ?
+
+Corvette
+	Default - SG_LASER_CIG
+		Concussion Impulse Generator		-		3.2k - 9.8k
+
+	Split Beam - SG_LASER_SPLIT_AF
+		Phased Plasma Generator			Paranid		913 - 5.1k
+		Fusion Bomb Launcher			Teladi		1.1k - 5.8k
+		High-Energy Particle Railgun		Xenon		722 - 4.4k
+
+		Ion Pulse Generator			Boron		544 - 13.0k
+		Ion Shard Railgun			Split		3.7k - 10.2k
+		Matter/Anti-Matter			Terran		3.7k - 10.0k
+
+		Argon - ? (Default: CIG)
+		Pirates - ?
+
+Beam Weapons
+	Default - SG_LASER_PBC
+		Plasma Burst Cannon			-		10.8k - 22.8k
+		
+	Terran Beam - SG_LASER_TERRAN_BEAM		
+		Fusion Beam Cannon			Terran		12.8k - 9.0k
+		Tri-Beam Cannon				Paranid		7.8k - 11.1k
+		Phased Array Laser Cannon		Split		7.0k - 9.4k
+		Dark Matter Beam Cannon			Xenon		1.4k - 5.7k
+
+		Boron - Ion Beam Cannon?
+		Teladi - ?
+		Argon - ?
+		Pirates - Default (Plasma Burst Cannon)
+
+
+Anti-Fighter
+	Default - SG_LASER_FLAK
+		Flak Artiliery Array			-		1.9k - 12.8k
+
+	Paranid Beam - SG_LASER_PARANID_BEAM
+		Electro-Magnetic Disruptor Array	Paranid		810 - 3.0k
+		Cluster-Flak Array			Argon		1.8k - 12.0k
+		Starburst Shockwave Cannon		Terran		2.1k - 12.1k
+		Phased Shockwave Generator		Paranid		? (DoT)
+
+		Boron - Ion Shockwave array?
+		Split - ?
+		Xenon - ?
+		Pirates - ?
+		Teladi - Default (Flak Artility Array)
+		
+Captial Weapons	
+	Default - SG_LASER_PPC
+		Photon Pulse Cannon			- 		8.2k - 46.5k
+	
+	Ion Cannon - SG_LASER_BORON_HEAVY
+		Ion Cannon				Boron		3.8k - 66.1k
+		Point Singulatiry Projector		Terran		9.5k - 68.1k
+		Quantum Shockwave Cannon		Xenon		1.3k - 9.1k
+		Guass Cannon				Teladi		17.9k - 42.2k
+		Incendary Bomb Launcher			Pirate		8.1k - 46.2k
+		Plasma Burst Projector			Split		1.5k - 9.5k
+
+		Argon - ? PPC?
+		Paranid - ?
+
+Special Weapons
+	Mass Driver
+	Ion Distruptor
+	
+
+IRE
+PAC
+HEPT
+MD
+ID
+
+Fighter (Racial HEPT)	 - Phased Repeater Gun (SG_LASER_ARGON_LIGHT)
+Corvette
+?
+Captial
+Anti-Fighter
+Beam
+
+
+Magnetic Bolt Gun
+High Yield Ion Array
+Ion Shockwave projector
+Plasma Incendary Cannon
+Phased Matter Launcher
+	
+
+Shipnames:
+
+Arthurian:
+	Arthur		- M2
+	Merlin		- M7
+	Lancelot	- M5+
+	Bedivere
+	Guinevere
+	Uther		- M2+
+	Pendragon	- M1
+	Excalibur
+	Elaine
+	Galahad		- M4
+	Gawain		- M4+
+	Nimue		- M6
+	Morgana		- M3
+	le Fay		- M3+
+	Mordred		- M8
+	Ywain
+
+Ejyption
+	Ra
+	Osiris
+	Isis
+	Seth
+	Horus
+	Anubis
+	Khonsu
+	Hathor
+	Nefertum
+	Shu
+	Amunet
+	Imhotep
+	Apophis
+	
+
+Names:
+	Bragi
+	Saiien II
+	Saiien III

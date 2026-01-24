@@ -1,0 +1,252 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>plugin.guilds.cutscene</name>
+<version>1</version>
+<engineversion>73</engineversion>
+<description>Guilds: Mission Cutscene</description>
+<arguments>
+<argument index="1" name="a.cutscene" type="Var/String" desc="Cutscene ID" />
+<argument index="2" name="a.value1" type="Value" desc="Param1" />
+<argument index="3" name="a.value2" type="Value" desc="Param2" />
+</arguments>
+<sourceplaintext>
+<![CDATA[
+  if $a.cutscene == 'lc.7.4.2'
+@   = wait 9000 ms
+    $missile.delay = $a.value1 -> get fire missile time difference in seconds
+    = $a.value1 -> add 20 units of Shadow Missile
+    $a.value1 ->set fire missile time difference to 0 ms
+    = $a.value1 -> fire missile Shadow Missile on $a.value2
+    = $a.value1 -> fire missile Shadow Missile on $a.value2
+@   = wait 500 ms
+    = $a.value1 -> fire missile Shadow Missile on $a.value2
+    = $a.value1 -> fire missile Shadow Missile on $a.value2
+@   = wait 500 ms
+    = $a.value1 -> fire missile Shadow Missile on $a.value2
+    = $a.value1 -> fire missile Shadow Missile on $a.value2
+@   = wait 500 ms
+    = $a.value1 -> fire missile Shadow Missile on $a.value2
+    = $a.value1 -> fire missile Shadow Missile on $a.value2
+    $a.value1 ->set fire missile time difference to $missile.delay ms
+  end
+  return null
+]]>
+</sourceplaintext>
+<sourcetext>
+<line indent=""><var>if&#160;</var><var>$a.cutscene</var><text>&#160;</text><var>==</var><text>&#160;</text><var>'lc.7.4.2'</var></line>
+<line interruptable="@" indent="&#160;"><var>=&#160;</var><text>wait&#160;</text><var>9000</var><text>&#160;ms</text></line>
+<line indent="&#160;"><var>$missile.delay&#160;=&#160;</var><var>$a.value1&#160;-&gt;</var><text>&#160;get&#160;fire&#160;missile&#160;time&#160;difference&#160;in&#160;seconds</text></line>
+<line indent="&#160;"><var>=&#160;</var><var>$a.value1&#160;-&gt;</var><text>&#160;add&#160;</text><var>20</var><text>&#160;units&#160;of&#160;</text><var>Shadow&#160;Missile</var></line>
+<line indent="&#160;"><var>$a.value1&#160;-&gt;</var><text>set&#160;fire&#160;missile&#160;time&#160;difference&#160;to&#160;</text><var>0</var><text>&#160;ms</text></line>
+<line indent="&#160;"><var>=&#160;</var><var>$a.value1&#160;-&gt;</var><text>&#160;fire&#160;missile&#160;</text><var>Shadow&#160;Missile</var><text>&#160;on&#160;</text><var>$a.value2</var></line>
+<line indent="&#160;"><var>=&#160;</var><var>$a.value1&#160;-&gt;</var><text>&#160;fire&#160;missile&#160;</text><var>Shadow&#160;Missile</var><text>&#160;on&#160;</text><var>$a.value2</var></line>
+<line interruptable="@" indent="&#160;"><var>=&#160;</var><text>wait&#160;</text><var>500</var><text>&#160;ms</text></line>
+<line indent="&#160;"><var>=&#160;</var><var>$a.value1&#160;-&gt;</var><text>&#160;fire&#160;missile&#160;</text><var>Shadow&#160;Missile</var><text>&#160;on&#160;</text><var>$a.value2</var></line>
+<line indent="&#160;"><var>=&#160;</var><var>$a.value1&#160;-&gt;</var><text>&#160;fire&#160;missile&#160;</text><var>Shadow&#160;Missile</var><text>&#160;on&#160;</text><var>$a.value2</var></line>
+<line interruptable="@" indent="&#160;"><var>=&#160;</var><text>wait&#160;</text><var>500</var><text>&#160;ms</text></line>
+<line indent="&#160;"><var>=&#160;</var><var>$a.value1&#160;-&gt;</var><text>&#160;fire&#160;missile&#160;</text><var>Shadow&#160;Missile</var><text>&#160;on&#160;</text><var>$a.value2</var></line>
+<line indent="&#160;"><var>=&#160;</var><var>$a.value1&#160;-&gt;</var><text>&#160;fire&#160;missile&#160;</text><var>Shadow&#160;Missile</var><text>&#160;on&#160;</text><var>$a.value2</var></line>
+<line interruptable="@" indent="&#160;"><var>=&#160;</var><text>wait&#160;</text><var>500</var><text>&#160;ms</text></line>
+<line indent="&#160;"><var>=&#160;</var><var>$a.value1&#160;-&gt;</var><text>&#160;fire&#160;missile&#160;</text><var>Shadow&#160;Missile</var><text>&#160;on&#160;</text><var>$a.value2</var></line>
+<line indent="&#160;"><var>=&#160;</var><var>$a.value1&#160;-&gt;</var><text>&#160;fire&#160;missile&#160;</text><var>Shadow&#160;Missile</var><text>&#160;on&#160;</text><var>$a.value2</var></line>
+<line indent="&#160;"><var>$a.value1&#160;-&gt;</var><text>set&#160;fire&#160;missile&#160;time&#160;difference&#160;to&#160;</text><var>$missile.delay</var><text>&#160;ms</text></line>
+<line indent=""><text>end</text></line>
+<line indent=""><text>return&#160;</text><var>null</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="plugin.guilds.cutscene"/>
+  <sval type="int" val="73"/>
+  <sval type="string" val="Guilds: Mission Cutscene"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="4">
+    <sval type="string" val="a.cutscene"/>
+    <sval type="string" val="a.value1"/>
+    <sval type="string" val="a.value2"/>
+    <sval type="string" val="missile.delay"/>
+  </sval>
+  <sval type="array" size="18">
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610608381"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="lc.7.4.2"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="105"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="9000"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="550"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="646"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="20"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="655393"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="552"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="542"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="655393"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="542"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="655393"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="105"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="500"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="542"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="655393"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="542"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="655393"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="105"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="500"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="542"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="655393"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="542"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="655393"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="105"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="500"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="542"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="655393"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="542"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="655393"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="552"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+  </sval>
+  <sval type="array" size="3">
+    <sval type="array" size="2">
+      <sval type="int" val="11"/>
+      <sval type="string" val="Cutscene ID"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="9"/>
+      <sval type="string" val="Param1"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="9"/>
+      <sval type="string" val="Param2"/>
+    </sval>
+  </sval>
+  <sval type="array" size="1">
+    <sval type="array" size="2">
+      <sval type="int" val="17"/>
+      <sval type="int" val="4"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+<nosignature>5730</nosignature>
+</script>
