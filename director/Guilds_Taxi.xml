@@ -946,6 +946,7 @@
 													<remove_offer actor="L3GT01.MissionGiver" conversation="L3GT01_2" discipline="XXXXP"/>
 													<set_actor name="L3GT01.Guide" value="{actor@L3GT01.MissionGiver}"/>
 													<set_value name="L3GT01.EnemyRace" exact="{lookup.race@yaki}"/>
+													<set_value name="L3GT01.Reset" exact="0"/>
 												</do_all>
 											</action>
 											<cues>
@@ -1064,20 +1065,6 @@
 																		</do_all>
 																	</action>
 																</cue>
-																<cue ref="LUM04">
-																	<params>
-																		<param name="Duration" value="0"/>
-																		<param name="UseTimer" value="0"/>
-																		<param name="RewardCr" value="0"/>
-																	</params>
-																</cue>
-																<cue ref="LUM05">
-																	<params>
-																		<param name="Duration" value="0"/>
-																		<param name="UseTimer" value="0"/>
-																		<param name="RewardCr" value="0"/>
-																	</params>
-																</cue>
 																<cue name="L3GT01_Return">
 																	<condition>
 																		<check_all>
@@ -1085,13 +1072,16 @@
 																		</check_all>
 																	</condition>
 																	<timing>
-																		<time min="10s" max="15"/>
+																		<time min="10s" max="15s"/>
 																	</timing>
 																	<action>
 																		<do_all>
 																			<create_briefing cue="L3GT01" story="{9620,100100}" title="{9620,100100}" text="{9620,100103}" background="taxi_hq.tga" race="{9620,304}" targetrace="{9620,304}">
 																				<mission discipline="XXXXP" level="easy"/>
 																				<reward money="0"/>
+																				<thumbnails>
+																					<thumbnail image="taxi.tga" order="1"/>
+																				</thumbnails>
 																				<objectives>
 																					<objective step="1">
 																						<dockat object="{value@Celestial Navigators.GuildHQ}"/>
