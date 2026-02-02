@@ -1,5 +1,6 @@
 v0.85
 Fixed Celestial Navigators Recruitment mission
+Improved selection of destination sector for Military Patrols
 
 v0.84
 Fixed Assassin Guild recruitment, docking at Phantom Shadowblade
