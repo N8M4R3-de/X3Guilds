@@ -345,7 +345,7 @@
 								</do_all>
 							</action>
 						</cue>
-						
+
 						<cue name="Radiant_Military_ResetMission">
 							<condition>
 								<check_value value="{value@{param@Data Cue}.Mission}" exact="99"/>
@@ -364,53 +364,63 @@
 							</condition>
 							<action>
 								<do_all>
-									<set_value name="{param@Data Cue}.Mission1_Feedback" min="0"/>
-									<create_offer actor="{param@Leader}" cue="{param@Briefing Cue}" conversation="L2OfferCombat" discipline="XFXX"/>
-									<find_sector name="{param@Data Cue}.Mission1_Destination" race="{param@Race}" min="2" max="4" sector="{player.sector}"/>
-									<set_value name="{param@Data Cue}.Mission1_Difficulty" min="{lookup.level@easy}" max="{lookup.level@veryhard}" profile="bell"/>
-									<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@pirate}"/>
+									<find_sector name="{param@Data Cue}.Mission1_Destination" race="{param@Race}" min="2" max="4" sector="{player.sector}" border="1" />
+									<do_if value="{sector.exists@{param@Data Cue}.Mission1_Destination}" exact="0">
+										<find_sector name="{param@Data Cue}.Mission1_Destination" race="{param@Race}" min="1" max="4" sector="{player.sector}"/>
+									</do_if>
 									<do_choose>
-										<do_when value="{param@Race}" exact="{lookup.race@pirate}">
-											<do_any>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race.randomenemy@{param@Race}}" chance="30"/>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@xenon}" chance="30"/>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@khaak}" chance="10"/>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@yaki}" chance="30"/>
-											</do_any>
-										</do_when>
-										<do_when value="{param@Race}" exact="{lookup.race@yaki}">
-											<do_any>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race.randomenemy@{param@Race}}" chance="30"/>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@xenon}" chance="30"/>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@khaak}" chance="10"/>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@pirate}" chance="30"/>
-											</do_any>
+										<do_when value="{sector.exists@{param@Data Cue}.Mission1_Destination}" exact="0">
+											<reset_cue cue="{param@Reset Cue}"/>
 										</do_when>
 										<do_otherwise>
-											<do_any>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race.randomenemy@{param@Race}}" chance="20"/>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@pirate}" chance="30"/>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@xenon}" chance="30"/>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@khaak}" chance="10"/>
-												<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@yaki}" chance="10"/>
-											</do_any>
+											<set_value name="{param@Data Cue}.Mission1_Feedback" min="0"/>
+											<create_offer actor="{param@Leader}" cue="{param@Briefing Cue}" conversation="L2OfferCombat" discipline="XFXX"/>
+											<set_value name="{param@Data Cue}.Mission1_Difficulty" min="{lookup.level@easy}" max="{lookup.level@veryhard}" profile="bell"/>
+											<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@pirate}"/>
+											<do_choose>
+												<do_when value="{param@Race}" exact="{lookup.race@pirate}">
+													<do_any>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race.randomenemy@{param@Race}}" chance="30"/>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@xenon}" chance="30"/>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@khaak}" chance="10"/>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@yaki}" chance="30"/>
+													</do_any>
+												</do_when>
+												<do_when value="{param@Race}" exact="{lookup.race@yaki}">
+													<do_any>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race.randomenemy@{param@Race}}" chance="30"/>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@xenon}" chance="30"/>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@khaak}" chance="10"/>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@pirate}" chance="30"/>
+													</do_any>
+												</do_when>
+												<do_otherwise>
+													<do_any>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race.randomenemy@{param@Race}}" chance="20"/>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@pirate}" chance="30"/>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@xenon}" chance="30"/>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@khaak}" chance="10"/>
+														<set_value name="{param@Data Cue}.Mission1_Enemy" exact="{lookup.race@yaki}" chance="10"/>
+													</do_any>
+												</do_otherwise>
+											</do_choose>
+											<do_choose>
+												<do_when value="{value@{param@Data Cue}.Mission1_Difficulty}" exact="{lookup.level@easy}">
+													<set_value name="{param@Data Cue}.Mission1_Attacks" exact="1"/>
+													<set_value name="{param@Data Cue}.Mission1_Nodes" exact="2"/>
+												</do_when>
+												<do_when value="{value@{param@Data Cue}.Mission1_Difficulty}" exact="{lookup.level@average}">
+													<set_value name="{param@Data Cue}.Mission1_Attacks" min="1" max="2"/>
+													<set_value name="{param@Data Cue}.Mission1_Nodes" min="2" max="3"/>
+												</do_when>
+												<do_otherwise>
+													<set_value name="{param@Data Cue}.Mission1_Attacks" exact="2"/>
+													<set_value name="{param@Data Cue}.Mission1_Nodes" min="2" max="4"/>
+												</do_otherwise>
+											</do_choose>
+											<set_value name="{param@Data Cue}.Mission1_MaxAttacks" exact="({sector.jumps@{param@Data Cue}.Mission1_Destination}*2)-1"/>
 										</do_otherwise>
 									</do_choose>
-									<do_choose>
-										<do_when value="{value@{param@Data Cue}.Mission1_Difficulty}" exact="{lookup.level@easy}">
-											<set_value name="{param@Data Cue}.Mission1_Attacks" exact="1"/>
-											<set_value name="{param@Data Cue}.Mission1_Nodes" exact="2"/>
-										</do_when>
-										<do_when value="{value@{param@Data Cue}.Mission1_Difficulty}" exact="{lookup.level@average}">
-											<set_value name="{param@Data Cue}.Mission1_Attacks" min="1" max="2"/>
-											<set_value name="{param@Data Cue}.Mission1_Nodes" min="2" max="3"/>
-										</do_when>
-										<do_otherwise>
-											<set_value name="{param@Data Cue}.Mission1_Attacks" exact="2"/>
-											<set_value name="{param@Data Cue}.Mission1_Nodes" min="2" max="4"/>
-										</do_otherwise>
-									</do_choose>
-									<set_value name="{param@Data Cue}.Mission1_MaxAttacks" exact="({sector.jumps@{param@Data Cue}.Mission1_Destination}*2)-1"/>
 								</do_all>
 							</action>
 							<cues>								

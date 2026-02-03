@@ -19,11 +19,11 @@ Author: Cycrow
 
 # The creation data, when it was created
 # $DATE variable is used to get the current date
-Date: 05/07/2025
+Date: 24/01/2026
 
 # The version of script
 # $ASK variable is used to get an input when creating
-Version: 0.82
+Version: 0.84
 
 # The game version the script is for <game> <version> (can have multiple games)
 Game: X3FL 1.3
@@ -66,6 +66,7 @@ Script: GAME X3FL $GAMEDIR/addon2/Scripts/setup.cycrow.guilds.xml
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.planets.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.bbs.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.guilds.*
+Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.logistics.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.guilds.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.tradesys.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/!config.faction.guilds.xml
@@ -212,6 +213,7 @@ Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.advjump.*
 #Library Files
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.sortmarines.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.getraces.*
+Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.tables.*
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.getloadoutsetting.xml
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.getupgrademax.xml
 Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.sortloadouts.xml

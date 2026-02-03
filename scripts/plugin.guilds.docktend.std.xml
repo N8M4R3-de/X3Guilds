@@ -2,8 +2,8 @@
 <?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
 <script>
 <name>plugin.guilds.docktend.std</name>
-<version>2</version>
-<engineversion>71</engineversion>
+<version>3</version>
+<engineversion>73</engineversion>
 <description>Guilds: Ship Command - Dock Tender</description>
 <arguments>
 <argument index="1" name="a.data" type="Value" desc="Data Table" />
@@ -313,7 +313,7 @@
   $is.valid = [FALSE]
   $ware.station.amt = [HOMEBASE] -> get amount of ware $ware in cargo bay
   $ship.min = $data.array[5]
-  $ship.min = ( $ship.min + 1 ) * 5
+  $ship.min = $ship.min * 5
   $ship.free = [THIS] -> get free amount of ware $ware in cargo bay
   $ship.min = fixed multiply and divide: $ship.free * $ship.min / 100
   $station.min = $data.array[4]
@@ -652,7 +652,7 @@
 <line indent=""><var>$is.valid&#160;=&#160;</var><var>[FALSE]</var></line>
 <line indent=""><var>$ware.station.amt&#160;=&#160;</var><var>[HOMEBASE]&#160;-&gt;</var><text>&#160;get&#160;amount&#160;of&#160;ware&#160;</text><var>$ware</var><text>&#160;in&#160;cargo&#160;bay</text></line>
 <line indent=""><var>$ship.min&#160;=&#160;</var><var>$data.array</var><text>[</text><var>5</var><text>]</text></line>
-<line indent=""><var>$ship.min&#160;=&#160;</var><var>(</var><text>&#160;</text><var>$ship.min</var><text>&#160;</text><var>+</var><text>&#160;</text><var>1</var><text>&#160;</text><var>)</var><text>&#160;</text><var>*</var><text>&#160;</text><var>5</var></line>
+<line indent=""><var>$ship.min&#160;=&#160;</var><var>$ship.min</var><text>&#160;</text><var>*</var><text>&#160;</text><var>5</var></line>
 <line indent=""><var>$ship.free&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;get&#160;free&#160;amount&#160;of&#160;ware&#160;</text><var>$ware</var><text>&#160;in&#160;cargo&#160;bay</text></line>
 <line indent=""><var>$ship.min&#160;=&#160;</var><text>fixed&#160;multiply&#160;and&#160;divide:&#160;</text><var>$ship.free</var><text>&#160;*&#160;</text><var>$ship.min</var><text>&#160;/&#160;</text><var>100</var></line>
 <line indent=""><var>$station.min&#160;=&#160;</var><var>$data.array</var><text>[</text><var>4</var><text>]</text></line>
@@ -690,9 +690,9 @@
 
 <sval type="array" size="10">
   <sval type="string" val="plugin.guilds.docktend.std"/>
-  <sval type="int" val="71"/>
+  <sval type="int" val="73"/>
   <sval type="string" val="Guilds: Ship Command - Dock Tender"/>
-  <sval type="int" val="2"/>
+  <sval type="int" val="3"/>
   <sval type="int" val="0"/>
   <sval type="array" size="48">
     <sval type="string" val="a.data"/>
@@ -2545,28 +2545,20 @@
       <sval type="int" val="4"/>
       <sval type="int" val="5"/>
     </sval>
-    <sval type="array" size="21">
+    <sval type="array" size="13">
       <sval type="int" val="104"/>
       <sval type="int" val="44"/>
-      <sval type="int" val="5"/>
+      <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="44"/>
       <sval type="int" val="4"/>
-      <sval type="int" val="1"/>
-      <sval type="int" val="15"/>
-      <sval type="int" val="11"/>
-      <sval type="int" val="4"/>
       <sval type="int" val="5"/>
       <sval type="int" val="15"/>
       <sval type="int" val="13"/>
-      <sval type="int" val="7"/>
-      <sval type="int" val="16"/>
+      <sval type="int" val="3"/>
       <sval type="int" val="-1"/>
-      <sval type="int" val="11"/>
-      <sval type="int" val="-2"/>
-      <sval type="int" val="17"/>
       <sval type="int" val="13"/>
-      <sval type="int" val="-4"/>
+      <sval type="int" val="-2"/>
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="620"/>
@@ -3242,5 +3234,5 @@
 </sval>
 
 </codearray>
-<nosignature>0612</nosignature>
+<nosignature>4249</nosignature>
 </script>

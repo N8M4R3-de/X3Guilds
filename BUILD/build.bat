@@ -36,6 +36,7 @@ catpck -a ../t/0004* ../09.cat::addon2/t/
 catpck -a ../t/9620* ../09.cat::addon2/t/
 catpck -a ../t/conversations.xml ../09.cat::addon2/t/
 catpck -a ../t/conversations_guilds.xml ../09.cat::addon2/t/
+catpck -a ../L/x3intro.obj ../09.cat::addon2/L/
 catpck -a --recursive ../CAT/08/* ../08.cat
 catpck -a --recursive ../CAT/09/* ../09.cat
 spktool -createscript guilds.sps
