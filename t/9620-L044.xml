@@ -201,6 +201,7 @@
  <t id="2024">Minerals classified as ore are abundantly present across the entire recognised universe. They play a pivotal role in the manufacturing of nearly all technological commodities. Extracted from ore mines strategically constructed around petite asteroids, the raw ore undergoes initial processing to transform it into metal alloys, a crucial step before it can be utilised in the production of various goods.</t>
  <t id="5714">This combat software integrates supplementary commands into the shipboard command console, providing the vessel with the capability to execute various combat actions remotely. Additionally, the software interfaces with the ship's command console, enabling automatic aiming for your boresight weapons.</t>
  <t id="5724">This combat software integrates supplementary commands into the shipboard command console, providing the vessel with additional combat actions.  This software also include additional turret commands to automatically fire your ships turrets.</t>
+ <t id="7869">The 2 GJ Shield offers a large amount of protection. Typically used by capital ships.</t>
  <t id="87000">A collection of starts where you are part of one of the guilds</t>
  <t id="87001">Having operated independently as a freelancer for years, you've opted to advance your career by affiliating with the Bounty Hunters Guild, aspiring to emulate your childhood hero, as the greatest hunter ever.</t> 
  <t id="87002">After severing ties with your pirate clan due to irreconcilable differences and carrying out the decisive act of eliminating their leader, your actions draw the attention of the Assassins Guild, who decides to enlist you.</t>
@@ -461,6 +462,11 @@
  <t id="89431">Long forgotten and adrift in silence, this abandoned station bears the markings of the Terran Pioneers, yet its story has been lost to time.</t>
  <t id="89440">{13,4005} {13,4004}</t>
  <t id="89441">A damaged component in need of repair</t>
+ <t id="89460">{9,1005} {17,89462}</t>
+ <t id="89461">The 5 GJ(speak gigajoule) shield offers a very large amount of protection.  It is typically used on the larger more powerful capital ships.</t>
+ <t id="89462">GJ Shield</t>
+ <t id="89470">{9,1010} {17,89462}</t>
+ <t id="89471">The 10 GJ(speak gigajoule) shield offers a huge amount of protection.  It is typically used on the largest vessels like the dreadnaughts and stations.</t>
  <t id="89480">Wormhole Control Node</t>
  <t id="89481">A specialised station designed to generate and stabilise artificial wormholes.  The structure emits intense gravitational and spatial energy, allowing remote control of wormhole formation and collapse.</t>
  <t id="80001">Herbs and Spices</t>
