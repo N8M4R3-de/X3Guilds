@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href="director.xsl" type="text/xsl" ?>
+<director name="GuildsWormholes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="director.xsd">
+	<documentation>
+		<author name="Cycrow" />
+		<content reference="GuildsWormholes" name="guilds-wormholes" description="Allow unlocking of wormholes"/>
+		<version number="1.0" date="08/02/2026" />
+	</documentation>
+	<cues>
+		<cue name="GuildsWormholes">
+			<condition>
+				<cue_is_complete cue="Guilds_Startup"/>
+			</condition>
+			<cues>
+				<cue name="GuildsWormholes_Start">
+					<condition>
+						<check_all>
+							<check_value value="{player.ship.cargo.SS_WARE_WORMHOLE_TRACK.count}" min="1"/>
+							<check_value value="{player.ship.cargo.SS_WARE_LFLSCANNER.count}" min="1"/>
+						</check_all>
+					</condition>
+					<action>
+						<do_all>
+							<set_value name="GuildsWormholes.Max" exact="5"/>
+
+							<find_sector name="GuildsWormholes.Sector1" x="1" y="0"/>
+							<do_if value="{sector.exists@GuildsWormholes.Sector1}" exact="1">
+								<find_sector name="GuildsWormholes.Sector1_Dest" x="0" y="16"/>
+								<do_if value="{sector.exists@GuildsWormholes.Sector1_Dest}" exact="1">
+									<set_value name="GuildsWormholes.Sector1_Available"	 exact="1"/>
+									<set_value name="GuildsWormholes.Sector1_X"	 exact="-31"/>
+									<set_value name="GuildsWormholes.Sector1_Y"	 exact="-4k"/>
+									<set_value name="GuildsWormholes.Sector1_Z"	 exact="-32"/>
+									<set_value name="GuildsWormholes.Sector1_Alpha"	 exact="22568"/>
+									<set_value name="GuildsWormholes.Sector1_DestX"	 exact="40"/>
+									<set_value name="GuildsWormholes.Sector1_DestY"	 exact="1"/>
+									<set_value name="GuildsWormholes.Sector1_DestZ"	 exact="41"/>
+									<set_value name="GuildsWormholes.Sector1_DestAlpha"	 exact="-8000"/>
+								</do_if>
+							</do_if>
+
+							<find_sector name="GuildsWormholes.Sector2" x="4" y="17"/>
+							<do_if value="{sector.exists@GuildsWormholes.Sector2}" exact="1">
+								<find_sector name="GuildsWormholes.Sector2_Dest" x="15" y="18"/>
+								<do_if value="{sector.exists@GuildsWormholes.Sector2_Dest}" exact="1">
+									<set_value name="GuildsWormholes.Sector2_Available"	 exact="1"/>
+									<set_value name="GuildsWormholes.Sector2_X"	 exact="40"/>
+									<set_value name="GuildsWormholes.Sector2_Y"	 exact="8"/>
+									<set_value name="GuildsWormholes.Sector2_Z"	 exact="1"/>
+									<set_value name="GuildsWormholes.Sector2_Alpha"	 exact="-16384"/>
+									<set_value name="GuildsWormholes.Sector2_DestX"	 exact="-30"/>
+									<set_value name="GuildsWormholes.Sector2_DestY"	 exact="-3"/>
+									<set_value name="GuildsWormholes.Sector2_DestZ"	 exact="-1"/>
+									<set_value name="GuildsWormholes.Sector2_DestAlpha"	 exact="16384"/>
+								</do_if>
+							</do_if>
+
+							<find_sector name="GuildsWormholes.Sector3" x="20" y="16"/>
+							<do_if value="{sector.exists@GuildsWormholes.Sector3}" exact="1">
+								<find_sector name="GuildsWormholes.Sector3_Dest" x="16" y="4"/>
+								<do_if value="{sector.exists@GuildsWormholes.Sector3_Dest}" exact="1">
+									<set_value name="GuildsWormholes.Sector3_Available"	 exact="1"/>
+									<set_value name="GuildsWormholes.Sector3_X"	 exact="-40"/>
+									<set_value name="GuildsWormholes.Sector3_Y"	 exact="3"/>
+									<set_value name="GuildsWormholes.Sector3_Z"	 exact="51"/>
+									<set_value name="GuildsWormholes.Sector3_Alpha"	 exact="8000"/>
+									<set_value name="GuildsWormholes.Sector3_DestX"	 exact="30"/>
+									<set_value name="GuildsWormholes.Sector3_DestY"	 exact="1"/>
+									<set_value name="GuildsWormholes.Sector3_DestZ"	 exact="-56"/>
+									<set_value name="GuildsWormholes.Sector3_DestAlpha"	 exact="42568"/>
+								</do_if>
+							</do_if>
+
+							<find_sector name="GuildsWormholes.Sector4" x="20" y="0"/>
+							<do_if value="{sector.exists@GuildsWormholes.Sector4}" exact="1">
+								<find_sector name="GuildsWormholes.Sector4_Dest" x="22" y="6"/>
+								<do_if value="{sector.exists@GuildsWormholes.Sector4_Dest}" exact="1">
+									<set_value name="GuildsWormholes.Sector4_Available"	 exact="1"/>
+									<set_value name="GuildsWormholes.Sector4_X"	 exact="61"/>
+									<set_value name="GuildsWormholes.Sector4_Y"	 exact="3"/>
+									<set_value name="GuildsWormholes.Sector4_Z"	 exact="-56"/>
+									<set_value name="GuildsWormholes.Sector4_Alpha"	 exact="42568"/>
+									<set_value name="GuildsWormholes.Sector4_DestX"	 exact="-20"/>
+									<set_value name="GuildsWormholes.Sector4_DestY"	 exact="-4"/>
+									<set_value name="GuildsWormholes.Sector4_DestZ"	 exact="26"/>
+									<set_value name="GuildsWormholes.Sector4_DestAlpha"	 exact="8000"/>
+								</do_if>
+							</do_if>
+
+							<find_sector name="GuildsWormholes.Sector5" x="23" y="18"/>
+							<do_if value="{sector.exists@GuildsWormholes.Sector5}" exact="1">
+								<find_sector name="GuildsWormholes.Sector5_Dest" x="14" y="6"/>
+								<do_if value="{sector.exists@GuildsWormholes.Sector5_Dest}" exact="1">
+									<set_value name="GuildsWormholes.Sector5_Available"	 exact="1"/>
+									<set_value name="GuildsWormholes.Sector5_X"	 exact="30"/>
+									<set_value name="GuildsWormholes.Sector5_Y"	 exact="1"/>
+									<set_value name="GuildsWormholes.Sector5_Z"	 exact="-28"/>
+									<set_value name="GuildsWormholes.Sector5_Alpha"	 exact="42568"/>
+									<set_value name="GuildsWormholes.Sector5_DestX"	 exact="-41"/>
+									<set_value name="GuildsWormholes.Sector5_DestY"	 exact="-1"/>
+									<set_value name="GuildsWormholes.Sector5_DestZ"	 exact="52"/>
+									<set_value name="GuildsWormholes.Sector5_DestAlpha"	 exact="8000"/>
+								</do_if>
+							</do_if>
+						</do_all>
+					</action>
+					<cues>
+						<cue name="GuildsWormholes_Create">
+							<condition>
+								<cue_is_complete cue="GuildsWormholes_Start"/>
+							</condition>
+							<timing>
+								<time min="10s" max="20s"/>
+							</timing>
+							<action>
+								<do_all>
+									<do_all exact="{value@GuildsWormholes.Max}" counter="count">
+										<do_if value="{value@GuildsWormholes.Sector{counter@count}_Available}" exact="1">
+											<set_sector name="this.Sector" value="{sector@GuildsWormholes.Sector{counter@count}}"/>
+											<set_sector name="this.DestSector" value="{sector@GuildsWormholes.Sector{counter@count}_Dest}"/>
+											<create_special name="GuildsWormholes.Sector{counter@count}_Disturbance" typename="SS_SPECIAL_DISTURB">
+												<position x="{value@GuildsWormholes.Sector{counter@count}_X}km" y="{value@GuildsWormholes.Sector{counter@count}_Y}km" z="{value@GuildsWormholes.Sector{counter@count}_Z}km" min="100m" max="1km"/>
+												<sector sector="this.Sector"/>
+											</create_special>
+											<create_special name="GuildsWormholes.Sector{counter@count}_DisturbanceDest" typename="SS_SPECIAL_DISTURB">
+												<position x="{value@GuildsWormholes.Sector{counter@count}_DestX}km" y="{value@GuildsWormholes.Sector{counter@count}_DestY}km" z="{value@GuildsWormholes.Sector{counter@count}_DestZ}km" min="100m" max="1km"/>
+												<sector sector="this.DestSector"/>
+											</create_special>
+											<set_discoverable object="GuildsWormholes.Sector{counter@count}_Disturbance" discoverable="1"/>
+											<set_discoverable object="GuildsWormholes.Sector{counter@count}_DisturbanceDest" discoverable="1"/>
+										</do_if>
+									</do_all>
+								</do_all>
+							</action>
+						</cue>
+
+						<cue name="GuildsWormholes_Trigger" delay="1s" instantiate="static">
+							<condition>
+								<lfl_object_found />
+							</condition>
+							<action>
+								<do_all exact="{value@GuildsWormholes.Max}" counter="count">
+									<do_if value="{value@GuildsWormholes.Sector{counter@count}_Available}" exact="1">
+										<do_choose>
+											<do_when value="{object@GuildsWormholes.Sector{counter@count}_Disturbance}" exact="{event.object}">
+												<set_value name="GuildsWormholes.Found" exact="{counter@count}"/>
+												<set_value name="GuildsWormholes.FoundType" exact="1"/>
+											</do_when>
+											<do_when value="{object@GuildsWormholes.Sector{counter@count}_DisturbanceDest}" exact="{event.object}">
+												<set_value name="GuildsWormholes.Found" exact="{counter@count}"/>
+												<set_value name="GuildsWormholes.FoundType" exact="2"/>
+											</do_when>
+										</do_choose>
+									</do_if>									
+								</do_all>
+							</action>
+							<cues>
+								<cue name="GuildsWormholes_Found" delay="1s">
+									<condition>
+										<check_all>
+											<check_value value="{value@GuildsWormholes.FoundType}" min="1"/>
+											<check_value value="{value@GuildsWormholes.Found}" min="1"/>
+										</check_all>
+									</condition>
+									<action>
+										<do_if value="{object.exists@GuildsWormholes.Sector{value@GuildsWormholes.Found}_Disturbance}" exact="1">
+											<create_gate gate="up" known="1" name="this.Wormhole1" typename="SS_WG_WORM" safety="0">
+												<position object="{object@GuildsWormholes.Sector{value@GuildsWormholes.Found}_Disturbance}"/>
+												<rotation alpha="{value@GuildsWormholes.Sector{value@GuildsWormholes.Found}_Alpha}" beta="0" gamma="0"/>
+												<sector sector="{object.sector@GuildsWormholes.Sector{value@GuildsWormholes.Found}_Disturbance}"/>
+												<destination sector="{object.sector@GuildsWormholes.Sector{value@GuildsWormholes.Found}_DisturbanceDest}" gate="down"/>
+											</create_gate>
+											<create_gate gate="down" known="1" name="this.Wormhole2" typename="SS_WG_WORM" safety="0">
+												<position object="{object@GuildsWormholes.Sector{value@GuildsWormholes.Found}_DisturbanceDest}"/>
+												<rotation alpha="{value@GuildsWormholes.Sector{value@GuildsWormholes.Found}_DestAlpha}" beta="0" gamma="0"/>
+												<sector sector="{object.sector@GuildsWormholes.Sector{value@GuildsWormholes.Found}_DisturbanceDest}"/>
+												<destination sector="{object.sector@GuildsWormholes.Sector{value@GuildsWormholes.Found}_Disturbance}" gate="up"/>
+											</create_gate>
+											<show_effect object="{object@this.Wormhole1}" effect="46"/>
+											<show_effect object="{object@this.Wormhole2}" effect="46"/>
+											<destroy_object object="{object@GuildsWormholes.Sector{value@GuildsWormholes.Found}_Disturbance}"/>
+											<destroy_object object="{object@GuildsWormholes.Sector{value@GuildsWormholes.Found}_DisturbanceDest}"/>
+											<set_value name="GuildsWormholes.Sector{value@GuildsWormholes.Found}_Activated" exact="1"/>
+											<set_value name="GuildsWormholes.Sector{value@GuildsWormholes.Found}_Available" exact="0"/>
+											<set_value name="GuildsWormholes.Found" exact="0"/>
+											<set_value name="GuildsWormholes.FoundType" exact="0"/>
+											<set_value name="this.count" exact="0"/>
+											<do_all exact="{value@GuildsWormholes.Max}" counter="count">
+												<do_if value="{value@GuildsWormholes.Sector{counter@count}_Available}" exact="1">
+													<set_value name="this.count" exact="1" operation="add"/>
+												</do_if>
+											</do_all>
+											<do_if value="{value@this.count}" max="0">
+												<cancel_cue cue="GuildsWormholes_Trigger"/>
+											</do_if>
+										</do_if>
+									</action>
+								</cue>
+							</cues>
+						</cue>
+					</cues>
+				</cue>
+			</cues>
+		</cue>
+	</cues>
+</director>
