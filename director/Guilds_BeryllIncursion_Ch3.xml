@@ -33,6 +33,12 @@
 
 					<!-- Settings -->
 					<set_value name="Beryll_Incursion_Chapter3.ShowVoice" exact="1"/>
+
+					<!-- REMOVE - For Testing Only -->
+					<!--
+					<set_value name="Beryll_Incursion.Status" exact="300"/>
+					<set_value name="Beryll_Incursion_Chapter3.Status" exact="30"/>
+					-->
 				</do_all>
 			</action>
 			<cues>
@@ -837,6 +843,7 @@
 																					</set_objective>
 																					<set_command object="Beryll_Incursion.LeaderShip" command="idle"/>
 																					<set_command object="Beryll_Incursion.ContactShip" command="dock" commandobject="{object@Beryll_Incursion_Chapter3.SecretStation}"/>
+																					<destroy_actor actor="Beryll_Incursion.Contact"/>
 																					<destroy_object object="Beryll_Incursion.BeryllContactShip" warp="1"/>
 																					<remove_group group="Beryll_Incursion.Group"/>
 																				</do_all>
@@ -1877,9 +1884,9 @@
 																									<cancel_cue cue="Beryll_Incursion_Chapter3_ContactEnter"/>
 																									<remove_briefing cue="Beryll_Incursion"/>
 																									<remove_objective cue="Beryll_Incursion" status="complete"/>
+																									<destroy_actor actor="Beryll_Incursion.Contact"/>
 																									<destroy_group group="Beryll_Incursion.Group" warp="1"/>
 																									<remove_group group="Beryll_Incursion.Group"/>
-																									<set_invincible object="Beryll_Incursion_Chapter3.SecretStation" invincible="0"/>
 																									<reward_player>
 																										<money exact="200000" transactionid="1000006" transactionpage="9620"/>
 																									</reward_player>
@@ -1915,7 +1922,958 @@
 											</cues>
 										</cue>
 									</cues>
-								</cue>							
+								</cue>
+
+								<cue name="Beryll_Incursion_Chapter4" delay="2s">
+									<condition>
+										<check_value value="{value@Beryll_Incursion_Chapter3.Status}" exact="30"/>
+									</condition>
+									<timing>
+										<time min="20s" max="30s"/>
+									</timing>
+									<action>
+										<do_all>											
+											<find_sector x="8" y="10" name="Beryll_Incursion_Chapter4.GreatTrench" comment="Boron Research Station"/>
+											<find_sector x="8" y="11" name="Beryll_Incursion_Chapter4.TargetSector1" comment="Ocenanus Prime"/>
+											<find_sector x="5" y="16" name="Beryll_Incursion_Chapter4.DestinationSector" comment="Smugglers Paradise"/>
+											<find_sector x="21" y="8" name="Beryll_Incursion_Chapter4.TargetSector2" comment="Blue Horizon"/>
+											<find_sector x="12" y="9" name="Beryll_Incursion_Chapter4.TargetSector3" comment="CEO's Wellspring"/>
+											<find_sector x="17" y="0" name="Beryll_Incursion_Chapter4.TargetSector4" comment="The Vault"/>
+
+											<find_station class="dock" race="argon" name="Beryll_Incursion_Chapter4.SecretStation" silent="1" typename="SS_DOCK_A_SECRET">
+												<sector sector="{sector@Beryll_Incursion_Chapter3.RingoMoon}"/>
+												<jumps min="0" max="0"/>
+											</find_station>
+											<do_choose>
+												<do_when value="{object.exists@Beryll_Incursion_Chapter4.SecretStation}" exact="1">
+													<set_invincible object="Beryll_Incursion_Chapter3.SecretStation" invincible="1"/>
+													<set_value name="Beryll_Incursion_Chapter4.Status" exact="1"/>
+												</do_when>
+												<do_otherwise>
+													<reset_cue cue="Beryll_Incursion_Chapter4"/>
+												</do_otherwise>
+											</do_choose>											
+										</do_all>
+									</action>
+									<cues>
+										<cue name="Beryll_Incursion_Chapter4_Start" delay="2s">
+											<condition>
+												<check_value value="{value@Beryll_Incursion_Chapter4.Status}" exact="1"/>
+											</condition>
+											<timing>
+												<time min="20s" max="30s"/>
+											</timing>
+											<action>
+												<do_all>
+													<create_actor name="Beryll_Incursion_Chapter4.Contact" character="{9620,1000135}" face="106" voice="125" race="argon" gender="male" object="Beryll_Incursion_Chapter4.SecretStation"/>
+													<play_text actor="Beryll_Incursion_Chapter4.Contact" priority="90" textid="100036"/>
+													<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+														<mission discipline="XXXXP" level="average"/>
+														<reward money="3000000"/>
+														<objectives>
+															<objective step="1">
+																<talkto actor="Beryll_Incursion_Chapter4.Contact"/>
+															</objective>
+														</objectives>
+													</create_briefing>
+													<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+														<briefing cue="Beryll_Incursion" step="1"/>
+														<mission discipline="XXXXP" level="average"/>
+														<reward money="3000000"/>
+														<talkto actor="Beryll_Incursion_Chapter4.Contact"/>
+													</set_objective>
+													<create_offer actor="{actor@Beryll_Incursion_Chapter4.Contact}" cue="Beryll_Incursion" conversation="L3GPL_01_04_01" discipline="XXXXP"/>
+												</do_all>
+											</action>
+											<cues>
+												<cue name="Beryll_Incursion_Chapter4_Accept" delay="1s">
+													<condition>
+														<conversation_completed answer="accept" conversation="L3GPL_01_04_01" actor="Beryll_Incursion_Chapter4.Contact"/>
+													</condition>
+													<action>
+														<do_all>
+															<remove_offer conversation="L3GPL_01_04_01" actor="Beryll_Incursion_Chapter4.Contact" discipline="XXXXP" />
+															<find_gate gate="south" name="this.Gate">
+																<sector sector="{sector@Beryll_Incursion_Chapter4.GreatTrench}"/>
+																<jumps exact="0"/>
+															</find_gate>
+															<find_station nearest="1" class="dock" race="boron" name="Beryll_Incursion_Chapter4.BoronStation">
+																<position object="this.Gate"/>
+																<sector sector="{sector@Beryll_Incursion_Chapter4.GreatTrench}"/>																
+															</find_station>
+															<do_if value="{object.exists@Beryll_Incursion_Chapter4.BoronStation}" exact="0">
+																<create_station name="Beryll_Incursion_Chapter4.BoronStation" typename="SS_DOCK_P_HQ" race="boron" textid="5071">
+																	<position x="0" y="0" z="0" min="10km" max="60km" />	
+																	<sector sector="{sector@Beryll_Incursion_Chapter4.GreatTrench}"/>
+																	<products>
+																		<ware typename="SS_WARE_TECH209" exact="1"/>
+																		<ware typename="SS_WARE_TECH207" exact="10"/>
+																		<ware typename="SS_WARE_SATELLITE" min="10" max="30"/>
+																	</products>
+																</create_station>
+															</do_if>
+															<set_invincible object="Beryll_Incursion_Chapter4.BoronStation" invincible="1"/>
+															<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																<mission discipline="XXXXP" level="average"/>
+																<reward money="3000000"/>
+																<objectives>
+																	<objective step="2">
+																		<dockat object="Beryll_Incursion_Chapter4.BoronStation"/>
+																	</objective>
+																</objectives>
+															</create_briefing>
+															<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																<briefing cue="Beryll_Incursion" step="2"/>
+																<mission discipline="XXXXP" level="average"/>
+																<reward money="3000000"/>
+																<dockat object="Beryll_Incursion_Chapter4.BoronStation"/>
+															</set_objective>
+															<create_actor name="Beryll_Incursion_Chapter4.BoronContact" character="{9620,1000189}" face="202" voice="220" race="boron" object="Beryll_Incursion_Chapter4.BoronStation" invincible="1" location="crew"/>
+														</do_all>
+													</action>
+													<cues>
+														<cue name="Beryll_Incursion_Chapter4_Arrive" delay="1s">
+															<condition>
+																<check_value value="{player.sector}" exact="{sector@Beryll_Incursion_Chapter4.GreatTrench}"/>
+															</condition>
+															<timing>
+																<time min="10s" max="15s"/>
+															</timing>
+															<action>
+																<play_text actor="Beryll_Incursion_Chapter4.BoronContact" priority="90" textid="130000"/>
+															</action>
+														</cue>
+															
+														<cue name="Beryll_Incursion_Chapter4_Dock" delay="1s">
+															<condition>
+																<object_docked param="{object@Beryll_Incursion_Chapter4.BoronStation}"/>
+															</condition>
+															<timing>
+																<time exact="5s"/>
+															</timing>
+															<action>
+																<do_all>
+																	<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																		<mission discipline="XXXXP" level="average"/>
+																		<reward money="3000000"/>
+																		<objectives>
+																			<objective step="3">
+																				<talkto actor="Beryll_Incursion_Chapter4.BoronContact"/>
+																			</objective>
+																		</objectives>
+																	</create_briefing>
+																	<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																		<briefing cue="Beryll_Incursion" step="3"/>
+																		<mission discipline="XXXXP" level="average"/>
+																		<reward money="3000000"/>
+																		<talkto actor="Beryll_Incursion_Chapter4.BoronContact"/>
+																	</set_objective>
+																	<create_offer actor="{actor@Beryll_Incursion_Chapter4.BoronContact}" cue="Beryll_Incursion" conversation="L3GPL_01_04_02" discipline="XXXXP"/>
+																</do_all>																
+															</action>
+															<cues>
+																<cue name="Beryll_Incursion_Chapter4_BoronAccept" delay="1s">
+																	<condition>
+																		<conversation_completed answer="accept" conversation="L3GPL_01_04_02" actor="Beryll_Incursion_Chapter4.BoronContact"/>
+																	</condition>
+																	<action>
+																		<do_all>
+																			<remove_offer conversation="L3GPL_01_04_02" actor="Beryll_Incursion_Chapter4.BoronContact" discipline="XXXXP" />
+																			<set_value name="Beryll_Incursion_Chapter4.Status" exact="2"/>
+																			<set_value name="Beryll_Incursion_Chapter4.SectorStatus" exact="1"/>
+																		</do_all>
+																	</action>
+																	<cues>
+																		<cue name="Beryll_Incursion_Chapter4_RemoveDisturbance" instantiate="static">
+																			<condition>
+																				<check_value value="{object.exists@Beryll_Incursion_Chapter4.DestroyDisturbance}" exact="1"/>
+																			</condition>
+																			<action>
+																				<do_all>
+																					<destroy_object object="Beryll_Incursion_Chapter4.DestroyDisturbance"/>
+																					<remove_object object="Beryll_Incursion_Chapter4.DestroyDisturbance"/>
+																				</do_all>
+																			</action>
+																		</cue>
+																		
+																		<cue name="Beryll_Incursion_Chapter4_DoSector" delay="1s">
+																			<condition>
+																				<check_value value="{value@Beryll_Incursion_Chapter4.Status}" exact="2"/>
+																			</condition>
+																			<action>
+																				<do_all>
+																					<do_choose>
+																						<do_when value="{value@Beryll_Incursion_Chapter4.SectorStatus}" exact="1">
+																							<play_text actor="Beryll_Incursion_Chapter4.BoronContact" priority="90" textid="130011"/>
+																						</do_when>
+																						<do_otherwise>
+																							<play_text actor="Beryll_Incursion_Chapter4.BoronContact" priority="90" textid="130012"/>
+																						</do_otherwise>
+																					</do_choose>
+																					<set_sector name="Beryll_Incursion_Chapter4.CurrentSector" value="{sector@Beryll_Incursion_Chapter4.TargetSector{value@Beryll_Incursion_Chapter4.SectorStatus}}"/>
+																					<create_special name="Beryll_Incursion_Chapter4.SpacialDisturbance" typename="SS_SPECIAL_DISTURB">
+																						<position x="0" y="0" z="0" min="40km" max="60km"/>
+																						<sector sector="Beryll_Incursion_Chapter4.CurrentSector"/>
+																					</create_special>
+																					<set_discoverable object="Beryll_Incursion_Chapter4.SpacialDisturbance" discoverable="1"/>
+																					<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																						<mission discipline="XXXXP" level="average"/>
+																						<reward money="3000000"/>
+																						<objectives>
+																							<objective step="4">
+																								<flyto>
+																									<sector sector="Beryll_Incursion_Chapter4.CurrentSector"/>
+																								</flyto>
+																							</objective>
+																						</objectives>
+																					</create_briefing>
+																					<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																						<briefing cue="Beryll_Incursion" step="4"/>
+																						<mission discipline="XXXXP" level="average"/>
+																						<reward money="3000000"/>
+																						<flyto>
+																							<sector sector="Beryll_Incursion_Chapter4.CurrentSector"/>
+																						</flyto>
+																					</set_objective>
+																				</do_all>
+																			</action>
+																			<cues>
+																				<cue name="Beryll_Incursion_Chapter4_EnteredSector" delay="1s">
+																					<condition>
+																						<check_value value="{player.sector}" exact="{sector@Beryll_Incursion_Chapter4.CurrentSector}"/>
+																					</condition>
+																					<action>
+																						<do_all>
+																							<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																								<mission discipline="XXXXP" level="average"/>
+																								<reward money="3000000"/>
+																								<objectives>
+																									<objective step="5">
+																										<custom icon="find" action="{9620,1000190}" text="{9620,1000191}">
+																											<sector sector="Beryll_Incursion_Chapter4.CurrentSector"/>
+																										</custom>
+																									</objective>
+																								</objectives>
+																							</create_briefing>
+																							<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																								<briefing cue="Beryll_Incursion" step="5"/>
+																								<mission discipline="XXXXP" level="average"/>
+																								<reward money="3000000"/>
+																								<custom icon="find" action="{9620,1000190}" text="{9620,1000191}">
+																									<sector sector="Beryll_Incursion_Chapter4.CurrentSector"/>
+																								</custom>
+																							</set_objective>
+																						</do_all>
+																					</action>
+																					<cues>
+																						<cue name="Beryll_Incursion_Chapter4_FoundLFL" delay="1s">
+																							<condition>
+																								<check_all>
+																									<lfl_object_found object="Beryll_Incursion_Chapter4.SpacialDisturbance"/>
+																									<check_value value="{event.object}" exact="{object@Beryll_Incursion_Chapter4.SpacialDisturbance}"/>
+																								</check_all>
+																							</condition>
+																							<action>
+																								<do_all>
+																									<set_value name="Beryll_Incursion_Chapter4.SectorStatus" operation="add" exact="1"/>
+																									<do_choose>
+																										<do_when value="{value@Beryll_Incursion_Chapter4.SectorStatus}" max="4">
+																											<set_object name="Beryll_Incursion_Chapter4.DestroyDisturbance" value="{object@Beryll_Incursion_Chapter4.SpacialDisturbance}"/>
+																											<reset_cue cue="Beryll_Incursion_Chapter4_DoSector"/>
+																										</do_when>
+																										<do_otherwise>
+																											<set_value name="Beryll_Incursion_Chapter4.Status" exact="3"/>
+																										</do_otherwise>
+																									</do_choose>
+																								</do_all>
+																							</action>
+																							<cues>
+																								<cue name="Beryll_Incursion_Chapter4_FoundWormhole" delay="1s">
+																									<condition>
+																										<check_value value="{value@Beryll_Incursion_Chapter4.Status}" exact="3"/>
+																									</condition>
+																									<timing>
+																										<time exact="1s"/>
+																									</timing>
+																									<action>
+																										<do_all>
+																											<play_text actor="Beryll_Incursion_Chapter4.BoronContact" priority="90" textid="130013"/>
+																											<create_gate gate="up" known="1" name="Beryll_Incursion_Chapter4.Wormhole" typename="SS_WG_WORM" safety="0">
+																												<position object="Beryll_Incursion_Chapter4.SpacialDisturbance"/>
+																												<sector sector="Beryll_Incursion_Chapter4.CurrentSector"/>
+																												<destination sector="Beryll_Incursion_Chapter4.DestinationSector" gate="down"/>
+																											</create_gate>
+																											<create_gate gate="down" known="1" name="Beryll_Incursion_Chapter4.WormholeDest" typename="SS_WG_WORM">
+																												<position x="-25km" y="-1km" z="24km"/>
+																												<sector sector="Beryll_Incursion_Chapter4.DestinationSector"/>
+																												<destination sector="Beryll_Incursion_Chapter4.CurrentSector" gate="up"/>
+																											</create_gate>
+																											<destroy_object object="Beryll_Incursion_Chapter4.SpacialDisturbance"/>
+																											<show_effect object="Beryll_Incursion_Chapter4.Wormhole" effect="46"/>
+																											<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																												<mission discipline="XXXXP" level="average"/>
+																												<reward money="3000000"/>
+																												<objectives>
+																													<objective step="6">
+																														<custom icon="find" action="{9620,1000192}" text="{9620,1000193}" object="Beryll_Incursion_Chapter4.Wormhole"/>
+																													</objective>
+																												</objectives>
+																											</create_briefing>
+																											<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																												<briefing cue="Beryll_Incursion" step="6"/>
+																												<mission discipline="XXXXP" level="average"/>
+																												<reward money="3000000"/>
+																												<custom icon="find" action="{9620,1000192}" text="{9620,1000193}" object="Beryll_Incursion_Chapter4.Wormhole"/>
+																											</set_objective>
+																										</do_all>
+																									</action>
+																									<cues>
+																										<cue name="Beryll_Incursion_Chapter4_EnteredWormhole" delay="1s">
+																											<condition>
+																												<check_value value="{player.sector}" exact="{sector@Beryll_Incursion_Chapter4.DestinationSector}"/>
+																											</condition>
+																											<action>
+																												<do_all>
+																													<cancel_cue cue="Beryll_Incursion_Chapter4_RemoveDisturbance"/>
+																													<play_text actor="Beryll_Incursion_Chapter4.BoronContact" priority="90" textid="130014"/>
+																													<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																														<mission discipline="XXXXP" level="average"/>
+																														<reward money="3000000"/>
+																														<objectives>
+																															<objective step="7">
+																																<talkto actor="Beryll_Incursion_Chapter4.BoronContact"/>
+																															</objective>
+																														</objectives>
+																													</create_briefing>
+																													<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																														<briefing cue="Beryll_Incursion" step="7"/>
+																														<mission discipline="XXXXP" level="average"/>
+																														<reward money="3000000"/>
+																														<talkto actor="Beryll_Incursion_Chapter4.BoronContact"/>
+																													</set_objective>
+																													<create_offer actor="{actor@Beryll_Incursion_Chapter4.BoronContact}" cue="Beryll_Incursion" conversation="L3GPL_01_04_03" discipline="XXXXP"/>
+																												</do_all>
+																											</action>
+																											<cues>
+																												<cue name="Beryll_Incursion_Chapter4_Returned" delay="1s">
+																													<condition>
+																														<conversation_completed answer="accept" conversation="L3GPL_01_04_03" actor="Beryll_Incursion_Chapter4.BoronContact"/>
+																													</condition>
+																													<action>
+																														<do_all>
+																															<remove_offer conversation="L3GPL_01_04_03" actor="Beryll_Incursion_Chapter4.BoronContact" discipline="XXXXP" />
+																															<destroy_object object="Beryll_Incursion_Chapter4.Wormhole"/>
+																															<destroy_object object="Beryll_Incursion_Chapter4.WormholeDest"/>
+																															<reward_player>
+																																<equipment>
+																																	<ware typename="SS_WARE_WORMHOLE_TRACK" exact="1"/>
+																																</equipment>
+																															</reward_player>
+																															<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																<mission discipline="XXXXP" level="average"/>
+																																<reward money="3000000"/>
+																																<objectives>
+																																	<objective step="8">
+																																		<flyto object="Beryll_Incursion_Chapter4.SecretStation"/>
+																																	</objective>
+																																</objectives>
+																															</create_briefing>
+																															<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																																<briefing cue="Beryll_Incursion" step="8"/>
+																																<mission discipline="XXXXP" level="average"/>
+																																<reward money="3000000"/>
+																																<flyto object="Beryll_Incursion_Chapter4.SecretStation"/>
+																															</set_objective>
+																															<create_ship name="Beryll_Incursion_Chapter4.LeaderShip" group="Beryll_Incursion_Chapter4.Group"  race="argon" capturable="0" boardable="0" invincible="1" typename="SS_SH_A_M3_1" racelogic="0" textid="90003">
+																																<sector sector="{object.sector@Beryll_Incursion_Chapter4.SecretStation}"/>
+																																<equipment loadout="maximum"/>
+																																<command command="idle"/>
+																															</create_ship>
+																															<create_ship group="Beryll_Incursion_Chapter4.Group" race="argon" capturable="0" boardable="0" invincible="1" typename="SS_SH_A_M4_1" racelogic="0" textid="90005">
+																																<sector sector="{object.sector@Beryll_Incursion_Chapter4.SecretStation}"/>
+																																<equipment loadout="maximum"/>
+																																<command command="idle"/>
+																															</create_ship>
+																															<create_ship group="Beryll_Incursion_Chapter4.Group" race="argon" capturable="0" boardable="0" invincible="1" typename="SS_SH_A_M4_2" racelogic="0" textid="90005">
+																																<sector sector="{object.sector@Beryll_Incursion_Chapter4.SecretStation}"/>
+																																<equipment loadout="maximum"/>
+																																<command command="idle"/>
+																															</create_ship>
+																															<create_actor name="Beryll_Incursion_Chapter4.Leader" character="{9620,1000008}" face="104" voice="120" race="argon" gender="female" object="Beryll_Incursion_Chapter4.LeaderShip"/>
+																														</do_all>
+																													</action>
+																													<cues>
+																														<cue name="Beryll_Incursion_Chapter4_StartPatrol" delay="1s">
+																															<condition>
+																																<check_value value="{player.sector}" exact="{sector@Beryll_Incursion_Chapter3.RingoMoon}"/>
+																															</condition>
+																															<timing>
+																																<time min="10s" max="15s"/>
+																															</timing>
+																															<action>
+																																<do_all>
+																																	<set_group_command group="Beryll_Incursion_Chapter4.Group" command="follow" commandobject="{player.ship}"/>
+																																	<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																		<mission discipline="XXXXP" level="average"/>
+																																		<reward money="3000000"/>
+																																		<objectives>
+																																			<objective step="8">
+																																				<custom icon="talkto" action="{9620,1000169}" text="{9620,1000170}">
+																																					<sector sector="Beryll_Incursion_Chapter3.RingoMoon"/>
+																																				</custom>
+																																			</objective>
+																																		</objectives>
+																																	</create_briefing>
+																																	<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																																		<briefing cue="Beryll_Incursion" step="8"/>
+																																		<mission discipline="XXXXP" level="average"/>
+																																		<reward money="3000000"/>
+																																		<custom icon="talkto" action="{9620,1000169}" text="{9620,1000170}">
+																																			<sector sector="Beryll_Incursion_Chapter3.RingoMoon"/>
+																																		</custom>
+																																	</set_objective>
+																																	<play_text actor="Beryll_Incursion_Chapter4.Contact" priority="95">
+																																		<line actor="Beryll_Incursion_Chapter4.Contact" textid="100048"/>
+																																		<line actor="Beryll_Incursion_Chapter4.Leader" textid="100090"/>
+																																		<line actor="Beryll_Incursion_Chapter4.Contact" textid="100049"/>
+																																	</play_text>
+																																</do_all>
+																															</action>
+																															<cues>
+																																<cue name="Beryll_Incursion_Chapter4_FirstPatrolSector" delay="1s">
+																																	<condition>
+																																		<cue_is_complete cue="Beryll_Incursion_Chapter4_StartPatrol"/>
+																																	</condition>
+																																	<timing>
+																																		<time exact="15s"/>
+																																	</timing>
+																																	<action>
+																																		<do_all>
+																																			<find_sector name="Beryll_Incursion_Chapter4.PatrolSector" x="4" y="18"/>
+																																			<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																				<mission discipline="XXXXP" level="average"/>
+																																				<reward money="3000000"/>
+																																				<objectives>
+																																					<objective step="9">
+																																						<flyto>
+																																							<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																						</flyto>
+																																					</objective>
+																																				</objectives>
+																																			</create_briefing>
+																																			<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																																				<briefing cue="Beryll_Incursion" step="9"/>
+																																				<mission discipline="XXXXP" level="average"/>
+																																				<reward money="3000000"/>
+																																				<flyto>
+																																					<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																				</flyto>
+																																			</set_objective>
+																																		</do_all>
+																																	</action>
+																																	<cues>
+																																		<cue name="Beryll_Incursion_Chapter4_EnterFirstSector" delay="1s">
+																																			<condition>
+																																				<check_all>
+																																					<cue_is_complete cue="Beryll_Incursion_Chapter4_FirstPatrolSector"/>
+																																					<check_value value="{player.sector}" exact="{sector@Beryll_Incursion_Chapter4.PatrolSector}"/>
+																																				</check_all>
+																																			</condition>
+																																			<timing>
+																																				<time exact="2s"/>
+																																			</timing>
+																																			<action>
+																																				<do_all>
+																																					<set_group_command group="Beryll_Incursion_Chapter4.Group" command="none"/>
+																																					<warp_group group="Beryll_Incursion_Chapter4.Group">
+																																						<position object="{player.ship}"/>
+																																						<sector sector="{player.sector}"/>
+																																					</warp_group>
+																																					<set_group_command group="Beryll_Incursion_Chapter4.Group" command="follow" commandobject="{player.ship}"/>
+																																					<create_special name="Beryll_Incursion_Chapter4.SpacialDisturbance" typename="SS_SPECIAL_DISTURB">
+																																						<position x="0km" y="0km" z="0km" min="60km" max="80km"/>
+																																						<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																					</create_special>
+																																					<set_discoverable object="Beryll_Incursion_Chapter4.SpacialDisturbance" discoverable="1"/>
+																																					<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																						<mission discipline="XXXXP" level="average"/>
+																																						<reward money="3000000"/>
+																																						<objectives>
+																																							<objective step="9">
+																																								<custom icon="find" action="{9620,1000190}" text="{9620,1000191}">
+																																									<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																								</custom>
+																																							</objective>
+																																						</objectives>
+																																					</create_briefing>
+																																					<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																																						<briefing cue="Beryll_Incursion" step="9"/>
+																																						<mission discipline="XXXXP" level="average"/>
+																																						<reward money="3000000"/>
+																																						<custom icon="find" action="{9620,1000190}" text="{9620,1000191}">
+																																							<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																						</custom>
+																																					</set_objective>
+																																				</do_all>
+																																			</action>
+																																			<cues>
+																																				<cue name="Beryll_Incursion_Chapter4_FirstLFLTriggered" delay="1s">
+																																					<condition>
+																																						<check_all>
+																																							<lfl_object_found object="Beryll_Incursion_Chapter4.SpacialDisturbance"/>
+																																							<check_value value="{event.object}" exact="{object@Beryll_Incursion_Chapter4.SpacialDisturbance}"/>
+																																						</check_all>
+																																					</condition>
+																																					<action>
+																																						<do_all>
+																																							<play_text actor="Beryll_Incursion_Chapter4.Leader" priority="90" textid="100091"/>
+																																							<find_sector name="Beryll_Incursion_Chapter4.PatrolSector" x="12" y="10"/>
+																																							<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																								<mission discipline="XXXXP" level="average"/>
+																																								<reward money="3000000"/>
+																																								<objectives>
+																																									<objective step="9">
+																																										<flyto>
+																																											<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																										</flyto>
+																																									</objective>
+																																								</objectives>
+																																							</create_briefing>
+																																							<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																																								<briefing cue="Beryll_Incursion" step="9"/>
+																																								<mission discipline="XXXXP" level="average"/>
+																																								<reward money="3000000"/>
+																																								<flyto>
+																																									<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																								</flyto>
+																																							</set_objective>
+																																						</do_all>
+																																					</action>
+																																					<cues>
+																																						<cue name="Beryll_Incursion_Chapter4_RemoveFirstDistrubance">
+																																							<condition>
+																																								<cue_is_complete cue="Beryll_Incursion_Chapter4_FirstLFLTriggered"/>
+																																							</condition>
+																																							<timing>
+																																								<time exact="1s"/>
+																																							</timing>
+																																							<action>
+																																								<destroy_object object="Beryll_Incursion_Chapter4.SpacialDisturbance"/>
+																																							</action>
+																																						</cue>
+																																						<cue name="Beryll_Incursion_Chapter4_EnterSecondSector" delay="1s">
+																																							<condition>
+																																								<check_all>
+																																									<cue_is_complete cue="Beryll_Incursion_Chapter4_FirstLFLTriggered"/>
+																																									<check_value value="{player.sector}" exact="{sector@Beryll_Incursion_Chapter4.PatrolSector}"/>
+																																								</check_all>
+																																							</condition>
+																																							<timing>
+																																								<time exact="2s"/>
+																																							</timing>
+																																							<action>
+																																								<do_all>
+																																									<set_group_command group="Beryll_Incursion_Chapter4.Group" command="none"/>
+																																									<warp_group group="Beryll_Incursion_Chapter4.Group">
+																																										<position object="{player.ship}"/>
+																																										<sector sector="{player.sector}"/>
+																																									</warp_group>
+																																									<set_group_command group="Beryll_Incursion_Chapter4.Group" command="follow" commandobject="{player.ship}"/>
+																																									<create_special name="Beryll_Incursion_Chapter4.SpacialDisturbance" typename="SS_SPECIAL_DISTURB">
+																																										<position x="0km" y="0km" z="0km" min="90km" max="130km"/>
+																																										<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																									</create_special>
+																																									<set_discoverable object="Beryll_Incursion_Chapter4.SpacialDisturbance" discoverable="1"/>
+																																									<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																										<mission discipline="XXXXP" level="average"/>
+																																										<reward money="3000000"/>
+																																										<objectives>
+																																											<objective step="9">
+																																												<custom icon="find" action="{9620,1000190}" text="{9620,1000191}">
+																																													<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																												</custom>
+																																											</objective>
+																																										</objectives>
+																																									</create_briefing>
+																																									<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																																										<briefing cue="Beryll_Incursion" step="9"/>
+																																										<mission discipline="XXXXP" level="average"/>
+																																										<reward money="3000000"/>
+																																										<custom icon="find" action="{9620,1000190}" text="{9620,1000191}">
+																																											<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																										</custom>
+																																									</set_objective>
+																																								</do_all>
+																																							</action>
+																																							<cues>
+																																								<cue name="Beryll_Incursion_Chapter4_SecondLFLTriggered" delay="1s">
+																																									<condition>
+																																										<check_all>
+																																											<lfl_object_found object="Beryll_Incursion_Chapter4.SpacialDisturbance"/>
+																																											<check_value value="{event.object}" exact="{object@Beryll_Incursion_Chapter4.SpacialDisturbance}"/>
+																																										</check_all>
+																																									</condition>
+																																									<action>
+																																										<do_all>
+																																											<play_text actor="Beryll_Incursion_Chapter4.Leader" priority="90" textid="100091"/>
+																																											<find_sector name="Beryll_Incursion_Chapter4.PatrolSector" x="18" y="3"/>
+																																											<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																												<mission discipline="XXXXP" level="average"/>
+																																												<reward money="3000000"/>
+																																												<objectives>
+																																													<objective step="9">
+																																														<flyto>
+																																															<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																														</flyto>
+																																													</objective>
+																																												</objectives>
+																																											</create_briefing>
+																																											<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																																												<briefing cue="Beryll_Incursion" step="9"/>
+																																												<mission discipline="XXXXP" level="average"/>
+																																												<reward money="3000000"/>
+																																												<flyto>
+																																													<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																												</flyto>
+																																											</set_objective>
+																																										</do_all>
+																																									</action>
+																																									<cues>
+																																										<cue name="Beryll_Incursion_Chapter4_RemoveSecondDistrubance">
+																																											<condition>
+																																												<cue_is_complete cue="Beryll_Incursion_Chapter4_SecondLFLTriggered"/>
+																																											</condition>
+																																											<timing>
+																																												<time exact="1s"/>
+																																											</timing>
+																																											<action>
+																																												<destroy_object object="Beryll_Incursion_Chapter4.SpacialDisturbance"/>
+																																											</action>
+																																										</cue>
+																																										<cue name="Beryll_Incursion_Chapter4_EnterFinalSector" delay="1s">
+																																											<condition>
+																																												<check_all>
+																																													<cue_is_complete cue="Beryll_Incursion_Chapter4_SecondLFLTriggered"/>
+																																													<check_value value="{player.sector}" exact="{sector@Beryll_Incursion_Chapter4.PatrolSector}"/>
+																																												</check_all>
+																																											</condition>
+																																											<timing>
+																																												<time exact="2s"/>
+																																											</timing>
+																																											<action>
+																																												<do_all>
+																																													<set_group_command group="Beryll_Incursion_Chapter4.Group" command="none"/>
+																																													<warp_group group="Beryll_Incursion_Chapter4.Group">
+																																														<position object="{player.ship}"/>
+																																														<sector sector="{player.sector}"/>
+																																													</warp_group>
+																																													<set_group_command group="Beryll_Incursion_Chapter4.Group" command="follow" commandobject="{player.ship}"/>
+																																													<create_special name="Beryll_Incursion_Chapter4.SpacialDisturbance" typename="SS_SPECIAL_DISTURB">
+																																														<position x="38km" y="1km" z="52km"/>
+																																														<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																													</create_special>
+																																													<set_discoverable object="Beryll_Incursion_Chapter4.SpacialDisturbance" discoverable="1"/>
+																																													<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																														<mission discipline="XXXXP" level="average"/>
+																																														<reward money="3000000"/>
+																																														<objectives>
+																																															<objective step="9">
+																																																<custom icon="find" action="{9620,1000190}" text="{9620,1000191}">
+																																																	<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																																</custom>
+																																															</objective>
+																																														</objectives>
+																																													</create_briefing>
+																																													<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																																														<briefing cue="Beryll_Incursion" step="9"/>
+																																														<mission discipline="XXXXP" level="average"/>
+																																														<reward money="3000000"/>
+																																														<custom icon="find" action="{9620,1000190}" text="{9620,1000191}">
+																																															<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																														</custom>
+																																													</set_objective>
+																																												</do_all>
+																																											</action>
+																																											<cues>
+																																												<cue name="Beryll_Incursion_Chapter4_FinalLFLTriggered" delay="1s">
+																																													<condition>
+																																														<check_all>
+																																															<lfl_object_found object="Beryll_Incursion_Chapter4.SpacialDisturbance"/>
+																																															<check_value value="{event.object}" exact="{object@Beryll_Incursion_Chapter4.SpacialDisturbance}"/>
+																																														</check_all>
+																																													</condition>
+																																													<action>
+																																														<do_all>
+																																															<find_sector name="Beryll_Incursion_Chapter4.DestinationSector" x="21" y="0"/>
+																																															<play_text actor="Beryll_Incursion_Chapter4.Leader" priority="90" textid="100092"/>
+																																															<create_gate gate="north" known="1" name="Beryll_Incursion_Chapter4.ThemusWormhole" typename="SS_WG_WORM" safety="0">
+																																																<position x="38km" y="1km" z="52km"/>
+																																																<rotation alpha="-10384" beta="0" gamma="0"/>
+																																																<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
+																																																<destination sector="Beryll_Incursion_Chapter4.DestinationSector" gate="south"/>
+																																															</create_gate>
+																																															<create_gate gate="south" known="1" name="Beryll_Incursion_Chapter4.WormholeDest" typename="SS_WG_WORM">
+																																																<position x="-20km" y="-6km" z="-25km"/>
+																																																<rotation alpha="27768" beta="0" gamma="0"/>
+																																																<sector sector="Beryll_Incursion_Chapter4.DestinationSector"/>
+																																																<destination sector="Beryll_Incursion_Chapter4.PatrolSector" gate="north"/>
+																																															</create_gate>
+																																															<show_effect object="{object@Beryll_Incursion_Chapter4.SpacialDisturbance}" effect="46"/>
+																																															<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																																<mission discipline="XXXXP" level="average"/>
+																																																<reward money="3000000"/>
+																																																<objectives>
+																																																	<objective step="9">
+																																																		<custom icon="find" action="{9620,1000192}" text="{9620,1000193}" object="Beryll_Incursion_Chapter4.ThemusWormhole"/>
+																																																	</objective>
+																																																</objectives>
+																																															</create_briefing>
+																																															<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																																																<briefing cue="Beryll_Incursion" step="9"/>
+																																																<mission discipline="XXXXP" level="average"/>
+																																																<reward money="3000000"/>
+																																																<custom icon="find" action="{9620,1000192}" text="{9620,1000193}" object="Beryll_Incursion_Chapter4.ThemusWormhole"/>
+																																															</set_objective>
+																																															<find_station name="Beryll_Incursion_Chapter4.WormholeStation" typename="SS_DOCK_WORMHOLE">
+																																																<sector sector="Beryll_Incursion_Chapter4.DestinationSector"/>
+																																																<jumps exact="0"/>
+																																															</find_station>
+																																															<do_if value="{object.exists@Beryll_Incursion_Chapter4.WormholeStation}" exact="0">
+																																																<create_station race="beryll" name="Beryll_Incursion_Chapter4.WormholeStation" typename="SS_DOCK_WORMHOLE">
+																																																	<position x="2km" y="1km" z="17km"/>
+																																																	<sector sector="Beryll_Incursion_Chapter4.DestinationSector"/>
+																																																</create_station>
+																																															</do_if>
+																																															<set_invincible object="Beryll_Incursion_Chapter4.WormholeStation" invincible="1"/>
+																																															<find_station group="Beryll_Incursion_Chapter4.BeryllStations" multiple="1" race="beryll">
+																																																<sector sector="Beryll_Incursion_Chapter4.DestinationSector"/>
+																																																<jumps exact="0"/>
+																																															</find_station>
+																																															<find_ship group="Beryll_Incursion_Chapter4.BeryllShips" multiple="1" race="beryll">
+																																																<sector sector="Beryll_Incursion_Chapter4.DestinationSector"/>
+																																																<jumps exact="0"/>
+																																															</find_ship>
+																																															<set_group_relation group="Beryll_Incursion_Chapter4.BeryllStations">
+																																																<relation object="{player.ship}" relation="enemy" mutual="1"/>
+																																															</set_group_relation>
+																																															<set_group_relation group="Beryll_Incursion_Chapter4.BeryllShips">
+																																																<relation object="{player.ship}" relation="enemy" mutual="1"/>
+																																															</set_group_relation>
+																																															<do_all exact="2">
+																																																<create_ship group="Beryll_Incursion_Chapter4.ExtraShips" invincible="1" race="beryll" typename="SS_SH_BER_M2">
+																																																	<sector sector="Beryll_Incursion_Chapter4.DestinationSector"/>
+																																																	<equipment loadout="maximum"/>
+																																																	<command command="killenemies"/>
+																																																</create_ship>
+																																															</do_all>
+																																															<do_all exact="5">
+																																																<create_ship group="Beryll_Incursion_Chapter4.ExtraShips" invincible="1" race="beryll" typename="SS_SH_BER_M6">
+																																																	<sector sector="Beryll_Incursion_Chapter4.DestinationSector"/>
+																																																	<equipment loadout="maximum"/>
+																																																	<command command="killenemies"/>
+																																																</create_ship>
+																																															</do_all>
+																																															<do_all exact="10">
+																																																<create_ship group="Beryll_Incursion_Chapter4.ExtraShips" invincible="1" race="beryll" typename="SS_SH_BER_M3">
+																																																	<sector sector="Beryll_Incursion_Chapter4.DestinationSector"/>
+																																																	<equipment loadout="maximum"/>
+																																																	<command command="killenemies"/>
+																																																</create_ship>
+																																															</do_all>
+																																															<do_all exact="10">
+																																																<create_ship group="Beryll_Incursion_Chapter4.ExtraShips" invincible="1" race="beryll" typename="SS_SH_BER_M4">
+																																																	<sector sector="Beryll_Incursion_Chapter4.DestinationSector"/>
+																																																	<equipment loadout="maximum"/>
+																																																	<command command="killenemies"/>
+																																																</create_ship>
+																																															</do_all>
+																																															<set_group_relation group="Beryll_Incursion_Chapter4.ExtraShips">
+																																																<relation object="{player.ship}" relation="enemy" mutual="1"/>
+																																															</set_group_relation>
+																																														</do_all>
+																																													</action>
+																																													<cues>
+																																														<cue name="Beryll_Incursion_Chapter4_RemoveDistrubance">
+																																															<condition>
+																																																<cue_is_complete cue="Beryll_Incursion_Chapter4_FinalLFLTriggered"/>
+																																															</condition>
+																																															<timing>
+																																																<time exact="1s"/>
+																																															</timing>
+																																															<action>
+																																																<destroy_object object="Beryll_Incursion_Chapter4.SpacialDisturbance"/>
+																																															</action>
+																																														</cue>
+																																														<cue name="Beryll_Incursion_Chapter4_EnteredThemus" delay="1s">
+																																															<condition>
+																																																<check_value value="{player.sector}" exact="{sector@Beryll_Incursion_Chapter4.DestinationSector}"/>
+																																															</condition>
+																																															<timing>
+																																																<time exact="1s"/>
+																																															</timing>
+																																															<action>
+																																																<do_all>
+																																																	<set_group_command group="Beryll_Incursion_Chapter4.Group" command="none"/>
+																																																	<warp_group group="Beryll_Incursion_Chapter4.Group">
+																																																		<position object="{player.ship}"/>
+																																																		<sector sector="{player.sector}"/>
+																																																	</warp_group>
+																																																	<play_text actor="Beryll_Incursion_Chapter4.Leader" priority="90">
+																																																		<line actor="Beryll_Incursion_Chapter4.Leader" textid="100093"/>
+																																																		<line pageid="13" textid="4003"/>
+																																																		<line actor="Beryll_Incursion_Chapter4.Leader" textid="100094"/>
+																																																	</play_text>
+																																																</do_all>
+																																															</action>
+																																															<cues>
+																																																<cue name="Beryll_Incursion_Chapter4_LeaveThemus" delay="1s">
+																																																	<condition>
+																																																		<cue_is_complete cue="Beryll_Incursion_Chapter4_EnteredThemus"/>
+																																																	</condition>
+																																																	<timing>
+																																																		<time exact="1s"/>
+																																																	</timing>
+																																																	<action>
+																																																		<do_all>
+																																																			<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																																				<mission discipline="XXXXP" level="average"/>
+																																																				<reward money="3000000"/>
+																																																				<objectives>
+																																																					<objective step="10">
+																																																						<dockat object="Beryll_Incursion_Chapter4.SecretStation"/>
+																																																					</objective>
+																																																				</objectives>
+																																																			</create_briefing>
+																																																			<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" noabort="1">
+																																																				<briefing cue="Beryll_Incursion" step="10"/>
+																																																				<mission discipline="XXXXP" level="average"/>
+																																																				<reward money="3000000"/>
+																																																				<dockat object="Beryll_Incursion_Chapter4.SecretStation"/>
+																																																			</set_objective>
+																																																		</do_all>
+																																																	</action>
+																																																	<cues>
+																																																		<cue name="Beryll_Incursion_Chapter4_JumpOutLeader">
+																																																			<condition>
+																																																				<cue_is_complete cue="Beryll_Incursion_Chapter4_LeaveThemus"/>
+																																																			</condition>
+																																																			<timing>
+																																																				<time min="10s" max="15s"/>
+																																																			</timing>
+																																																			<action>
+																																																				<do_all>
+																																																					<warp_group group="Beryll_Incursion_Chapter4.Group">
+																																																						<position object="Beryll_Incursion_Chapter4.SecretStation" min="5km" max="10km"/>
+																																																						<sector sector="{object.sector@Beryll_Incursion_Chapter4.SecretStation}"/>
+																																																					</warp_group>
+																																																					<set_group_command group="Beryll_Incursion_Chapter4.Group" command="idle"/>
+																																																				</do_all>
+																																																			</action>
+																																																		</cue>
+																																																		<cue name="Beryll_Incursion_Chapter4_Returned" delay="1s">
+																																																			<condition>
+																																																				<object_is_docked dockobject="Beryll_Incursion_Chapter4.SecretStation"/>
+																																																			</condition>
+																																																			<timing>
+																																																				<time exact="5s"/>
+																																																			</timing>
+																																																			<action>
+																																																				<do_all>
+																																																					<play_text actor="Beryll_Incursion_Chapter4.Contact" priority="90">
+																																																						<line actor="Beryll_Incursion_Chapter4.Contact" textid="100050"/>
+																																																						<line actor="Beryll_Incursion_Chapter4.Contact" textid="100051"/>
+																																																						<line actor="Beryll_Incursion_Chapter4.Contact" textid="100052"/>
+																																																						<line actor="Beryll_Incursion_Chapter4.Contact" textid="100053"/>
+																																																					</play_text>
+																																																					<remove_briefing cue="Beryll_Incursion"/>
+																																																					<remove_objective cue="Beryll_Incursion" status="complete"/>
+																																																					<destroy_actor actor="Beryll_Incursion_Chapter4.Leader"/>
+																																																					<destroy_group group="Beryll_Incursion_Chapter4.Group" warp="1"/>
+																																																					<remove_group group="Beryll_Incursion_Chapter4.Group"/>
+																																																					<reward_player>
+																																																						<money exact="3000000" transactionid="1000006" transactionpage="9620"/>
+																																																					</reward_player>
+																																																					<start_script script="plugin.guilds.doexp">
+																																																						<scriptargs>
+																																																							<scriptvalue datatype="integer" datavalue="10000"/>
+																																																							<scriptvalue datatype="string" datavalue="military.argon"/>
+																																																							<scriptvalue datatype="integer" datavalue="2000"/>
+																																																						</scriptargs>
+																																																					</start_script>
+																																																					<set_value name="Beryll_Incursion_Chapter4.Status" exact="10"/>
+																																																				</do_all>
+																																																			</action>
+																																																			<cues>
+																																																				<cue name="Beryll_Incursion_Chapter4_Cleanup" delay="1s">
+																																																					<condition>
+																																																						<cue_is_complete cue="Beryll_Incursion_Chapter4_Returned"/>
+																																																					</condition>
+																																																					<timing>
+																																																						<time min="60s" max="120s"/>
+																																																					</timing>
+																																																					<action>
+																																																						<do_all>
+																																																							<destroy_actor actor="Beryll_Incursion_Chapter4.Contact"/>
+																																																							<destroy_actor actor="Beryll_Incursion_Chapter4.BoronContact"/>
+																																																							<set_invincible object="Beryll_Incursion_Chapter4.BoronStation" invincible="0"/>
+																																																						</do_all>
+																																																					</action>
+																																																				</cue>
+																																																			</cues>
+																																																		</cue>
+																																																	</cues>
+																																																</cue>
+																																															</cues>
+																																														</cue>
+																																													</cues>
+																																												</cue>
+																																											</cues>
+																																										</cue>
+																																									</cues>
+																																								</cue>
+																																							</cues>
+																																						</cue>
+																																					</cues>
+																																				</cue>																																				
+																																			</cues>
+																																		</cue>
+																																	</cues>
+																																</cue>
+																															</cues>
+																														</cue>
+																													</cues>
+																												</cue>
+																											</cues>
+																										</cue>		
+																									</cues>
+																								</cue>																								
+																							</cues>
+																						</cue>
+																					</cues>
+																				</cue>
+																			</cues>
+																		</cue>																		
+																	</cues>
+																</cue>
+															</cues>
+														</cue>														
+													</cues>
+												</cue>
+											</cues>
+										</cue>
+									</cues>
+								</cue>
+
+								<!--
+								<cue name="Beryll_Incursion_Chapter5" delay="2s">
+									<condition>
+										<check_value value="{value@Beryll_Incursion_Chapter4.Status}" exact="10"/>
+									</condition>
+									<timing>
+										<time min="50m" max="70m"/>
+									</timing>
+								</cue>
+								-->
 							</cues>
 						</cue>
 					</cues>

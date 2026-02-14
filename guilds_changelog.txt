@@ -1,6 +1,9 @@
 v0.85
 Fixed Celestial Navigators Recruitment mission
 Improved selection of destination sector for Military Patrols
+Added Beryll Incursion - Stage 4 - Wormholes
+Added Static spacial disturbances
+Added Dynamic Wormholes
 
 v0.84
 Fixed Assassin Guild recruitment, docking at Phantom Shadowblade

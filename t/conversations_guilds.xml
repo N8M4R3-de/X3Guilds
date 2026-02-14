@@ -395,7 +395,136 @@
       </player>
     </npc>
   </conversation>
+
+  <conversation name="L3GPL_01_04_01" description="Beryll Incursion: Plot - Stage 4.1">
+    <npc text="{@pageid,20}" comment="What do you require?">
+      <player text="{99,200000}" comment="Im here">
+        <npc text="{@pageid,100037}">
+          <player text="{99,200001}" >
+            <npc text="{@pageid,100038}">
+              <player text="{99,200002}" >
+               <npc text="{@pageid,100039}">
+                <player text="{99,200003}" >
+                 <npc text="{@pageid,100040}">
+                  <player text="{99,200004}" >
+                   <npc text="{@pageid,100041}">
+					<player text="{99,200005}" >
+					 <npc text="{@pageid,100042}">
+					  <player text="{99,200006}" >
+					   <npc text="{@pageid,100043}">
+					    <player text="{99,200007}" >
+					     <npc text="{@pageid,100044}">
+					      <player text="{99,200008}" >
+					       <npc text="{@pageid,100045}">
+					        <player text="{99,200009}" >
+					         <npc text="{@pageid,100046}">
+					          <player text="{99,200010}" >
+					           <npc text="{@pageid,100047}">
+		                        <player text="{99,7}" outcome="accept"/>
+							   </npc>
+							  </player>
+							 </npc>
+							</player>
+						   </npc>
+						  </player>
+						 </npc>
+						</player>
+					   </npc>
+					  </player>
+					 </npc>
+					</player>
+				   </npc>
+				  </player>
+				 </npc>
+				</player>
+			   </npc>
+			  </player>
+			</npc>
+		  </player>
+        </npc>
+      </player>
+    </npc>
+  </conversation>
     
+  <conversation name="L3GPL_01_04_02" description="Beryll Incursion: Plot - Stage 4.1">
+    <npc text="{@pageid,20}" comment="What do you require?">
+      <player text="{99,200011}" comment="Im here">
+        <npc text="{@pageid,130001}">
+          <player text="{99,200012}" >
+            <npc text="{@pageid,130002}">
+              <player text="{99,200013}" >
+               <npc text="{@pageid,130003}">
+                <player text="{99,200014}" >
+                 <npc text="{@pageid,130004}">
+                  <player text="{99,200015}" >
+                   <npc text="{@pageid,130005}">
+					<player text="{99,200016}" >
+					 <npc text="{@pageid,130006}">
+					  <player text="{99,200017}" >
+					   <npc text="{@pageid,130007}">
+					    <player text="{99,200018}" >
+					     <npc text="{@pageid,130008}">
+					      <player text="{99,200019}" >
+					       <npc text="{@pageid,130009}">
+					        <player text="{99,200020}" >
+					         <npc text="{@pageid,130010}">
+					          <player text="{99,200021}" >
+					           <npc text="{@pageid,130011}">
+  	                            <player text="{99,200022}" outcome="accept"/>
+							   </npc>
+							  </player>
+							 </npc>
+							</player>
+						   </npc>
+						  </player>
+						 </npc>
+						</player>
+					   </npc>
+					  </player>
+					 </npc>
+					</player>
+				   </npc>
+				  </player>
+				 </npc>
+				</player>
+			   </npc>
+			  </player>
+			</npc>
+		  </player>
+        </npc>
+      </player>
+    </npc>
+  </conversation>
+    
+  <conversation name="L3GPL_01_04_03" description="Beryll Incursion: Plot - Stage 4.3">
+    <npc text="{@pageid,20}" comment="What do you require?">
+      <player text="{99,200023}" comment="Im here">
+        <npc text="{@pageid,130015}">
+          <player text="{99,200024}" >
+            <npc text="{@pageid,130016}">
+              <player text="{99,200025}" >
+               <npc text="{@pageid,130017}">
+                <player text="{99,200026}" >
+                 <npc text="{@pageid,130018}">
+                  <player text="{99,200027}" >
+                   <npc text="{@pageid,130019}">
+					<player text="{99,200028}" >
+					 <npc text="{@pageid,130020}">
+	                  <player text="{99,200029}" outcome="accept"/>
+					 </npc>
+					</player>
+				   </npc>
+				  </player>
+				 </npc>
+				</player>
+			   </npc>
+			  </player>
+			</npc>
+		  </player>
+        </npc>
+      </player>
+    </npc>
+  </conversation>
   
   <conversation name="L3GPL_01_21" description="Beryll Incursion: Plot - Cadet Reword">
     <npc text="{@pageid,20}" comment="What do you require?">
@@ -683,6 +812,7 @@
   </player>
  </npc>
 </conversation>
+
 <conversation name="L3GPL_03_07_01" description="Lost Colonies Act 7 - Terran Reprenstative">
  <npc text="{@pageid,20}" comment="What do you require?">
   <player text="{99,110210}" comment="Im here">

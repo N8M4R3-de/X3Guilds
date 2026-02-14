@@ -2,7 +2,7 @@
 <?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
 <script>
 <name>setup.cycrow.guilds</name>
-<version>13</version>
+<version>14</version>
 <engineversion>73</engineversion>
 <description>Guilds: Setup script</description>
 <arguments>
@@ -234,7 +234,7 @@
   set ware flags: ware=Wormhole Tracker flags=$wareflags
   $wareflags = [WareType.Permanent] | [WareType.Dummy] | [WareType.NoPrice] | [WareType.NoEject] | [WareType.Fluff]
   set ware flags: ware=Discreet Package flags=$wareflags
-  set ware flags: ware=Cystalline Matrix flags=$wareflags
+  set ware flags: ware=Crystalline Matrix flags=$wareflags
   
   
   $table = table alloc
@@ -931,7 +931,7 @@
 <line indent=""><text>set&#160;ware&#160;flags:&#160;ware=</text><var>Wormhole&#160;Tracker</var><text>&#160;flags=</text><var>$wareflags</var></line>
 <line indent=""><var>$wareflags&#160;=&#160;</var><var>[WareType.Permanent]</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[WareType.Dummy]</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[WareType.NoPrice]</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[WareType.NoEject]</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[WareType.Fluff]</var></line>
 <line indent=""><text>set&#160;ware&#160;flags:&#160;ware=</text><var>Discreet&#160;Package</var><text>&#160;flags=</text><var>$wareflags</var></line>
-<line indent=""><text>set&#160;ware&#160;flags:&#160;ware=</text><var>Cystalline&#160;Matrix</var><text>&#160;flags=</text><var>$wareflags</var></line>
+<line indent=""><text>set&#160;ware&#160;flags:&#160;ware=</text><var>Crystalline&#160;Matrix</var><text>&#160;flags=</text><var>$wareflags</var></line>
 <line indent=""></line>
 <line indent=""></line>
 <line indent=""><var>$table&#160;=&#160;</var><text>table&#160;alloc</text></line>
@@ -1407,7 +1407,7 @@
   <sval type="string" val="setup.cycrow.guilds"/>
   <sval type="int" val="73"/>
   <sval type="string" val="Guilds: Setup script"/>
-  <sval type="int" val="13"/>
+  <sval type="int" val="14"/>
   <sval type="int" val="0"/>
   <sval type="array" size="36">
     <sval type="string" val="script.engine"/>
@@ -6913,5 +6913,5 @@
 </sval>
 
 </codearray>
-<nosignature>2992</nosignature>
+<nosignature>6429</nosignature>
 </script>
