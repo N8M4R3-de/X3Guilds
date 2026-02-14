@@ -18,54 +18,56 @@ Just run the build.bat script which will add files to the various cat files and 
 
 # TODO
 
-Additional Tutorials
-In Game Tutorials
-Planetary Expoditions
-Loadout Manager Improvements
-	- Add resupply options to loadout manager
-	- Add templates to loadout manager
-	- Add shopping list feature to loadout manager
-HQ Production Modules
-	- Unlock new production modules that can build wares internally
-	- Install factory kits in modules to produce wares
-	- Production modules can provide additional features
-	    - Speed Tuning - All created ships get overtuned for speed
-		- Cargo Tuning - All created ships get full cargo space
-		- Rudder Tuning - All created ships get improved maneuverability
-Station Upgrades
-	- Add station upgrade options to improve station performance
-		- Drone Hangar - Uses drones to improve station defense
-Ship Production Modules
-	- Ship upgrades that can add additional features to ships
-	- Repair Bay - Allows docked ships to be repaired
-	- Ship Production - Allows ships/drones to be built internally
-Dynamic Wormholes
-AI Competitors
-Equipment: Jumpdrive Tracker
-Captial Ship Crews
-	- Mechanic
-	- Engineer
-	- Chef
-More Missions
-	- Mercenary Guild Missions
-	- Race Military Missions
-	- Smuggler Guild Missions
-Improved Fleet Management
+- Additional Tutorials
+- In Game Tutorials
+- Planetary Expeditions
+- Loadout Manager Improvements
+  - Add resupply options to loadout manager
+  - Add templates to loadout manager
+  - Add shopping list feature to loadout manager
+- HQ Production Modules
+  - Unlock new production modules that can build wares internally
+  - Install factory kits in modules to produce wares
+  - Production modules can provide additional features
+  	- Speed Tuning - All created ships get overtuned for speed
+  	- Cargo Tuning - All created ships get full cargo space
+	- Rudder Tuning - All created ships get improved maneuverability
+- Station Upgrades
+  - Add station upgrade options to improve station performance
+	- Drone Hangar - Uses drones to improve station defense
+- Ship Production Modules
+  - Ship upgrades that can add additional features to ships
+  - Repair Bay - Allows docked ships to be repaired
+  - Ship Production - Allows ships/drones to be built internally
+- Dynamic Wormholes
+- AI Competitors
+- Equipment: Jumpdrive Tracker
+- Capital Ship Crews
+  - Mechanic
+  - Engineer
+  - Chef
+- More Missions
+  - Mercenary Guild Missions
+  - Race Military Missions
+  - Smuggler Guild Missions
+- Improved Fleet Management
 
-Beryll Incursion Plot
-Industritech Expansion Plot
-Lost Colonies Act 8 - Bonus Mission
+
+- Beryll Incursion Plot
+- Industritech Expansion Plot
+- Lost Colonies Act 8 - Bonus Mission
   - Do generic jobs for the characters we meet in Lost Colonies, to aid Aurora Prime
-Dukes Master Plan Plot?
+	  Dukes Master Plan Plot?
 
-Smugglers Guild
-Smugglers Guild Plot
+
+- Smugglers Guild
+  - Smugglers Guild Plot
   - New Game mechanic for managing smugglers
-Merceneries Guild Plot
-Merchants Guild Plot
-Celestial Navigation Guild Plot
-	- Build up Infinity Oasis
-	- Add Planetary economy for Celestial Navigation
-Bounty Hunters Guild Final Plot
-Assassins Guild Final Plot
-Thieves Guild?
+- Mercenaries Guild Plot
+- Merchants Guild Plot
+- Celestial Navigation Guild Plot
+  - Build up Infinity Oasis
+  - Add Planetary economy for Celestial Navigation
+- Bounty Hunters Guild Final Plot
+- Assassins Guild Final Plot
+- Thieves Guild?
