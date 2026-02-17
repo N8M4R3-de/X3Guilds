@@ -4,7 +4,7 @@
 	<documentation>
 		<author name="Cycrow" />
 		<content reference="guilds" name="Beryll Incursion - Chapter 3" description="Guilds Plot - Beryll Incursion - Chapter 3: The Splinter Faction"/>
-		<version number="0.1" date="10/08/24" />
+		<version number="1.0" date="10/08/24" />
 	</documentation>
 	<cues>
 		<cue name="Beryll_Incursion_Chapter3">
