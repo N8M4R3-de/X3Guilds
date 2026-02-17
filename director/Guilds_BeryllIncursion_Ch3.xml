@@ -33,12 +33,6 @@
 
 					<!-- Settings -->
 					<set_value name="Beryll_Incursion_Chapter3.ShowVoice" exact="1"/>
-
-					<!-- REMOVE - For Testing Only -->
-					<!--
-					<set_value name="Beryll_Incursion.Status" exact="300"/>
-					<set_value name="Beryll_Incursion_Chapter3.Status" exact="30"/>
-					-->
 				</do_all>
 			</action>
 			<cues>
@@ -1967,7 +1961,7 @@
 												<do_all>
 													<create_actor name="Beryll_Incursion_Chapter4.Contact" character="{9620,1000135}" face="106" voice="125" race="argon" gender="male" object="Beryll_Incursion_Chapter4.SecretStation"/>
 													<play_text actor="Beryll_Incursion_Chapter4.Contact" priority="90" textid="100036"/>
-													<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+													<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 														<mission discipline="XXXXP" level="average"/>
 														<reward money="3000000"/>
 														<objectives>
@@ -2013,7 +2007,7 @@
 																</create_station>
 															</do_if>
 															<set_invincible object="Beryll_Incursion_Chapter4.BoronStation" invincible="1"/>
-															<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+															<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																<mission discipline="XXXXP" level="average"/>
 																<reward money="3000000"/>
 																<objectives>
@@ -2053,7 +2047,7 @@
 															</timing>
 															<action>
 																<do_all>
-																	<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																	<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																		<mission discipline="XXXXP" level="average"/>
 																		<reward money="3000000"/>
 																		<objectives>
@@ -2116,7 +2110,7 @@
 																						<sector sector="Beryll_Incursion_Chapter4.CurrentSector"/>
 																					</create_special>
 																					<set_discoverable object="Beryll_Incursion_Chapter4.SpacialDisturbance" discoverable="1"/>
-																					<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																					<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																						<mission discipline="XXXXP" level="average"/>
 																						<reward money="3000000"/>
 																						<objectives>
@@ -2144,7 +2138,7 @@
 																					</condition>
 																					<action>
 																						<do_all>
-																							<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																							<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																								<mission discipline="XXXXP" level="average"/>
 																								<reward money="3000000"/>
 																								<objectives>
@@ -2210,7 +2204,7 @@
 																											</create_gate>
 																											<destroy_object object="Beryll_Incursion_Chapter4.SpacialDisturbance"/>
 																											<show_effect object="Beryll_Incursion_Chapter4.Wormhole" effect="46"/>
-																											<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																											<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																												<mission discipline="XXXXP" level="average"/>
 																												<reward money="3000000"/>
 																												<objectives>
@@ -2236,7 +2230,7 @@
 																												<do_all>
 																													<cancel_cue cue="Beryll_Incursion_Chapter4_RemoveDisturbance"/>
 																													<play_text actor="Beryll_Incursion_Chapter4.BoronContact" priority="90" textid="130014"/>
-																													<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																													<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																														<mission discipline="XXXXP" level="average"/>
 																														<reward money="3000000"/>
 																														<objectives>
@@ -2269,7 +2263,7 @@
 																																	<ware typename="SS_WARE_WORMHOLE_TRACK" exact="1"/>
 																																</equipment>
 																															</reward_player>
-																															<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																															<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																																<mission discipline="XXXXP" level="average"/>
 																																<reward money="3000000"/>
 																																<objectives>
@@ -2313,7 +2307,7 @@
 																															<action>
 																																<do_all>
 																																	<set_group_command group="Beryll_Incursion_Chapter4.Group" command="follow" commandobject="{player.ship}"/>
-																																	<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																	<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																																		<mission discipline="XXXXP" level="average"/>
 																																		<reward money="3000000"/>
 																																		<objectives>
@@ -2350,7 +2344,7 @@
 																																	<action>
 																																		<do_all>
 																																			<find_sector name="Beryll_Incursion_Chapter4.PatrolSector" x="4" y="18"/>
-																																			<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																			<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																																				<mission discipline="XXXXP" level="average"/>
 																																				<reward money="3000000"/>
 																																				<objectives>
@@ -2395,7 +2389,7 @@
 																																						<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
 																																					</create_special>
 																																					<set_discoverable object="Beryll_Incursion_Chapter4.SpacialDisturbance" discoverable="1"/>
-																																					<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																					<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																																						<mission discipline="XXXXP" level="average"/>
 																																						<reward money="3000000"/>
 																																						<objectives>
@@ -2428,7 +2422,7 @@
 																																						<do_all>
 																																							<play_text actor="Beryll_Incursion_Chapter4.Leader" priority="90" textid="100091"/>
 																																							<find_sector name="Beryll_Incursion_Chapter4.PatrolSector" x="12" y="10"/>
-																																							<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																							<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																																								<mission discipline="XXXXP" level="average"/>
 																																								<reward money="3000000"/>
 																																								<objectives>
@@ -2484,7 +2478,7 @@
 																																										<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
 																																									</create_special>
 																																									<set_discoverable object="Beryll_Incursion_Chapter4.SpacialDisturbance" discoverable="1"/>
-																																									<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																									<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																																										<mission discipline="XXXXP" level="average"/>
 																																										<reward money="3000000"/>
 																																										<objectives>
@@ -2517,7 +2511,7 @@
 																																										<do_all>
 																																											<play_text actor="Beryll_Incursion_Chapter4.Leader" priority="90" textid="100091"/>
 																																											<find_sector name="Beryll_Incursion_Chapter4.PatrolSector" x="18" y="3"/>
-																																											<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																											<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																																												<mission discipline="XXXXP" level="average"/>
 																																												<reward money="3000000"/>
 																																												<objectives>
@@ -2573,7 +2567,7 @@
 																																														<sector sector="Beryll_Incursion_Chapter4.PatrolSector"/>
 																																													</create_special>
 																																													<set_discoverable object="Beryll_Incursion_Chapter4.SpacialDisturbance" discoverable="1"/>
-																																													<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																													<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																																														<mission discipline="XXXXP" level="average"/>
 																																														<reward money="3000000"/>
 																																														<objectives>
@@ -2619,7 +2613,7 @@
 																																																<destination sector="Beryll_Incursion_Chapter4.PatrolSector" gate="north"/>
 																																															</create_gate>
 																																															<show_effect object="{object@Beryll_Incursion_Chapter4.SpacialDisturbance}" effect="46"/>
-																																															<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																															<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																																																<mission discipline="XXXXP" level="average"/>
 																																																<reward money="3000000"/>
 																																																<objectives>
@@ -2735,7 +2729,7 @@
 																																																	</timing>
 																																																	<action>
 																																																		<do_all>
-																																																			<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="beryll_m3.tga">
+																																																			<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000187}" text="{9620,1000188}" background="themus.tga">
 																																																				<mission discipline="XXXXP" level="average"/>
 																																																				<reward money="3000000"/>
 																																																				<objectives>
