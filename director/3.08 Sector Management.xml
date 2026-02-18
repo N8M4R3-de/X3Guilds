@@ -220,7 +220,34 @@
     </cue>
 
     <!-- Dynamic Jobs Manager -->
+	  <cue name="DJM_Trigger" delay="1s" instantiate="static">
+		  <condition>
+			  <script_event name="DJM_Trigger"/>
+		  </condition>
+		  <action>
+			  <do_choose>
+				  <do_when value="{event.param}" exact="1">
+					  <do_if value="{value@DJM_Enabled}" exact="1" negate="1">
+						  <set_value name="DJM_Enabled" exact="1"/>
+						  <reset_cue cue="DJM"/>
+					  </do_if>
+				  </do_when>
+				  <do_otherwise>
+						<set_value name="DJM_Enabled" exact="0"/>
+						<disable_plotflag plotflag="xenon1"/>
+						<disable_plotflag plotflag="xenon2"/>
+						<disable_plotflag plotflag="xenon3"/>
+						<disable_plotflag plotflag="xenon4"/>
+						<disable_plotflag plotflag="xenon5"/>
+						<reset_cue cue="DJM"/>
+				  </do_otherwise>
+			  </do_choose>
+		  </action>
+	  </cue>
     <cue name="DJM" delay="10s" version="2">
+		<condition>
+			<check_value value="{value@DJM_Enabled}" exact="1"/>
+		</condition>
       <action>
         <do_all>
           <set_value name="DJM.Score" exact="0"/>
@@ -324,8 +351,8 @@
               </timing>
               <action>
                 <do_all>
-                  <reset_cue cue="DJM"/>
-                </do_all>
+					<reset_cue cue="DJM"/>
+				</do_all>
               </action>
             </cue>
           </cues>

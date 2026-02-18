@@ -4859,8 +4859,12 @@
  <t id="151">Hack Cargobay</t>
  <t id="152">Military Representative</t>
  <t id="153">Dynamic Wormholes</t>
- <t id="154">This option will adjust the number of dynamic wormholes there will be throughout the universe.</t>
+ <t id="154">This option will adjust the number of dynamic wormholes there will be throughout the universe.</t> 
  <t id="155">Disabled</t>
+ <t id="156">Xenon Invasions</t>
+ <t id="157">This option will enable or disable the Xenon ships that jump into sectors to invade.</t>
+ <t id="158">Kha'ak Invasions</t>
+ <t id="159">This option will enable or disable the Kha'ak ships that invade sectors.</t>
  <t id="200">Guilds are expansive organisations governing themselves on a galactic scale. Members within a guild enjoy access to various benefits, encompassing employment opportunities, assignments, equipment, and even ships and stations. Typically, guilds establish headquarters where prospective members can apply for membership. Additionally, many trading stations feature a guild board, a platform where guilds post tasks and jobs available for members to undertake.</t>
  <t id="201">Current Memberships</t>
  <t id="202">Level</t>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <Guilds>
-  <settings version="5">
+  <settings version="6">
     <bbs min="3" max="5" mindynamic="1" dock="1"/>
 	<jobs xenon="1" khaak="1"/>
+	<wormholes dynamic="4"/>
+	<invasions xenon="1" khaak="1"/>
 	<economy negative="3" positive="3"/>
 	<merchant sats="8"/>
 	<planetary maxprosperity="10"/>
