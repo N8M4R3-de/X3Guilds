@@ -207,7 +207,31 @@
 																				<position x="-5km" y="0km" z="-16km" min="300m" max="600m"/>
 																				<sector sector="Lost_Colonies.EoL"/>																			
 																			</warp_group>
-																			
+																			<start_script script="plugin.guilds.mission">
+																				<scriptargs>
+																					<scriptvalue datatype="string" datavalue="lostcolony"/>
+																					<scriptvalue datatype="integer" datavalue="2"/>
+																					<scriptvalue datatype="string" datavalue="noto"/>
+																					<scriptvalue datatype="integer" datavalue="0"/>
+																				</scriptargs>
+																			</start_script>
+																			<find_ship findobject="Lost_Colonies.LeaderShip" enemy="1" multiple="1" group="Lost_Colonies.LeaderEnemies">
+																				<sector sector="{object.sector@Lost_Colonies.LeaderShip}"/>
+																				<jumps exact="0"/>
+																			</find_ship>
+																			<do_all counter="count" exact="{group.object.count@Lost_Colonies.LeaderEnemies}">
+																				<set_relation object="{group.object.{counter@count}@Lost_Colonies.LeaderEnemies}">
+																					<relation object="Lost_Colonies.LeaderShip" relation="friend" mutual="1"/>
+																					<relation group="Lost_Colonies.Escorts" relation="friend" mutual="1"/>
+																				</set_relation>
+																			</do_all>
+																			<set_relation object="Lost_Colonies.LeaderShip">
+																				<relation group="Lost_Colonies.LeaderEnemies" relation="friend" mutual="1"/>
+																			</set_relation>
+																			<set_group_relation group="Lost_Colonies.Escorts">
+																				<relation group="Lost_Colonies.LeaderEnemies" relation="friend" mutual="1"/>
+																			</set_group_relation>
+
 																			<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100005}" text="{9620,1100009}" background="terran_military.tga" race="{9620,1100001}" targetrace="xenon">
 																				<mission discipline="XXXXP" level="easy"/>
 																				<reward money="50000"/>
@@ -246,7 +270,31 @@
 																				<time min="4s" max="7s"/>
 																			</timing>
 																			<action>
-																				<do_all>																					
+																				<do_all>
+																					<start_script script="plugin.guilds.mission">
+																						<scriptargs>
+																							<scriptvalue datatype="string" datavalue="lostcolony"/>
+																							<scriptvalue datatype="integer" datavalue="2"/>
+																							<scriptvalue datatype="string" datavalue="noto"/>
+																							<scriptvalue datatype="integer" datavalue="0"/>
+																						</scriptargs>
+																					</start_script>
+																					<find_ship findobject="Lost_Colonies.LeaderShip" enemy="1" multiple="1" group="Lost_Colonies.LeaderEnemies">
+																						<sector sector="{object.sector@Lost_Colonies.LeaderShip}"/>
+																						<jumps exact="0"/>
+																					</find_ship>
+																					<do_all counter="count" exact="{group.object.count@Lost_Colonies.LeaderEnemies}">
+																						<set_relation object="{group.object.{counter@count}@Lost_Colonies.LeaderEnemies}">
+																							<relation object="Lost_Colonies.LeaderShip" relation="friend" mutual="1"/>
+																							<relation group="Lost_Colonies.Escorts" relation="friend" mutual="1"/>
+																						</set_relation>
+																					</do_all>
+																					<set_relation object="Lost_Colonies.LeaderShip">
+																						<relation group="Lost_Colonies.LeaderEnemies" relation="friend" mutual="1"/>
+																					</set_relation>
+																					<set_group_relation group="Lost_Colonies.Escorts">
+																						<relation group="Lost_Colonies.LeaderEnemies" relation="friend" mutual="1"/>
+																					</set_group_relation>
 																					<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100005}" text="{9620,1100009}" background="terran_military.tga" race="{9620,1100001}" targetrace="xenon">
 																						<mission discipline="XXXXP" level="easy"/>
 																						<reward money="50000"/>
@@ -270,6 +318,8 @@
 																					</set_command>
 																					<play_text actor="Lost_Colonies.Leader" textid="110008" priority="90"/>
 																					<set_group_command group="Lost_Colonies.Escort" command="follow" commandobject="{object@Lost_Colonies.LeaderShip}"/>
+																					<set_attacked_response object="Lost_Colonies.LeaderShip" response="ignore"/>
+																					<set_group_attacked_response group="Lost_Colonies.Escorts" response="ignore"/>
 																				</do_all>
 																			</action>
 																			<cues>
@@ -309,7 +359,7 @@
 																				</cue>
 																				<cue name="Lost_Colonies_PatrolCentre" delay="1s">
 																					<condition>
-																						<check_all>
+																						<check_all>																							
 																							<cue_is_complete cue="Lost_Colonies_Player_Arrive"/>
 																							<check_value value="{player.sector}" exact="{object.sector@Lost_Colonies.LeaderShip}"/>
 																							<object_position object="Lost_Colonies.LeaderShip" max="5km">
@@ -320,6 +370,7 @@
 																					</condition>
 																					<action>
 																						<do_all>
+																							<cancel_cue cue="Lost_Colonies_Player_Leave"/>
 																							<play_text priority="90">
 																								<line actor="Lost_Colonies.WingmanActor" textid="120000"/>
 																								<line actor="Lost_Colonies.Leader" textid="110009"/>
@@ -376,9 +427,77 @@
 																										<command command="attack" commandobject="{object@Lost_Colonies.PilotShip}"/>
 																									</create_ship>
 																									<set_attacked_response object="Lost_Colonies.PilotShip" response="ignore"/>
+																									<cancel_cue cue="Lost_Colonies_Player_Leave2"/>
 																								</do_all>																								
 																							</action>
 																							<cues>
+																								<cue name="Lost_Colonies_Player_Leave2">
+																									<condition>
+																										<check_value value="{player.sector}" exact="{sector@Lost_Colonies.EoL}" negate="1"/>
+																									</condition>
+																									<action>
+																										<do_all>
+																											<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100005}" text="{9620,1100009}" background="terran_military.tga" race="{9620,1100001}" targetrace="xenon">
+																												<mission discipline="XXXXP" level="easy"/>
+																												<reward money="50000"/>
+																												<requirements>
+																													<requirement type="equipment" value="SS_WARE_LIFESUPPORT"/>
+																												</requirements>
+																												<objectives>
+																													<objective step="2">
+																														<flyto>
+																															<sector sector="Lost_Colonies.EoL"/>
+																														</flyto>
+																													</objective>
+																												</objectives>
+																											</create_briefing>
+																											<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100005}" text="{9620,1100009}" race="{9620,1100001}" targetrace="xenon" noabort="1">
+																												<briefing cue="Lost_Colonies" step="2"/>
+																												<mission discipline="XXXXP" level="easy"/>
+																												<reward money="50000"/>
+																												<flyto>
+																													<sector sector="Lost_Colonies.EoL"/>
+																												</flyto>
+																											</set_objective>
+																											<set_command object="Lost_Colonies.LeaderShip" command="stay"/>
+																											<set_group_command group="Lost_Colonies.Escorts" command="follow" commandobject="{object@Lost_Colonies.LeaderShip}"/>
+																										</do_all>
+																									</action>
+																									<cues>
+																										<cue name="Lost_Colonies_Player_Leave2_Reenter" delay="1s">
+																											<condition>
+																												<check_value value="{player.sector}" exact="{object.sector@Lost_Colonies.LeaderShip}"/>
+																											</condition>
+																											<action>
+																												<do_all>
+																													<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100005}" text="{9620,1100009}" background="terran_military.tga" race="{9620,1100001}" targetrace="xenon">
+																														<mission discipline="XXXXP" level="easy"/>
+																														<reward money="50000"/>
+																														<requirements>
+																															<requirement type="equipment" value="SS_WARE_LIFESUPPORT"/>
+																														</requirements>
+																														<objectives>
+																															<objective step="3">
+																																<follow object="Lost_Colonies.LeaderShip"/>
+																															</objective>
+																														</objectives>
+																													</create_briefing>
+																													<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100005}" text="{9620,1100009}" race="{9620,1100001}" targetrace="xenon" noabort="1">
+																														<briefing cue="Lost_Colonies" step="3"/>
+																														<mission discipline="XXXXP" level="easy"/>
+																														<reward money="50000"/>
+																														<follow object="Lost_Colonies.LeaderShip"/>
+																													</set_objective>
+																													<set_command command="moveposition" object="Lost_Colonies.LeaderShip">
+																														<position x="-17km" y="1km" z="12km"/>
+																													</set_command>
+																													<reset_cue cue="Lost_Colonies_ApproachAttack"/>
+																												</do_all>
+																											</action>
+																										</cue>
+																									</cues>
+																								</cue>
+																								
 																								<cue name="Lost_Colonies_DestroyShip">
 																									<timing>
 																										<time exact="10s"/>
@@ -439,6 +558,14 @@
 																													</condition>
 																													<action>
 																														<do_all>
+																															<start_script script="plugin.guilds.mission">
+																																<scriptargs>
+																																	<scriptvalue datatype="string" datavalue="lostcolony"/>
+																																	<scriptvalue datatype="integer" datavalue="3"/>
+																																	<scriptvalue datatype="string" datavalue="noto"/>
+																																	<scriptvalue datatype="integer" datavalue="0"/>
+																																</scriptargs>
+																															</start_script>
 																															<play_text priority="90">
 																																<line actor="Lost_Colonies.Leader" textid="110011"/>
 																															</play_text>																															
