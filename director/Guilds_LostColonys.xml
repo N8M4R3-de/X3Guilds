@@ -246,7 +246,7 @@
 																				<time min="4s" max="7s"/>
 																			</timing>
 																			<action>
-																				<do_all>
+																				<do_all>																					
 																					<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100005}" text="{9620,1100009}" background="terran_military.tga" race="{9620,1100001}" targetrace="xenon">
 																						<mission discipline="XXXXP" level="easy"/>
 																						<reward money="50000"/>
@@ -273,6 +273,40 @@
 																				</do_all>
 																			</action>
 																			<cues>
+																				<cue name="Lost_Colonies_Player_Leave">
+																					<condition>
+																						<check_value value="{player.sector}" exact="{sector@Lost_Colonies.EoL}" negate="1"/>
+																					</condition>
+																					<action>
+																						<do_all>
+																							<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100005}" text="{9620,1100009}" background="terran_military.tga" race="{9620,1100001}" targetrace="xenon">
+																								<mission discipline="XXXXP" level="easy"/>
+																								<reward money="50000"/>
+																								<requirements>
+																									<requirement type="equipment" value="SS_WARE_LIFESUPPORT"/>
+																								</requirements>
+																								<objectives>
+																									<objective step="2">
+																										<flyto>
+																											<sector sector="Lost_Colonies.EoL"/>
+																										</flyto>
+																									</objective>
+																								</objectives>
+																							</create_briefing>
+																							<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100005}" text="{9620,1100009}" race="{9620,1100001}" targetrace="xenon" noabort="1">
+																								<briefing cue="Lost_Colonies" step="2"/>
+																								<mission discipline="XXXXP" level="easy"/>
+																								<reward money="50000"/>
+																								<flyto>
+																									<sector sector="Lost_Colonies.EoL"/>
+																								</flyto>
+																							</set_objective>
+																							<set_command object="Lost_Colonies.LeaderShip" command="stay"/>
+																							<set_group_command group="Lost_Colonies.Escorts" command="follow" commandobject="{object@Lost_Colonies.LeaderShip}"/>
+																							<reset_cue cue="Lost_Colonies_Player_Arrive"/>
+																						</do_all>
+																					</action>
+																				</cue>
 																				<cue name="Lost_Colonies_PatrolCentre" delay="1s">
 																					<condition>
 																						<check_all>

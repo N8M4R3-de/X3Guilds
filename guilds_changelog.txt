@@ -1,5 +1,7 @@
 v0.85
 Fixed Celestial Navigators Recruitment mission
+Fixed Lost Colony gates in Pure Sandbox starts
+Fixed missing terran stations in sandbox starts
 Improved selection of destination sector for Military Patrols
 Added Beryll Incursion - Stage 4 - Wormholes
 Added Static spacial disturbances
