@@ -62,4 +62,4 @@ Global: SG_DYNRACE_MAXENEMYNOTO;1000000
 CombineGameFiles: 1
 
 AutoSave: $SAVEDIR/$AUTOSAVE
-UpdateFile: $SAVEDIR/SPK
+UpdateFile: $SAVEDIR
