@@ -7,6 +7,8 @@ Improved selection of destination sector for Military Patrols
 Added Beryll Incursion - Stage 4 - Wormholes
 Added Static spacial disturbances
 Added Dynamic Wormholes
+Added option to disable Xenon/Kha'ak Invasions
+Moved Custom Characters to seperate addon
 
 v0.84
 Fixed Assassin Guild recruitment, docking at Phantom Shadowblade
