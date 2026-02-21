@@ -1260,7 +1260,6 @@
 </page>
 
 <page id="390121" title="Polly Voice: Gregory" descr="0" voice="yes">
- <t id="0">{1,1,{1,8}}</t>
  <t id="1">Hey! You're either blind or stupid; maybe both.</t>
  <t id="2">I won't say this again, stand down.</t>
  <t id="3">This is your last chance - break it off.</t>
@@ -1496,7 +1495,6 @@
 </page>
 
 <page id="390122" title="Polly: UK: Arthur" descr="0" voice="yes">
- <t id="0">{1,1,{1,8}}</t>
  <t id="1">Hey! You're either blind or stupid; maybe both.</t>
  <t id="2">I won't say this again, stand down.</t>
  <t id="3">This is your last chance - break it off.</t>
@@ -1718,7 +1716,6 @@
 </page>
 
 <page id="390123" title="Polly: Irish, Niamh" descr="" voice="yes">
- <t id="0">{1,2,{1,2,8}}</t>
  <t id="1">Hey! Have you gone crazy? Stop shooting!</t>
  <t id="2">Hey! If you are looking for a fight you will get one.</t>
  <t id="3">Are you looking for trouble? One more shot and I will call in a support ship!</t>
@@ -1806,7 +1803,6 @@
 </page>
 
 <page id="390124" title="Polly: US, Stephen" descr="" voice="yes">
- <t id="0">{1,1,{1,2,8}}</t>
  <t id="1">(00..10: Speaker can be ANYONE, see below for variations. Texts marked with '*' can be used by capital ships, do not use 'I' or 'my' etc. ==== Message after first -possibly accidental- hits)Hey you! Are you nuts? Stop shooting!</t>
  <t id="2">(Final warning of fighter, also for pirates)You're really gonna regret that!</t>
  <t id="3">(Final warning of transporter)Are you looking for trouble? One more shot and I'll call in a support ship!</t>
@@ -1885,7 +1881,6 @@
 </page>
 
 <page id="390125" title="Polly: US, Matthew" descr="0" voice="yes">
- <!--<t id="0">{1,1,{1,8}}</t>-->
  <t id="1">Hey! That had better have been an accident!</t>
  <t id="2">I suggest you leave me alone or you'll be sleeping with the spaceflies!</t>
  <t id="3">Keep that up and you'll regret it!</t>
@@ -2450,7 +2445,6 @@
 </page>
 
 <page id="390127" title="Argon/Terran female Variation: Polly: US - Joanna" descr="0" voice="yes">
- <t id="0">{1,2,{1,8}}</t>
  <t id="1">I'd better be in your sights for a reason, pilot. Stand down!</t>
  <t id="2">You're close to finding yourself in a world of pain.</t>
  <t id="3">You think I travel alone or unguarded? Think again.</t>
@@ -2688,7 +2682,6 @@
 </page>
 
 <page id="390128" title="Argon/Terran Female Variation: Polly - SA - Ayanda" descr="0" voice="yes">
- <t id="0">{1,2,{1,8}}</t>
  <t id="1">Do I look like Yaki? Cut it out!</t>
  <t id="2">I don't take kindly to your attention, pilot. Arming weapons.</t>
  <t id="3">Damage my wares and I'll be sure to damage yours.</t>
@@ -3199,7 +3192,6 @@
 </page>
 
 <page id="390130" title="Argon/Terran Female - Polly - Aus - Olivia" descr="0" voice="yes">
- <t id="0">{1,2,{1,8,32}}</t>
  <t id="1">Do I seem like a Yaki to you? Back off!</t>
  <t id="2">Careful, pilot. I don’t appreciate the heat. Weapons online.</t>
  <t id="3">Touch my cargo and I’ll return the favour, with interest.</t>
@@ -3407,7 +3399,6 @@
 </page>
 
 <page id="390131" title="Argon/Terran Female - Polly - Us - Salli" descr="0" voice="yes">
- <t id="0">0</t>
  <t id="1">I'd better be in your sights for a reason, pilot. Stand down!</t>
  <t id="2">You're close to finding yourself in a world of pain.</t>
  <t id="3">You think I travel alone or unguarded? Think again.</t>
@@ -3611,7 +3602,6 @@
 </page>
 
 <page id="390220" title="Polly: British, Emma" descr="0" voice="yes">
- <t id="0">{2,1,{1,8,32}}</t>
  <t id="1">Let's hope your aggression is just a misunderstanding, pilot.</t>
  <t id="2">The Boron are peaceful, but not defenceless. You still have a chance for peace.</t>
  <t id="3">Please go. We do not wish to end our lives in conflict.</t>
@@ -3851,7 +3841,6 @@
 </page>
 
 <page id="390221" title="Polly: NZ, Aria" descr="" voice="yes">
- <t id="0">{2,1,{1,8}}</t>
  <t id="1">Why pick on me?</t>
  <t id="2">Boron orders to return fire!</t>
  <t id="3">You have pushed Boron patience too far, help is on its way!</t>
@@ -3920,7 +3909,6 @@
 </page>
 
 <page id="390222" title="Polly: US, Kevin" descr="" voice="yes">
- <t id="0">{2,1,{1,8}}</t>
  <t id="1">Your shooting offends me!</t>
  <t id="2">Boron are not afraid of giving fight!</t>
  <t id="3">I regret to inform you that Boron fighter support is on its way!</t>
@@ -3988,7 +3976,6 @@
 </page>
 
 <page id="390320" title="Polly: Aus: Russell" descr="0" voice="yes">
- <t id="0">{3,1,{1,4,8}}</t>
  <t id="1">Stop - idiot!</t>
  <t id="2">Split hope that was accident! You shoot again you eat own liver!</t>
  <t id="3">You are asking to die!</t>
@@ -4206,7 +4193,6 @@
 </page>
 
 <page id="390420" title="Paranid: Polly, US: Joey" descr="0" voice="yes">
- <t id="0">{4,1,{1,8}}</t>
  <t id="1">You would be wise to hold your fire, lowerlife.</t>
  <t id="2">Your charge upon us is pitiful. A final warning do we give.</t>
  <t id="3">What is ours is not yours. Think carefully lowerlife.</t>
@@ -4427,7 +4413,6 @@
 </page>
 
 <page id="390512" title="Teladi Variation new 1 (Polly: Welsh-Geraint)" descr="" voice="yes">
- <t id="0">{5,1,{1,8}}</t>
  <t id="1">Why you pick on me!</t>
  <t id="2">Teladi would like to know what you think you are playing at!</t>
  <t id="3">You have pushed toleration too far, I call for help.!</t>

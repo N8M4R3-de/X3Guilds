@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<language id="44">
+
+<page id="390121" title="Polly Voice: Gregory" descr="0" voice="yes">
+ <t id="0">{1,1,{1,8}}</t>
+</page>
+
+<page id="390122" title="Polly: UK: Arthur" descr="0" voice="yes">
+ <t id="0">{1,1,{1,8}}</t>
+</page>
+
+<page id="390123" title="Polly: Irish, Niamh" descr="" voice="yes">
+ <t id="0">{1,2,{1,2,8}}</t>
+</page>
+
+<page id="390124" title="Polly: US, Stephen" descr="" voice="yes">
+ <t id="0">{1,1,{1,2,8}}</t>
+</page>
+
+<!--
+<page id="390125" title="Polly: US, Matthew" descr="0" voice="yes">
+ <t id="0">{1,1,{1,8}}</t>
+</page>
+
+<page id="390126" title="Argon/Terran Female Variation - Polly: US - Danielle" descr="0" voice="yes">
+ <t id="0">{1,2,{1,2,8}}</t>
+</page>
+-->
+
+<page id="390127" title="Argon/Terran female Variation: Polly: US - Joanna" descr="0" voice="yes">
+ <t id="0">{1,2,{1,8}}</t>
+</page>
+
+<page id="390128" title="Argon/Terran Female Variation: Polly - SA - Ayanda" descr="0" voice="yes">
+ <t id="0">{1,2,{1,8}}</t>
+</page>
+
+<!--
+<page id="390129" title="Argon/Terran Male - Polly - US - Patrick" descr="0" voice="yes">
+ <t id="0">{1,1,{1,8}}</t>
+</page>
+-->
+
+<page id="390130" title="Argon/Terran Female - Polly - Aus - Olivia" descr="0" voice="yes">
+ <t id="0">{1,2,{1,8,32}}</t>
+</page>
+
+<!--
+<page id="390131" title="Argon/Terran Female - Polly - Us - Salli" descr="0" voice="yes">
+<t id="0">{1,2,{1,8}}</t>
+</page>
+-->
+
+<page id="390220" title="Polly: British, Emma" descr="0" voice="yes">
+ <t id="0">{2,1,{1,8,32}}</t>
+</page>
+
+<page id="390221" title="Polly: NZ, Aria" descr="" voice="yes">
+ <t id="0">{2,1,{1,8}}</t>
+</page>
+
+<page id="390222" title="Polly: US, Kevin" descr="" voice="yes">
+ <t id="0">{2,1,{1,8}}</t>
+</page>
+
+<page id="390320" title="Polly: Aus: Russell" descr="0" voice="yes">
+ <t id="0">{3,1,{1,4,8}}</t>
+</page>
+
+<page id="390420" title="Paranid: Polly, US: Joey" descr="0" voice="yes">
+ <t id="0">{4,1,{1,8}}</t>
+</page>
+
+<page id="390512" title="Teladi Variation new 1 (Polly: Welsh-Geraint)" descr="" voice="yes">
+ <t id="0">{5,1,{1,8}}</t>
+</page>
+
+</language>

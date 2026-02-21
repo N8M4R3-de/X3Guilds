@@ -40,3 +40,4 @@ catpck -a ../L/x3intro.obj ../09.cat::addon2/L/
 catpck -a --recursive ../CAT/08/* ../08.cat
 catpck -a --recursive ../CAT/09/* ../09.cat
 spktool -createscript guilds.sps
+spktool -createscript ../addons/CustomCharacters/guilds_characters.sps
