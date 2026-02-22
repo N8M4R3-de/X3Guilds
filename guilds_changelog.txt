@@ -1,5 +1,6 @@
 v0.86
 Fixed Lost Colonies - Stage 3 mission breifing reset
+Added Pure Sandbox start - Beryll Codebreaker
 
 v0.85
 Fixed Celestial Navigators Recruitment mission
