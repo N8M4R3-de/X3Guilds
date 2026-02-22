@@ -262,6 +262,7 @@
 																		<cue name="Lost_Colonies_Player_Arrive" delay="1s">
 																			<condition>
 																				<check_all>
+																					<check_value value="{value@Lost_Colonies.Status}" max="9"/>
 																					<cue_is_complete cue="Lost_Colonies_JumpEoL"/>
 																					<check_value value="{player.sector}" exact="{sector@Lost_Colonies.EoL}"/>
 																				</check_all>
@@ -325,7 +326,10 @@
 																			<cues>
 																				<cue name="Lost_Colonies_Player_Leave">
 																					<condition>
-																						<check_value value="{player.sector}" exact="{sector@Lost_Colonies.EoL}" negate="1"/>
+																						<check_all>
+																							<check_value value="{value@Lost_Colonies.Status}" max="9"/>
+																							<check_value value="{player.sector}" exact="{sector@Lost_Colonies.EoL}" negate="1"/>
+																						</check_all>
 																					</condition>
 																					<action>
 																						<do_all>
@@ -384,6 +388,7 @@
 																						<cue name="Lost_Colonies_ApproachAttack" delay="1s">
 																							<condition>
 																								<check_all>
+																									<check_value value="{value@Lost_Colonies.Status}" max="9"/>
 																									<cue_is_complete cue="Lost_Colonies_PatrolCentre"/>
 																									<check_value value="{player.sector}" exact="{object.sector@Lost_Colonies.LeaderShip}"/>
 																									<object_position object="Lost_Colonies.LeaderShip" max="8km">
@@ -433,7 +438,10 @@
 																							<cues>
 																								<cue name="Lost_Colonies_Player_Leave2">
 																									<condition>
-																										<check_value value="{player.sector}" exact="{sector@Lost_Colonies.EoL}" negate="1"/>
+																										<check_all>
+																											<check_value value="{value@Lost_Colonies.Status}" max="9"/>
+																											<check_value value="{player.sector}" exact="{sector@Lost_Colonies.EoL}" negate="1"/>
+																										</check_all>
 																									</condition>
 																									<action>
 																										<do_all>
@@ -812,6 +820,7 @@
 														<cue name="Lost_Colonies_Mission2_Player_Arrive" delay="1s">
 															<condition>
 																<check_all>
+																	<check_value value="{value@Lost_Colonies.Status}" exact="10"/>
 																	<cue_is_complete cue="Lost_Colonies_Mission2_JumpEoL"/>
 																	<check_value value="{player.sector}" exact="{sector@Lost_Colonies.EoL}"/>
 																</check_all>
@@ -1274,6 +1283,42 @@
 										</do_all>
 									</action>
 									<cues>
+										<cue name="Lost_Colonies_Mission3_Fix" delay="1s">
+											<condition>
+												<cue_is_complete cue="Lost_Colonies_Mission3_Accept"/>
+											</condition>
+											<action>
+												<do_all>
+													<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100032}" text="{9620,1100031}" background="terran_military.tga" race="{9620,1100001}" targetrace="xenon">
+														<mission discipline="XXXXP" level="easy"/>
+														<reward money="100000"/>
+														<objectives>
+															<objective step="1">
+																<dockat object="Lost_Colonies.OutpostStation"/>
+															</objective>
+															<objective step="2">
+																<custom action="{9620,1100011}" icon="find" text="{9620,1100012}" />
+															</objective>
+															<objective step="3">
+																<custom action="{9620,1100011}" icon="find" text="{9620,1100012}" />
+															</objective>
+															<objective step="4">
+																<custom action="{9620,1100011}" icon="find" text="{9620,1100012}" />
+															</objective>
+														</objectives>
+													</create_briefing>
+													<do_if value="{value@Lost_Colonies.CurrentContact}" max="3">
+														<set_objective cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100032}" text="{9620,1100031}" race="{9620,1100001}" targetrace="xenon" noabort="1" silent="1">
+															<briefing cue="Lost_Colonies" step="{value@Lost_Colonies.CurrentContact}+1"/>
+															<mission discipline="XXXXP" level="easy"/>
+															<reward money="100000"/>
+															<custom action="{9620,1100011}" icon="find" text="{9620,1100012}" />
+														</set_objective>
+													</do_if>
+												</do_all>
+											</action>
+										</cue>
+		
 										<cue name="Lost_Colonies_Mission3_Contact1" delay="1s">
 											<condition>
 												<cue_is_complete cue="Lost_Colonies_Mission3_Accept"/>
@@ -1494,10 +1539,16 @@
 															<remove_offer actor="Lost_Colonies.Contact2" conversation="L3GPL_03_03_03" discipline="XXXXP"/>
 															<create_briefing cue="Lost_Colonies_Mission3_Contact2" story="{9620,1100036}" title="{9620,1100022}" text="{9620,1100023}" background="terran_military.tga" race="paranid" targetrace="yaki">
 																<mission discipline="XXXXP" level="average"/>
+																<objectives>
+																	<objective step="1">
+																		<custom action="{9620,1100011}" icon="find" text="{9620,1100024}" />
+																	</objective>
+																</objectives>
 															</create_briefing>
 															<set_objective cue="Lost_Colonies_Mission3_Contact2" story="{9620,1100036}" title="{9620,1100022}" text="{9620,1100023}"  race="paranid" targetrace="yaki" noabort="1" active="1">
 																<briefing cue="Lost_Colonies_Mission3_Contact2" step="1"/>
 																<mission discipline="XXXXP" level="average"/>
+																<custom action="{9620,1100011}" icon="find" text="{9620,1100024}" />
 															</set_objective>
 															<set_sector name="Lost_Colonies_Mission3_Contact2.Sector" value="{player.sector}"/>
 														</do_all>
@@ -1935,6 +1986,7 @@
 											</timing>
 											<action>
 												<do_all>
+													<cancel_cue cue="Lost_Colonies_Mission3_Fix"/>
 													<create_briefing cue="Lost_Colonies" story="{9620,1100033}" title="{9620,1100032}" text="{9620,1100031}" background="terran_military.tga" race="{9620,1100001}" targetrace="xenon">
 														<mission discipline="XXXXP" level="easy"/>
 														<reward money="100000"/>

@@ -1,3 +1,6 @@
+v0.86
+Fixed Lost Colonies - Stage 3 mission breifing reset
+
 v0.85
 Fixed Celestial Navigators Recruitment mission
 Fixed Lost Colony gates in Pure Sandbox starts
