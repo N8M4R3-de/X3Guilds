@@ -1,11 +1,18 @@
+v0.86
+Fixed Lost Colonies - Stage 3 mission breifing reset
+Added Pure Sandbox start - Beryll Codebreaker
+
 v0.85
 Fixed Celestial Navigators Recruitment mission
 Fixed Lost Colony gates in Pure Sandbox starts
 Fixed missing terran stations in sandbox starts
+Fixed Lost Colony Elyisum of Light mission
 Improved selection of destination sector for Military Patrols
 Added Beryll Incursion - Stage 4 - Wormholes
 Added Static spacial disturbances
 Added Dynamic Wormholes
+Added option to disable Xenon/Kha'ak Invasions
+Moved Custom Characters to seperate addon
 
 v0.84
 Fixed Assassin Guild recruitment, docking at Phantom Shadowblade
