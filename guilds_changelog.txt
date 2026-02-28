@@ -1,5 +1,6 @@
 v0.86
 Fixed Lost Colonies - Stage 3 mission breifing reset
+Removed Guild sectors from Xenon Incursions
 Added Pure Sandbox start - Beryll Codebreaker
 
 v0.85
