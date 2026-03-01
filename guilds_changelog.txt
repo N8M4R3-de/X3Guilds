@@ -1,5 +1,9 @@
 v0.86
 Fixed Lost Colonies - Stage 3 mission breifing reset
+Fixed Dock Tender if max is set higher than station max
+Fixed bounties not clearing on captured ships
+Fixed captured bounty ships trying to dock at stations
+Removed Guild sectors from Xenon Incursions
 Added Pure Sandbox start - Beryll Codebreaker
 
 v0.85
