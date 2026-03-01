@@ -93,6 +93,7 @@ ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!agent.cmd.stealequipment.xml
 ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!agent.cmd.stealequipment.menu.xml
 ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!job.trade.supplytrader.xml
 ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!job.trade.miner.xml
+ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!job.xenon.incursion.xml
 ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.agent.initial.setup.xml
 ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.agent.races.xml
 ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.check.jumperror.xml
