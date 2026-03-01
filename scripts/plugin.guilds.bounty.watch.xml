@@ -2,8 +2,8 @@
 <?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
 <script>
 <name>plugin.guilds.bounty.watch</name>
-<version>2</version>
-<engineversion>66</engineversion>
+<version>3</version>
+<engineversion>73</engineversion>
 <description>Guilds: Bounty, watch script</description>
 <arguments>
 <argument index="1" name="a.bounty" type="Value" desc="Bounty Data" />
@@ -17,6 +17,12 @@
   [THIS] ->set local variable: name='bounty.watch' value=$watched.data
   while [THIS] -> get local variable: name='bounty'
 @   = wait 1000 ms
+    
+    if [OWNER] == Player
+      [THIS] ->set local variable: name='bounty.watch' value=null
+      [THIS] ->set local variable: name='bounty' value=null
+      return null
+    end
     
   * Run checked depending on galaxy time step
     $current.time = playing time
@@ -70,6 +76,12 @@
 <line indent=""><var>while&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;get&#160;local&#160;variable:&#160;name=</text><var>'bounty'</var></line>
 <line interruptable="@" indent="&#160;"><var>=&#160;</var><text>wait&#160;</text><var>1000</var><text>&#160;ms</text></line>
 <line indent="&#160;"></line>
+<line indent="&#160;"><var>if&#160;</var><var>[OWNER]</var><text>&#160;</text><var>==</var><text>&#160;</text><var>Player</var></line>
+<line indent="&#160;&#160;"><var>[THIS]&#160;-&gt;</var><text>set&#160;local&#160;variable:&#160;name=</text><var>'bounty.watch'</var><text>&#160;value=</text><var>null</var></line>
+<line indent="&#160;&#160;"><var>[THIS]&#160;-&gt;</var><text>set&#160;local&#160;variable:&#160;name=</text><var>'bounty'</var><text>&#160;value=</text><var>null</var></line>
+<line indent="&#160;&#160;"><text>return&#160;</text><var>null</var></line>
+<line indent="&#160;"><text>end</text></line>
+<line indent="&#160;"></line>
 <line indent=""><comment><text>*&#160;</text><var>Run&#160;checked&#160;depending&#160;on&#160;galaxy&#160;time&#160;step</var></comment></line>
 <line indent="&#160;"><var>$current.time&#160;=&#160;</var><text>playing&#160;time</text></line>
 <line indent="&#160;"><var>if&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;is&#160;in&#160;active&#160;sector</text></line>
@@ -116,9 +128,9 @@
 
 <sval type="array" size="10">
   <sval type="string" val="plugin.guilds.bounty.watch"/>
-  <sval type="int" val="66"/>
+  <sval type="int" val="73"/>
   <sval type="string" val="Guilds: Bounty, watch script"/>
-  <sval type="int" val="2"/>
+  <sval type="int" val="3"/>
   <sval type="int" val="0"/>
   <sval type="array" size="11">
     <sval type="string" val="a.bounty"/>
@@ -133,7 +145,7 @@
     <sval type="string" val="ship.owner"/>
     <sval type="string" val="data"/>
   </sval>
-  <sval type="array" size="38">
+  <sval type="array" size="42">
     <sval type="array" size="4">
       <sval type="int" val="105"/>
       <sval type="int" val="-2147483647"/>
@@ -163,13 +175,51 @@
       <sval type="int" val="1"/>
       <sval type="int" val="5"/>
       <sval type="string" val="bounty"/>
-      <sval type="int" val="-1610605047"/>
+      <sval type="int" val="-1610604023"/>
     </sval>
     <sval type="array" size="4">
       <sval type="int" val="105"/>
       <sval type="int" val="-2147483647"/>
       <sval type="int" val="4"/>
       <sval type="int" val="1000"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610610173"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="155"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="bounty.watch"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="155"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="bounty"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="141"/>
@@ -179,7 +229,7 @@
       <sval type="int" val="761"/>
       <sval type="int" val="131075"/>
       <sval type="int" val="1"/>
-      <sval type="int" val="-1610610173"/>
+      <sval type="int" val="-1610609149"/>
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
@@ -192,13 +242,13 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="14"/>
+      <sval type="int" val="18"/>
     </sval>
     <sval type="array" size="4">
       <sval type="int" val="2451"/>
       <sval type="int" val="131075"/>
       <sval type="int" val="6"/>
-      <sval type="int" val="-1610609403"/>
+      <sval type="int" val="-1610608379"/>
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
@@ -211,7 +261,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="14"/>
+      <sval type="int" val="18"/>
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
@@ -224,7 +274,7 @@
     </sval>
     <sval type="array" size="21">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610605309"/>
+      <sval type="int" val="-1610604285"/>
       <sval type="int" val="5"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="3"/>
@@ -249,7 +299,7 @@
       <sval type="int" val="745"/>
       <sval type="int" val="131075"/>
       <sval type="int" val="1"/>
-      <sval type="int" val="-1610608125"/>
+      <sval type="int" val="-1610607101"/>
     </sval>
     <sval type="array" size="4">
       <sval type="int" val="1008"/>
@@ -259,7 +309,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="20"/>
+      <sval type="int" val="24"/>
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
@@ -292,7 +342,7 @@
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610605565"/>
+      <sval type="int" val="-1610604541"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="5"/>
@@ -315,7 +365,7 @@
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610605559"/>
+      <sval type="int" val="-1610604535"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="7"/>
@@ -336,11 +386,11 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="1167"/>
-      <sval type="int" val="31"/>
+      <sval type="int" val="35"/>
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="23"/>
+      <sval type="int" val="27"/>
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
@@ -372,7 +422,7 @@
     </sval>
     <sval type="array" size="49">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610603517"/>
+      <sval type="int" val="-1610602493"/>
       <sval type="int" val="15"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="9"/>
@@ -467,7 +517,7 @@
       <sval type="string" val="Bounty Data"/>
     </sval>
   </sval>
-  <sval type="array" size="16">
+  <sval type="array" size="18">
     <sval type="array" size="2">
       <sval type="int" val="1"/>
       <sval type="int" val="2"/>
@@ -476,61 +526,69 @@
       <sval type="int" val="6"/>
       <sval type="int" val="2"/>
     </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="int" val="2"/>
+    </sval>
     <sval type="array" size="3">
-      <sval type="int" val="6"/>
+      <sval type="int" val="10"/>
       <sval type="int" val="1"/>
       <sval type="string" val="Run checked depending on galaxy time step"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="13"/>
+      <sval type="int" val="17"/>
       <sval type="int" val="5"/>
-    </sval>
-    <sval type="array" size="2">
-      <sval type="int" val="14"/>
-      <sval type="int" val="4"/>
-    </sval>
-    <sval type="array" size="2">
-      <sval type="int" val="14"/>
-      <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="18"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="18"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="22"/>
       <sval type="int" val="5"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="20"/>
+      <sval type="int" val="24"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="28"/>
+      <sval type="int" val="32"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="28"/>
+      <sval type="int" val="32"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="29"/>
+      <sval type="int" val="33"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="29"/>
+      <sval type="int" val="33"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="30"/>
+      <sval type="int" val="34"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="31"/>
+      <sval type="int" val="35"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="31"/>
+      <sval type="int" val="35"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="36"/>
+      <sval type="int" val="40"/>
       <sval type="int" val="4"/>
     </sval>
   </sval>
@@ -538,5 +596,5 @@
 </sval>
 
 </codearray>
-<nosignature>9314</nosignature>
+<nosignature>1228</nosignature>
 </script>
