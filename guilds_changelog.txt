@@ -4,6 +4,7 @@ Fixed Dock Tender if max is set higher than station max
 Fixed bounties not clearing on captured ships
 Fixed captured bounty ships trying to dock at stations
 Fixed Guild trades having both buy/sell on the same board
+Fixed description for Duke's Chariot
 Adjusted ware price and availability on Merceneries Guild Board
 Removed Guild sectors from Xenon Incursions
 Added Pure Sandbox start - Beryll Codebreaker
