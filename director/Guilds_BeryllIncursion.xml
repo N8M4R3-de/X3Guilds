@@ -4936,6 +4936,19 @@
 						</do_all>						
 					</action>
 					<cues>
+						<cue name="Beryll_Incursion_Stage2_BoostRep" delay="5s">
+							<condition>
+								<check_value value="{player.notoriety.yaki}" max="-1000"/>
+							</condition>
+							<action>
+								<reward_player>
+									<notoriety>
+										<relation race="yaki" exact="-1000" operation="set"/>
+									</notoriety>
+								</reward_player>
+							</action>
+						</cue>
+
 						<cue name="Beryll_Incursion_Stage2_Rep" delay="5s">
 							<condition>
 								<check_value value="{player.notoriety.yaki.rank}" min="6"/>
@@ -4945,6 +4958,7 @@
 							</timing>
 							<action>
 								<do_all>
+									<cancel_cue cue="Beryll_Incursion_Stage2_BoostRep"/>
 									<find_station race="yaki" name="Beryll_Incursion.YakiContactStation" silent="1">
 										<sector sector="Beryll_Incursion.YakiSectorStart"/>
 										<jumps exact="0"/>
@@ -4994,6 +5008,7 @@
 									</condition>
 									<action>
 										<do_all>
+											<cancel_cue cue="Beryll_Incursion_Stage2_BoostRep"/>
 											<remove_offer actor="Beryll_Incursion.YakiContact" discipline="XXXXP" conversation="L3GPL_01_02_01"/>
 											<create_ship name="Beryll_Incursion.YakiEscortShip" typename="{lookup.race.shiptype.ts.armouredtransport@paranid}" race="paranid" capturable="0" boardable="0" racelogic="0" invincible="1">
 												<position x="50km" y="5km" z="-100km" min="1km" max="5km"/>
