@@ -2,7 +2,7 @@
 <?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
 <script>
 <name>setup.cycrow.guilds</name>
-<version>14</version>
+<version>15</version>
 <engineversion>73</engineversion>
 <description>Guilds: Setup script</description>
 <arguments>
@@ -48,6 +48,7 @@
       $flying.ware ->set flying ware as blueprint: [TRUE]
       $flying.ware ->set discovery points: points=30000
       $flying.ware ->set invincible: enabled=[TRUE]
+@     = wait 100 ms
       $flying.ware ->set LFL target: [TRUE], range=200000
     end
     
@@ -188,6 +189,7 @@
   set ware flags: ware=Enhanced Mineral Scanner flags=$wareflags
   set ware flags: ware=Advanced Jumpdrive Accelerator flags=$wareflags
   set ware flags: ware=FTL Jumpdrive Extension flags=$wareflags
+  set ware flags: ware=Shield Booster flags=$wareflags
   $wareflags = [WareType.Once] | [WareType.Equipment] | [WareType.NoPrice]
   set ware flags: ware=Secret Service Ship Scanner flags=$wareflags
   $wareflags = [WareType.Once] | [WareType.Equipment] | [WareType.Software]
@@ -278,6 +280,7 @@
   set equipment install script: ware=Docking Extension Software, script=plugin.guilds.dockingext, task=20001
   set equipment install script: ware=Overtuned Drive Core, script=plugin.guilds.overtune, task=20002
   set equipment install script: ware=Solar Energy Generator, script=plugin.advjump.solar, task=20003
+  set equipment install script: ware=Shield Booster, script=plugin.guilds.shieldboost.check, task=20004
   
   add ware deployment: ware=Small Orbital Weapons Platform, script=plugin.owp.deploy
   add ware deployment: ware=Medium Orbital Weapons Platform, script=plugin.owp.deploy
@@ -515,6 +518,7 @@
   $key.id = register hotkey: script=plugin.advjump.hotkey.target, type=[Input.Menus], page id=7539, text id=38, menu=[FALSE], key=null
   $key.id = register hotkey: script=plugin.guilds.hotkey.overtune, type=[Input.Upgrades], page id=$page.id, text id=4030, menu=[FALSE], key=null
   $key.id = register hotkey: script=plugin.tradesys.wsearch.hotkey, type=[Input.Freight], page id=9616, text id=1, menu=[FALSE], key=null
+  $key.id = register hotkey: script=plugin.guilds.shieldboost.hotkey, type=[Input.Upgrades], page id=$page.id, text id=4190, menu=[FALSE], key=null
   $key.logistics = register hotkey: script=plugin.logistics.menu, type=[Input.Menus], page id=$page.id, text id=4200, menu=[FALSE], key=null
   $data['key.logistics'] = $key.logistics
   
@@ -745,6 +749,7 @@
 <line indent="&#160;&#160;"><var>$flying.ware&#160;-&gt;</var><text>set&#160;flying&#160;ware&#160;as&#160;blueprint:&#160;</text><var>[TRUE]</var></line>
 <line indent="&#160;&#160;"><var>$flying.ware&#160;-&gt;</var><text>set&#160;discovery&#160;points:&#160;points=</text><var>30000</var></line>
 <line indent="&#160;&#160;"><var>$flying.ware&#160;-&gt;</var><text>set&#160;invincible:&#160;enabled=</text><var>[TRUE]</var></line>
+<line interruptable="@" indent="&#160;&#160;"><var>=&#160;</var><text>wait&#160;</text><var>100</var><text>&#160;ms</text></line>
 <line indent="&#160;&#160;"><var>$flying.ware&#160;-&gt;</var><text>set&#160;LFL&#160;target:&#160;</text><var>[TRUE]</var><text>,&#160;range=</text><var>200000</var></line>
 <line indent="&#160;"><text>end</text></line>
 <line indent="&#160;"></line>
@@ -885,6 +890,7 @@
 <line indent=""><text>set&#160;ware&#160;flags:&#160;ware=</text><var>Enhanced&#160;Mineral&#160;Scanner</var><text>&#160;flags=</text><var>$wareflags</var></line>
 <line indent=""><text>set&#160;ware&#160;flags:&#160;ware=</text><var>Advanced&#160;Jumpdrive&#160;Accelerator</var><text>&#160;flags=</text><var>$wareflags</var></line>
 <line indent=""><text>set&#160;ware&#160;flags:&#160;ware=</text><var>FTL&#160;Jumpdrive&#160;Extension</var><text>&#160;flags=</text><var>$wareflags</var></line>
+<line indent=""><text>set&#160;ware&#160;flags:&#160;ware=</text><var>Shield&#160;Booster</var><text>&#160;flags=</text><var>$wareflags</var></line>
 <line indent=""><var>$wareflags&#160;=&#160;</var><var>[WareType.Once]</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[WareType.Equipment]</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[WareType.NoPrice]</var></line>
 <line indent=""><text>set&#160;ware&#160;flags:&#160;ware=</text><var>Secret&#160;Service&#160;Ship&#160;Scanner</var><text>&#160;flags=</text><var>$wareflags</var></line>
 <line indent=""><var>$wareflags&#160;=&#160;</var><var>[WareType.Once]</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[WareType.Equipment]</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[WareType.Software]</var></line>
@@ -975,6 +981,7 @@
 <line indent=""><text>set&#160;equipment&#160;install&#160;script:&#160;ware=</text><var>Docking&#160;Extension&#160;Software</var><text>,&#160;script=</text><call>plugin.guilds.dockingext</call><text>,&#160;task=</text><var>20001</var></line>
 <line indent=""><text>set&#160;equipment&#160;install&#160;script:&#160;ware=</text><var>Overtuned&#160;Drive&#160;Core</var><text>,&#160;script=</text><call>plugin.guilds.overtune</call><text>,&#160;task=</text><var>20002</var></line>
 <line indent=""><text>set&#160;equipment&#160;install&#160;script:&#160;ware=</text><var>Solar&#160;Energy&#160;Generator</var><text>,&#160;script=</text><call>plugin.advjump.solar</call><text>,&#160;task=</text><var>20003</var></line>
+<line indent=""><text>set&#160;equipment&#160;install&#160;script:&#160;ware=</text><var>Shield&#160;Booster</var><text>,&#160;script=</text><call>plugin.guilds.shieldboost.check</call><text>,&#160;task=</text><var>20004</var></line>
 <line indent=""></line>
 <line indent=""><text>add&#160;ware&#160;deployment:&#160;ware=</text><var>Small&#160;Orbital&#160;Weapons&#160;Platform</var><text>,&#160;script=</text><call>plugin.owp.deploy</call></line>
 <line indent=""><text>add&#160;ware&#160;deployment:&#160;ware=</text><var>Medium&#160;Orbital&#160;Weapons&#160;Platform</var><text>,&#160;script=</text><call>plugin.owp.deploy</call></line>
@@ -1212,6 +1219,7 @@
 <line indent=""><var>$key.id&#160;=&#160;</var><text>register&#160;hotkey:&#160;script=</text><call>plugin.advjump.hotkey.target</call><text>,&#160;type=</text><var>[Input.Menus]</var><text>,&#160;page&#160;id=</text><var>7539</var><text>,&#160;text&#160;id=</text><var>38</var><text>,&#160;menu=</text><var>[FALSE]</var><text>,&#160;key=</text><var>null</var></line>
 <line indent=""><var>$key.id&#160;=&#160;</var><text>register&#160;hotkey:&#160;script=</text><call>plugin.guilds.hotkey.overtune</call><text>,&#160;type=</text><var>[Input.Upgrades]</var><text>,&#160;page&#160;id=</text><var>$page.id</var><text>,&#160;text&#160;id=</text><var>4030</var><text>,&#160;menu=</text><var>[FALSE]</var><text>,&#160;key=</text><var>null</var></line>
 <line indent=""><var>$key.id&#160;=&#160;</var><text>register&#160;hotkey:&#160;script=</text><call>plugin.tradesys.wsearch.hotkey</call><text>,&#160;type=</text><var>[Input.Freight]</var><text>,&#160;page&#160;id=</text><var>9616</var><text>,&#160;text&#160;id=</text><var>1</var><text>,&#160;menu=</text><var>[FALSE]</var><text>,&#160;key=</text><var>null</var></line>
+<line indent=""><var>$key.id&#160;=&#160;</var><text>register&#160;hotkey:&#160;script=</text><call>plugin.guilds.shieldboost.hotkey</call><text>,&#160;type=</text><var>[Input.Upgrades]</var><text>,&#160;page&#160;id=</text><var>$page.id</var><text>,&#160;text&#160;id=</text><var>4190</var><text>,&#160;menu=</text><var>[FALSE]</var><text>,&#160;key=</text><var>null</var></line>
 <line indent=""><var>$key.logistics&#160;=&#160;</var><text>register&#160;hotkey:&#160;script=</text><call>plugin.logistics.menu</call><text>,&#160;type=</text><var>[Input.Menus]</var><text>,&#160;page&#160;id=</text><var>$page.id</var><text>,&#160;text&#160;id=</text><var>4200</var><text>,&#160;menu=</text><var>[FALSE]</var><text>,&#160;key=</text><var>null</var></line>
 <line indent=""><var>$data</var><text>[</text><var>'key.logistics'</var><text>]&#160;=&#160;</text><var>$key.logistics</var></line>
 <line indent=""></line>
@@ -1407,7 +1415,7 @@
   <sval type="string" val="setup.cycrow.guilds"/>
   <sval type="int" val="73"/>
   <sval type="string" val="Guilds: Setup script"/>
-  <sval type="int" val="14"/>
+  <sval type="int" val="15"/>
   <sval type="int" val="0"/>
   <sval type="array" size="36">
     <sval type="string" val="script.engine"/>
@@ -1447,7 +1455,7 @@
     <sval type="string" val="page"/>
     <sval type="string" val="obj"/>
   </sval>
-  <sval type="array" size="594">
+  <sval type="array" size="598">
     <sval type="array" size="2">
       <sval type="int" val="152"/>
       <sval type="int" val="0"/>
@@ -1569,7 +1577,7 @@
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
-      <sval type="int" val="-536856316"/>
+      <sval type="int" val="-536856060"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="6"/>
@@ -1601,7 +1609,7 @@
       <sval type="int" val="706"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="7"/>
-      <sval type="int" val="-1610605309"/>
+      <sval type="int" val="-1610605053"/>
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
@@ -1665,6 +1673,12 @@
       <sval type="int" val="131075"/>
       <sval type="int" val="10"/>
     </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="105"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="100"/>
+    </sval>
     <sval type="array" size="7">
       <sval type="int" val="2631"/>
       <sval type="int" val="131074"/>
@@ -1691,7 +1705,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="1167"/>
-      <sval type="int" val="581"/>
+      <sval type="int" val="585"/>
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="1068"/>
@@ -1703,7 +1717,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="1167"/>
-      <sval type="int" val="581"/>
+      <sval type="int" val="585"/>
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="1069"/>
@@ -1715,7 +1729,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="1167"/>
-      <sval type="int" val="581"/>
+      <sval type="int" val="585"/>
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="1069"/>
@@ -1727,7 +1741,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="1167"/>
-      <sval type="int" val="581"/>
+      <sval type="int" val="585"/>
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="1733"/>
@@ -1868,7 +1882,7 @@
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610598397"/>
+      <sval type="int" val="-1610598141"/>
       <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="13"/>
@@ -1904,7 +1918,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="65"/>
+      <sval type="int" val="66"/>
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="129"/>
@@ -1916,7 +1930,7 @@
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610596093"/>
+      <sval type="int" val="-1610595837"/>
       <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="5"/>
@@ -1940,7 +1954,7 @@
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610596343"/>
+      <sval type="int" val="-1610596087"/>
       <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="5"/>
@@ -1969,7 +1983,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="60"/>
+      <sval type="int" val="61"/>
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="130"/>
@@ -2398,7 +2412,7 @@
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610577655"/>
+      <sval type="int" val="-1610577399"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="19"/>
@@ -2536,7 +2550,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="120"/>
+      <sval type="int" val="121"/>
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
@@ -2585,6 +2599,13 @@
       <sval type="int" val="1708"/>
       <sval type="int" val="9"/>
       <sval type="int" val="1048765"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="21"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="1708"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="1048780"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="21"/>
     </sval>
@@ -3393,6 +3414,14 @@
       <sval type="string" val="plugin.advjump.solar"/>
       <sval type="int" val="4"/>
       <sval type="int" val="20003"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="2679"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="1048780"/>
+      <sval type="string" val="plugin.guilds.shieldboost.check"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="20004"/>
     </sval>
     <sval type="array" size="4">
       <sval type="int" val="3207"/>
@@ -4523,7 +4552,7 @@
       <sval type="int" val="706"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="7"/>
-      <sval type="int" val="-1610509309"/>
+      <sval type="int" val="-1610508541"/>
     </sval>
     <sval type="array" size="4">
       <sval type="int" val="701"/>
@@ -4533,7 +4562,7 @@
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610509309"/>
+      <sval type="int" val="-1610508541"/>
       <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="22"/>
@@ -4576,7 +4605,7 @@
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610509309"/>
+      <sval type="int" val="-1610508541"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="12"/>
@@ -4593,7 +4622,7 @@
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610509303"/>
+      <sval type="int" val="-1610508535"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="23"/>
@@ -4617,7 +4646,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="400"/>
+      <sval type="int" val="403"/>
     </sval>
     <sval type="array" size="9">
       <sval type="int" val="2327"/>
@@ -4731,7 +4760,7 @@
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610501885"/>
+      <sval type="int" val="-1610501117"/>
       <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="0"/>
@@ -5021,6 +5050,21 @@
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="2352"/>
+      <sval type="int" val="24"/>
+      <sval type="string" val="plugin.guilds.shieldboost.hotkey"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="863"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="4190"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="2352"/>
       <sval type="int" val="25"/>
       <sval type="string" val="plugin.logistics.menu"/>
       <sval type="int" val="131075"/>
@@ -5103,7 +5147,7 @@
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610495485"/>
+      <sval type="int" val="-1610494461"/>
       <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="13"/>
@@ -5160,7 +5204,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="461"/>
+      <sval type="int" val="465"/>
     </sval>
     <sval type="array" size="10">
       <sval type="int" val="2741"/>
@@ -5938,7 +5982,7 @@
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="1636"/>
-      <sval type="int" val="-536733689"/>
+      <sval type="int" val="-536732665"/>
       <sval type="int" val="10"/>
       <sval type="int" val="10"/>
       <sval type="int" val="10"/>
@@ -5963,7 +6007,7 @@
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
-      <sval type="int" val="-536732668"/>
+      <sval type="int" val="-536731644"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="12"/>
@@ -5985,7 +6029,7 @@
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="129"/>
-      <sval type="int" val="-536731644"/>
+      <sval type="int" val="-536730620"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="12"/>
       <sval type="int" val="5"/>
@@ -6034,7 +6078,7 @@
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="129"/>
-      <sval type="int" val="-536730620"/>
+      <sval type="int" val="-536729596"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="12"/>
       <sval type="int" val="5"/>
@@ -6083,7 +6127,7 @@
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="129"/>
-      <sval type="int" val="-536729852"/>
+      <sval type="int" val="-536728828"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="12"/>
       <sval type="int" val="5"/>
@@ -6114,7 +6158,7 @@
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="129"/>
-      <sval type="int" val="-536729084"/>
+      <sval type="int" val="-536728060"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="12"/>
       <sval type="int" val="5"/>
@@ -6382,7 +6426,7 @@
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610461181"/>
+      <sval type="int" val="-1610460157"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="11"/>
@@ -6397,7 +6441,7 @@
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610461175"/>
+      <sval type="int" val="-1610460151"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="19"/>
@@ -6420,13 +6464,13 @@
       <sval type="int" val="706"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="35"/>
-      <sval type="int" val="-1610461437"/>
+      <sval type="int" val="-1610460413"/>
     </sval>
     <sval type="array" size="4">
       <sval type="int" val="706"/>
       <sval type="int" val="131075"/>
       <sval type="int" val="3"/>
-      <sval type="int" val="-1610461688"/>
+      <sval type="int" val="-1610460664"/>
     </sval>
     <sval type="array" size="7">
       <sval type="int" val="744"/>
@@ -6448,7 +6492,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="584"/>
+      <sval type="int" val="588"/>
     </sval>
     <sval type="array" size="1">
       <sval type="int" val="1168"/>
@@ -6508,28 +6552,24 @@
       <sval type="string" val="do one time init"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="29"/>
+      <sval type="int" val="30"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="29"/>
+      <sval type="int" val="30"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="30"/>
+      <sval type="int" val="31"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="30"/>
+      <sval type="int" val="31"/>
       <sval type="int" val="1"/>
       <sval type="string" val="adjust pirate/yaki relations"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="38"/>
-      <sval type="int" val="2"/>
-    </sval>
-    <sval type="array" size="2">
-      <sval type="int" val="51"/>
+      <sval type="int" val="39"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
@@ -6537,110 +6577,110 @@
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="56"/>
+      <sval type="int" val="53"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="57"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="56"/>
+      <sval type="int" val="57"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="56"/>
+      <sval type="int" val="57"/>
       <sval type="int" val="1"/>
       <sval type="string" val="check if the data is an older version"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="57"/>
+      <sval type="int" val="58"/>
       <sval type="int" val="5"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="64"/>
-      <sval type="int" val="4"/>
-    </sval>
-    <sval type="array" size="2">
       <sval type="int" val="65"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="65"/>
+      <sval type="int" val="66"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="65"/>
+      <sval type="int" val="66"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="66"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="66"/>
+      <sval type="int" val="67"/>
       <sval type="int" val="1"/>
       <sval type="string" val="Initilise the Guilds Data"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="67"/>
+      <sval type="int" val="68"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="67"/>
+      <sval type="int" val="68"/>
       <sval type="int" val="1"/>
       <sval type="string" val="Setup Repair Drones"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="70"/>
+      <sval type="int" val="71"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="70"/>
+      <sval type="int" val="71"/>
       <sval type="int" val="1"/>
       <sval type="string" val="Setup Races"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="97"/>
+      <sval type="int" val="98"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="102"/>
+      <sval type="int" val="103"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="102"/>
+      <sval type="int" val="103"/>
       <sval type="int" val="1"/>
       <sval type="string" val="Setup luxury wares"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="118"/>
+      <sval type="int" val="119"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="118"/>
+      <sval type="int" val="119"/>
       <sval type="int" val="1"/>
       <sval type="string" val="set illegal wares"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="137"/>
+      <sval type="int" val="138"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="137"/>
+      <sval type="int" val="138"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="137"/>
+      <sval type="int" val="138"/>
       <sval type="int" val="1"/>
       <sval type="string" val="setup equipment"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="190"/>
+      <sval type="int" val="192"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="190"/>
+      <sval type="int" val="192"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="227"/>
-      <sval type="int" val="2"/>
-    </sval>
-    <sval type="array" size="2">
-      <sval type="int" val="230"/>
+      <sval type="int" val="229"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
@@ -6648,163 +6688,151 @@
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="234"/>
+      <sval type="int" val="236"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="234"/>
+      <sval type="int" val="237"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="237"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="234"/>
+      <sval type="int" val="237"/>
       <sval type="int" val="1"/>
       <sval type="string" val="setup weapons"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="350"/>
+      <sval type="int" val="353"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="390"/>
+      <sval type="int" val="393"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="390"/>
+      <sval type="int" val="393"/>
       <sval type="int" val="1"/>
       <sval type="string" val="adjust sectors"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="404"/>
+      <sval type="int" val="407"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="404"/>
+      <sval type="int" val="407"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="404"/>
+      <sval type="int" val="407"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="404"/>
+      <sval type="int" val="407"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="404"/>
+      <sval type="int" val="407"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="404"/>
+      <sval type="int" val="407"/>
       <sval type="int" val="1"/>
       <sval type="string" val="add achivements"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="414"/>
+      <sval type="int" val="417"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="414"/>
+      <sval type="int" val="417"/>
       <sval type="int" val="1"/>
       <sval type="string" val="add black market weapons"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="433"/>
+      <sval type="int" val="436"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="433"/>
+      <sval type="int" val="436"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="433"/>
+      <sval type="int" val="436"/>
       <sval type="int" val="1"/>
       <sval type="string" val="add bbs articles"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="434"/>
+      <sval type="int" val="437"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="434"/>
+      <sval type="int" val="437"/>
       <sval type="int" val="1"/>
       <sval type="string" val="Start background tasks"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="438"/>
+      <sval type="int" val="441"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="438"/>
+      <sval type="int" val="441"/>
       <sval type="int" val="1"/>
       <sval type="string" val="Add Hotkeys"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="447"/>
+      <sval type="int" val="451"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="452"/>
+      <sval type="int" val="456"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="458"/>
+      <sval type="int" val="462"/>
       <sval type="int" val="5"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="461"/>
+      <sval type="int" val="465"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="467"/>
+      <sval type="int" val="471"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="467"/>
+      <sval type="int" val="471"/>
       <sval type="int" val="1"/>
       <sval type="string" val="Add menus to context menus"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="479"/>
+      <sval type="int" val="483"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="481"/>
+      <sval type="int" val="485"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="487"/>
+      <sval type="int" val="491"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="488"/>
+      <sval type="int" val="492"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="497"/>
+      <sval type="int" val="501"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="504"/>
+      <sval type="int" val="508"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="521"/>
-      <sval type="int" val="2"/>
-    </sval>
-    <sval type="array" size="2">
-      <sval type="int" val="527"/>
-      <sval type="int" val="2"/>
-    </sval>
-    <sval type="array" size="2">
-      <sval type="int" val="528"/>
-      <sval type="int" val="2"/>
-    </sval>
-    <sval type="array" size="2">
-      <sval type="int" val="529"/>
-      <sval type="int" val="2"/>
-    </sval>
-    <sval type="array" size="2">
-      <sval type="int" val="530"/>
+      <sval type="int" val="525"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
@@ -6812,16 +6840,24 @@
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
+      <sval type="int" val="532"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
       <sval type="int" val="533"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="536"/>
+      <sval type="int" val="534"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="540"/>
-      <sval type="int" val="4"/>
+      <sval type="int" val="535"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="537"/>
+      <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="540"/>
@@ -6832,80 +6868,88 @@
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
+      <sval type="int" val="544"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
       <sval type="int" val="548"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="551"/>
+      <sval type="int" val="552"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="554"/>
+      <sval type="int" val="555"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="554"/>
+      <sval type="int" val="558"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="558"/>
       <sval type="int" val="2"/>
-    </sval>
-    <sval type="array" size="3">
-      <sval type="int" val="554"/>
-      <sval type="int" val="1"/>
-      <sval type="string" val="Casino Games"/>
     </sval>
     <sval type="array" size="3">
       <sval type="int" val="558"/>
       <sval type="int" val="1"/>
+      <sval type="string" val="Casino Games"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="562"/>
+      <sval type="int" val="1"/>
       <sval type="string" val="Boarding"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="560"/>
+      <sval type="int" val="564"/>
       <sval type="int" val="1"/>
       <sval type="string" val="Trade Sys"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="563"/>
+      <sval type="int" val="567"/>
       <sval type="int" val="1"/>
       <sval type="string" val="Advanced Jumpdrive"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="565"/>
+      <sval type="int" val="569"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="3">
-      <sval type="int" val="565"/>
+      <sval type="int" val="569"/>
       <sval type="int" val="1"/>
       <sval type="string" val="====================="/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="566"/>
+      <sval type="int" val="570"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="566"/>
+      <sval type="int" val="570"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="581"/>
+      <sval type="int" val="585"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="581"/>
+      <sval type="int" val="585"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="591"/>
+      <sval type="int" val="595"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="592"/>
+      <sval type="int" val="596"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="592"/>
+      <sval type="int" val="596"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="593"/>
+      <sval type="int" val="597"/>
       <sval type="int" val="2"/>
     </sval>
   </sval>
@@ -6913,5 +6957,5 @@
 </sval>
 
 </codearray>
-<nosignature>6429</nosignature>
+<nosignature>4746</nosignature>
 </script>

@@ -9,6 +9,7 @@ Fixed voice for Damaged Component
 Adjusted ware price and availability on Merceneries Guild Board
 Removed Guild sectors from Xenon Incursions
 Added Pure Sandbox start - Beryll Codebreaker
+Added Shield Booster
 
 v0.85
 Fixed Celestial Navigators Recruitment mission

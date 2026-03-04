@@ -848,6 +848,15 @@
  <t id="92364">This crystal was developed by the Terrans to channel the immense energy needed for warp gate functionality.\nIt serves as a critical component in stabilising the spatial field during gate activation.\nWithout it, the gate cannot maintain a consistent or safe connection between sectors.\nIts unique properties make it extremely rare and difficult to replicate.</t>
  <t id="92373">Crystalline Matrix</t>
  <t id="92374">The Crystalline Matrix is a rare and highly specialised mineral formation capable of channelling and stabilising vast quantities of subspace energy. Its unique lattice structure allows for the precise manipulation of quantum resonance patterns, making it an essential component in the construction and operation of jumpgate cores and long-range energy transfer systems.\n\nThe Terran Pioneers once used these crystals during the initial colonisation era to construct smaller-scale subspace conduits and prototype gate stabilisers. However, due to the catastrophic loss of supply sources and the inability to artificially reproduce the matrix's properties, production ceased entirely following their isolation.\n\nModern Terran science recognises the Crystalline Matrix as irreplaceable,while its energy potential can be modelled, no synthetic substitute has ever successfully replicated its ability to harmonise subspace frequencies.  Recent rediscovery of viable deposits and recovered matrix shards has reignited Terran research efforts, particularly in the restoration of ancient or damaged gate systems. Without these crystals, stable wormhole generation at large scale remains impossible.</t>
+ <t id="92381">Shield</t>
+ <t id="92382">Booster</t>
+ <t id="92383">{17,92381} {17,92382}</t>
+ <t id="92384">The Shield Booster enhances your vessel’s defensive resilience by dramatically increasing shield regeneration during combat. When activated, it channels additional energy into your shield array, allowing you to recover from incoming fire far more quickly than standard systems permit.  To operate, the system requires a Shield Booster Core to be installed. This core acts as the charge reservoir and control unit for the booster. A new core is automatically fitted each time you dock at a station, ensuring the system is rearmed and ready for your next engagement.  Each docking provides a single booster charge, granting you one shield surge between dockings. Use it wisely, timing the activation at the height of battle can mean the difference between a narrow escape and total destruction.</t>
+ <t id="92393">Shield Booster Core</t>
+ <t id="92394">The Shield Booster Core is a single-use energy module that powers your Shield Booster system. When activated, it releases a concentrated surge of energy to rapidly accelerate shield regeneration. Each core is consumed on use and automatically replaced when you dock, providing one shield boost per docking.</t>
+ <t id="92401">Production Fab</t>
+ <t id="92403">{17,92381} {17,92382} {17,92401}</t>
+ <t id="92404">This production fab manufactures the Shield Booster Cores.</t>
 </page>
 
 <page id="390099" description="Player Responses">
@@ -5205,6 +5214,11 @@
  <t id="4113">Open Command Console</t>
  <t id="4114">Select All</t>
  <t id="4115">Deselect All</t>
+ <t id="4190">Activate Shield Booster</t>
+ <t id="4191">Boosting Shields</t>
+ <t id="4192">Missing Equipment: \033R%s\033X</t>
+ <t id="4193">No active shield core</t>
+ <t id="4194">Shield Booster Core loaded and ready to go</t>
  <t id="4200">Logistics Network</t>
  <t id="4201">Enter the new networks name</t>
  <t id="4202">Create New Network</t>

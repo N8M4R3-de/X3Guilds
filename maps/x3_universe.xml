@@ -1394,6 +1394,8 @@
 		</o>
 		<o f="1" t="6" s="SS_FAC_TR_F6_PL_1" x="-15336805" y="0" z="-3427710" r="29" a="32768" b="0" g="0">
 		</o>
+		<o f="3" t="6" s="SS_FAC_TR_SC_PL" x="14677630" y="0" z="12418857" r="29" a="32768" b="0" g="0">
+		</o>
 		<o f="1" t="5" s="SS_DOCK_TR_LOST_1" x="6609328" y="5299767" z="7910100" r="29" a="32768" b="0" g="0">
 			<o t="23" s="8">
 				<o t="8" s="SS_LASER_EMP"/>
@@ -5280,6 +5282,7 @@
 				<o t="6" s="SS_FAC_CTUBE"/>
 				<o t="6" s="SS_FAC_TR_LOST_PP_XL"/>
 				<o t="6" s="SS_FAC_TR_LOST_PP_L"/>
+				<o t="6" s="SS_FAC_TR_SC_PL"/>
 				<o t="7" s="SS_SH_USC_TS"/>
 				<o t="7" s="SS_SH_TR_LOST_M4"/>
 				<o t="7" s="SS_SH_TR_LOST_M3"/>
@@ -5299,6 +5302,10 @@
 			</o>
 		</o>
 		<o f="1" t="6" s="SS_FAC_TR_REPAIR" x="5542943" y="0" z="-19045819" r="29" a="32768" b="0" g="0">
+		</o>
+		<o f="1" t="6" s="SS_FAC_TR_SC_PL" x="-20603428" y="11171828" z="8303677" r="29" a="32768" b="0" g="0">
+		</o>
+		<o f="3" t="6" s="SS_FAC_TR_SC_PL" x="-17198168" y="-4178693" z="20324132" r="29" a="32768" b="0" g="0">
 		</o>
 		<o f="1" t="5" s="SS_DOCK_TR_SECRET" x="13975529" y="-2696278" z="-12407176" r="29" a="32768" b="0" g="0">
 			<o t="23" s="8">
@@ -5324,6 +5331,8 @@
 				<o t="16" s="SS_WARE_ADVJUMP"/>
 				<o t="16" s="SS_WARE_ADVJUMP_ACCEL"/>
 				<o t="16" s="SS_WARE_ADVJUMP_FTL"/>
+				<o t="16" s="SS_WARE_SHIELDCORE"/>
+				<o t="16" s="SS_WARE_SHIELDBOOST"/>
 			</o>
 		</o>
 		<o f="1" t="5" s="SS_DOCK_TR_LOST_2" x="-8454067" y="4952128" z="5832984" r="29" a="32768" b="512" g="17112">

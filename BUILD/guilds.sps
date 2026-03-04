@@ -234,3 +234,6 @@ UpdateFile: $SAVEDIR/SPK
 # Used Tasks
 # 20000 - 
 # 20001 - Docking Extension
+# 20002 - Overtuned Drive Core
+# 20003 - Solar Energy Generator
+# 20004 - Shield Core

@@ -7490,6 +7490,19 @@
 				<o t="16" s="SS_WARE_TR_TECH8"/>
 			</o>
 		</o>
+		<o t="6" s="SS_FAC_TR_SC_PL" x="7510000" y="0" z="172500000" r="1" a="0" b="0" g="0">
+			<o t="23" s="6">
+				<o t="11" s="SS_WARE_ENERGY"/>
+				<o t="14" s="SS_WARE_TR_F5"/>
+				<o t="15" s="SS_WARE_METAL"/>
+			</o>
+			<o t="23" s="7">
+				<o t="16" s="SS_WARE_SHIELDCORE"/>
+			</o>
+			<o t="23" s="8">
+				<o t="16" s="SS_WARE_TECH206"/>
+			</o>
+		</o>
 		<o t="6" s="SS_FAC_TR_TECH8_PL" x="15000000" y="0" z="172500000" r="1" a="0" b="0" g="0">
 			<o t="23" s="6">
 				<o t="11" s="SS_WARE_ENERGY"/>
