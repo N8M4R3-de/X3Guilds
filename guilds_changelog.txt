@@ -6,8 +6,10 @@ Fixed captured bounty ships trying to dock at stations
 Fixed Guild trades having both buy/sell on the same board
 Fixed description for Duke's Chariot
 Fixed voice for Damaged Component
+Fixed docking on Hector
 Adjusted ware price and availability on Merceneries Guild Board
 Removed Guild sectors from Xenon Incursions
+Removed unused turrets from Aran
 Added Pure Sandbox start - Beryll Codebreaker
 Added Shield Booster
 
