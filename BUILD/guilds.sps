@@ -29,7 +29,7 @@ Version: 0.85
 Game: X3FL 1.3
 
 # The description of the script, displays when installing
-Description: This mods adds a number of feautres to the game include various Guilds, Planatary Economy, Missions and new Plots
+Description: This mods adds a number of features to the game include various Guilds, Planetary Economy, Missions and new Plots
 
 # A direct link to the thread in the egosoft forum
 ForumLink: https://forum.egosoft.com/viewtopic.php?f=201&t=459488
@@ -42,8 +42,8 @@ WebAddress: http://xpluginmanager.co.uk/flscripts/
 # The email address of the author, to allow users to contract if needed
 Email: cycrow@cycrow.co.uk
 
-# Needed Library dependacies, require these to be installed
-Depend: Unoffical Patch|1.3.19|Cycrow
+# Needed Library dependencies, require these to be installed
+Depend: Unofficial Patch|1.3.19|Cycrow
 
 # Ratings Values, 0 to 5, <ease> <changing> <recommended>
 Ratings: 2 5 4
