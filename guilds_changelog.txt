@@ -7,6 +7,7 @@ Fixed Guild trades having both buy/sell on the same board
 Fixed description for Duke's Chariot
 Fixed voice for Damaged Component
 Fixed docking on Hector
+Fixed sector colouring overriding other scripts (Colour by Race)
 Adjusted ware price and availability on Merceneries Guild Board
 Removed Guild sectors from Xenon Incursions
 Removed unused turrets from Aran
