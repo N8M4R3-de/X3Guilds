@@ -292,7 +292,16 @@
 						</cue>
 					</cues>
 				</cue>
-				
+
+				<cue name="Radiant_Military_FixMission3_Patch" delay="1s">
+					<condition>
+						<check_value value="{value@{param@Data Cue}.Mission}" exact="3"/>
+					</condition>
+					<action>
+						<reset_cue cue="Military_Radiant_Mission"/>
+					</action>
+				</cue>
+
 				<cue name="Military_Radiant_Mission" library="1">
 					<documentation>
 						<content name="Military Radiant Missions" type="utility"/>
@@ -316,6 +325,11 @@
 							<do_choose>
 								<do_when value="{value@{param@Data Cue}.Level}" min="7">
 									<do_any>
+										<!--
+										<set_value name="{param@Data Cue}.Mission" exact="1" chance="40"/>
+										<set_value name="{param@Data Cue}.Mission" exact="2" chance="20"/>
+										<set_value name="{param@Data Cue}.Mission" exact="3" chance="40"/>
+										-->
 										<set_value name="{param@Data Cue}.Mission" exact="1" chance="80"/>
 										<set_value name="{param@Data Cue}.Mission" exact="2" chance="20"/>
 									</do_any>
@@ -324,9 +338,15 @@
 									<do_any>
 										<set_value name="{param@Data Cue}.Mission" exact="1" chance="60"/>
 										<set_value name="{param@Data Cue}.Mission" exact="2" chance="40"/>
+										<!--
+										<set_value name="{param@Data Cue}.Mission" exact="1" chance="30"/>
+										<set_value name="{param@Data Cue}.Mission" exact="2" chance="40"/>
+										<set_value name="{param@Data Cue}.Mission" exact="3" chance="30"/>
+										-->
 									</do_any>
 								</do_otherwise>
 							</do_choose>
+							<!--<set_value name="{param@Data Cue}.Mission" exact="3"/>-->
 						</do_all>
 					</action>
 					<cues>
@@ -539,8 +559,8 @@
 													<set_value name="{param@Data Cue}.Mission" exact="99"/>
 												</do_all>
 											</action>
-										</cue>												
-										
+										</cue>
+
 										<cue name="Radiant_Military_Mission1_Briefing">
 											<condition>
 												<conversation_completed answer="briefing" conversation="L2OfferCombat" actor="{param@Leader}"/>
@@ -911,6 +931,125 @@
 													<destroy_actor actor="{param@Leader}"/>
 													<set_value name="{param@Data Cue}.Mission" exact="99"/>
 												</do_all>
+											</action>
+										</cue>
+									</cues>
+								</cue>
+							</cues>
+						</cue>
+
+						<cue name="Radiant_Military_Mission3">
+							<condition>
+								<check_value value="{value@{param@Data Cue}.Mission}" exact="3"/>
+							</condition>
+							<action>
+								<do_all>
+									<create_offer actor="{param@Leader}" cue="{param@Briefing Cue}" conversation="L2OfferCombat" discipline="XFXX"/>
+									<set_value name="{param@Data Cue}.Mission3_Difficulty" min="{lookup.level@easy}" max="{lookup.level@veryhard}" profile="bell"/>
+									<set_value name="{param@Data Cue}.Mission3_Enemy" exact="{lookup.race@pirate}"/>
+									<do_any>
+										<set_value name="{param@Data Cue}.Mission3_Enemy" exact="{lookup.race.randomenemy@{param@Race}}" chance="20"/>
+										<set_value name="{param@Data Cue}.Mission3_Enemy" exact="{lookup.race@pirate}" chance="50"/>
+										<set_value name="{param@Data Cue}.Mission3_Enemy" exact="{lookup.race@xenon}" chance="10"/>
+										<set_value name="{param@Data Cue}.Mission3_Enemy" exact="{lookup.race@khaak}" chance="5"/>
+										<set_value name="{param@Data Cue}.Mission3_Enemy" exact="{lookup.race@yaki}" chance="15"/>
+									</do_any>
+								</do_all>
+							</action>
+							<cues>
+								<cue name="Radiant_Military_CheckResign3">
+									<condition>
+										<check_value value="{value@{param@Joined}}" exact="0"/>
+									</condition>
+									<action>
+										<do_all>
+											<remove_offer actor="{param@Leader}" conversation="L2OfferCombat" discipline="XFXX"/>
+											<destroy_actor actor="{param@Leader}"/>
+											<destroy_object object="{param@Data Cue}.Mission3_LeaderShip" warp="1"/>
+											<destroy_group group="{param@Data Cue}.Mission3_Followers" warp="1"/>
+											<cancel_cue cue="Radiant_Military_Mission3_Briefing"/>
+											<set_value name="{param@Data Cue}.Mission" exact="99"/>
+										</do_all>
+									</action>
+								</cue>
+								<cue name="Radiant_Military_Mission3_Briefing">
+									<condition>
+										<conversation_completed actor="{param@Leader}" answer="briefing" conversation="L2OfferCombat"/>
+									</condition>
+									<action>
+										<set_value name="{param@Data Cue}.TempStep" exact="1"/>
+									</action>
+									<cues>
+										<cue ref="L0GI10 B">
+											<params>
+												<param name="Cue" value="{param@Briefing Cue}" comment="The cue where values will be localized"/>
+												<param name="ID" value="99"/>
+												<param name="Step" value="{param@Data Cue}.TempStep"/>
+												<param name="Preview" value="1"/>
+												<param name="SetObjective" value="0"/>
+												<param name="Lv1Guide" value="{param@Leader}"/>
+												<param name="StartSector" value="{actor.sector@{param@Leader}}" comment="The Address of the destination. Overrides all other criteria."/>
+												<param name="SectorRange" value="2"/>
+												<param name="SectorRace" value="{param@Race}"/>
+												<param name="EnemyRace" value="{value@{param@Data Cue}.Mission3_Enemy}" comment="Race id or mask"/>
+												<param name="OfferRace" value="{param@Race}" comment="Name of the offer race"/>
+												<param name="Complete Briefing" value="1" comment="Run the briefing completion library"/>
+												<param name="Difficulty" value="{value@{param@Data Cue}.Mission3_Difficulty}" comment="The value address for the difficulty"/>
+												<param name="RewardCr" value="{param@Data Cue}.Mission3_RewardCr" comment="Reward - credits"/>
+												<param name="Level" value="5+({value@{param@Data Cue}.Level}*2)"/>
+											</params>
+										</cue>
+										<cue name="Radiant_Military_Mission3_UpdateBriefing">
+											<condition>
+												<cue_is_complete cue="L0GI10 B"/>
+											</condition>
+											<action>
+												<do_all>
+													<create_briefing cue="{param@Briefing Cue}" race="{param@Name}"/>
+												</do_all>
+											</action>
+										</cue>
+									</cues>
+								</cue>
+
+								<cue name="Radiant_Military_Mission3_Accept">
+									<condition>
+										<check_any>
+											<conversation_completed answer="accept" conversation="L2OfferCombat" actor="{param@Leader}"/>
+										</check_any>
+									</condition>
+									<action>
+										<do_all>
+											<cancel_cue cue="Radiant_Military_CancelMission"/>
+											<increment_statistic statistic="7020"/>
+											<remove_offer actor="{param@Leader}" conversation="L2OfferCombat" discipline="XFXX"/>
+										</do_all>
+									</action>
+									<cues>
+										<cue ref="L0GI10">
+											<params>
+												<param name="Cue" value="{param@Briefing Cue}" comment="The cue where values will be localized"/>
+												<param name="ID" value="99"/>
+												<param name="Step" value="{param@Data Cue}.TempStep"/>
+												<param name="SetObjective" value="1"/>
+												<param name="Lv1Guide" value="{param@Leader}"/>
+												<param name="Sector" value="{actor.sector@{param@Leader}}" comment="The Address of the destination. Overrides all other criteria."/>
+												<param name="SectorRange" value="2"/>
+												<param name="SectorRace" value="{param@Race}"/>
+												<param name="EnemyRace" value="{value@{param@Data Cue}.Mission3_Enemy}" comment="Race id or mask"/>
+												<param name="OfferRace" value="{param@Race}" comment="Name of the offer race"/>
+												<param name="Complete Briefing" value="1" comment="Run the briefing completion library"/>
+												<param name="Difficulty" value="{value@{param@Data Cue}.Mission3_Difficulty}" comment="The value address for the difficulty"/>
+												<param name="RewardCr" value="{param@Data Cue}.Mission3_RewardCr" comment="Reward - credits"/>
+												<param name="Level" value="5+({value@{param@Data Cue}.Level}*2)"/>
+											</params>
+										</cue>
+										<cue name="Radiant_Military_Mission3_Ended" delay="2s">
+											<condition>
+												<check_value value="{value@{param@Briefing Cue}.99 L0GI10_Progress}" exact="0" negate="1"/>
+											</condition>
+											<action>
+												<incoming_message text="Mission done: {value@{param@Briefing Cue}.99 L0GI10_Progress}"/>
 											</action>
 										</cue>
 									</cues>

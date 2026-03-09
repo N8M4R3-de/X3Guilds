@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<universe>
+	<o f="8" t="1" x="3" y="5" r="1" size="20000000" m="0" p="-1" planets="1" moons="2" nameid="1023937" descid="1033937">
+		<o t="2" s="31" neb="0" stars="0"/>
+		<o t="6" s="SS_FAC_A_AMMO" x="-2268750" y="0" z="-13868750" r="1" a="32768" b="0" g="0">
+		</o>
+		<o f="1" t="6" s="SS_FAC_A_DRONE_MK2" x="16782000" y="-4217500" z="-9483000" r="1" a="32768" b="0" g="0">
+		</o>
+		<o t="6" s="SS_FAC_A_LSHIELD_COMPLEX" x="-4786320" y="1375920" z="1547280" r="1" a="32768" b="0" g="0">
+		</o>
+		<o t="6" s="SS_FAC_A_MWEP_COMPLEX" x="-2841600" y="-1465200" z="3552000" r="1" a="32768" b="0" g="0">
+		</o>
+		<o t="6" s="SS_FAC_A_TECH204" x="0" y="-4114320" z="10825920" r="1" a="32768" b="0" g="0">
+		</o>
+		<o t="5" s="SS_DOCK_A_TRADE" x="-2207120" y="388000" z="-1924240" r="1" a="32768" b="0" g="0">
+			<o t="23" s="8">
+				<o t="14" s="SS_WARE_F217"/>
+				<o t="14" s="SS_WARE_F218"/>
+				<o t="16" s="SS_WARE_TECH206"/>
+				<o t="16" s="SS_WARE_TECH208"/>
+				<o t="16" s="SS_WARE_ORBITALLASER"/>
+				<o t="16" s="SS_WARE_TECH251"/>
+				<o t="16" s="SS_WARE_TECH213"/>
+				<o t="16" s="SS_WARE_TECH246"/>
+				<o t="16" s="SS_WARE_TECH231"/>
+				<o t="16" s="SS_WARE_L_A"/>
+			</o>
+		</o>
+		<o t="5" s="SS_DOCK_A_MILITARY" x="13125000" y="1085940" z="-4242188" r="1" a="32768" b="0" g="0">
+		</o>
+	</o>
+</universe>

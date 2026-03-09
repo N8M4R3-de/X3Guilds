@@ -2,7 +2,7 @@
 <?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
 <script>
 <name>setup.cycrow.guilds</name>
-<version>15</version>
+<version>16</version>
 <engineversion>73</engineversion>
 <description>Guilds: Setup script</description>
 <arguments>
@@ -1415,7 +1415,7 @@
   <sval type="string" val="setup.cycrow.guilds"/>
   <sval type="int" val="73"/>
   <sval type="string" val="Guilds: Setup script"/>
-  <sval type="int" val="15"/>
+  <sval type="int" val="16"/>
   <sval type="int" val="0"/>
   <sval type="array" size="36">
     <sval type="string" val="script.engine"/>
@@ -6957,5 +6957,5 @@
 </sval>
 
 </codearray>
-<nosignature>4746</nosignature>
+<nosignature>9689</nosignature>
 </script>

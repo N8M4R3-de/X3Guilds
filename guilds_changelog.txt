@@ -1,3 +1,10 @@
+V0.87
+Cleanup of Elena's Fortune from WareTemplate bug
+Fixed Military Radiant Missions
+
+v0.861 (Hotfix)
+Fixed WareTemplate loading incorrectly
+
 v0.86
 Fixed Lost Colonies - Stage 3 mission breifing reset
 Fixed Dock Tender if max is set higher than station max
