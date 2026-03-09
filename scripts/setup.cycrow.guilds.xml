@@ -2,7 +2,7 @@
 <?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
 <script>
 <name>setup.cycrow.guilds</name>
-<version>16</version>
+<version>17</version>
 <engineversion>73</engineversion>
 <description>Guilds: Setup script</description>
 <arguments>
@@ -481,24 +481,24 @@
   
   * add black market weapons
   if $script.engine >= 73
-    add black market ware: Alpha Kyon Emitter, chance=2
-    add black market ware: Beta Kyon Emitter, chance=2
-    add black market ware: Gamma Kyon Emitter, chance=1
-    add black market ware: Needle, chance=5
-    add black market ware: Sting, chance=5
-    add black market ware: Thorn, chance=5
-    add black market ware: Dark Matter Beam Cannon, chance=3
-    add black market ware: Gamma Pulse Emitter, chance=10
-    add black market ware: Quantum Shockwave Cannon, chance=2
-    add black market ware: Advanced Jumpdrive, chance=10
-    add black market ware: Boarding Transporter Extension, chance=5
-    add black market ware: Cargo Tractor Beam, chance=5
-    add black market ware: Advanced Jumpdrive Accelerator, chance=2
-    add black market ware: Docking Extension Software, chance=20
-    add black market ware: Ejector Seat, chance=10
-    add black market ware: Enhanced Mineral Scanner, chance=4
-    add black market ware: Escape Pod, chance=5
-    add black market ware: High Energy Particle Railgun, chance=5
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   end
   
   * add bbs articles
@@ -1182,24 +1182,24 @@
 <line indent=""></line>
 <line indent=""><comment><text>*&#160;</text><var>add&#160;black&#160;market&#160;weapons</var></comment></line>
 <line indent=""><var>if&#160;</var><var>$script.engine</var><text>&#160;</text><var>&gt;=</var><text>&#160;</text><var>73</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Alpha&#160;Kyon&#160;Emitter</var><text>,&#160;chance=</text><var>2</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Beta&#160;Kyon&#160;Emitter</var><text>,&#160;chance=</text><var>2</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Gamma&#160;Kyon&#160;Emitter</var><text>,&#160;chance=</text><var>1</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Needle</var><text>,&#160;chance=</text><var>5</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Sting</var><text>,&#160;chance=</text><var>5</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Thorn</var><text>,&#160;chance=</text><var>5</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Dark&#160;Matter&#160;Beam&#160;Cannon</var><text>,&#160;chance=</text><var>3</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Gamma&#160;Pulse&#160;Emitter</var><text>,&#160;chance=</text><var>10</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Quantum&#160;Shockwave&#160;Cannon</var><text>,&#160;chance=</text><var>2</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Advanced&#160;Jumpdrive</var><text>,&#160;chance=</text><var>10</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Boarding&#160;Transporter&#160;Extension</var><text>,&#160;chance=</text><var>5</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Cargo&#160;Tractor&#160;Beam</var><text>,&#160;chance=</text><var>5</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Advanced&#160;Jumpdrive&#160;Accelerator</var><text>,&#160;chance=</text><var>2</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Docking&#160;Extension&#160;Software</var><text>,&#160;chance=</text><var>20</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Ejector&#160;Seat</var><text>,&#160;chance=</text><var>10</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Enhanced&#160;Mineral&#160;Scanner</var><text>,&#160;chance=</text><var>4</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>Escape&#160;Pod</var><text>,&#160;chance=</text><var>5</var></line>
-<line indent="&#160;"><text>add&#160;black&#160;market&#160;ware:&#160;</text><var>High&#160;Energy&#160;Particle&#160;Railgun</var><text>,&#160;chance=</text><var>5</var></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
+<line indent="&#160;"></line>
 <line indent=""><text>end</text></line>
 <line indent=""></line>
 <line indent=""><comment><text>*&#160;</text><var>add&#160;bbs&#160;articles</var></comment></line>
@@ -1415,7 +1415,7 @@
   <sval type="string" val="setup.cycrow.guilds"/>
   <sval type="int" val="73"/>
   <sval type="string" val="Guilds: Setup script"/>
-  <sval type="int" val="16"/>
+  <sval type="int" val="17"/>
   <sval type="int" val="0"/>
   <sval type="array" size="36">
     <sval type="string" val="script.engine"/>
@@ -6957,5 +6957,5 @@
 </sval>
 
 </codearray>
-<nosignature>9689</nosignature>
+<nosignature>6141</nosignature>
 </script>
