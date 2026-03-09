@@ -5891,6 +5891,8 @@
 				<o t="7" s="SS_SH_T_TS_HT"/>
 				<o t="7" s="SS_SH_T_M2P"/>
 				<o t="7" s="SS_SH_T_M1P"/>
+				<o t="7" s="SS_SH_T_M7_TALON"/>
+				<o t="7" s="SS_SH_T_M7_TERN"/>
 			</o>
 		</o>
 		<o t="6" s="SS_FAC_TR_SHIP" x="-67500000" y="0" z="135000000" r="1" a="0" b="0" g="0">
