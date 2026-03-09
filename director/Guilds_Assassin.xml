@@ -25,9 +25,7 @@
 						<time min="120m" max="180m"/>
 					</timing>
 					<action>
-						<do_all>
-							<set_value name="Assassins_Radiant.Mission" exact="1"/>
-						</do_all>
+						<set_value name="Assassins_Radiant.Mission" exact="1"/>
 					</action>
 					<cues>
 						<cue name="Assassins_Radiant_HQCheck" comment="Check if HQ still exists">
@@ -57,6 +55,9 @@
 										<create_actor name="Assassins_Radiant_Mission_1.MissionGiver" race="{lookup.race@paranid}" voiceflags="32" location="crew" object="Assassins Guild.GuildHQ" chance="20"/>
 										<create_actor name="Assassins_Radiant_Mission_1.MissionGiver" race="{lookup.race@teladi}" voiceflags="32" location="crew" object="Assassins Guild.GuildHQ" chance="10"/>
 									</do_any>
+									<do_if value="{actor.exists@Assassins_Radiant_Mission_1.MissionGiver}" exact="0">
+										<create_actor name="Assassins_Radiant_Mission_1.MissionGiver" race="{lookup.race@split}" voiceflags="32" location="crew" object="Assassins Guild.GuildHQ"/>
+									</do_if>
 
 									<set_value name="Assassins_Radiant_Mission_1.TimeOut" min="{player.age}+600" max="{player.age}+1200"/>
 									<set_value name="Assassins_Radiant_Mission_1.Difficulty" min="{lookup.level@veryeasy}" max="{lookup.level@veryhard}" profile="bell"/>
@@ -68,6 +69,14 @@
 								</do_all>
 							</action>
 							<cues>
+								<cue name="Assassins_Radiant_ResetOffer">
+									<action>
+										<do_all>
+											<remove_offer actor="Assassins_Radiant_Mission_1.MissionGiver" conversation="L2OfferKill"/>
+											<create_offer actor="Assassins_Radiant_Mission_1.MissionGiver" conversation="L2OfferKill" discipline="XFXX" cue="Assassins_Radiant_Mission_1"/>
+										</do_all>
+									</action>
+								</cue>
 								<cue name="Assassins_Radiant_1_Breifing">
 									<condition>
 										<check_any>
@@ -100,9 +109,6 @@
 											<conversation_completed answer="accept" conversation="L2OfferKill" actor="Assassins_Radiant_Mission_1.MissionGiver"/>
 										</check_any>
 									</condition>
-									<timing>
-										<time min="250" max="350"/>
-									</timing>
 									<action>
 										<do_all>
 											<remove_offer actor="Assassins_Radiant_Mission_1.MissionGiver" conversation="L2OfferKill" discipline="XFXX"/>
