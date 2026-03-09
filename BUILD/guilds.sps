@@ -19,11 +19,11 @@ Author: Cycrow
 
 # The creation data, when it was created
 # $DATE variable is used to get the current date
-Date: 07/03/2026
+Date: 08/03/2026
 
 # The version of script
 # $ASK variable is used to get an input when creating
-Version: 0.86
+Version: 0.861
 
 # The game version the script is for <game> <version> (can have multiple games)
 Game: X3FL 1.3
@@ -43,7 +43,7 @@ WebAddress: http://xpluginmanager.co.uk/flscripts/
 Email: cycrow@cycrow.co.uk
 
 # Needed Library dependencies, require these to be installed
-Depend: Unofficial Patch|1.3.19|Cycrow
+Depend: Unoffical Patch|1.3.19|Cycrow
 
 # Ratings Values, 0 to 5, <ease> <changing> <recommended>
 Ratings: 2 5 4
