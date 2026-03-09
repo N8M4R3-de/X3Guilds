@@ -70,6 +70,12 @@
 							</action>
 							<cues>
 								<cue name="Assassins_Radiant_ResetOffer">
+									<condition>
+										<cue_is_complete cue="Assassins_Radiant_Mission_1"/>
+									</condition>
+									<timing>
+										<time min="10m" max="20m"/>
+									</timing>
 									<action>
 										<do_all>
 											<remove_offer actor="Assassins_Radiant_Mission_1.MissionGiver" conversation="L2OfferKill"/>
@@ -111,6 +117,7 @@
 									</condition>
 									<action>
 										<do_all>
+											<cancel_cue cue="Assassins_Radiant_ResetOffer"/>
 											<remove_offer actor="Assassins_Radiant_Mission_1.MissionGiver" conversation="L2OfferKill" discipline="XFXX"/>
 											<increment_statistic statistic="7000"/>
 										</do_all>
