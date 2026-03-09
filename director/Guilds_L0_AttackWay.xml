@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href="director.xsl" type="text/xsl" ?>
+<director name="Guilds_L0_AttackWaypoint" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="director.xsd">
+    <documentation>
+        <author alias="Cycrow"/>
+        <content reference="Guild Mission, Level 0, Attack Waypoint" name="Attack Ships" description="Mission to kill a ships at a waypoint" />
+        <version number="1.0" date="08/03/2026" status="development"/>
+    </documentation>
+    <cues>
+        <cue name="L0GI10 B" library="1">
+            <documentation>
+                <content name="L0GI10 Attack" reference="XXXT" type="briefing"/>
+                <version number="1.0" date="08/03/2026" status="development"/>
+                <params>
+                    <param name="Cue" type="cuename" compulsory="1" description="The cue where the briefing and objectives are stored"/>
+                    <param name="ID" type="number" compulsory="1" description="The mission Id for dealing with mission chains"/>
+                    <param name="OfferRace" type="number" compulsory="1" description="Race offering the mission"/>
+                    <param name="EnemyRace" type="number" compulsory="1" description="Race of the enemy"/>
+                    <param name="Lv1Guide" type="actorname" compulsory="1" description="The person offering the mission"/>
+                    <param name="PageID" type="number" description="Page ID of mission description"/>
+                    <param name="TextID" type="number" description="Text ID of mission description"/>
+					<param name="StartSector" type="sectorname" description="Sector"/>
+					<param name="SectorRange" type="number" description="Range from start sector"/>
+					<param name="Waypoints" type="number" description="Number of waypoints"/>
+					<param name="Followers" type="groupname" description="Group of followers to help out"/>
+					<param name="Reward" description="Reward type"/>
+					<param name="StoryID" type="number" compulsory="0" description="Text ID of the Story title" default="No title"/>
+                    <param name="Difficulty" type="number" compulsory="1" description="Difficulty level of mission"/>
+                    <param name="Step" type="number" compulsory="0" description="The step to use if additional objectives are involved"/>
+                    <param name="Summary" type="boolean" compulsory="0" description="Used to specify summary objectives in a chain of missions"/>
+					<param name="Level" type="number" compulsory="0" description="The level of enemies to face (will use fight level otherwise)"/>
+					<param name="SectorRace" type="valuename" description="Race(s) of sector to use"/>
+				</params>
+            <returns>
+                <return name="{param@Cue}.{param@ID} L0GI10_Progress" type="number" description="1 - Mission Completed"/>
+                <return name="{param@Cue}.{param@ID} L0GI10_Progress" type="number" description="2 - Out of time"/>
+                <return name="{param@Cue}.{param@ID} L0GI10_Progress" type="number" description="92 - Out of time, not started mission"/>
+                <return name="{param@Cue}.{param@ID} L0GI10_Progress" type="number" description="99 - Aborted"/>
+            </returns>
+        </documentation>
+        <action>
+            <do_all>
+				<set_sector name="{param@Cue}.{param@ID} L0GI10_Sector" value="{param@StartSector}"/>
+				<set_value name="{param@Cue}.{param@ID} L0GI10_Waypoints" exact="0"/>
+				<do_if value="{param.exists@Waypoints}" exact="1">
+					<set_value name="{param@Cue}.{param@ID} L0GI10_Waypoints" exact="{param@Waypoints}"/>
+				</do_if>
+				<do_choose>
+					<do_when value="{param.exists@SectorRange}" exact="1">
+						<set_value name="this.Range" exact="{param@SectorRange}"/>
+						<do_choose>
+							<do_when value="{value@this.Range}" min="1">
+								<set_value name="this.MaxRange" exact="1"/>
+							</do_when>
+							<do_otherwise>
+								<set_value name="this.MaxRange" exact="0"/>
+							</do_otherwise>
+						</do_choose>
+					</do_when>
+					<do_otherwise>
+						<set_value name="this.Range" exact="0"/>
+						<set_value name="this.MaxRange" exact="0"/>
+					</do_otherwise>
+				</do_choose>
+				<do_choose>
+					<do_when value="{param.exists@SectorRace}" exact="1">
+						<find_sector name="{param@Cue}.{param@ID} L0GI10_Sector" race="{param@SectorRace}" sector="{param@StartSector}" min="{value@this.MaxRange}" max="{value@this.Range}"/>
+					</do_when>
+					<do_otherwise>
+						<find_sector name="{param@Cue}.{param@ID} L0GI10_Sector" sector="{param@StartSector}" min="{value@this.MaxRange}" max="{value@this.Range}"/>
+					</do_otherwise>
+				</do_choose>
+				<do_if value="{sector.exists@{param@Cue}.{param@ID} L0GI10_Sector}" exact="0">
+					<set_sector name="{param@Cue}.{param@ID} L0GI10_Sector" value="{param@StartSector}"/>
+				</do_if>
+				<do_choose>
+					<do_when value="{param.exists@PageID}*{param.exists@TextID}" exact="0">
+						<set_value name="this.Texts" exact="{9620,80100}"/>
+						<do_if value="{value@this.Texts}" min="1">
+							<set_value name="this.Text" min="80101" max="(80100 + {value@this.Texts})"/>
+							<set_value name="{param@Cue}.{param@ID} L0GI10_PageID" exact="9620"/>
+							<set_value name="{param@Cue}.{param@ID} L0GI10_TextID" exact="{value@this.Text}"/>
+						</do_if>
+					</do_when>
+					<do_otherwise>
+						<set_value name="{param@Cue}.{param@ID} L0GI10_PageID" exact="{param@PageID}"/>
+						<set_value name="{param@Cue}.{param@ID} L0GI10_TextID" exact="{param@TextID}"/>
+					</do_otherwise>
+				</do_choose>
+				<do_choose>
+					<do_when value="{param.exists@TitlePageID}*{param.exists@TitleTextID}" exact="0">
+						<set_value name="this.Texts" exact="{9620,80100}"/>
+						<do_if value="{value@this.Texts}" min="1">
+							<set_value name="this.Text" min="80001" max="(80000 + {value@this.Texts})"/>
+							<set_value name="{param@Cue}.{param@ID} L0GI10_TitlePageID" exact="9620"/>
+							<set_value name="{param@Cue}.{param@ID} L0GI10_TitleTextID" exact="{value@this.Text}"/>
+						</do_if>
+					</do_when>
+					<do_otherwise>
+						<set_value name="{param@Cue}.{param@ID} L0GI10_TitlePageID" exact="{param@TitlePageID}"/>
+						<set_value name="{param@Cue}.{param@ID} L0GI10_TitleTextID" exact="{param@TitleTextID}"/>
+					</do_otherwise>
+				</do_choose>
+				<do_if value="{param.exists@CreateFollowers}" exact="1">
+					<do_if value="{param@CreateFollowers}" min="1">
+						<set_value name="{param@Cue}.{param@ID} L0GI10_CreateFollowers" exact="{param@CreateFollowers}"/>
+					</do_if>
+				</do_if>
+			</do_all>
+        </action>
+        <cues>
+			<cue name="L0GI10 B_CreateBriefing">
+				<condition>
+					<cue_is_complete cue="L0GI10 B"/>
+				</condition>
+				<cues>
+					<cue ref="L0GI09 B">
+						<params>
+							<param name="Sector" value="{sector@{param@Cue}.{param@ID} L0GI10_Sector}"/>
+							<param name="SpawnCount" value="1"/>
+							<param name="PageID" value="{value@{param@Cue}.{param@ID} L0GI10_PageID}"/>
+							<param name="TextID" value="{value@{param@Cue}.{param@ID} L0GI10_TextID}"/>
+							<param name="TitlePageID" value="{value@{param@Cue}.{param@ID} L0GI10_TitlePageID}"/>
+							<param name="TitleTextID" value="{value@{param@Cue}.{param@ID} L0GI10_TitleTextID}"/>
+						</params>
+					</cue>
+				</cues>
+			</cue>
+        </cues>
+    </cue>
+
+    <cue name="L0GI10" library="1">
+        <documentation>
+            <content name="L0GI10 Attack Ships" reference="XXXT" type="L0"/>
+            <version date="08/03/2026" number="1.0" status="development"/>
+            <params>
+                <param name="Cue" compulsory="1" description="The cue where the briefing and objectives are stored"/>
+                <param name="ID" type="number" compulsory="1" description="The mission Id for dealing with mission chains"/>
+                <param name="OfferRace" compulsory="1" description="Race offering the mission"/>
+                <param name="EnemyRace" compulsory="1" description="Race of the enemy"/>
+                <param name="PageID" description="Page ID of mission description"/>
+                <param name="TextID" description="Text ID of mission description"/>
+                <param name="Reward" description="Reward type"/>
+                <param name="StoryID" compulsory="0" description="Text ID of the Story title" default="No title"/>
+                <param name="Difficulty" compulsory="1" description="Difficulty level of mission"/>
+                <param name="Step" compulsory="1" description="The starting Step of the mission"/>
+				<param name="Level" type="number" compulsory="0" description="The level of enemies to face (will use fight level otherwise)"/>
+				<param name="SpawnPoint" type="objectname" compulsory="0" description="The spawn point for the ships"/>
+				<param name="LeaderActor" type="actorname" compulsory="0" description="The actor of the leader ship, to give feedback"/>
+			</params>
+        </documentation>
+        <action>
+			<do_all>
+				<set_value name="{param@Cue}.{param@ID} L0GI10_Progress" exact="0"/>
+				<set_value name="{param@Cue}.{param@ID} L0GI10_CurrentWave" exact="1"/>
+				<set_value name="{param@Cue}.{param@ID} L0GI10_Status" exact="0"/>
+			</do_all>
+        </action>
+		<cues>
+			<cue name="L0GI10_Aborted">
+				<condition>
+					<objective_cancelled cue="{param@Cue}"/>
+				</condition>
+				<action>
+					<do_all>
+						<set_value name="{param@Cue}.{param@ID} L0GI10_Progress" exact="99"/>
+						<destroy_object object="{param@Cue}.{param@ID} L0GI10_Waypoint"/>
+					</do_all>
+				</action>
+			</cue>
+
+			<cue name="L0GI10_CreateBriefing">
+				<cues>
+					<cue ref="L0GI09 B">
+						<params>
+							<param name="Sector" value="{sector@{param@Cue}.{param@ID} L0GI10_Sector}"/>
+							<param name="SpawnCount" value="1"/>
+							<param name="PageID" value="{value@{param@Cue}.{param@ID} L0GI10_PageID}"/>
+							<param name="TextID" value="{value@{param@Cue}.{param@ID} L0GI10_TextID}"/>
+							<param name="TitlePageID" value="{value@{param@Cue}.{param@ID} L0GI10_TitlePageID}"/>
+							<param name="TitleTextID" value="{value@{param@Cue}.{param@ID} L0GI10_TitleTextID}"/>
+							<param name="SetObjective" value="1"/>
+						</params>
+					</cue>
+				</cues>
+			</cue>
+			
+			<cue name="L0GI10_SetObjective">
+				<cues>
+					<cue name="L0GI10_SetObjective_1">
+						<condition>
+							<check_all>
+								<cue_is_complete cue="L0GI10_CreateBriefing"/>
+								<check_value value="{value@{param@Cue}.{param@ID} L0GI10_Status}" exact="1"/>
+							</check_all>
+						</condition>
+						<action>
+							<do_all>
+								<create_briefing cue="{param@Cue}" targetrace="{param@EnemyRace}">
+									<objectives>
+										<objective step="{param@Step}">
+											<custom text="{17,92413}" action="{35,2007}" object="{param@Cue}.{param@ID} L0GI10_Waypoint" icon="flyto" />
+										</objective>
+									</objectives>									
+								</create_briefing>
+								<set_objective cue="{param@Cue}" targetrace="{param@EnemyRace}">
+									<briefing cue="{param@Cue}" step="{param@Step}"/>
+									<custom text="{17,92413}" action="{35,2007}" object="{param@Cue}.{param@ID} L0GI10_Waypoint" icon="flyto" />
+								</set_objective>
+							</do_all>
+						</action>
+					</cue>
+					<cue name="L0GI10_SetObjective_2">
+						<condition>
+							<check_all>
+								<cue_is_complete cue="L0GI10_CreateBriefing"/>
+								<check_value value="{value@{param@Cue}.{param@ID} L0GI10_Status}" exact="1" negate="1"/>
+							</check_all>
+						</condition>
+						<cues>
+							<cue ref="L0GI09_UpdateObjective"/>
+						</cues>
+					</cue>
+				</cues>
+			</cue>
+
+			<cue name="L0GI10_NextWave">
+				<condition>
+					<check_value value="{value@{param@Cue}.{param@ID} L0GI10_Status}" exact="3"/>
+				</condition>
+				<action>
+					<do_choose>
+						<do_when value="{value@{param@Cue}.{param@ID} L0GI10_CurrentWave}" max="{value@{param@Cue}.{param@ID} L0GI10_Waypoints}">
+							<set_value name="{param@Cue}.{param@ID} L0GI10_Status" exact="0"/>
+							<reset_cue cue="L0GI10_FlyToSector"/>
+						</do_when>
+						<do_otherwise>
+							<set_value name="{param@Cue}.{param@ID} L0GI10_Progress" exact="1"/>
+							<cancel_cue cue="L0GI10_LeaveSector"/>
+							<complete_cue cue="L0GI10"/>
+						</do_otherwise>
+					</do_choose>
+				</action>
+			</cue>
+			
+			<cue name="L0GI10_FlyToSector">
+				<condition>
+					<check_value value="{player.sector}" exact="{sector@{param@Cue}.{param@ID} L0GI10_Sector}"/>
+				</condition>
+				<action>
+					<do_all>
+						<set_value name="{param@Cue}.{param@ID} L0GI10_Status" exact="1"/>
+						<do_choose>
+							<do_when value="{value@{param@Cue}.{param@ID} L0GI10_CurrentWave}" min="2">
+								<set_value name="this.NextX" min="5" max="15"/>
+								<set_value name="this.NextZ" min="5" max="15"/>
+								<set_value name="this.MinuxX" min="0" max="1"/>
+								<set_value name="this.MinuxY" min="0" max="1"/>
+								<do_choose>
+									<do_when value="{value@this.MinuxX}" exact="1">
+										<set_value name="{param@Cue}.{param@ID} L0GI10_X" exact="{value@{param@Cue}.{param@ID} L0GI10_X}-{value@this.NextX}"/>
+									</do_when>
+									<do_otherwise>
+										<set_value name="{param@Cue}.{param@ID} L0GI10_X" exact="{value@{param@Cue}.{param@ID} L0GI10_X}+{value@this.NextX}"/>
+									</do_otherwise>
+								</do_choose>
+								<do_choose>
+									<do_when value="{value@this.MinuxZ}" exact="1">
+										<set_value name="{param@Cue}.{param@ID} L0GI10_Z" exact="{value@{param@Cue}.{param@ID} L0GI10_Z}-{value@this.NextZ}"/>
+									</do_when>
+									<do_otherwise>
+										<set_value name="{param@Cue}.{param@ID} L0GI10_Z" exact="{value@{param@Cue}.{param@ID} L0GI10_Z}+{value@this.NextZ}"/>
+									</do_otherwise>
+								</do_choose>
+								<do_if value="{param.exists@LeaderActor}" exact="1">
+									<do_if value="{param.exists@Followers}" exact="1">
+										<play_text actor="{param@LeaderActor}" priority="90">
+											<line actor="{param@LeaderActor}" textid="929"/>
+											<line actor="{param@LeaderActor}" textid="937"/>
+										</play_text>
+									</do_if>
+								</do_if>
+							</do_when>
+							<do_otherwise>
+								<set_value name="{param@Cue}.{param@ID} L0GI10_X" min="{sector.size.km@{param@Cue}.{param@ID} L0GI10_Sector}" max="{sector.size.km@{param@Cue}.{param@ID} L0GI10_Sector}+20"/>
+								<set_value name="{param@Cue}.{param@ID} L0GI10_Y" min="5" max="10"/>
+								<set_value name="{param@Cue}.{param@ID} L0GI10_Z" min="{sector.size.km@{param@Cue}.{param@ID} L0GI10_Sector}" max="{sector.size.km@{param@Cue}.{param@ID} L0GI10_Sector}+20"/>
+								<set_value name="this.MinuxX" min="0" max="1"/>
+								<set_value name="this.MinuxY" min="0" max="1"/>
+								<set_value name="this.MinuxY" min="0" max="1"/>
+								<do_if value="{value@this.MinuxX}" exact="1">
+									<set_value name="{param@Cue}.{param@ID} L0GI10_X" exact="-{value@{param@Cue}.{param@ID} L0GI10_X}"/>
+								</do_if>
+								<do_if value="{value@this.MinuxY}" exact="1">
+									<set_value name="{param@Cue}.{param@ID} L0GI10_Y" exact="-{value@{param@Cue}.{param@ID} L0GI10_Y}"/>
+								</do_if>
+								<do_if value="{value@this.MinuxZ}" exact="1">
+									<set_value name="{param@Cue}.{param@ID} L0GI10_Z" exact="-{value@{param@Cue}.{param@ID} L0GI10_Z}"/>
+								</do_if>
+							</do_otherwise>
+						</do_choose>
+						<create_special name="{param@Cue}.{param@ID} L0GI10_Waypoint" typename="SS_SPECIAL_WAYPOINT">
+							<position x="{value@{param@Cue}.{param@ID} L0GI10_X}km" y="{value@{param@Cue}.{param@ID} L0GI10_Y}km" z="{value@{param@Cue}.{param@ID} L0GI10_Z}km"/>
+							<sector sector="{param@Cue}.{param@ID} L0GI10_Sector"/>							
+						</create_special>
+						<do_if value="{param.exists@Followers}" exact="1">
+							<do_choose>
+								<do_when value="{value@{param@Cue}.{param@ID} L0GI10_CurrentWave}" exact="1">
+									<warp_group group="{param@Followers}">
+										<position object="{param@Cue}.{param@ID} L0GI10_Waypoint" min="1km" max="3km" />
+										<sector sector="{param@Cue}.{param@ID} L0GI10_Sector}"/>
+									</warp_group>
+									<set_group_command group="{param@Followers}" command="stay"/>
+								</do_when>
+								<do_otherwise>
+									<set_group_command group="{param@Followers}" command="moveposition">
+										<position object="{param@Cue}.{param@ID} L0GI10_Waypoint" min="1km" max="3km"/>
+									</set_group_command>
+								</do_otherwise>
+							</do_choose>
+						</do_if>
+						<reset_cue cue="L0GI10_SetObjective"/>
+						<reset_cue cue="L0GI10_NextWave"/>
+					</do_all>
+				</action>
+				<cues>
+					<cue name="L0GI10_LeaveSector" delay="1s">
+						<condition>
+							<check_all>
+								<check_value value="{player.sector}" exact="{sector@{param@Cue}.{param@ID} L0GI10_Sector}" negate="1"/>
+								<check_value value="{value@{param@Cue}.{param@ID} L0GI10_CurrentWave}" exact="1"/>
+								<check_value value="{value@{param@Cue}.{param@ID} L0GI10_Status}" exact="1"/>
+							</check_all>
+						</condition>
+						<action>
+							<do_all>
+								<cancel_cue cue="L0GI10_LeaveSectorCancel"/>
+								<set_value name="{param@Cue}.{param@ID} L0GI10_Status" exact="0"/>
+								<reset_cue cue="L0GI10_SetObjective"/>
+								<reset_cue cue="L0GI10_FlyToSector"/>
+							</do_all>
+						</action>
+					</cue>
+					
+					<cue name="L0GI10_LeaveSectorCancel" delay="1s">
+						<condition>
+							<check_all>
+								<check_value value="{player.sector}" exact="{sector@{param@Cue}.{param@ID} L0GI10_Sector}" negate="1"/>
+								<check_any>
+									<check_value value="{value@{param@Cue}.{param@ID} L0GI10_CurrentWave}" exact="1" negate="1"/>
+									<check_all>
+										<check_value value="{value@{param@Cue}.{param@ID} L0GI10_CurrentWave}" exact="1"/>
+										<check_value value="{value@{param@Cue}.{param@ID} L0GI10_Status}" exact="1" negate="1"/>
+									</check_all>
+								</check_any>
+							</check_all>
+						</condition>
+						<action>
+							<do_all>
+								<set_value name="{param@Cue}.{param@ID} L0GI10_Progress" exact="2"/>
+								<destroy_object object="{param@Cue}.{param@ID} L0GI10_Waypoint"/>
+								<cancel_cue cue="L0GI10"/>
+							</do_all>
+						</action>
+					</cue>
+
+					<cue name="L0GI10_FlyToWaypoint">
+						<condition>
+							<check_all>
+								<check_value value="{value@{param@Cue}.{param@ID} L0GI10_Progress}" exact="99" negate="1"/>
+								<object_exists object="{param@Cue}.{param@ID} L0GI10_Waypoint" />
+								<check_distance value="{object.distance@{param@Cue}.{param@ID} L0GI10_Waypoint}" max="3km"/>
+							</check_all>
+						</condition>
+						<action>
+							<do_all>
+								<set_value name="{param@Cue}.{param@ID} L0GI10_Status" exact="2"/>
+								<set_value name="{param@Cue}.{param@ID} L0GI10_Step" exact="{param@Step}"/>
+								<do_if value="{param.exists@LeaderActor}" exact="1">
+									<do_if value="{param.exists@Followers}" exact="1">
+										<do_choose>
+											<do_when value="{value@{param@Cue}.{param@ID} L0GI10_CurrentWave}" exact="1">
+												<play_text actor="{param@LeaderActor}" priority="90">
+													<line actor="{param@LeaderActor}" textid="925"/>
+													<line actor="{param@LeaderActor}" textid="928"/>
+												</play_text>
+											</do_when>
+											<do_otherwise>
+												<play_text actor="{param@LeaderActor}" priority="90">
+													<line actor="{param@LeaderActor}" textid="921"/>
+												</play_text>
+											</do_otherwise>
+										</do_choose>
+									</do_if>
+								</do_if>
+							</do_all>
+						</action>
+						<cues>
+							<cue ref="L0GI09">
+								<params>
+									<param name="Sector" value="{sector@{param@Cue}.{param@ID} L0GI10_Sector}"/>
+									<param name="SpawnCount" value="1"/>
+									<param name="SpawnPoint" value="{object@{param@Cue}.{param@ID} L0GI10_Waypoint}"/>
+									<param name="Step" value="{value@{param@Cue}.{param@ID} L0GI10_Step}"/>
+									<param name="SpawnTime" value="1"/>
+									<param name="PageID" value="{value@{param@Cue}.{param@ID} L0GI10_PageID}"/>
+									<param name="TextID" value="{value@{param@Cue}.{param@ID} L0GI10_TextID}"/>
+									<param name="TitlePageID" value="{value@{param@Cue}.{param@ID} L0GI10_TitlePageID}"/>
+									<param name="TitleTextID" value="{value@{param@Cue}.{param@ID} L0GI10_TitleTextID}"/>
+									<param name="SetObjective" value="1"/>
+								</params>
+							</cue>
+							<cue name="L0GI10_StartAttack" delay="1s">
+								<condition>
+									<cue_is_complete cue="L0GI09"/>
+								</condition>
+								<timing>
+									<time exact="1s"/>
+								</timing>
+								<action>
+									<destroy_object object="{param@Cue}.{param@ID} L0GI10_Waypoint"/>
+								</action>
+							</cue>
+							<cue name="L0GI10_EnemiesDead" delay="1s">
+								<condition>
+									<check_value value="{value@{param@Cue}.{param@ID} L0GI09_Progress}" exact="1"/>
+								</condition>
+								<action>
+									<do_all>
+										<set_value name="{param@Cue}.{param@ID} L0GI09_Progress" exact="0"/>
+										<set_value name="{param@Cue}.{param@ID} L0GI10_CurrentWave" exact="1" operation="add"/>
+										<set_value name="{param@Cue}.{param@ID} L0GI10_Status" exact="3"/>
+										<destroy_object object="{param@Cue}.{param@ID} L0GI10_Waypoint"/>
+									</do_all>
+								</action>
+							</cue>
+						</cues>
+					</cue>
+				</cues>
+			</cue>
+		</cues>
+    </cue>
+  </cues>
+</director>

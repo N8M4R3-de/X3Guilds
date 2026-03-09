@@ -857,6 +857,8 @@
  <t id="92401">Production Fab</t>
  <t id="92403">{17,92381} {17,92382} {17,92401}</t>
  <t id="92404">This production fab manufactures the Shield Booster Cores.</t>
+ <t id="92413">Waypoint</t>
+ <t id="92414">This is a waypoint</t>
 </page>
 
 <page id="390099" description="Player Responses">
@@ -5462,6 +5464,18 @@
  <t id="31015">33</t>
  <t id="31016">50000</t>
  <t id="31017">Thor Prototype \(M3\)</t>
+ <t id="80000">5</t>
+ <t id="80001">Clear out Enemy ships</t>
+ <t id="80002">Sector Security Operation</t>
+ <t id="80003">Eliminate Hostile Forces</t>
+ <t id="80004">Suppress Enemy Activity</t>
+ <t id="80005">Hostile Ship Purge</t>
+ <t id="80100">5</t>
+ <t id="80101">Hostile ships have been detected in {sector.name@{param@Cue}.{param@ID} L0GI09_Sector}. We need a capable pilot to eliminate them before they become a larger threat. Destroy the enemy vessels and restore order to the sector.</t>
+ <t id="80102">Enemy ships are operating inside {sector.name@{param@Cue}.{param@ID} L0GI09_Sector}. Their presence is unacceptable. Your task is simple: enter the sector and destroy the hostile forces.</t> 
+ <t id="80103">Our patrols report several enemy ships roaming through {sector.name@{param@Cue}.{param@ID} L0GI09_Sector}. We are authorizing a strike operation. Remove these hostiles and make the sector safe again.</t> 
+ <t id="80104">Enemy activity has increased in {sector.name@{param@Cue}.{param@ID} L0GI09_Sector}. We require an independent pilot to reduce their numbers. Engage and destroy the hostile ships operating in the area.</t> 
+ <t id="80105">Enemy ships have moved into {sector.name@{param@Cue}.{param@ID} L0GI09_Sector} and are threatening local traffic. Travel to the sector and destroy the hostile vessels before they cause further damage.</t> 
  <t id="90000">Contested Sector</t>
  <t id="91000">Register Sector Claim</t>
  <t id="91001">Register your claim on a contested sector with the Privateer's</t>

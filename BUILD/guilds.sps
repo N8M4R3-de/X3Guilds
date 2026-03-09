@@ -19,11 +19,11 @@ Author: Cycrow
 
 # The creation data, when it was created
 # $DATE variable is used to get the current date
-Date: 08/03/2026
+Date: 09/03/2026
 
 # The version of script
 # $ASK variable is used to get an input when creating
-Version: 0.861
+Version: 0.87
 
 # The game version the script is for <game> <version> (can have multiple games)
 Game: X3FL 1.3

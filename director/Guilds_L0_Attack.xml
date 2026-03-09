@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <?xml-stylesheet href="director.xsl" type="text/xsl" ?>
-<director name="Guilds, Level 0, Attack Ships" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="director.xsd">
+<director name="Guilds_L0_AttackShips" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="director.xsd">
     <documentation>
         <author alias="Cycrow"/>
         <content reference="Guild Mission, Level 0, Attack Ships" name="Attack Ships" description="Mission to kill a list of ships" />
@@ -100,7 +100,7 @@
                         </do_if>
                     </do_otherwise>
                 </do_choose>
-            </do_all>
+			</do_all>
         </action>
         <cues>
 			<cue name="L0GI09 B_CreateBriefing">
@@ -109,18 +109,39 @@
 				</condition>
 				<action>
 					<do_all>
-						<do_choose>
-							<do_when value="{param.exists@PageID}*{param.exists@TextID}" exact="0">
-								<create_briefing cue="{param@Cue}"/>
-							</do_when>
-							<do_otherwise>
-								<create_briefing cue="{param@Cue}" text="{{param@PageID},{param@TextID}}" title="{9620,{value@{param@Cue}.{param@ID} L0Title}}"/>
-							</do_otherwise>
-						</do_choose>
+						<create_briefing cue="{param@Cue}"/>
+						<do_if value="{param.exists@PageID}*{param.exists@TextID}" exact="0" negate="1">
+							<create_briefing cue="{param@Cue}" text="{{param@PageID},{param@TextID}}"/>
+						</do_if>
+						<do_if value="{param.exists@TitlePageID}*{param.exists@TitleTextID}" exact="0" negate="1">
+							<create_briefing cue="{param@Cue}" title="{{param@TitlePageID},{param@TitleTextID}}"/>
+						</do_if>
+						<do_if value="{param.exists@StoryID}" exact="1">
+							<create_briefing cue="{param@Cue}" story="{9620,{value@{param@StoryID}}"/>
+						</do_if>
 						<do_if value="{param.exists@Difficulty}" exact="1">
 							<create_briefing cue="{param@Cue}">
 								<mission level="{param@Difficulty}"/>
 							</create_briefing>
+						</do_if>
+						<do_if value="{param.exists@EnemyRace}" exact="1">
+							<create_briefing cue="{param@Cue}" targetrace="{param@EnemyRace}"/>
+						</do_if>
+						<do_if value="{param@SetObjective}" exact="1">
+							<set_objective cue="{param@Cue}" silent="1">
+								<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
+							</set_objective>
+							<do_if value="{param.exists@Difficulty}" exact="1">
+								<set_objective cue="{param@Cue}" silent="1">
+									<mission level="{param@Difficulty}"/>
+								</set_objective>
+							</do_if>
+							<do_if value="{param.exists@PageID}*{param.exists@TextID}" exact="0" negate="1">
+								<set_objective cue="{param@Cue}" text="{{param@PageID},{param@TextID}}" silent="1"/>
+							</do_if>
+							<do_if value="{param.exists@TitlePageID}*{param.exists@TitleTextID}" exact="0" negate="1">
+								<set_objective cue="{param@Cue}" title="{{param@TitlePageID},{param@TitleTextID}}" silent="1"/>
+							</do_if>
 						</do_if>
 					</do_all>
 				</action>
@@ -148,10 +169,6 @@
 										</objective>
 									</objectives>
 								</create_briefing>
-								<set_objective cue="{param@Cue}">
-									<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
-									<destroy object="{param@Cue}.{param@ID} L0GI09_Enemy"/>
-								</set_objective>
 							</do_when>
 							<do_otherwise>
 								<create_briefing cue="{param@Cue}">
@@ -163,12 +180,6 @@
 										</objective>
 									</objectives>
 								</create_briefing>
-								<set_objective cue="{param@Cue}">
-									<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
-									<custom action="{35,2039}" text="{35,2112}">
-										<sector sector="{param@Cue}.{param@ID} L0GI09_Sector"/>
-									</custom>
-								</set_objective>
 							</do_otherwise>
 						</do_choose>
 					</do_when>
@@ -180,16 +191,41 @@
 										<sector sector="{sector@{param@Cue}.{param@ID} L0GI09_Sector}"/>
 									</flyto>
 								</objective>
+								<objective step="{value@{param@Cue}.{param@ID} L0GI09_Step}+1">
+									<custom action="{35,2039}" text="{35,2112}">
+										<sector sector="{param@Cue}.{param@ID} L0GI09_Sector"/>
+									</custom>
+								</objective>
 							</objectives>
 						</create_briefing>
-						<set_objective cue="{param@Cue}">
-							<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
-							<flyto>
-								<sector sector="{sector@{param@Cue}.{param@ID} L0GI09_Sector}"/>
-							</flyto>
-						</set_objective>
 					</do_otherwise>
-				</do_choose>				
+				</do_choose>
+				<do_if value="{param@SetObjective}" exact="1">
+					<do_choose>
+						<do_when value="{player.sector}" exact="{sector@{param@Cue}.{param@ID} L0GI09_Sector}" negate="1">
+							<set_objective cue="{param@Cue}">
+								<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
+								<flyto>
+									<sector sector="{sector@{param@Cue}.{param@ID} L0GI09_Sector}"/>
+								</flyto>
+							</set_objective>
+						</do_when>
+						<do_when value="{object.exists@{param@Cue}.{param@ID} L0GI09_Enemy}" exact="1">
+							<set_objective cue="{param@Cue}">
+								<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
+								<destroy object="{param@Cue}.{param@ID} L0GI09_Enemy"/>
+							</set_objective>
+						</do_when>
+						<do_otherwise>
+							<set_objective cue="{param@Cue}">
+								<briefing cue="{param@Cue}" step="{value@{param@Cue}.{param@ID} L0GI09_Step}"/>
+								<custom action="{35,2039}" text="{35,2112}">
+									<sector sector="{param@Cue}.{param@ID} L0GI09_Sector"/>
+								</custom>
+							</set_objective>
+						</do_otherwise>						
+					</do_choose>
+				</do_if>
 			</do_all>
 		</action>
 		<cues>
@@ -198,13 +234,13 @@
 					<check_all>
 						<cue_is_complete cue="L0GI09_UpdateObjective"/>
 						<check_value value="{param.exists@Complete Briefing}" exact="1"/>
-						<check_value value="{param@CompleteBriefing}" exact="1"/>
+						<check_value value="{param@Complete Briefing}" exact="1"/>
 					</check_all>
 				</condition>
                 <cues>
                     <cue ref="LUM04">
                         <params>
-                            <param name="Discipline" value="XXXT"/>
+                            <param name="Discipline" value="XFXX"/>
                             <param name="RewardMult" value="2"/>
 						</params>
 					</cue>
@@ -239,6 +275,18 @@
 			<set_value name="{param@Cue}.{param@ID} L0GI09_Progress" exact="0"/>
         </action>
 		<cues>
+			<cue name="L0GI09_Aborted">
+				<condition>
+					<objective_cancelled cue="{param@Cue}"/>
+				</condition>
+				<action>
+					<do_all>
+						<destroy_group group="{param@Cue}.{param@ID} L0GI09_EnemyShips"/>
+						<set_value name="{param@Cue}.{param@ID} L0GI09_Progress" exact="99"/>						
+					</do_all>
+				</action>
+			</cue>
+
 			<cue name="L0GI09_CreateBriefing">
 				<cues>
 					<cue ref="L0GI09 B"/>
@@ -387,7 +435,7 @@
 											<do_when value="{param.exists@SpawmTimeMin}*{param.exists@SpawnTimeMax}" min="1">
 												<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnTime" min="{param@SpawnTimeMin}" max="{param@SpawnTimeMax}"/>
 											</do_when>
-											<do_when value="{param.exists@SpawmTime}" exact="1">
+											<do_when value="{param.exists@SpawnTime}" exact="1">
 												<set_value name="{param@Cue}.{param@ID} L0GI09_SpawnTime" exact="{param@SpawnTime}"/>
 											</do_when>
 											<do_otherwise>
