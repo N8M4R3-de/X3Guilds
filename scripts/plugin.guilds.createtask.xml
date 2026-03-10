@@ -1,0 +1,382 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>plugin.guilds.createtask</name>
+<version>1</version>
+<engineversion>73</engineversion>
+<description>Guilds: Add a new task for a guild</description>
+<arguments>
+<argument index="1" name="a.guild" type="Var/String" desc="Guild" />
+<argument index="2" name="a.sector" type="Var/Sector" desc="Sector" />
+<argument index="3" name="a.type" type="Var/String" desc="Type" />
+<argument index="4" name="a.text" type="Var/String" desc="Text" />
+<argument index="5" name="a.run" type="Value" desc="Run" />
+<argument index="6" name="a.reward" type="Value" desc="Reword" />
+<argument index="7" name="a.xp" type="Var/Number" desc="XP" />
+<argument index="8" name="a.level" type="Var/Number" desc="Level" />
+<argument index="9" name="a.extraData" type="Value" desc="Extra Data" />
+</arguments>
+<sourceplaintext>
+<![CDATA[
+  $Guilds.Data = get global variable: name='guilds.data'
+  skip if $Guilds.Data
+    return null
+  
+  $table.guild = $Guilds.Data[$a.guild]
+  skip if $table.guild
+    return null
+  
+  $table.tasks = $Guilds.Data['tasks']
+  if not $table.tasks
+    $table.tasks = table alloc
+    $Guilds.Data['tasks'] = $table.tasks
+  end
+  
+  $last.task = $Guilds.Data['last.task']
+  skip if $last.task
+    $last.task = 0
+  inc $last.task = 
+  
+  do if $last.task > 2000000000
+    $last.task = 1
+  
+  $array = create new array, size=11, elements=$a.guild, $last.task, $a.text, $a.sector, $a.type, $a.run, 'created', $a.reward
+  $array[8] = $a.xp
+  $array[9] = $a.level
+  $array[10] = $a.extraData
+  $Guilds.Data['last.task'] = $last.task
+  $table.tasks[$last.task] = $array
+  
+  return null
+]]>
+</sourceplaintext>
+<sourcetext>
+<line indent=""><var>$Guilds.Data&#160;=&#160;</var><text>get&#160;global&#160;variable:&#160;name=</text><var>'guilds.data'</var></line>
+<line indent=""><var>skip&#160;if&#160;</var><var>$Guilds.Data</var></line>
+<line indent="&#160;"><text>return&#160;</text><var>null</var></line>
+<line indent=""></line>
+<line indent=""><var>$table.guild&#160;=&#160;</var><var>$Guilds.Data</var><text>[</text><var>$a.guild</var><text>]</text></line>
+<line indent=""><var>skip&#160;if&#160;</var><var>$table.guild</var></line>
+<line indent="&#160;"><text>return&#160;</text><var>null</var></line>
+<line indent=""></line>
+<line indent=""><var>$table.tasks&#160;=&#160;</var><var>$Guilds.Data</var><text>[</text><var>'tasks'</var><text>]</text></line>
+<line indent=""><var>if&#160;not&#160;</var><var>$table.tasks</var></line>
+<line indent="&#160;"><var>$table.tasks&#160;=&#160;</var><text>table&#160;alloc</text></line>
+<line indent="&#160;"><var>$Guilds.Data</var><text>[</text><var>'tasks'</var><text>]&#160;=&#160;</text><var>$table.tasks</var></line>
+<line indent=""><text>end</text></line>
+<line indent=""></line>
+<line indent=""><var>$last.task&#160;=&#160;</var><var>$Guilds.Data</var><text>[</text><var>'last.task'</var><text>]</text></line>
+<line indent=""><var>skip&#160;if&#160;</var><var>$last.task</var></line>
+<line indent="&#160;"><var>$last.task&#160;=&#160;</var><var>0</var></line>
+<line indent=""><text>inc&#160;</text><var>$last.task&#160;=&#160;</var></line>
+<line indent=""></line>
+<line indent=""><var>do&#160;if&#160;</var><var>$last.task</var><text>&#160;</text><var>&gt;</var><text>&#160;</text><var>2000000000</var></line>
+<line indent="&#160;"><var>$last.task&#160;=&#160;</var><var>1</var></line>
+<line indent=""></line>
+<line indent=""><var>$array&#160;=&#160;</var><text>create&#160;new&#160;array,&#160;size=</text><var>11</var><text>,&#160;elements=</text><var>$a.guild</var><text>,&#160;</text><var>$last.task</var><text>,&#160;</text><var>$a.text</var><text>,&#160;</text><var>$a.sector</var><text>,&#160;</text><var>$a.type</var><text>,&#160;</text><var>$a.run</var><text>,&#160;</text><var>'created'</var><text>,&#160;</text><var>$a.reward</var></line>
+<line indent=""><var>$array</var><text>[</text><var>8</var><text>]&#160;=&#160;</text><var>$a.xp</var></line>
+<line indent=""><var>$array</var><text>[</text><var>9</var><text>]&#160;=&#160;</text><var>$a.level</var></line>
+<line indent=""><var>$array</var><text>[</text><var>10</var><text>]&#160;=&#160;</text><var>$a.extraData</var></line>
+<line indent=""><var>$Guilds.Data</var><text>[</text><var>'last.task'</var><text>]&#160;=&#160;</text><var>$last.task</var></line>
+<line indent=""><var>$table.tasks</var><text>[</text><var>$last.task</var><text>]&#160;=&#160;</text><var>$array</var></line>
+<line indent=""></line>
+<line indent=""><text>return&#160;</text><var>null</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="plugin.guilds.createtask"/>
+  <sval type="int" val="73"/>
+  <sval type="string" val="Guilds: Add a new task for a guild"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="14">
+    <sval type="string" val="a.guild"/>
+    <sval type="string" val="a.sector"/>
+    <sval type="string" val="a.type"/>
+    <sval type="string" val="a.text"/>
+    <sval type="string" val="a.run"/>
+    <sval type="string" val="a.reward"/>
+    <sval type="string" val="a.xp"/>
+    <sval type="string" val="a.level"/>
+    <sval type="string" val="a.extraData"/>
+    <sval type="string" val="Guilds.Data"/>
+    <sval type="string" val="table.guild"/>
+    <sval type="string" val="table.tasks"/>
+    <sval type="string" val="last.task"/>
+    <sval type="string" val="array"/>
+  </sval>
+  <sval type="array" size="23">
+    <sval type="array" size="4">
+      <sval type="int" val="158"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="guilds.data"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-536870137"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-536869369"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="tasks"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-536868348"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="1733"/>
+      <sval type="int" val="11"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="tasks"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="last.task"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-536867577"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="142"/>
+      <sval type="int" val="12"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610608632"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="2000000000"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="20">
+      <sval type="int" val="2195"/>
+      <sval type="int" val="13"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="created"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="13"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="13"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="13"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="last.task"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="130"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="13"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+  </sval>
+  <sval type="array" size="9">
+    <sval type="array" size="2">
+      <sval type="int" val="11"/>
+      <sval type="string" val="Guild"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="string" val="Sector"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="11"/>
+      <sval type="string" val="Type"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="11"/>
+      <sval type="string" val="Text"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="9"/>
+      <sval type="string" val="Run"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="9"/>
+      <sval type="string" val="Reword"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="string" val="XP"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="string" val="Level"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="9"/>
+      <sval type="string" val="Extra Data"/>
+    </sval>
+  </sval>
+  <sval type="array" size="7">
+    <sval type="array" size="2">
+      <sval type="int" val="3"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="6"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="16"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="22"/>
+      <sval type="int" val="2"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+<nosignature>2684</nosignature>
+</script>

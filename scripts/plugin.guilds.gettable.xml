@@ -14,6 +14,9 @@
   $length.table = table alloc
   $name.table = table alloc
   $search.table = table alloc
+  * Settings: 
+  * 0: Column Gap
+  * 1: 
   $settings.array = create new array, size=7, elements=5, [TRUE], [TRUE], [TRUE], [TRUE], [TRUE], $search.table, null
   
   * =======================
@@ -81,6 +84,12 @@
     end
     
   * =======================
+  else if $a.menu == 'guild.board'
+    if $a.table == 'tasks'
+      $ret = create new array, size=2, elements='guilds.task.name', 'guilds.task.guild', null, null, null, null, null, null
+    end
+    
+  * =======================
   end
   
   if $ret
@@ -96,6 +105,9 @@
 <line indent=""><var>$length.table&#160;=&#160;</var><text>table&#160;alloc</text></line>
 <line indent=""><var>$name.table&#160;=&#160;</var><text>table&#160;alloc</text></line>
 <line indent=""><var>$search.table&#160;=&#160;</var><text>table&#160;alloc</text></line>
+<line indent=""><comment><text>*&#160;</text><var>Settings:&#160;</var></comment></line>
+<line indent=""><comment><text>*&#160;</text><var>0:&#160;Column&#160;Gap</var></comment></line>
+<line indent=""><comment><text>*&#160;</text><var>1:&#160;</var></comment></line>
 <line indent=""><var>$settings.array&#160;=&#160;</var><text>create&#160;new&#160;array,&#160;size=</text><var>7</var><text>,&#160;elements=</text><var>5</var><text>,&#160;</text><var>[TRUE]</var><text>,&#160;</text><var>[TRUE]</var><text>,&#160;</text><var>[TRUE]</var><text>,&#160;</text><var>[TRUE]</var><text>,&#160;</text><var>[TRUE]</var><text>,&#160;</text><var>$search.table</var><text>,&#160;</text><var>null</var></line>
 <line indent=""></line>
 <line indent=""><comment><text>*&#160;</text><var>=======================</var></comment></line>
@@ -163,6 +175,12 @@
 <line indent="&#160;"><text>end</text></line>
 <line indent="&#160;"></line>
 <line indent=""><comment><text>*&#160;</text><var>=======================</var></comment></line>
+<line indent=""><var>else&#160;if&#160;</var><var>$a.menu</var><text>&#160;</text><var>==</var><text>&#160;</text><var>'guild.board'</var></line>
+<line indent="&#160;"><var>if&#160;</var><var>$a.table</var><text>&#160;</text><var>==</var><text>&#160;</text><var>'tasks'</var></line>
+<line indent="&#160;&#160;"><var>$ret&#160;=&#160;</var><text>create&#160;new&#160;array,&#160;size=</text><var>2</var><text>,&#160;elements=</text><var>'guilds.task.name'</var><text>,&#160;</text><var>'guilds.task.guild'</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var></line>
+<line indent="&#160;"><text>end</text></line>
+<line indent="&#160;"></line>
+<line indent=""><comment><text>*&#160;</text><var>=======================</var></comment></line>
 <line indent=""><text>end</text></line>
 <line indent=""></line>
 <line indent=""><var>if&#160;</var><var>$ret</var></line>
@@ -191,7 +209,7 @@
     <sval type="string" val="ret"/>
     <sval type="string" val="read.text"/>
   </sval>
-  <sval type="array" size="68">
+  <sval type="array" size="72">
     <sval type="array" size="2">
       <sval type="int" val="1733"/>
       <sval type="int" val="2"/>
@@ -378,7 +396,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="63"/>
+      <sval type="int" val="67"/>
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
@@ -463,7 +481,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="63"/>
+      <sval type="int" val="67"/>
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
@@ -555,11 +573,11 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="63"/>
+      <sval type="int" val="67"/>
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610596603"/>
+      <sval type="int" val="-1610596347"/>
       <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="0"/>
@@ -870,9 +888,65 @@
       <sval type="int" val="131075"/>
       <sval type="int" val="10"/>
     </sval>
-    <sval type="array" size="7">
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="67"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610595579"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="guild.board"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
       <sval type="int" val="104"/>
       <sval type="int" val="-1610595581"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="tasks"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="20">
+      <sval type="int" val="2195"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="guilds.task.name"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="guilds.task.guild"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610594557"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="6"/>
@@ -881,7 +955,7 @@
     </sval>
     <sval type="array" size="4">
       <sval type="int" val="131"/>
-      <sval type="int" val="-1610595581"/>
+      <sval type="int" val="-1610594557"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="6"/>
     </sval>
@@ -920,7 +994,22 @@
       <sval type="string" val="Table"/>
     </sval>
   </sval>
-  <sval type="array" size="20">
+  <sval type="array" size="26">
+    <sval type="array" size="3">
+      <sval type="int" val="3"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Settings: "/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="3"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="0: Column Gap"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="3"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="1: "/>
+    </sval>
     <sval type="array" size="2">
       <sval type="int" val="4"/>
       <sval type="int" val="2"/>
@@ -991,19 +1080,32 @@
       <sval type="string" val="======================="/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="63"/>
+      <sval type="int" val="67"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="63"/>
+      <sval type="int" val="67"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="67"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="======================="/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="67"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="67"/>
       <sval type="int" val="2"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="67"/>
+      <sval type="int" val="71"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="67"/>
+      <sval type="int" val="71"/>
       <sval type="int" val="4"/>
     </sval>
   </sval>
@@ -1011,5 +1113,5 @@
 </sval>
 
 </codearray>
-<nosignature>4253</nosignature>
+<nosignature>9871</nosignature>
 </script>
