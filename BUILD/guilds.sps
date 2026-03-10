@@ -5,7 +5,7 @@
 
 # Variable for your game directory, where to get files from
 # $PATH variable is used to get the current path
-Variable: $GAMEDIR $PATH/../..
+Variable: $GAMEDIR $PATH/..
 Variable: $SAVEDIR $PATH
 
 # The type of file, Script or Ship
@@ -43,7 +43,7 @@ WebAddress: http://xpluginmanager.co.uk/flscripts/
 Email: cycrow@cycrow.co.uk
 
 # Needed Library dependencies, require these to be installed
-Depend: Unoffical Patch|1.3.19|Cycrow
+Depend: Unofficial Patch|1.3.19|Cycrow
 
 # Ratings Values, 0 to 5, <ease> <changing> <recommended>
 Ratings: 2 5 4
@@ -56,173 +56,173 @@ ScriptType: Expansion Mod
 
 CombineGameFiles: 1
 
-Icon: $GAMEDIR/addon2/PluginManager/Graphics/guilds_logo.png
-Advert: GAME X3FL $GAMEDIR/addon2/PluginManager/Graphics/guilds_logo.png
+Icon: $GAMEDIR/PluginManager/Graphics/guilds_logo.png
+Advert: GAME X3FL $GAMEDIR/PluginManager/Graphics/guilds_logo.png
 
 # Files List, all the files to add, can include wild cards
-Text: GAME X3FL $GAMEDIR/addon2/t/0002-L*.pck
-TextPCK: GAME X3FL $GAMEDIR/addon2/t/0002-L*.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/setup.cycrow.guilds.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.planets.*
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.bbs.*
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.guilds.*
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.logistics.*
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.guilds.*
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.tradesys.*
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/!config.faction.guilds.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/!config.faction.privateer.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/!job.xenon.migration.xml
-Text: GAME X3FL $GAMEDIR/addon2/T/9620-L*
-Mod: GAME X3FL $GAMEDIR/addon2/08.cat
-Mod: GAME X3FL $GAMEDIR/addon2/08.dat
-Mod: GAME X3FL $GAMEDIR/addon2/09.cat
-Mod: GAME X3FL $GAMEDIR/addon2/09.dat
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/Guilds.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/Guilds*.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/al.plugin.guilds.xml
-ExtraPCK: GAME X3FL $GAMEDIR/addon2/mov/00044.xml|mov
-Extra: GAME X3FL $GAMEDIR/addon2/mov/00344.dat|mov
-Screen: GAME X3FL $GAMEDIR/addon2/loadscr/guilds*.jpg
+Text: GAME X3FL $GAMEDIR/t/0002-L*.pck
+TextPCK: GAME X3FL $GAMEDIR/t/0002-L*.xml
+Script: GAME X3FL $GAMEDIR/Scripts/setup.cycrow.guilds.xml
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.planets.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.bbs.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.guilds.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.logistics.*
+Script: GAME X3FL $GAMEDIR/Scripts/lib.guilds.*
+Script: GAME X3FL $GAMEDIR/Scripts/lib.tradesys.*
+Script: GAME X3FL $GAMEDIR/Scripts/!config.faction.guilds.xml
+Script: GAME X3FL $GAMEDIR/Scripts/!config.faction.privateer.xml
+Script: GAME X3FL $GAMEDIR/Scripts/!job.xenon.migration.xml
+Text: GAME X3FL $GAMEDIR/T/9620-L*
+Mod: GAME X3FL $GAMEDIR/08.cat
+Mod: GAME X3FL $GAMEDIR/08.dat
+Mod: GAME X3FL $GAMEDIR/09.cat
+Mod: GAME X3FL $GAMEDIR/09.dat
+MissionPCK: GAME X3FL $GAMEDIR/director/Guilds.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/Guilds*.xml
+Script: GAME X3FL $GAMEDIR/Scripts/al.plugin.guilds.xml
+ExtraPCK: GAME X3FL $GAMEDIR/mov/00044.xml|mov
+Extra: GAME X3FL $GAMEDIR/mov/00344.dat|mov
+Screen: GAME X3FL $GAMEDIR/loadscr/guilds*.jpg
 #Core Overrides
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!agent.acquire.blueprint.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!agent.cmd.assign.menu.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!agent.cmd.acquirestation.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!agent.cmd.acquirestation.menu.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!agent.cmd.specialships.menu.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!agent.cmd.stealequipment.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!agent.cmd.stealequipment.menu.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!job.trade.supplytrader.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!job.trade.miner.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!job.xenon.incursion.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.agent.initial.setup.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.agent.races.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.check.jumperror.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.diplomacy.gettradedock.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.diplomacy.getracegreeting.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.menu.mining.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.ship.plotpath.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.ship.plotpath.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.menu.tradebar.trade.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!move.jump.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!move.jumptogate.nearest.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!move.movetosector.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!move.mine.sector.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!move.scan.debris.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!ship.cmd.mineminerals.pre.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!ship.cmd.mtc.buy.pre.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!ship.cmd.jump.pl.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!ship.signal.attacked.ts.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!ship.signal.attacked.bigship.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/lib.lv.quick.upgrade.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/lib.complexplan.getconsumed.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/lib.complexplan.getproductinfo.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/lib.complexplan.getdata.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.autotrade.run.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.autotrade.refuel.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.autotrade.moveto.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.complexplan.menu.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.expguild.rewards.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.rrf.stockcaps.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.rrf.ufo.pickup.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/U.6 Get Transport Locations.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!agent.acquire.blueprint.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!agent.cmd.assign.menu.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!agent.cmd.acquirestation.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!agent.cmd.acquirestation.menu.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!agent.cmd.specialships.menu.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!agent.cmd.stealequipment.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!agent.cmd.stealequipment.menu.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!job.trade.supplytrader.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!job.trade.miner.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!job.xenon.incursion.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!lib.agent.initial.setup.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!lib.agent.races.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!lib.check.jumperror.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!lib.diplomacy.gettradedock.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!lib.diplomacy.getracegreeting.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!lib.menu.mining.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!lib.ship.plotpath.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!lib.ship.plotpath.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!lib.menu.tradebar.trade.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!move.jump.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!move.jumptogate.nearest.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!move.movetosector.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!move.mine.sector.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!move.scan.debris.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!ship.cmd.mineminerals.pre.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!ship.cmd.mtc.buy.pre.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!ship.cmd.jump.pl.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!ship.signal.attacked.ts.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!ship.signal.attacked.bigship.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/lib.lv.quick.upgrade.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/lib.complexplan.getconsumed.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/lib.complexplan.getproductinfo.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/lib.complexplan.getdata.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.autotrade.run.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.autotrade.refuel.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.autotrade.moveto.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.complexplan.menu.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.expguild.rewards.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.rrf.stockcaps.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.rrf.ufo.pickup.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/U.6 Get Transport Locations.xml
 
 #Old Plots
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.customstart.menu.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.customstart.config.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.customstart.run.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/setup.cycrow.oldplot.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/setup.plugin.mini.game.pck
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.oldplot.*
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!lib.war.watch.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!station.event.hq.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!fight.defend.earth.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!fight.torus.turret.xml
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/!config.earth.torus.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/csv.*
-ScriptPCK: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.mini.game.*
-Mod: GAME X3FL $GAMEDIR/addon2/07.cat
-Mod: GAME X3FL $GAMEDIR/addon2/07.dat
-Readme: GAME X3FL $GAMEDIR/addon2/PluginManager/Readme/Old Plots/readme-plot.txt
-Text: GAME X3FL $GAMEDIR/addon2/t/9619-L*.xml
-Extra: GAME X3FL $GAMEDIR/addon2/plot_videos.bat
-Extra: GAME X3FL $GAMEDIR/addon2/mov/00892.dat|mov
-Extra: GAME X3FL $GAMEDIR/addon2/mov/00893.dat|mov
-Extra: GAME X3FL $GAMEDIR/addon2/mov/00894.dat|mov
-Extra: GAME X3FL $GAMEDIR/addon2/mov/00895.dat|mov
-Extra: GAME X3FL $GAMEDIR/addon2/mov/00896.dat|mov
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/1.40 Corporation Missions.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.001 Terran Plot Scene 1.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.002 Terran Plot Scene 2.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.003 Terran Plot Scene 3.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.004 Terran Plot Scene 4.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.005 Terran Plot Scene 5.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.006 Terran Plot Scene 0.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.02 Khaak Plot.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.03 Goner Plot.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.007 HUB Plot.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.011 Version 2.0 Plot.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.014 Treasure Hunt.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.015 Version 3.0 Plot Scene 1.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.016 Version 3.0 Plot Scene 2.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.017 Version 3.0 Plot Scene 3.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.019 Albion Prelude Plot.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.020 Albion Prelude HUB Plot.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.021 Albion Prelude HQ Plot.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.022 Albion Prelude Terran Plot.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.023 Shady Business.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.024 Player Corp.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.43 Jonferco.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.44 Plutarch.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/3.02 Plot Missions.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/3.05 Gamestart Missions.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/3.09 Sector Management TC.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/CSV_Mission.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/start_oldplot.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/2.008 *.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/Reunion.xml
-MissionPCK: GAME X3FL $GAMEDIR/addon2/director/AP_DoubleAgent.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.customstart.menu.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.customstart.config.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.customstart.run.xml
+Script: GAME X3FL $GAMEDIR/Scripts/setup.cycrow.oldplot.xml
+Script: GAME X3FL $GAMEDIR/Scripts/setup.plugin.mini.game.pck
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.oldplot.*
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!lib.war.watch.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!station.event.hq.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!fight.defend.earth.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!fight.torus.turret.xml
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!config.earth.torus.xml
+Script: GAME X3FL $GAMEDIR/Scripts/csv.*
+ScriptPCK: GAME X3FL $GAMEDIR/Scripts/plugin.mini.game.*
+Mod: GAME X3FL $GAMEDIR/07.cat
+Mod: GAME X3FL $GAMEDIR/07.dat
+Readme: GAME X3FL $GAMEDIR/PluginManager/Readme/Old Plots/readme-plot.txt
+Text: GAME X3FL $GAMEDIR/t/9619-L*.xml
+Extra: GAME X3FL $GAMEDIR/plot_videos.bat
+Extra: GAME X3FL $GAMEDIR/mov/00892.dat|mov
+Extra: GAME X3FL $GAMEDIR/mov/00893.dat|mov
+Extra: GAME X3FL $GAMEDIR/mov/00894.dat|mov
+Extra: GAME X3FL $GAMEDIR/mov/00895.dat|mov
+Extra: GAME X3FL $GAMEDIR/mov/00896.dat|mov
+MissionPCK: GAME X3FL $GAMEDIR/director/1.40 Corporation Missions.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.001 Terran Plot Scene 1.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.002 Terran Plot Scene 2.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.003 Terran Plot Scene 3.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.004 Terran Plot Scene 4.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.005 Terran Plot Scene 5.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.006 Terran Plot Scene 0.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.02 Khaak Plot.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.03 Goner Plot.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.007 HUB Plot.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.011 Version 2.0 Plot.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.014 Treasure Hunt.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.015 Version 3.0 Plot Scene 1.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.016 Version 3.0 Plot Scene 2.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.017 Version 3.0 Plot Scene 3.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.019 Albion Prelude Plot.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.020 Albion Prelude HUB Plot.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.021 Albion Prelude HQ Plot.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.022 Albion Prelude Terran Plot.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.023 Shady Business.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.024 Player Corp.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.43 Jonferco.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.44 Plutarch.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/3.02 Plot Missions.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/3.05 Gamestart Missions.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/3.09 Sector Management TC.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/CSV_Mission.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/start_oldplot.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/2.008 *.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/Reunion.xml
+MissionPCK: GAME X3FL $GAMEDIR/director/AP_DoubleAgent.xml
 # Diplomacy Mod
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/setup.cycrow.diplomacy.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.diplomacy.*
-Text: GAME X3FL $GAMEDIR/addon2/T/9617-L*.xml
+Script: GAME X3FL $GAMEDIR/Scripts/setup.cycrow.diplomacy.xml
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.diplomacy.*
+Text: GAME X3FL $GAMEDIR/T/9617-L*.xml
 #Casino Mod
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.casino.*
-Text: GAME X3FL $GAMEDIR/addon2/T/9611-L*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.casino.*
+Text: GAME X3FL $GAMEDIR/T/9611-L*
 #Boarding Mod
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.boarding.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.boarding.*
 #Ship Renamer
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/setup.cycrow.shiprename.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.shiprename.*
-Text: GAME X3FL $GAMEDIR/addon2/T/9613-L*
+Script: GAME X3FL $GAMEDIR/Scripts/setup.cycrow.shiprename.xml
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.shiprename.*
+Text: GAME X3FL $GAMEDIR/T/9613-L*
 #Cargo beamer
-Script: GAME X3FL $GAMEDIR/Addon2/Scripts/plugin.cargobeam.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.cargobeam.*
 #loadout manager
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.loadoutm.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.loadoutm.*
 #OWP
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.owp.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.owp.*
 #Resource OVerview
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.roverview.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.roverview.*
 #SCS
-Script: GAME X3FL $GAMEDIR/Addon2/Scripts/plugin.scs.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.scs.*
 #Shopping List
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.shopping.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.shopping.*
 #Tradesys
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.tradesys.*
-Text: GAME X3FL $GAMEDIR/addon2/T/9616-L*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.tradesys.*
+Text: GAME X3FL $GAMEDIR/T/9616-L*
 #Adv Jump
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/plugin.advjump.*
+Script: GAME X3FL $GAMEDIR/Scripts/plugin.advjump.*
 #Library Files
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.sortmarines.*
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.getraces.*
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.tables.*
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.getloadoutsetting.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.getupgrademax.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.sortloadouts.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.applyloadout.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.getrandomface.xml
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.createspeaker.xml
+Script: GAME X3FL $GAMEDIR/Scripts/lib.cycrow.sortmarines.*
+Script: GAME X3FL $GAMEDIR/Scripts/lib.cycrow.getraces.*
+Script: GAME X3FL $GAMEDIR/Scripts/lib.cycrow.tables.*
+Script: GAME X3FL $GAMEDIR/Scripts/lib.cycrow.getloadoutsetting.xml
+Script: GAME X3FL $GAMEDIR/Scripts/lib.cycrow.getupgrademax.xml
+Script: GAME X3FL $GAMEDIR/Scripts/lib.cycrow.sortloadouts.xml
+Script: GAME X3FL $GAMEDIR/Scripts/lib.cycrow.applyloadout.xml
+Script: GAME X3FL $GAMEDIR/Scripts/lib.cycrow.getrandomface.xml
+Script: GAME X3FL $GAMEDIR/Scripts/lib.cycrow.createspeaker.xml
 #TEMP include all libs
-Script: GAME X3FL $GAMEDIR/addon2/Scripts/lib.cycrow.*
+Script: GAME X3FL $GAMEDIR/Scripts/lib.cycrow.*
 
 
 # Saving
