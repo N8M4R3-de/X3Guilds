@@ -50,26 +50,28 @@
 						<set_value name="this.Range" exact="{param@SectorRange}"/>
 						<do_choose>
 							<do_when value="{value@this.Range}" min="1">
-								<set_value name="this.MaxRange" exact="1"/>
+								<set_value name="this.MinRange" exact="1"/>
 							</do_when>
 							<do_otherwise>
-								<set_value name="this.MaxRange" exact="0"/>
+								<set_value name="this.MinRange" exact="0"/>
 							</do_otherwise>
 						</do_choose>
 					</do_when>
 					<do_otherwise>
 						<set_value name="this.Range" exact="0"/>
-						<set_value name="this.MaxRange" exact="0"/>
+						<set_value name="this.MinRange" exact="0"/>
 					</do_otherwise>
 				</do_choose>
-				<do_choose>
-					<do_when value="{param.exists@SectorRace}" exact="1">
-						<find_sector name="{param@Cue}.{param@ID} L0GI10_Sector" race="{param@SectorRace}" sector="{param@StartSector}" min="{value@this.MaxRange}" max="{value@this.Range}"/>
-					</do_when>
-					<do_otherwise>
-						<find_sector name="{param@Cue}.{param@ID} L0GI10_Sector" sector="{param@StartSector}" min="{value@this.MaxRange}" max="{value@this.Range}"/>
-					</do_otherwise>
-				</do_choose>
+				<do_if value="{value@this.Range}" min="1">
+					<do_choose>
+						<do_when value="{param.exists@SectorRace}" exact="1">
+							<find_sector name="{param@Cue}.{param@ID} L0GI10_Sector" race="{param@SectorRace}" sector="{param@StartSector}" min="{value@this.MinRange}" max="{value@this.Range}"/>
+						</do_when>
+						<do_otherwise>
+							<find_sector name="{param@Cue}.{param@ID} L0GI10_Sector" sector="{param@StartSector}" min="{value@this.MinRange}" max="{value@this.Range}"/>
+						</do_otherwise>
+					</do_choose>
+				</do_if>
 				<do_if value="{sector.exists@{param@Cue}.{param@ID} L0GI10_Sector}" exact="0">
 					<set_sector name="{param@Cue}.{param@ID} L0GI10_Sector" value="{param@StartSector}"/>
 				</do_if>
