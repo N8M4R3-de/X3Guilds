@@ -4863,6 +4863,10 @@
  <t id="158">Kha'ak Invasions</t>
  <t id="159">This option will enable or disable the Kha'ak ships that invade sectors.</t>
  <t id="160">Task</t>
+ <t id="161">Target</t>
+ <t id="162">Reward</t>
+ <t id="163">General Mission</t>
+ <t id="164">Combat Mission</t>
  <t id="200">Guilds are expansive organisations governing themselves on a galactic scale. Members within a guild enjoy access to various benefits, encompassing employment opportunities, assignments, equipment, and even ships and stations. Typically, guilds establish headquarters where prospective members can apply for membership. Additionally, many trading stations feature a guild board, a platform where guilds post tasks and jobs available for members to undertake.</t>
  <t id="201">Current Memberships</t>
  <t id="202">Level</t>
@@ -4877,6 +4881,9 @@
  <t id="211">Total Price</t>
  <t id="212">Buy Ware</t>
  <t id="213">Sell Ware</t>
+ <t id="214">Guild Level</t>
+ <t id="215">Task Difficulty</t>
+ <t id="216">Enemy Faction</t>
  <t id="300">Bounty Hunters Guild</t>
  <t id="301">Assassins Guild</t>
  <t id="302">Mercenaries Guild</t>

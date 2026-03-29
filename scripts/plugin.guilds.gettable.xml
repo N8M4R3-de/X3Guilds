@@ -86,7 +86,7 @@
   * =======================
   else if $a.menu == 'guild.board'
     if $a.table == 'tasks'
-      $ret = create new array, size=2, elements='guilds.task.name', 'guilds.task.guild', null, null, null, null, null, null
+      $ret = create new array, size=2, elements='guilds.task.name', 'guilds.task.guild', 'guilds.task.sector', 'guilds.task.enemy', 'guilds.task.reward', 'guilds.task.xp', null, null
     end
     
   * =======================
@@ -177,7 +177,7 @@
 <line indent=""><comment><text>*&#160;</text><var>=======================</var></comment></line>
 <line indent=""><var>else&#160;if&#160;</var><var>$a.menu</var><text>&#160;</text><var>==</var><text>&#160;</text><var>'guild.board'</var></line>
 <line indent="&#160;"><var>if&#160;</var><var>$a.table</var><text>&#160;</text><var>==</var><text>&#160;</text><var>'tasks'</var></line>
-<line indent="&#160;&#160;"><var>$ret&#160;=&#160;</var><text>create&#160;new&#160;array,&#160;size=</text><var>2</var><text>,&#160;elements=</text><var>'guilds.task.name'</var><text>,&#160;</text><var>'guilds.task.guild'</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var></line>
+<line indent="&#160;&#160;"><var>$ret&#160;=&#160;</var><text>create&#160;new&#160;array,&#160;size=</text><var>2</var><text>,&#160;elements=</text><var>'guilds.task.name'</var><text>,&#160;</text><var>'guilds.task.guild'</var><text>,&#160;</text><var>'guilds.task.sector'</var><text>,&#160;</text><var>'guilds.task.enemy'</var><text>,&#160;</text><var>'guilds.task.reward'</var><text>,&#160;</text><var>'guilds.task.xp'</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var></line>
 <line indent="&#160;"><text>end</text></line>
 <line indent="&#160;"></line>
 <line indent=""><comment><text>*&#160;</text><var>=======================</var></comment></line>
@@ -931,14 +931,14 @@
       <sval type="string" val="guilds.task.name"/>
       <sval type="int" val="5"/>
       <sval type="string" val="guilds.task.guild"/>
-      <sval type="int" val="0"/>
-      <sval type="int" val="0"/>
-      <sval type="int" val="0"/>
-      <sval type="int" val="0"/>
-      <sval type="int" val="0"/>
-      <sval type="int" val="0"/>
-      <sval type="int" val="0"/>
-      <sval type="int" val="0"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="guilds.task.sector"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="guilds.task.enemy"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="guilds.task.reward"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="guilds.task.xp"/>
       <sval type="int" val="0"/>
       <sval type="int" val="0"/>
       <sval type="int" val="0"/>
@@ -1113,5 +1113,5 @@
 </sval>
 
 </codearray>
-<nosignature>9871</nosignature>
+<nosignature>4147</nosignature>
 </script>
