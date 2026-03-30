@@ -167,7 +167,7 @@
     gosub sub.AddMissiles
     gosub sub.AddShields
     $table[Fighter Drone] = [TRUE]
-    $a.priceType = 2
+    $a.priceType = 3
   end
   endsub
   
@@ -357,7 +357,7 @@
 <line indent="&#160;"><text>gosub&#160;</text><var>sub.AddMissiles</var></line>
 <line indent="&#160;"><text>gosub&#160;</text><var>sub.AddShields</var></line>
 <line indent="&#160;"><var>$table</var><text>[</text><var>Fighter&#160;Drone</var><text>]&#160;=&#160;</text><var>[TRUE]</var></line>
-<line indent="&#160;"><var>$a.priceType&#160;=&#160;</var><var>2</var></line>
+<line indent="&#160;"><var>$a.priceType&#160;=&#160;</var><var>3</var></line>
 <line indent=""><text>end</text></line>
 <line indent=""><text>endsub</text></line>
 <line indent=""></line>
@@ -1233,7 +1233,7 @@
       <sval type="int" val="20"/>
       <sval type="int" val="1"/>
       <sval type="int" val="4"/>
-      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
       <sval type="int" val="1"/>
       <sval type="int" val="-1"/>
     </sval>
@@ -1662,5 +1662,5 @@
 </sval>
 
 </codearray>
-<nosignature>2894</nosignature>
+<nosignature>7984</nosignature>
 </script>

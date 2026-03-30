@@ -13,6 +13,285 @@
 				<cue_is_complete cue="Guilds_Startup"/>
 			</condition>
 			<cues>
+				<!-- ######################## Tasks ########################## -->
+				<cue name="Merc_Guild_Tasks">
+					<cues>
+						<cue name="Merc_Task_Update" library="1">
+							<documentation>
+								<params>
+									<param name="datacue" type="cuename"/>
+									<param name="eventobject" type="objectname"/>
+									<param name="eventparam1"/>
+									<param name="eventparam2"/>
+								</params>
+							</documentation>
+							<action>
+								<do_choose>
+									<do_when value="{param@eventparam1}" exact="create">
+										<set_value name="{param@datacue}_CurrentTaskID" exact="{param@eventparam2}"/>
+										<set_sector name="Merc Guild.Task{param@eventparam2}_Sector" value="{param@eventobject}"/>
+									</do_when>
+									<do_when value="{value@{param@datacue}_CurrentTaskID}" min="1">
+										<set_value name="Merc Guild.Task{value@{param@datacue}_CurrentTaskID}_{param@eventparam1}" exact="{param@eventparam2}"/>
+									</do_when>
+								</do_choose>
+							</action>
+						</cue>
+
+						<cue name="Merc_Task_AttackWay_Run" library="1">
+							<documentation>
+								<params>
+									<param name="TaskID" type="number" description="The ID of the task to run"/>
+								</params>
+							</documentation>
+							<action>
+								<do_all>
+									<do_choose>
+										<do_when value="{sector.race@Merc Guild.Task{param@TaskID}_Sector}" exact="{lookup.race@goner}">
+											<create_actor name="Merc Guild.Task{param@TaskID}_Leader" race="{lookup.race@argon}" voiceflags="32"/>
+										</do_when>
+										<do_when value="{sector.race@Merc Guild.Task{param@TaskID}_Sector}" exact="{lookup.race@atf}">
+											<create_actor name="Merc Guild.Task{param@TaskID}_Leader" race="{lookup.race@terran}" voiceflags="32"/>
+										</do_when>
+										<do_otherwise>
+											<create_actor name="Merc Guild.Task{param@TaskID}_Leader" race="{sector.race@Merc Guild.Task{param@TaskID}_Sector}" voiceflags="32"/>
+										</do_otherwise>
+									</do_choose>
+									<set_value name="Merc Guild.Task{param@TaskID}_Race" exact="{sector.race@Merc Guild.Task{param@TaskID}_Sector}"/>
+									<do_if value="{value@Merc Guild.Task{param@TaskID}_Enemy}" min="1" negate="1">
+										<set_value name="Merc Guild.Task{param@TaskID}_Enemy" exact="{lookup.race@pirate}"/>
+										<do_any>
+											<set_value name="Merc Guild.Task{param@TaskID}_Enemy" exact="{lookup.race.randomenemy@{param@Race}}" chance="20"/>
+											<set_value name="Merc Guild.Task{param@TaskID}_Enemy" exact="{lookup.race@pirate}" chance="50"/>
+											<set_value name="Merc Guild.Task{param@TaskID}_Enemy" exact="{lookup.race@xenon}" chance="10"/>
+											<set_value name="Merc Guild.Task{param@TaskID}_Enemy" exact="{lookup.race@khaak}" chance="5"/>
+											<set_value name="Merc Guild.Task{param@TaskID}_Enemy" exact="{lookup.race@yaki}" chance="15"/>
+										</do_any>
+									</do_if>
+									<do_choose>
+										<do_when value="{value@Merc Guild.Task{param@TaskID}_Difficulty}" min="6">
+											<set_value name="Merc Guild.Task{param@TaskID}_Waypoints" exact="3"/>
+										</do_when>
+										<do_when value="{value@Merc Guild.Task{param@TaskID}_Difficulty}" min="3">
+											<set_value name="Merc Guild.Task{param@TaskID}_Waypoints" exact="2"/>
+										</do_when>
+										<do_otherwise>
+											<set_value name="Merc Guild.Task{param@TaskID}_Waypoints" exact="1"/>
+										</do_otherwise>
+									</do_choose>
+								</do_all>
+							</action>
+							<cues>
+								<cue ref="L0GI10 B">
+									<params>
+										<param name="Cue" value="Merc_Guild_Tasks" comment="The cue where values will be localized"/>
+										<param name="ID" value="{param@TaskID}"/>
+										<param name="Step" value="1"/>
+										<param name="Preview" value="1"/>
+										<param name="SetObjective" value="0"/>
+										<param name="Lv1Guide" value="{actor@Merc Guild.Task{param@TaskID}_Leader}"/>
+										<param name="StartSector" value="{sector@Merc Guild.Task{param@TaskID}_Sector}" comment="The Address of the destination. Overrides all other criteria."/>
+										<param name="SectorRange" value="0"/>
+										<param name="SectorRace" value="{value@Merc Guild.Task{param@TaskID}_Race}"/>
+										<param name="EnemyRace" value="{value@Merc Guild.Task{param@TaskID}_Enemy}" comment="Race id or mask"/>
+										<param name="OfferRace" value="{value@Merc Guild.Task{param@TaskID}_Race}" comment="Name of the offer race"/>
+										<param name="Complete Briefing" value="1" comment="Run the briefing completion library"/>
+										<param name="Difficulty" value="{value@Merc Guild.Task{param@TaskID}_Difficulty}" comment="The value address for the difficulty"/>
+										<param name="RewardCr" value="Merc Guild.Task{param@TaskID}_Reward" comment="Reward - credits"/>
+										<param name="Bonus" value="Merc Guild.Task{param@TaskID}_Bonus"/>
+										<param name="Level" value="5+({value@Merc Guild.Task{param@TaskID}_Level}*2)"/>
+										<param name="Waypoints" value="{value@Merc Guild.Task{param@TaskID}_Waypoints}"/>
+									</params>
+								</cue>
+								<cue name="Merc_Task_AttackWay_Run_Start" delay="1s">
+									<condition>
+										<cue_is_complete cue="L0GI10 B"/>
+									</condition>
+									<timing>
+										<time exact="1s"/>
+									</timing>
+									<action>
+										<do_all>
+											<set_value name="this.race" exact="{value@Merc Guild.Task{param@TaskID}_Race}"/>
+											<do_choose>
+												<do_when value="{value@this.race}" exact="{lookup.race@goner}">
+													<set_value name="this.race" exact="{lookup.race@argon}"/>
+												</do_when>
+											</do_choose>
+											<set_value name="Merc Guild.Task{param@TaskID}_Bonus" exact="0"/>
+											<do_if value="{value@Merc Guild.Task{param@TaskID}_Level}" min="9">
+												<create_ship group="Merc Guild.Task{param@TaskID}_Followers" typename="SS_SH_MERC_M6" race="{value@this.race}">
+													<position x="-900km" y="-900km" z="-900km" />
+													<sector sector="{sector@Merc Guild.Task{param@TaskID}_Sector}"/>
+													<equipment loadout="maximum"/>
+													<command command="idle"/>
+												</create_ship>
+											</do_if>
+											<do_if value="{value@Merc Guild.Task{param@TaskID}_Level}" min="3">
+												<create_ship group="Merc Guild.Task{param@TaskID}_Followers" typename="SS_SH_MERC_M3" race="{value@this.race}">
+													<position x="-900km" y="-900km" z="-900km" />
+													<sector sector="{sector@Merc Guild.Task{param@TaskID}_Sector}"/>
+													<equipment loadout="maximum"/>
+													<command command="idle"/>
+												</create_ship>
+												<create_ship group="Merc Guild.Task{param@TaskID}_Followers" typename="SS_SH_MERC_M4" race="{value@this.race}">
+													<position x="-900km" y="-900km" z="-900km" />
+													<sector sector="{sector@Merc Guild.Task{param@TaskID}_Sector}"/>
+													<equipment loadout="maximum"/>
+													<command command="idle"/>
+												</create_ship>
+											</do_if>
+											<create_ship group="Merc Guild.Task{param@TaskID}_Followers" typename="SS_SH_MERC_M4" race="{value@this.race}">
+												<position x="-900km" y="-900km" z="-900km" />
+												<sector sector="{sector@Merc Guild.Task{param@TaskID}_Sector}"/>
+												<equipment loadout="maximum"/>
+												<command command="idle"/>
+											</create_ship>
+											<create_ship group="Merc Guild.Task{param@TaskID}_Followers" typename="SS_SH_MERC_M5" race="{value@this.race}">
+												<position x="-900km" y="-900km" z="-900km" />
+												<sector sector="{sector@Merc Guild.Task{param@TaskID}_Sector}"/>
+												<equipment loadout="maximum"/>
+												<command command="idle"/>
+											</create_ship>
+											<create_ship group="Merc Guild.Task{param@TaskID}_Followers" typename="SS_SH_MERC_M5" race="{value@this.race}">
+												<position x="-900km" y="-900km" z="-900km" />
+												<sector sector="{sector@Merc Guild.Task{param@TaskID}_Sector}"/>
+												<equipment loadout="maximum"/>
+												<command command="idle"/>
+											</create_ship>
+											<create_briefing cue="Merc_Guild_Tasks" race="{9620,302}" targetrace="{value@Merc Guild.Task{param@TaskID}_Race}">
+												<thumbnails>
+													<thumbnail image="merc.tga" order="1"/>
+												</thumbnails>
+											</create_briefing>
+										</do_all>
+									</action>
+									<cues>
+										<cue ref="L0GI10">
+											<params>
+												<param name="Cue" value="Merc_Guild_Tasks" comment="The cue where values will be localized"/>
+												<param name="ID" value="{param@TaskID}"/>
+												<param name="Step" value="1"/>
+												<param name="SetObjective" value="1"/>
+												<param name="Lv1Guide" value="{actor@Merc Guild.Task{param@TaskID}_Leader}"/>
+												<param name="StartSector" value="Merc Guild.Task{param@TaskID}_Sector" comment="The Address of the destination. Overrides all other criteria."/>
+												<param name="SectorRange" value="0"/>
+												<param name="LeaderActor" value="{actor@Merc Guild.Task{param@TaskID}_Leader}"/>
+												<param name="EnemyRace" value="{value@Merc Guild.Task{param@TaskID}_Enemy}" comment="Race id or mask"/>
+												<param name="OfferRace" value="{value@Merc Guild.Task{param@TaskID}_Race}" comment="Name of the offer race"/>
+												<param name="Complete Briefing" value="1" comment="Run the briefing completion library"/>
+												<param name="Difficulty" value="{value@Merc Guild.Task{param@TaskID}_Difficulty}" comment="The value address for the difficulty"/>
+												<param name="RewardCr" value="Merc Guild.Task{param@TaskID}_Reward" comment="Reward - credits"/>
+												<param name="Bonus" value="Merc Guild.Task{param@TaskID}_Bonus"/>
+												<param name="Level" value="5+({value@Merc Guild.Task{param@TaskID}_Level}*2)"/>
+												<param name="Waypoints" value="2"/>
+												<param name="Followers" value="Merc Guild.Task{param@TaskID}_Followers"/>
+												<param name="ExtendedSpeak" value="0"/>
+												<param name="Waypoints" value="{value@Merc Guild.Task{param@TaskID}_Waypoints}"/>
+											</params>
+										</cue>
+										<cue name="Merc_Task_AttackWay_Run_Done">
+											<condition>
+												<check_value value="{value@Merc_Guild_Tasks.{param@TaskID} L0GI10_Progress}" min="1"/>
+											</condition>
+											<action>
+												<do_all>
+													<remove_briefing cue="Merc_Guild_Tasks"/>
+													<do_choose>
+														<do_when value="{value@Merc_Guild_Tasks.{param@TaskID} L0GI10_Progress}" exact="1">
+															<play_text actor="Merc Guild.Task{param@TaskID}_Leader" priority="90">
+																<line actor="Merc Guild.Task{param@TaskID}_Leader" textid="949"/>
+															</play_text>
+															<set_value name="this.Reward" exact="{value@Merc Guild.Task{param@TaskID}_Reward}+{value@Merc Guild.Task{param@TaskID}_Bonus}"/>
+															<reward_player>
+																<money exact="{value@this.Reward}" transactionid="300009" transactionpage="9620"/>
+															</reward_player>
+															<start_script script="plugin.guilds.dotask">
+																<scriptargs>
+																	<scriptvalue datatype="integer" datavalue="{param@TaskID}"/>
+																	<scriptvalue datatype="string" datavalue="complete"/>
+																</scriptargs>
+															</start_script>
+															<remove_objective cue="Merc_Guild_Tasks" status="complete"/>															
+														</do_when>
+														<do_when value="{value@Merc_Guild_Tasks.{param@TaskID} L0GI10_Progress}" exact="99">
+															<remove_objective cue="Merc_Guild_Tasks" status="abort"/>
+															<start_script script="plugin.guilds.dotask">
+																<scriptargs>
+																	<scriptvalue datatype="integer" datavalue="{param@TaskID}"/>
+																	<scriptvalue datatype="string" datavalue="abort"/>
+																</scriptargs>
+															</start_script>
+														</do_when>
+														<do_otherwise>
+															<remove_objective cue="Merc_Guild_Tasks" status="failed"/>
+															<start_script script="plugin.guilds.dotask">
+																<scriptargs>
+																	<scriptvalue datatype="integer" datavalue="{param@TaskID}"/>
+																	<scriptvalue datatype="string" datavalue="failed"/>
+																</scriptargs>
+															</start_script>
+														</do_otherwise>
+													</do_choose>
+													<remove_value value="Merc Guild.Task{param@TaskID}_Level"/>
+													<remove_value value="Merc Guild.Task{param@TaskID}_Race"/>
+													<remove_value value="Merc Guild.Task{param@TaskID}_Enemy"/>
+													<remove_value value="Merc Guild.Task{param@TaskID}_Bonus"/>
+													<remove_value value="Merc Guild.Task{param@TaskID}_Sector"/>
+													<remove_value value="Merc Guild.Task{param@TaskID}_XP"/>
+													<remove_value value="Merc Guild.Task{param@TaskID}_Reward"/>
+													<remove_value value="Merc Guild.Task{param@TaskID}_Difficulty"/>
+													<destroy_group group="Merc Guild.Task{param@TaskID}_Followers"/>
+													<destroy_actor actor="Merc Guild.Task{param@TaskID}_Leader"/>
+												</do_all>
+											</action>
+										</cue>
+									</cues>
+								</cue>
+							</cues>
+						</cue>
+
+						<cue name="Merc_Task_AttackWay_Start" instantiate="static">
+							<condition>
+								<check_all>
+									<script_event name="merc.task.attackway.start"/>
+								</check_all>
+							</condition>
+							<cues>
+								<cue ref="Merc_Task_AttackWay_Run">
+									<params>
+										<param name="TaskID" value="{event.param}"/>
+									</params>
+								</cue>
+							</cues>
+						</cue>
+						<cue name="Merc_Task_AttackWay" instantiate="static">
+							<condition>
+								<script_event name="merc.task.attackway"/>
+							</condition>
+							<action>
+								<do_if value="{event.param}" exact="start">
+									<do_if value="{value@Merc_Task_AttackWay_CurrentTaskID}" min="1">
+										<set_value name="Merc Guild.AttackWay_StartTask" exact="{value@Merc_Task_AttackWay_CurrentTaskID}"/>
+										<remove_value value="Merc_Task_AttackWay_CurrentTaskID"/>
+										<incoming_message text="Starting mission"/>
+									</do_if>
+								</do_if>
+							</action>
+							<cues>
+								<cue ref="Merc_Task_Update">
+									<params>
+										<param name="eventobject" value="{event.object}"/>
+										<param name="eventparam1" value="{event.param}"/>
+										<param name="eventparam2" value="{event.param2}"/>
+										<param name="datacue" value="Merc_Task_AttackWay"/>
+									</params>
+								</cue>
+							</cues>
+						</cue>
+					</cues>
+				</cue>
+
 				<!-- ######################## Escort Missions ########################## -->
 				<cue name="Merc_Escort_Money" instantiate="static">
 					<condition>

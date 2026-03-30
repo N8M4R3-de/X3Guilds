@@ -2,6 +2,8 @@ V0.88
 Added Heavy Tern and Heavy Shrike to Teladi Super Shipyard
 Added new mission type (Attack ships at waypoints)
 Added Attack ships at waypoint mission to Race Military
+Added Guild Tasks to Guild Board
+Added Merceneries Guild Tasks (Attack ships at waypoints)
 Ajusted Race Military missions, now upto 3 missions available at a time
 
 V0.87
