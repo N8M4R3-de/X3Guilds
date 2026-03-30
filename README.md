@@ -39,7 +39,6 @@ Just run the build.bat script which will add files to the various cat files and 
   - Ship upgrades that can add additional features to ships
   - Repair Bay - Allows docked ships to be repaired
   - Ship Production - Allows ships/drones to be built internally
-- Dynamic Wormholes
 - AI Competitors
 - Equipment: Jumpdrive Tracker
 - Capital Ship Crews
