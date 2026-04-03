@@ -570,7 +570,7 @@
 								<cancel_cue cue="L0GI01_CapturePilot"/>
 							</do_if>
 							<remove_briefing cue="L3GB01"/>
-							<remove_objective cue="L3GB01" status="aborted"/>							
+							<remove_objective cue="L3GB01" status="completed"/>							
 						</do_all>
 					</action>
 				</cue>
