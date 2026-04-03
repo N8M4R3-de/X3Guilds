@@ -19,11 +19,11 @@ Author: Cycrow
 
 # The creation data, when it was created
 # $DATE variable is used to get the current date
-Date: 09/03/2026
+Date: 03/04/2026
 
 # The version of script
 # $ASK variable is used to get an input when creating
-Version: 0.87
+Version: 0.88
 
 # The game version the script is for <game> <version> (can have multiple games)
 Game: X3FL 1.3
@@ -43,7 +43,7 @@ WebAddress: http://xpluginmanager.co.uk/flscripts/
 Email: cycrow@cycrow.co.uk
 
 # Needed Library dependencies, require these to be installed
-Depend: Unofficial Patch|1.3.19|Cycrow
+Depend: Unofficial Patch|1.3.20|Cycrow
 
 # Ratings Values, 0 to 5, <ease> <changing> <recommended>
 Ratings: 2 5 4
@@ -81,7 +81,9 @@ MissionPCK: GAME X3FL $GAMEDIR/director/Guilds.xml
 MissionPCK: GAME X3FL $GAMEDIR/director/Guilds*.xml
 Script: GAME X3FL $GAMEDIR/Scripts/al.plugin.guilds.xml
 ExtraPCK: GAME X3FL $GAMEDIR/mov/00044.xml|mov
+ExtraPCK: GAME X3FL $GAMEDIR/mov/00007.xml|mov
 Extra: GAME X3FL $GAMEDIR/mov/00344.dat|mov
+Extra: GAME X3FL $GAMEDIR/mov/00307.dat|mov
 Screen: GAME X3FL $GAMEDIR/loadscr/guilds*.jpg
 #Core Overrides
 ScriptPCK: GAME X3FL $GAMEDIR/Scripts/!agent.acquire.blueprint.xml
