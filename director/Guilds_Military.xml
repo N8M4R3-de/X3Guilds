@@ -1761,7 +1761,7 @@
 													<jumps exact="0"/>
 												</find_station>
 											</do_if>
-											<do_if value="{object.exists@Terran Military.MissionOutpost_£}" exact="0">
+											<do_if value="{object.exists@Terran Military.MissionOutpost_3}" exact="0">
 												<reset_cue cue="Terran Military_Missions_3"/>
 											</do_if>
 										</do_when>
@@ -1785,7 +1785,7 @@
 										<cue ref="Military_Radiant_Mission">
 											<params>
 												<param name="Data Cue" value="Terran Military"/>
-												<param name="Reset Cue" value="Terran Military_Missions_£"/>
+												<param name="Reset Cue" value="Terran Military_Missions_3"/>
 												<param name="MissionID" value="3"/>
 												<param name="Briefing Cue" value="Terran Military_Missions_3"/>
 												<param name="Leader" value="{actor@Terran Military.Leader_3}"/>

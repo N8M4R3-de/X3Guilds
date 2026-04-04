@@ -366,10 +366,11 @@
 		  </condition>
 		  <action>
 			  <do_if value="{player.sector.fixedmusic}" exact="0">
-				  <alter_sector sector="{player.sector}" music="0"/>
+				  <alter_sector sector="{player.sector}" music="1"/>
 			  </do_if>
 		  </action>
 	  </cue>
+
 	  <cue name="RMG2" instantiate="static">
 		  <condition>
 			  <object_changed_sector/>
@@ -400,7 +401,7 @@
 				  </do_if>
 			  </do_all>
 		  </action>
-	  </cue>
+	  </cue>	 
 
 	  <cue name="UFJD">
 		  <action>

@@ -679,7 +679,6 @@
 																			<action>
 																				<do_all>
 																					<set_value name="Race Military Argon Plot" exact="0"/>
-																					<incoming_message text="Mission failed? Status={value@Beryll_Incursion.Feedback}"/>
 																				</do_all>
 																			</action>
 																		</cue>
@@ -4958,6 +4957,14 @@
 							</timing>
 							<action>
 								<do_all>
+									<do_if value="{sector.exists@Beryll_Incursion.YakiSectorStart}" exact="0">
+										<find_sector x="0" y="10" name="Beryll_Incursion.YakiSectorStart" comment="Savage Spur (initial yaki contact)"/>
+										<find_sector x="8" y="14" name="Beryll_Incursion.YakiEscortStart" comment="Desicrated Skies (Yaki Escort Start)"/>
+										<find_sector x="8" y="17" name="Beryll_Incursion.YakiEscortMeeting" comment="Unholy Decent (Police Meeting)"/>
+										<find_sector x="7" y="16" name="Beryll_Incursion.YakiEscortEnd" comment="Anacreon's Kingdom (Yaki Escort End)"/>
+										<find_sector x="5" y="15" name="Beryll_Incursion.YakiHome" comment="Tortuga's Retreat (Yaki Home Sector)"/>
+										<find_sector x="6" y="14" name="Beryll_Incursion.BeryllHome" comment="Mists of Artemis (Beryll Home Sector)"/>
+									</do_if>
 									<cancel_cue cue="Beryll_Incursion_Stage2_BoostRep"/>
 									<find_station race="yaki" name="Beryll_Incursion.YakiContactStation" silent="1">
 										<sector sector="Beryll_Incursion.YakiSectorStart"/>
@@ -5067,6 +5074,51 @@
 										</do_all>
 									</action>
 									<cues>
+										<cue name="Beryll_Incursion_Stage2_2_MissingSector">
+											<condition>
+												<check_value value="{sector.exists@Beryll_Incursion.YakiSectorStart}" exact="0"/>
+											</condition>
+											<action>
+												<do_all>
+													<find_sector x="0" y="10" name="Beryll_Incursion.YakiSectorStart" comment="Savage Spur (initial yaki contact)"/>
+													<find_sector x="8" y="14" name="Beryll_Incursion.YakiEscortStart" comment="Desicrated Skies (Yaki Escort Start)"/>
+													<find_sector x="8" y="17" name="Beryll_Incursion.YakiEscortMeeting" comment="Unholy Decent (Police Meeting)"/>
+													<find_sector x="7" y="16" name="Beryll_Incursion.YakiEscortEnd" comment="Anacreon's Kingdom (Yaki Escort End)"/>
+													<find_sector x="5" y="15" name="Beryll_Incursion.YakiHome" comment="Tortuga's Retreat (Yaki Home Sector)"/>
+													<find_sector x="6" y="14" name="Beryll_Incursion.BeryllHome" comment="Mists of Artemis (Beryll Home Sector)"/>
+													<warp_object object="Beryll_Incursion.YakiEscortShip">
+														<sector sector="Beryll_Incursion.YakiEscortStart"/>
+													</warp_object>
+													<warp_object object="Beryll_Incursion.YakiContactShip">
+														<sector sector="Beryll_Incursion.YakiEscortStart"/>
+													</warp_object>
+													<warp_group group="Beryll_Incursion.YakiConvoy">
+														<sector sector="Beryll_Incursion.YakiEscortStart"/>
+													</warp_group>
+													<create_briefing cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000000}" text="{9620,1000139}" background="beryll_sector.tga">
+														<mission discipline="XXXXP" level="average"/>
+														<reward money="0"/>
+														<objectives>
+															<objective step="3">
+																<flyto>
+																	<sector sector="{object.sector@Beryll_Incursion.YakiContactShip}"/>
+																</flyto>
+															</objective>
+														</objectives>
+													</create_briefing>
+													<set_objective cue="Beryll_Incursion" race="{9620,1000005}" targetrace="{9620,1000005}" story="{9620,1000000}" title="{9620,1000000}" text="{9620,1000139}" noabort="1">
+														<briefing cue="Beryll_Incursion" step="3"/>
+														<mission discipline="XXXXP" level="average"/>
+														<reward money="0"/>
+														<flyto>
+															<sector sector="{object.sector@Beryll_Incursion.YakiContactShip}"/>
+														</flyto>
+													</set_objective>
+													<reset_cue cue="Beryll_Incursion_Stage2_2_JoinEscort"/>
+												</do_all>
+											</action>
+										</cue>
+										
 										<cue name="Beryll_Incursion_Stage2_2_Speak" delay="1s">
 											<timing>
 												<time exact="3s"/>
@@ -5078,7 +5130,7 @@
 										
 										<cue name="Beryll_Incursion_Stage2_2_JoinEscort" delay="1s">
 											<condition>
-												<object_changed_sector param="{object.sector@Beryll_Incursion.YakiContactShip}"/>
+												<check_value value="{player.sector}" exact="{object.sector@Beryll_Incursion.YakiContactShip}"/>
 											</condition>
 											<action>
 												<do_all>
@@ -5141,7 +5193,10 @@
 																<time min="5s" max="10s"/>
 															</timing>
 															<action>
-																<set_command object="Beryll_Incursion.YakiEscortShip" command="stay"/>
+																<do_all>
+																	<set_command object="Beryll_Incursion.YakiEscortShip" command="stay"/>
+																	<cancel_cue cue="Beryll_Incursion_Stage2_2_MissingSector"/>
+																</do_all>
 															</action>
 															<cues>
 																<cue name="Beryll_Incursion_Stage2_2_WaitPlayer" delay="1s">
@@ -5205,10 +5260,7 @@
 																				</check_any>
 																			</condition>
 																			<action>
-																				<do_all>
-																					<remove_object_from_group object="{event.object}" group="Beryll_Incursion.PoliceConvoy"/>
-																					<incoming_message text="Removing ship from group: {object.name@{event.object}}"/>
-																				</do_all>
+																				<remove_object_from_group object="{event.object}" group="Beryll_Incursion.PoliceConvoy"/>
 																			</action>
 																		</cue>
 
