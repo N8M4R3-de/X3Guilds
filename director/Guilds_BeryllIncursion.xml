@@ -679,7 +679,6 @@
 																			<action>
 																				<do_all>
 																					<set_value name="Race Military Argon Plot" exact="0"/>
-																					<incoming_message text="Mission failed? Status={value@Beryll_Incursion.Feedback}"/>
 																				</do_all>
 																			</action>
 																		</cue>
@@ -5261,10 +5260,7 @@
 																				</check_any>
 																			</condition>
 																			<action>
-																				<do_all>
-																					<remove_object_from_group object="{event.object}" group="Beryll_Incursion.PoliceConvoy"/>
-																					<incoming_message text="Removing ship from group: {object.name@{event.object}}"/>
-																				</do_all>
+																				<remove_object_from_group object="{event.object}" group="Beryll_Incursion.PoliceConvoy"/>
 																			</action>
 																		</cue>
 
