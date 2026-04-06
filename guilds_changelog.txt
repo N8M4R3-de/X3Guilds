@@ -1,3 +1,6 @@
+V0.89
+Improved handling of captured ships in Attack Waypoint mission
+
 V0.88
 Added Heavy Tern and Heavy Shrike to Teladi Super Shipyard
 Added new mission type (Attack ships at waypoints)
